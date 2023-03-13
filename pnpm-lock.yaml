@@ -13,6 +13,8 @@ importers:
   apps/site:
     specifiers:
       '@radix-ui/colors': ^0.1.8
+      '@sanity/client': ^5.2.2
+      '@sanity/image-url': ^1.0.2
       '@sveltejs/adapter-auto': ^2.0.0
       '@sveltejs/kit': ^1.5.0
       '@typescript-eslint/eslint-plugin': ^5.45.0
@@ -20,6 +22,7 @@ importers:
       eslint: ^8.28.0
       eslint-config-prettier: ^8.5.0
       eslint-plugin-svelte3: ^4.0.0
+      groq: ^3.6.0
       prettier: ^2.8.0
       prettier-plugin-svelte: ^2.8.1
       sass: ^1.59.2
@@ -28,8 +31,11 @@ importers:
       tslib: ^2.4.1
       typescript: ^4.9.3
       vite: ^4.0.0
+    dependencies:
+      '@sanity/client': 5.2.2
     devDependencies:
       '@radix-ui/colors': 0.1.8
+      '@sanity/image-url': 1.0.2
       '@sveltejs/adapter-auto': 2.0.0_@sveltejs+kit@1.11.0
       '@sveltejs/kit': 1.11.0_svelte@3.56.0+vite@4.1.4
       '@typescript-eslint/eslint-plugin': 5.54.1_4rfaf6mlw2mmutqjcopwvbftpu
@@ -37,6 +43,7 @@ importers:
       eslint: 8.36.0
       eslint-config-prettier: 8.7.0_eslint@8.36.0
       eslint-plugin-svelte3: 4.0.0_pdvxdpbnzjwxjm7tkjwumh3vqi
+      groq: 3.6.0
       prettier: 2.8.4
       prettier-plugin-svelte: 2.9.0_gan2xfhhcbz3kbkivttwsjndea
       sass: 1.59.2
@@ -2058,7 +2065,6 @@ packages:
   /@sanity/image-url/1.0.2:
     resolution: {integrity: sha512-C4+jb2ny3ZbMgEkLd7Z3C75DsxcTEoE+axXQJsQ75ou0AKWGdVsP351hqK6mJUUxn5HCSlu3vznoh7Yljye4cQ==}
     engines: {node: '>=10.0.0'}
-    dev: false
 
   /@sanity/import/3.6.0:
     resolution: {integrity: sha512-0K8CdYR0akYjBMt3HU3SwgSJxJUEpdWks3j8JCs91/2ClTgqhLJaLNW9qTTPj0m/GU0jAKJswSluMDkCL6pl8g==}
@@ -4214,6 +4220,11 @@ packages:
   /groq-js/0.2.0:
     resolution: {integrity: sha512-qJeuEgziddryH1ClsJvMoZM9aXNQbBViNZZrJwhHKr2wU8HGGM7uNWNVFglWXMX60MMaa2SClX3UohP76Ut68g==}
     dev: false
+
+  /groq/3.6.0:
+    resolution: {integrity: sha512-IJr1eRjIcpENtkBM+U1KB7VmHkObz02bb4NwtjoKy+Ak6CySvsvn3KOKflTryE2bIBDrPSAz4JXNOUZvMcVSlg==}
+    engines: {node: '>=14'}
+    dev: true
 
   /gunzip-maybe/1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
