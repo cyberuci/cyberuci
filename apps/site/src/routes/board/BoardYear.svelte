@@ -25,7 +25,6 @@
 	}
 
 	h1 {
-		grid-column: 2 / span 3;
 		margin: 24px 0;
 		font-size: 2rem;
 		font-weight: 500;
@@ -34,7 +33,7 @@
 	.board-members {
 		grid-column: 2 / span 3;
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
 		gap: 32px 24px;
 	}
 </style>
