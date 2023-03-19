@@ -1,19 +1,21 @@
 <script lang="ts">
 	import type { CustomBlockComponentProps } from '@portabletext/svelte';
-	import { Download } from 'lucide-svelte';
+	import { ExternalLink } from 'lucide-svelte';
 
 	export let portableText: CustomBlockComponentProps<{ label: string; url: string }>;
 
 	$: link = portableText.value;
 </script>
 
-<div>
+<a href={link.url}>
 	<span>{link.label}</span>
-	<Download size={20} strokeWidth={2} />
-</div>
+	<ExternalLink size={20} strokeWidth={2} />
+</a>
 
 <style lang="scss">
-	div {
+	a {
+		text-decoration: none;
+		display: block;
 		margin: 32px auto;
 		background-color: var(--gray3);
 		padding: 1rem;
