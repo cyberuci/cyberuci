@@ -112,11 +112,34 @@ export default defineType({
       ],
     }),
   ],
+  orderings: [
+    {
+      title: 'Date, New',
+      name: 'dateDesc',
+      by: [{field: 'start', direction: 'desc'}],
+    },
+  ],
 
   preview: {
     select: {
-      title: 'title',
       media: 'image',
+      title: 'title',
+      start: 'start',
+      end: 'end',
+    },
+    prepare({start, end, ...selection}) {
+      const startTime = new Intl.DateTimeFormat('en', {
+        dateStyle: 'short',
+        timeStyle: 'short',
+      }).format(new Date(start))
+      const endTime = new Intl.DateTimeFormat('en', {
+        timeStyle: 'short',
+      }).format(new Date(end))
+
+      return {
+        subtitle: startTime + ' - ' + endTime,
+        ...selection,
+      }
     },
   },
 })
