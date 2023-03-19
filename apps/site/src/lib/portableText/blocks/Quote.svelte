@@ -1,10 +1,4 @@
-<script lang="ts">
-	import Block from '../Block.svelte';
-</script>
-
-<Block>
-	<blockquote><slot /></blockquote>
-</Block>
+<blockquote><slot /></blockquote>
 
 <style lang="scss">
 	blockquote {

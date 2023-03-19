@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { BlockComponentProps } from '@portabletext/svelte';
-	import Block from '../Block.svelte';
 
 	export let portableText: BlockComponentProps;
 
@@ -8,9 +7,7 @@
 	$: ({ style } = value);
 </script>
 
-<Block>
-	<svelte:element this={style}><slot /></svelte:element>
-</Block>
+<svelte:element this={style}><slot /></svelte:element>
 
 <style lang="scss">
 	* {

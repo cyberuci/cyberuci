@@ -1,12 +1,6 @@
-<script lang="ts">
-	import Block from '../Block.svelte';
-</script>
-
-<Block>
-	<ol>
-		<slot />
-	</ol>
-</Block>
+<ol>
+	<slot />
+</ol>
 
 <style lang="scss">
 	ol {

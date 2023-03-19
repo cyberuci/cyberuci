@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { CustomBlockComponentProps } from '@portabletext/svelte';
-	import Block from '../Block.svelte';
 
 	export let portableText: CustomBlockComponentProps<{ label: string; fileUrl: string }>;
 
@@ -8,15 +7,21 @@
 </script>
 
 <div>
-	<Block multiplier={1.3}>
-		{file.label}
-		<object type="application/pdf" title={file.label} data={file.fileUrl} />
-	</Block>
+	<span>{file.label}</span>
+	<object type="application/pdf" title={file.label} data={file.fileUrl} />
 </div>
 
 <style lang="scss">
 	div {
 		margin: 32px auto;
+		background-color: var(--gray3);
+		border-radius: 4px;
+		overflow: hidden;
+	}
+
+	span {
+		display: block;
+		padding: 1rem;
 	}
 
 	object {
