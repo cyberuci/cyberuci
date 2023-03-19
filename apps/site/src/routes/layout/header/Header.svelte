@@ -9,19 +9,18 @@
 		{ href: '/board', label: 'Board' }
 		// { href: "/sponsors", label: "Sponsors" },
 	];
-
-	$: pathname = $page.url.pathname;
 </script>
 
 <header>
-	<a href="/">
+	<a class="logo" href="/">
 		<img src={logo} alt="monochrome Cyber logo" />
 	</a>
 	<div class="nav">
-		<Nav {pathname} {links} />
+		<Nav {links} />
 	</div>
+	<a class="cta" href="https://discord.com/">Join Discord</a>
 	<div class="nav-collapsible">
-		<NavCollapsible {pathname} {links} />
+		<NavCollapsible {links} />
 	</div>
 </header>
 <div class="buffer" />
@@ -29,10 +28,11 @@
 <style lang="scss">
 	header {
 		box-sizing: border-box;
-		position: fixed;
+		position: absolute;
 		left: 0;
 		right: 0;
-		display: flex;
+		display: grid;
+		grid-template-columns: 1fr 3fr 1fr;
 		align-items: center;
 		gap: 16px;
 		padding: 16px 24px;
@@ -43,19 +43,42 @@
 		}
 	}
 
-	a {
+	.logo {
 		line-height: 0;
-	}
+		justify-self: flex-start;
 
-	img {
-		width: 40px;
-		height: 40px;
+		img {
+			width: 40px;
+			height: 40px;
+		}
 	}
 
 	.nav {
 		display: block;
+		justify-self: center;
+
 		@media (max-width: 480px) {
 			display: none;
+		}
+	}
+
+	.cta {
+		position: fixed;
+		justify-self: flex-end;
+		padding: 12px 18px;
+		border-radius: 1000px;
+		color: #fff;
+		background-color: var(--blue9);
+		font-size: 0.875rem;
+		font-weight: 400;
+		text-decoration: none;
+
+		&:hover {
+			background-color: var(--blue10);
+		}
+
+		&:active {
+			background-color: var(--blue11);
 		}
 	}
 
