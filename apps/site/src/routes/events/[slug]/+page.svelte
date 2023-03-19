@@ -47,18 +47,30 @@
 
 <style lang="scss">
 	main {
+		margin: 96px auto 0 auto;
+		padding: 0 16px;
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		gap: 16px;
-		margin: 0 48px;
+		grid-template-columns: 1fr;
+		@media (min-width: 600px) {
+			max-width: 600px - 32px;
+		}
+		@media (min-width: 900px) {
+			grid-template-columns: repeat(5, 1fr);
+			padding: 0 32px;
+			max-width: 1200px;
+		}
 	}
 
 	.column-1 {
+		grid-row: 1;
 		grid-column: 1;
-		grid-row: 2;
 		display: flex;
 		flex-direction: column;
-		gap: 24px;
+		gap: 4px;
+		@media (min-width: 900px) {
+			grid-row: 2;
+			gap: 24px;
+		}
 		color: var(--gray11);
 
 		.time p {
@@ -74,23 +86,29 @@
 		}
 	}
 
-	.content {
-		grid-column: 2 / span 3;
-		grid-row: 2;
-	}
-
 	h1 {
-		grid-column: 2 / span 3;
-		grid-row: 1;
+		grid-row: 2;
+		grid-column: 1;
+		@media (min-width: 900px) {
+			grid-row: 1;
+			grid-column: 2 / span 3;
+		}
 		font-family: 'Inter';
-		margin: 96px 0 24px 0;
+		margin: 24px 0;
 		font-size: 40px;
 		letter-spacing: -0.022em;
 		line-height: 56px;
 		font-weight: 400;
 	}
 
-	main {
-		grid-column: 2 / span 3;
+	.content {
+		grid-row: 3;
+		grid-column: 1;
+		@media (min-width: 900px) {
+			grid-row: 2;
+		}
+		@media (min-width: 900px) {
+			grid-column: 2 / span 3;
+		}
 	}
 </style>

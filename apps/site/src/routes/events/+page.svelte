@@ -23,14 +23,27 @@
 
 <style lang="scss">
 	main {
+		margin: 0 auto;
+		padding: 0 16px;
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
+		grid-template-columns: 1fr;
+		@media (min-width: 600px) {
+			max-width: 600px - 32px;
+		}
+		@media (min-width: 900px) {
+			grid-template-columns: repeat(5, 1fr);
+			padding: 0 32px;
+			max-width: 1200px;
+		}
 		gap: 0 24px;
 	}
 
 	h1 {
-		grid-column: 2 / span 3;
 		grid-row: 1;
+		grid-column: 1;
+		@media (min-width: 900px) {
+			grid-column: 2 / span 3;
+		}
 		margin: 96px 0 8px 0;
 		font-family: 'Inter';
 		font-size: 40px;
@@ -40,17 +53,21 @@
 	}
 
 	.line {
-		grid-column: 1 / span 5;
+		margin: 0 -25%;
 		grid-row: 2;
-		width: 100%;
+		grid-column: 1 / -1;
+		width: 150%;
 		height: 1px;
 		background-color: var(--gray7);
 	}
 
 	.grid {
 		margin: 24px 0;
-		grid-column: 2 / span 3;
 		grid-row: 3;
+		grid-column: 1;
+		@media (min-width: 900px) {
+			grid-column: 2 / span 3;
+		}
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
