@@ -2,6 +2,7 @@
 	import type { Person } from '$lib/sanity/types';
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
+	import { User } from 'lucide-svelte';
 
 	const builder = imageUrlBuilder(client);
 
@@ -18,28 +19,40 @@
 <article>
 	<div class="image">
 		{#if image}
-			<img src={builder.image(image).url()} alt={name} />
+			<img src={builder.image(image).size(512, 512).url()} alt={name} />
+		{:else}
+			<User color="var(--gray7)" />
 		{/if}
 	</div>
 	<!-- TODO: Support multiple pronouns -->
-	<h1>{name} ({pronouns[0]})</h1>
+	<h1>
+		{name}
+		{#if pronouns}
+			({pronouns[0]})
+		{/if}
+	</h1>
 	<span> {title}</span>
 	<!-- TODO: Support multiple majors -->
-	<span>{majors[0]} '{graduation - 2000}</span>
+	{#if majors && majors.length && graduation}
+		<span>{majors[0]} '{graduation - 2000}</span>
+	{/if}
 </article>
 
 <style>
 	article {
 		display: flex;
 		flex-direction: column;
+		gap: 4px;
 	}
 
 	.image {
 		width: 100%;
 		aspect-ratio: 1;
 		background-color: var(--gray2);
-		border-radius: 16px;
+		border-radius: 12px;
 		overflow: hidden;
+		display: grid;
+		place-content: center;
 	}
 
 	img {
@@ -49,13 +62,13 @@
 	}
 
 	h1 {
-		margin-bottom: 6px;
+		margin: 12px 0 4px 0;
 		font-size: 1rem;
 		font-weight: 400;
 	}
 
 	span {
-		margin-bottom: 2px;
+		margin: 0;
 		color: var(--gray11);
 		font-size: 1rem;
 	}

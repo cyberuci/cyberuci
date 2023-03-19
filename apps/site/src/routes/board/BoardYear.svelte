@@ -11,7 +11,7 @@
 </script>
 
 <article>
-	<h1>{year}</h1>
+	<h1>{year} - {year + 1}</h1>
 	<div class="board-members">
 		{#each boardMembers as boardMember}
 			<BoardMember {boardMember} />
@@ -25,14 +25,16 @@
 	}
 
 	h1 {
+		grid-column: 2 / span 3;
 		margin: 24px 0;
 		font-size: 2rem;
 		font-weight: 500;
 	}
 
 	.board-members {
+		grid-column: 2 / span 3;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
-		gap: 32px 16px;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 32px 24px;
 	}
 </style>
