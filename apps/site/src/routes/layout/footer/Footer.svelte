@@ -42,14 +42,6 @@
 		}
 	}
 
-	footer {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 16px;
-		padding: 16px 24px;
-	}
-
 	@keyframes scroll {
 		from {
 			transform: translateX(0);
@@ -61,16 +53,24 @@
 	}
 
 	footer {
+		padding: 16px 24px;
 		background: hsla(218, 96%, 90%, 1);
 		color: #000000;
 		display: grid;
+		gap: 16px;
 		align-items: flex-end;
-		grid-template-columns: repeat(5, 1fr);
+		grid-template-columns: 1;
+		@media (min-width: 960px) {
+			grid-template-columns: repeat(5, 1fr);
+		}
 
 		.copyright {
 			font-size: 0.875rem;
 			margin: 0;
-			grid-column: 1 / span 2;
+			grid-column: 1;
+			@media (min-width: 960px) {
+				grid-column: 1 / span 2;
+			}
 		}
 
 		nav {

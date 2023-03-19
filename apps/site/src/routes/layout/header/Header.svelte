@@ -28,11 +28,15 @@
 <style lang="scss">
 	header {
 		box-sizing: border-box;
-		position: absolute;
+		position: fixed;
 		left: 0;
 		right: 0;
-		display: grid;
-		grid-template-columns: 1fr 3fr 1fr;
+		display: flex;
+		@media (min-width: 480px) {
+			position: absolute;
+			display: grid;
+			grid-template-columns: 1fr 3fr 1fr;
+		}
 		align-items: center;
 		gap: 16px;
 		padding: 16px 24px;
@@ -72,6 +76,10 @@
 		font-size: 0.875rem;
 		font-weight: 400;
 		text-decoration: none;
+		display: none;
+		@media (min-width: 480px) {
+			display: block;
+		}
 
 		&:hover {
 			background-color: var(--blue10);
