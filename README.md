@@ -1,55 +1,52 @@
-# Turborepo starter
+# Cyber @ UCI
 
-This is an official pnpm starter turborepo.
+This monorepo uses [turborepo](https://turbo.build/repo) with [pnpm](https://pnpm.io) as a package manager. It contains the following:
 
-## What's inside?
+## `site`
 
-This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes the following packages/apps:
+This app contains the [SvelteKit](https://kit.svelte.dev/) app for the [Cyber @ UCI site](https://cyberuci.com/).
 
-### Apps and Packages
+## `studio`
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+This app contains a [Sanity Studio](https://www.sanity.io/docs/sanity-studio) project. The Cyber @ UCI site uses [Sanity](https://www.sanity.io/) as a CMS. Sanity Studio is the customizable interface that board members use to edit content. It's currently deployed at <https://content.cyberuci.com/>.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
+## Utilities
 
 This turborepo has some additional tools already setup for you:
 
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
 
-### Build
+## Build
 
 To build all apps and packages, run the following command:
 
-```
-cd my-turborepo
+```sh
+cd cyberuci
 pnpm run build
 ```
 
-### Develop
+To build an individual app or package, first navigate to the corresponding directory and run the build command.
+
+## Develop
 
 To develop all apps and packages, run the following command:
 
-```
-cd my-turborepo
+```sh
+cd cyberuci
 pnpm run dev
 ```
 
-### Remote Caching
+To develop an individual app or package, first navigate to the corresponding directory and run the dev command.
+
+## Remote Caching
 
 Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
 
 By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
 
-```
-cd my-turborepo
+```sh
+cd cyberuci
 pnpm dlx turbo login
 ```
 
@@ -57,17 +54,20 @@ This will authenticate the Turborepo CLI with your [Vercel account](https://verc
 
 Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
 
-```
+```sh
 pnpm dlx turbo link
 ```
 
-## Useful Links
+## Acknowledgments
 
-Learn more about the power of Turborepo:
+Thanks to the following projects:
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+Inter: <https://rsms.me/inter/> (<https://github.com/rsms/inter>)
+
+TINY: <http://velvetyne.fr/fonts/tiny> (<https://github.com/jckfa/tinyfonts>)
+
+## License
+
+This repo is source available and not licensed under an open source license.
+
+Copyright © 2023 Cyber @ UCI
