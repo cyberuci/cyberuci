@@ -2,7 +2,7 @@
 	<p>Cyber @ UCI&#160Cyber @ UCI&#160</p>
 </div>
 <footer>
-	<p class="copyright">Copyright © 2022 Cyber @ UCI</p>
+	<p class="copyright">Copyright © 2023 Cyber @ UCI</p>
 	<nav>
 		<a href="https://discord.gg/WjbSP2B9Ck">Discord</a>
 		<a href="https://instagram.com/cyberuci/">Instagram</a>
