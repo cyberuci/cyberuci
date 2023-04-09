@@ -33,6 +33,18 @@ export default defineType({
       validation: (Rule) => Rule.unique(),
     }),
     defineField({
+      name: 'email',
+      title: 'Email',
+      type: 'email',
+    }),
+    defineField({
+      name: 'discord',
+      title: 'Discord Username',
+      type: 'string',
+      validation: (Rule) =>
+        Rule.regex(/^\w+#\d{4}$/).error('Does not match the following pattern: username#0000.'),
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
