@@ -1,5 +1,7 @@
 # Cyber @ UCI
 
+![two staggered iPad Pros, the left showing Sanity Studio editing a user and the right showing the Cyber @ UCI homepage.](./assets/mockup.png)
+
 This monorepo uses [turborepo](https://turbo.build/repo) with [pnpm](https://pnpm.io) as a package manager. It contains the following:
 
 ## `site`
