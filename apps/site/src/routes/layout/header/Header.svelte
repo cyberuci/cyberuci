@@ -77,6 +77,8 @@
 		font-weight: 400;
 		text-decoration: none;
 		display: none;
+		right: 16px;
+
 		@media (min-width: 480px) {
 			display: block;
 		}
