@@ -7,8 +7,22 @@
 </script>
 
 <svelte:head>
-	<link href="/fonts/tiny/TINY.css" rel="stylesheet" />
+	<link
+		rel="preload"
+		href="/fonts/inter/Inter-roman.var.woff2"
+		as="font"
+		type="font/woff2"
+		crossOrigin="anonymous"
+	/>
+	<link
+		rel="preload"
+		href="/fonts/inter/Inter-italic.var.woff2"
+		as="font"
+		type="font/woff2"
+		crossOrigin="anonymous"
+	/>
 	<link href="/fonts/inter/inter.css" rel="stylesheet" />
+	<link href="/fonts/tiny/TINY.css" rel="stylesheet" />
 </svelte:head>
 
 <Header />
