@@ -9,14 +9,14 @@
 <svelte:head>
 	<link
 		rel="preload"
-		href="/fonts/inter/Inter-roman.var.woff2"
+		href="/fonts/inter/Inter-roman.var.woff2?v=3.19"
 		as="font"
 		type="font/woff2"
 		crossOrigin="anonymous"
 	/>
 	<link
 		rel="preload"
-		href="/fonts/inter/Inter-italic.var.woff2"
+		href="/fonts/inter/Inter-italic.var.woff2?v=3.19"
 		as="font"
 		type="font/woff2"
 		crossOrigin="anonymous"
