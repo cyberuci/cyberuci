@@ -2,7 +2,6 @@
 	import './global.scss';
 
 	import Header from './layout/header/Header.svelte';
-	import Socials from './layout/socials/Socials.svelte';
 	import Footer from './layout/footer/Footer.svelte';
 </script>
 
@@ -29,5 +28,4 @@
 <main>
 	<slot />
 </main>
-<!-- <Socials /> -->
 <Footer />
