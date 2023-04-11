@@ -4,7 +4,7 @@
 	let wrapper: HTMLDivElement;
 	let innerHeight: number;
 	let top: number;
-	$: offset = (innerHeight - top) * 0.25;
+	$: offset = (innerHeight - top) * 0.1;
 
 	// TODO: Only calculate when footer is in view.
 	const calculateTop = debounce(() => {
@@ -15,7 +15,7 @@
 <svelte:window bind:innerHeight on:resize={calculateTop} on:scroll={calculateTop} />
 
 <div id="wrapper">
-	<div id="transform" style:transform="translateY({offset}px)">
+	<div id="transform" style:transform="translateY({offset}%)">
 		<div class="cyber">
 			<p>Cyber @ UCI&#160Cyber @ UCI&#160</p>
 		</div>
