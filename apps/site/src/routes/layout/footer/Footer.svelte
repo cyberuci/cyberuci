@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { debounce } from 'debounce';
+	import debounce from 'debounce';
 
 	let wrapper: HTMLDivElement;
 	let innerHeight: number;
