@@ -28,6 +28,7 @@ export default defineType({
             defineField({
               name: 'label',
               title: 'Label',
+              description: 'The section label will be hidden if there is only one section.',
               type: 'string',
               validation: (Rule) => Rule.required(),
             }),
