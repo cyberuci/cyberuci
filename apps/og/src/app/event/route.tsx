@@ -35,8 +35,6 @@ export const GET = async (request: Request) => {
   if (!image) return parameterRequired("image");
   if (!imageColor) return parameterRequired("imageColor");
 
-  console.log(imageColor);
-
   const formatDate = new Intl.DateTimeFormat("en", {
     timeZone: "America/Los_Angeles",
     weekday: "short",
@@ -54,12 +52,10 @@ export const GET = async (request: Request) => {
   const endDate = new Date(end);
 
   const imageColorTransparent = new Color(imageColor);
-  imageColorTransparent.alpha = 0.25;
+  imageColorTransparent.alpha = 0.2;
   const imageColorTransparentString = imageColorTransparent.toString({
-    format: "rgba",
+    format: "hex",
   });
-
-  console.log(imageColorTransparent, imageColorTransparentString);
 
   const interData = await inter;
   const interBoldData = await interBold;
@@ -132,7 +128,7 @@ export const GET = async (request: Request) => {
             margin: 20,
             borderRadius: 16,
             objectFit: "cover",
-            boxShadow: `0px 0px 150px 75px ${imageColorTransparentString}`,
+            boxShadow: `0px 0px 125px 62.5px ${imageColorTransparentString}`,
           }}
         />
       </div>
