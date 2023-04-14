@@ -1,5 +1,4 @@
 import { ImageResponse } from "next/server";
-import Color from "colorjs.io";
 
 import Logo from "./Logo";
 
@@ -35,8 +34,6 @@ export const GET = async (request: Request) => {
   if (!image) return parameterRequired("image");
   if (!imageColor) return parameterRequired("imageColor");
 
-  console.log(imageColor);
-
   const formatDate = new Intl.DateTimeFormat("en", {
     timeZone: "America/Los_Angeles",
     weekday: "short",
@@ -52,20 +49,6 @@ export const GET = async (request: Request) => {
 
   const startDate = new Date(start);
   const endDate = new Date(end);
-
-  const imageColorTransparent = new Color(imageColor);
-  imageColorTransparent.alpha = 0.2;
-  // https://github.com/LeaVerou/color.js/issues/203
-  const rgba = {
-    name: "rgba",
-    commas: true,
-    coords: ["<percentage>", "<percentage>", "<percentage>"],
-  };
-  const imageColorTransparentString = imageColorTransparent.toString({
-    format: rgba,
-  });
-
-  console.log(imageColorTransparent, imageColorTransparentString);
 
   const interData = await inter;
   const interBoldData = await interBold;
@@ -138,7 +121,7 @@ export const GET = async (request: Request) => {
             margin: 20,
             borderRadius: 16,
             objectFit: "cover",
-            boxShadow: `0px 0px 125px 62.5px ${imageColorTransparentString}`,
+            boxShadow: `0px 0px 125px 62.5px ${imageColor}33`,
           }}
         />
       </div>
