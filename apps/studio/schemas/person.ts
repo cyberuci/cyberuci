@@ -24,6 +24,7 @@ export default defineType({
     defineField({
       name: 'pronouns',
       title: 'Pronouns',
+      description: 'Only the first value is currently displayed.',
       type: 'array',
       of: [
         defineArrayMember({
@@ -55,6 +56,7 @@ export default defineType({
     defineField({
       name: 'majors',
       title: 'Majors',
+      description: 'Only the first value is currently displayed.',
       type: 'array',
       of: [
         defineArrayMember({
