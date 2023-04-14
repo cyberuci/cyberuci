@@ -28,7 +28,11 @@ export default defineConfig({
                 members[] {
                   title,
                   terms,
-                  person->
+                  person->{
+                    _id,
+                    name,
+                    "imageUrl": image.asset->url
+                  }
                 }
               }
             }
@@ -44,6 +48,7 @@ export default defineConfig({
                 person: {
                   _id: string
                   name: string
+                  imageUrl: string
                 }
               }[]
             }[]
@@ -52,9 +57,9 @@ export default defineConfig({
           const sections = (board.sections ?? [])
             .map((section) => [
               section.members.map((member) =>
-                S.documentListItem()
+                S.listItem()
                   .title(member.person.name)
-                  .schemaType('person')
+                  .child(S.document().schemaType('person').id(member.person._id))
                   .id(section._key + member.person._id)
               ),
               S.divider(),
