@@ -14,7 +14,7 @@
 	<div class="line" />
 	<div class="boards">
 		{#each data.boards as board}
-			<BoardYear year={board.year} boardMembers={board.members} />
+			<BoardYear year={board.year} sections={board.sections} />
 		{/each}
 	</div>
 </main>

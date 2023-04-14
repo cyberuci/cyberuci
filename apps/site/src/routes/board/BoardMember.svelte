@@ -6,13 +6,13 @@
 
 	const builder = imageUrlBuilder(client);
 
-	export let boardMember: {
+	export let member: {
 		title: string;
 		terms: string[];
 		person: Person;
 	};
 
-	$: ({ title, person } = boardMember);
+	$: ({ title, person } = member);
 	$: ({ name, pronouns, image, majors, graduation } = person);
 </script>
 

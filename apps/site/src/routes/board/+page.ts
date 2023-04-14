@@ -7,19 +7,25 @@ export const load = (async () => {
 	const query = groq`
     *[_type == "board"] | order(year desc) {
       year,
-      members[]{
-        title,
-        terms,
-        person->
+			sections[] {
+				label,
+				members[] {
+					title,
+					terms,
+					person->
+				}
       }
     }
   `;
 	type QueryResult = {
 		year: number;
-		members: {
-			title: string;
-			terms: string[];
-			person: Person;
+		sections: {
+			label: string;
+			members: {
+				title: string;
+				terms: string[];
+				person: Person;
+			}[];
 		}[];
 	}[];
 	const boards = client.fetch<QueryResult>(query);
