@@ -56,7 +56,7 @@ export const GET = async (request: Request) => {
   const imageColorTransparent = new Color(imageColor);
   imageColorTransparent.alpha = 0.2;
   const imageColorTransparentString = imageColorTransparent.toString({
-    format: "hex",
+    format: "rgba",
   });
 
   console.log(imageColorTransparent, imageColorTransparentString);
