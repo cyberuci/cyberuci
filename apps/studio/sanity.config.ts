@@ -53,7 +53,7 @@ export default defineConfig({
                 S.documentListItem()
                   .title(member.person.name)
                   .schemaType('person')
-                  .id(member.person._id)
+                  .id(section.label + member.person._id)
               ),
               S.divider(),
             ])
