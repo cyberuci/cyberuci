@@ -59,7 +59,7 @@ export const GET = async (request: Request) => {
   const rgba = {
     name: "rgba",
     commas: true,
-    coords: ["<number>[0, 255]", "<number>[0, 255]", "<number>[0, 255]"],
+    coords: ["<percentage>", "<percentage>", "<percentage>"],
   };
   const imageColorTransparentString = imageColorTransparent.toString({
     format: rgba,
