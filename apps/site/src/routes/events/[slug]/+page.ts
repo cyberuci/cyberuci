@@ -9,6 +9,8 @@ export const load = (async ({ params }) => {
 
 	const query = groq`
 		*[_type == "event" && slug.current == $slug][0] {
+			"ogImageUrl": ogImage.asset->url,
+			"ogImageColor": ogImage.asset->metadata.palette.vibrant.background,
 			title,
 			start,
 			end,
@@ -25,6 +27,8 @@ export const load = (async ({ params }) => {
 		}
   `;
 	type QueryResult = {
+		ogImageUrl: string;
+		ogImageColor: string;
 		title: string;
 		slug: SanitySlug;
 		start: string;

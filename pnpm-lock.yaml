@@ -15,6 +15,7 @@ importers:
       '@types/node': 18.15.11
       '@types/react': 18.0.35
       '@types/react-dom': 18.0.11
+      colorjs.io: ^0.4.3
       eslint: 8.38.0
       eslint-config-next: 13.3.0
       next: 13.3.0
@@ -25,6 +26,7 @@ importers:
       '@types/node': 18.15.11
       '@types/react': 18.0.35
       '@types/react-dom': 18.0.11
+      colorjs.io: 0.4.3
       eslint: 8.38.0
       eslint-config-next: 13.3.0_voubu7prgxjfsfbgx5d4sqnwiy
       next: 13.3.0_biqbaboplfbrettd7655fr4n2y
@@ -3289,6 +3291,10 @@ packages:
 
   /color2k/2.0.2:
     resolution: {integrity: sha512-kJhwH5nAwb34tmyuqq/lgjEKzlFXn1U99NlnB6Ws4qVaERcRUYeYP1cBw6BJ4vxaWStAUEef4WMr7WjOCnBt8w==}
+    dev: false
+
+  /colorjs.io/0.4.3:
+    resolution: {integrity: sha512-Jr6NiWFZCuSECl23Bhe4jvDldQsE0ErnWrdl3xIUFy+Bkp0l8r5qt/iZlNH47/xxGP5izcyC8InjoUoI4Po+Pg==}
     dev: false
 
   /combined-stream/1.0.8:

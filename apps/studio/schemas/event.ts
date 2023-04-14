@@ -4,7 +4,25 @@ export default defineType({
   name: 'event',
   title: 'Event',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'og',
+      title: 'Social Media Previews',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+    },
+  ],
   fields: [
+    defineField({
+      name: 'ogImage',
+      title: 'Image',
+      description:
+        'This image will be used to generate social media previews for this event. Minimal Image Resolution: 400px x 600px.',
+      type: 'image',
+      fieldset: 'og',
+    }),
     defineField({
       name: 'title',
       title: 'Title',

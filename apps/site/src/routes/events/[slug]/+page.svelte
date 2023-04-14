@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { base } from '$lib/og';
 	import PortableText from '$lib/portableText/PortableText.svelte';
 
 	export let data: PageData;
 
-	$: ({ title, start, end, location, content } = data.event);
+	const { ogImageUrl, ogImageColor, title, start, end, location, description, content } =
+		data.event;
 	$: startLocaleString = new Date(start).toLocaleString('en-US', {
 		weekday: 'short',
 		month: 'short',
@@ -21,10 +23,28 @@
 		minute: 'numeric',
 		hour12: true
 	});
+
+	const ogSearchParams = new URLSearchParams({
+		title,
+		start,
+		end,
+		room: location,
+		image: ogImageUrl,
+		imageColor: ogImageColor
+	});
 </script>
 
 <svelte:head>
+	<meta property="og:site_name" content="Cyber @ UCI" />
+
 	<title>{title} — Cyber @ UCI</title>
+	<meta property="og:title" content={title} />
+
+	<meta name="description" content={description} />
+	<meta property="og:description" content={description} />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta property="og:image" content={base + '/event?' + ogSearchParams.toString()} />
 </svelte:head>
 
 <main>
