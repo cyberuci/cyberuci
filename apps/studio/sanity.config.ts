@@ -55,8 +55,11 @@ export default defineConfig({
         }
 
         const getBoardYearItems = async () => {
+          // Currently excluding board drafts.
+          // Members that appear under a specific board year will be the currently published values.
+          // This might not be desirable behavior.
           const query = groq`
-            *[_type == "board"] | order(year desc) {
+            *[_type == "board" && !(_id in path("drafts.**"))] | order(year desc) {
               _id,
               year
             }
