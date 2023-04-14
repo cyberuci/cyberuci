@@ -22,36 +22,46 @@ export default defineConfig({
           const query = groq`
             *[_type == "board" && _id == $boardId][0] {
               year,
-              members[]{
-                title,
-                person->{
-                  _id,
-                  name
+              sections[] {
+                label,
+                members[] {
+                  title,
+                  terms,
+                  person->
                 }
-              },
+              }
             }
           `
           const board = await client.fetch<{
             year: number
-            members: {
-              title: string
-              person: {
-                _id: string
-                name: string
-              }
+            sections: {
+              label: string
+              members: {
+                title: string
+                terms: string[]
+                person: {
+                  _id: string
+                  name: string
+                }
+              }[]
             }[]
           }>(query, {boardId: id})
 
-          return S.list()
-            .title(board.year + ' Board')
-            .items(
-              (board.members ?? []).map((member) =>
+          const sections = (board.sections ?? [])
+            .map((section) => [
+              section.members.map((member) =>
                 S.documentListItem()
                   .title(member.person.name)
                   .schemaType('person')
                   .id(member.person._id)
-              )
-            )
+              ),
+              S.divider(),
+            ])
+            .flat(2)
+
+          return S.list()
+            .title(board.year + ' Board')
+            .items(sections)
         }
 
         const getBoardYearItems = async () => {
