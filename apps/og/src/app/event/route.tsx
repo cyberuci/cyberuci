@@ -36,12 +36,14 @@ export const GET = async (request: Request) => {
   if (!imageColor) return parameterRequired("imageColor");
 
   const formatDate = new Intl.DateTimeFormat("en", {
+    timeZone: "America/Los_Angeles",
     weekday: "short",
     month: "short",
     day: "numeric",
     year: "numeric",
   });
   const formatTime = new Intl.DateTimeFormat("en", {
+    timeZone: "America/Los_Angeles",
     hour: "numeric",
     minute: "2-digit",
   });
