@@ -55,9 +55,14 @@ export const GET = async (request: Request) => {
 
   const imageColorTransparent = new Color(imageColor);
   imageColorTransparent.alpha = 0.2;
-  const imageColorTransparentString = imageColorTransparent.toString({
-    format: "rgba",
+  // https://github.com/LeaVerou/color.js/issues/203
+  const rgba = {
+    name: "rgba",
     commas: true,
+    coords: ["<number>[0, 255]", "<number>[0, 255]", "<number>[0, 255]"],
+  };
+  const imageColorTransparentString = imageColorTransparent.toString({
+    format: rgba,
   });
 
   console.log(imageColorTransparent, imageColorTransparentString);
