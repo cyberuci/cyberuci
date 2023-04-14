@@ -34,6 +34,7 @@ export default defineType({
             defineField({
               name: 'terms',
               title: 'Terms',
+              description: "This value is currently ignored.",
               type: 'array',
               of: [
                 defineArrayMember({
