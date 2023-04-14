@@ -97,57 +97,6 @@ export default defineType({
       ],
       validation: (Rule) => Rule.unique(),
     }),
-    defineField({
-      name: 'members',
-      title: 'Members',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          name: 'member',
-          title: 'Member',
-          type: 'object',
-          fields: [
-            defineField({
-              name: 'title',
-              title: 'Title',
-              type: 'string',
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: 'terms',
-              title: 'Terms',
-              description: 'This value is currently ignored.',
-              type: 'array',
-              of: [
-                defineArrayMember({
-                  type: 'string',
-                }),
-              ],
-              initialValue: terms,
-              options: {
-                sortable: false,
-                list: terms.map((term) => ({title: term, value: term})),
-              },
-            }),
-            defineField({
-              name: 'person',
-              title: 'Person',
-              type: 'reference',
-              to: [{type: 'person'}],
-            }),
-          ],
-
-          preview: {
-            select: {
-              title: 'person.name',
-              subtitle: 'title',
-              media: 'person.image',
-            },
-          },
-        }),
-      ],
-      validation: (Rule) => Rule.unique(),
-    }),
   ],
 
   preview: {
