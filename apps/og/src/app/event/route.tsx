@@ -35,6 +35,8 @@ export const GET = async (request: Request) => {
   if (!image) return parameterRequired("image");
   if (!imageColor) return parameterRequired("imageColor");
 
+  console.log(imageColor);
+
   const formatDate = new Intl.DateTimeFormat("en", {
     timeZone: "America/Los_Angeles",
     weekday: "short",
@@ -56,6 +58,8 @@ export const GET = async (request: Request) => {
   const imageColorTransparentString = imageColorTransparent.toString({
     format: "rgba",
   });
+
+  console.log(imageColorTransparent, imageColorTransparentString);
 
   const interData = await inter;
   const interBoldData = await interBold;
