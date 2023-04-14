@@ -23,6 +23,7 @@ export default defineConfig({
             *[_type == "board" && _id == $boardId][0] {
               year,
               sections[] {
+                _key,
                 label,
                 members[] {
                   title,
@@ -35,6 +36,7 @@ export default defineConfig({
           const board = await client.fetch<{
             year: number
             sections: {
+              _key: string
               label: string
               members: {
                 title: string
@@ -53,7 +55,7 @@ export default defineConfig({
                 S.documentListItem()
                   .title(member.person.name)
                   .schemaType('person')
-                  .id(section.label + member.person._id)
+                  .id(section._key + member.person._id)
               ),
               S.divider(),
             ])
