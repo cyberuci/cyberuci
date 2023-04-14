@@ -29,9 +29,6 @@ export default defineType({
               name: 'title',
               title: 'Title',
               type: 'string',
-              options: {
-                list: titles.map((title) => ({title, value: title})),
-              },
               validation: (Rule) => Rule.required(),
             }),
             defineField({
