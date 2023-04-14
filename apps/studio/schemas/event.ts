@@ -140,12 +140,13 @@ export default defineType({
 
   preview: {
     select: {
-      media: 'image',
+      image: 'image',
+      ogImage: 'ogImage',
       title: 'title',
       start: 'start',
       end: 'end',
     },
-    prepare({start, end, ...selection}) {
+    prepare({image, ogImage, start, end, ...selection}) {
       const startTime = new Intl.DateTimeFormat('en', {
         dateStyle: 'short',
         timeStyle: 'short',
@@ -155,6 +156,7 @@ export default defineType({
       }).format(new Date(end))
 
       return {
+        media: image ?? ogImage,
         subtitle: startTime + ' - ' + endTime,
         ...selection,
       }
