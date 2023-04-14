@@ -50,6 +50,8 @@ export const GET = async (request: Request) => {
   const startDate = new Date(start);
   const endDate = new Date(end);
 
+  console.log(`0px 0px 125px 62.5px ${imageColor}33`);
+
   const interData = await inter;
   const interBoldData = await interBold;
   return new ImageResponse(
