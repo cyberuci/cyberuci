@@ -11,6 +11,8 @@ export default defineType({
     defineField({
       name: 'year',
       title: 'Year',
+      description:
+        'This represents the starting year of this board. For example, 2021 would represent the 2021 - 2022 board.',
       type: 'number',
       initialValue: new Date().getFullYear(),
       validation: (Rule) => Rule.required().integer().min(1000).max(9999),
@@ -106,7 +108,7 @@ export default defineType({
     },
     prepare({year}) {
       return {
-        title: year,
+        title: `${year} - ${year + 1}`,
       }
     },
   },
