@@ -54,21 +54,18 @@ export default defineConfig({
             }[]
           }>(query, {boardId: id})
 
-          const sections = (board.sections ?? [])
-            .map((section) => [
-              section.members.map((member) =>
-                S.listItem()
-                  .title(member.person.name)
-                  .child(S.document().schemaType('person').id(member.person._id))
-                  .id(section._key + member.person._id)
-              ),
-              S.divider(),
-            ])
-            .flat(2)
+          // TODO: This is probably pretty susceptible to breaking with empty sections.
+          const memberIds = Array.from(
+            new Set(
+              board.sections
+                ?.map((section) => [section.members?.map((member) => member.person._id)])
+                .flat(2)
+            )
+          )
 
           return S.list()
             .title(board.year + ' Board')
-            .items(sections)
+            .items(memberIds.map((id) => S.documentListItem().schemaType('person').id(id)))
         }
 
         const getBoardYearItems = async () => {
