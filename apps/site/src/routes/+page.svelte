@@ -2,6 +2,10 @@
 	import cover from './cover.jpg';
 </script>
 
+<svelte:head>
+	<title>Cyber @ UCI</title>
+</svelte:head>
+
 <h1>
 	We’re Cyber @ UCI, the club for <br />all things cybersecurity. <br />
 	We host weekly beginner friendly <br /> workshops, competitions, and challenges.
