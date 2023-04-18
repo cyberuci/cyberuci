@@ -1,3 +1,5 @@
+@use '$lib/common/styles/styles' as styles;
+
 @import '@radix-ui/colors/gray.css';
 @import '@radix-ui/colors/grayA.css';
 @import '@radix-ui/colors/blue.css';
@@ -28,5 +30,12 @@ body {
 	@media (prefers-color-scheme: dark) {
 		background-color: var(--gray1);
 		color: var(--gray12);
+	}
+}
+
+:root {
+	--padding-x: 16px;
+	@media (min-width: styles.$breakpoint-1) {
+		--padding-x: 32px;
 	}
 }

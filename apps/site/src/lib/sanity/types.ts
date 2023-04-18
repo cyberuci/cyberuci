@@ -17,9 +17,11 @@ export type Person = SanityDocument<{
 	_type: 'person';
 	name: string;
 	slug: SanitySlug;
-	pronouns: string[];
-	image: SanityImageReference;
-	majors: string[];
+	pronouns: string[] | undefined;
+	email: string | undefined;
+	discord: string | undefined;
+	image: SanityImageReference | undefined;
+	majors: string[] | undefined;
 	graduation: number;
 }>;
 

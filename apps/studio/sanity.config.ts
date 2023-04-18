@@ -92,6 +92,10 @@ export default defineConfig({
           .title('Content')
           .items([
             S.listItem()
+              .title('Contact Page')
+              .child(S.document().schemaType('contactPage').documentId('contactPage')),
+            S.divider(),
+            S.listItem()
               .title('People')
               .child(
                 S.list()
