@@ -6,6 +6,10 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Contact — Cyber @ UCI</title>
+</svelte:head>
+
 <Title>Contact</Title>
 <main>
 	{#each data.contactPage.sections as { title, description, contacts }}
