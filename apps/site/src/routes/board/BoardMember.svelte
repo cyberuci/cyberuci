@@ -40,13 +40,15 @@
 
 <style>
 	article {
+		width: 256px;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		gap: 4px;
 	}
 
 	.image {
-		width: 100%;
+		width: 80%;
 		aspect-ratio: 1;
 		background-color: var(--gray2);
 		border-radius: 12px;
@@ -62,12 +64,16 @@
 	}
 
 	h1 {
+		text-align: center;
 		margin: 12px 0 4px 0;
-		font-size: 1rem;
+		font-size: 20px;
 		font-weight: 400;
+		letter-spacing: -0.017em;
+		line-height: 28px;
 	}
 
 	span {
+		text-align: center;
 		margin: 0;
 		color: var(--gray11);
 		font-size: 1rem;
