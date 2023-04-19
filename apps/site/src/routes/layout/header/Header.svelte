@@ -18,7 +18,7 @@
 	<div class="nav">
 		<Nav {links} />
 	</div>
-	<a class="cta" href="https://discord.com/">Join Discord</a>
+	<a class="cta" href="https://discord.gg/Bt5dWnArAW">Join Discord</a>
 	<div class="nav-collapsible">
 		<NavCollapsible {links} />
 	</div>
