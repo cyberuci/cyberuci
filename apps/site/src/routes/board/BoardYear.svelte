@@ -55,6 +55,6 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		gap: 32px 24px;
+		gap: 48px 12px;
 	}
 </style>
