@@ -41,18 +41,28 @@
 
 	.contacts {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 		gap: 12px;
+
+		@media (min-width: 400px) {
+			grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+		}
 	}
 
 	.card {
 		background-color: var(--gray2);
-		padding: 32px;
 		box-sizing: border-box;
 		border-radius: 16px;
+		align-items: flex-start;
 		display: flex;
-		align-items: center;
 		gap: 24px;
+		padding: 16px;
+		flex-direction: column;
+
+		@media (min-width: 400px) {
+			flex-direction: row;
+			align-items: center;
+			padding: 32px;
+		}
 
 		.profile {
 			width: 96px;
