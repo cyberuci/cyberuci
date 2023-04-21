@@ -42,7 +42,7 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 2px;
-		width: 190px;
+		width: 160px;
 
 		@media (min-width: 600px) {
 			width: 256px;
@@ -50,7 +50,7 @@
 	}
 
 	.image {
-		width: 80%;
+		width: 90%;
 		aspect-ratio: 1;
 		background-color: var(--gray2);
 		border-radius: 12px;
