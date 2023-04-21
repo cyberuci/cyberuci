@@ -45,7 +45,7 @@
 
 <style lang="scss">
 	#wrapper {
-		background: hsla(218, 96%, 90%, 1);
+		background: var(--cyber-blue-1);
 		overflow: hidden;
 		margin: 48px 0 0 0;
 
@@ -71,7 +71,7 @@
 
 			animation: scroll 15s linear infinite;
 			width: max-content;
-			color: #a9cafc;
+			color: var(--cyber-blue-2);
 			margin: 0;
 			white-space: nowrap;
 			text-align: center;
@@ -85,7 +85,7 @@
 
 	footer {
 		padding: 16px 24px 64px 24px;
-		color: #000000;
+		color: var(--gray11);
 		display: grid;
 		gap: 16px;
 		align-items: flex-end;
@@ -109,11 +109,11 @@
 			gap: 4px;
 
 			a {
-				color: #161f2b;
+				color: var(--gray11);
 				text-decoration: none;
 
 				&:hover {
-					color: #1a1c1e;
+					color: var(--gray12);
 					text-decoration: underline;
 				}
 			}

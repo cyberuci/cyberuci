@@ -38,4 +38,18 @@ body {
 	@media (min-width: styles.$breakpoint-1) {
 		--padding-x: 32px;
 	}
+
+	--cyber-blue-1: #cfe5fc;
+	--cyber-blue-2: #b1d7fa;
+	--cyber-blue-3: #4aa9f2;
+	--cyber-blue-4: #2d5d8e;
+	--cyber-blue-5: #131c29;
+
+	@media (prefers-color-scheme: dark) {
+		--cyber-blue-1: #051c35;
+		--cyber-blue-2: #0a2849;
+		--cyber-blue-3: #205180;
+		--cyber-blue-4: #4f9adb;
+		--cyber-blue-5: #dae3f1;
+	}
 }
