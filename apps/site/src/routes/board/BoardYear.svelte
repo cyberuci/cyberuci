@@ -55,6 +55,10 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		gap: 48px 12px;
+		gap: 48px 0;
+
+		@media (min-width: 500px) {
+			gap: 48px 12px;
+		}
 	}
 </style>

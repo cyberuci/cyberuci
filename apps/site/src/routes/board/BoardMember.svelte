@@ -27,24 +27,26 @@
 	<!-- TODO: Support multiple pronouns -->
 	<h1>
 		{name}
-		{#if pronouns}
-			({pronouns[0]})
-		{/if}
 	</h1>
-	<span> {title}</span>
-	<!-- TODO: Support multiple majors -->
-	{#if majors && majors.length && graduation}
-		<span>{majors[0]} '{graduation - 2000}</span>
+	<span>{title}</span>
+	{#if pronouns}
+		<span>
+			({pronouns[0]})
+		</span>
 	{/if}
 </article>
 
-<style>
+<style lang="scss">
 	article {
-		width: 256px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 4px;
+		gap: 2px;
+		width: 190px;
+
+		@media (min-width: 600px) {
+			width: 256px;
+		}
 	}
 
 	.image {
@@ -76,6 +78,8 @@
 		text-align: center;
 		margin: 0;
 		color: var(--gray11);
-		font-size: 1rem;
+		font-size: 14px;
+		letter-spacing: -0.006em;
+		line-height: 20px;
 	}
 </style>

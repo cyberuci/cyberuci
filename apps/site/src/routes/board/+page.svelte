@@ -12,11 +12,9 @@
 
 <Title>Board</Title>
 <main>
-	<div class="boards">
-		{#each data.boards as board}
-			<BoardYear year={board.year} sections={board.sections} />
-		{/each}
-	</div>
+	{#each data.boards as board}
+		<BoardYear year={board.year} sections={board.sections} />
+	{/each}
 </main>
 
 <style lang="scss">
@@ -30,16 +28,5 @@
 
 	.section {
 		margin-bottom: 96px;
-	}
-
-	.boards {
-		grid-row: 3;
-		grid-column: 1;
-		@media (min-width: 600px) {
-			grid-column: 1 / span 3;
-		}
-		@media (min-width: 900px) {
-			grid-column: 2 / span 3;
-		}
 	}
 </style>
