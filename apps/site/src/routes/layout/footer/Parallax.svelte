@@ -1,24 +1,36 @@
 <script lang="ts">
-	import debounce from 'debounce';
+	import { onMount } from 'svelte';
 
 	let wrapper: HTMLDivElement;
+	let inView = false;
 	let innerHeight: number;
-	let top: number;
-	$: offset = (innerHeight - top) * 0.1;
+	let bottom: number;
+	$: offset = (innerHeight - bottom) * 0.1;
 
-	// TODO: Only calculate when footer is in view.
-	const calculateTop = debounce(() => {
-		top = wrapper.getBoundingClientRect().top;
-	}, 5);
+	const calculate = () => {
+		if (!inView) return;
+		bottom = wrapper.getBoundingClientRect().bottom;
+	};
+
+	onMount(() => {
+		const intersectionObserver = new IntersectionObserver((entries) => {
+			inView = entries[0].intersectionRatio > 0 ? true : false;
+		});
+
+		intersectionObserver.observe(wrapper);
+	});
 </script>
 
-<svelte:window bind:innerHeight on:resize={calculateTop} on:scroll={calculateTop} />
+<svelte:window
+	bind:innerHeight
+	on:resize={() => window.requestAnimationFrame(calculate)}
+	on:scroll={() => window.requestAnimationFrame(calculate)}
+/>
 
-<div id="wrapper">
+<div id="wrapper" bind:this={wrapper}>
 	<div id="transform" style:transform="translateY({offset}%)">
 		<slot />
 	</div>
-	<div bind:this={wrapper} />
 </div>
 
 <style lang="scss">
