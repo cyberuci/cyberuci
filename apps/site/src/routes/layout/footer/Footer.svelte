@@ -1,29 +1,22 @@
 <script lang="ts">
-	import debounce from 'debounce';
-
-	let wrapper: HTMLDivElement;
-	let innerHeight: number;
-	let top: number;
-	$: offset = (innerHeight - top) * 0.1;
-
-	// TODO: Only calculate when footer is in view.
-	const calculateTop = debounce(() => {
-		top = wrapper.getBoundingClientRect().top;
-	}, 5);
+	import Parallax from './Parallax.svelte';
+	import Marquee from './Marquee.svelte';
+	import logo from './logo.svg';
 </script>
 
-<svelte:window bind:innerHeight on:resize={calculateTop} on:scroll={calculateTop} />
-
-<div id="wrapper">
-	<div id="transform" style:transform="translateY({offset}%)">
-		<div class="cyber">
-			<p>Cyber @ UCI&#160Cyber @ UCI&#160</p>
-		</div>
-		<footer>
-			<p class="copyright">Copyright © 2023 Cyber @ UCI</p>
+<Parallax>
+	<Marquee />
+	<footer>
+		<div class="row-one">
+			<div class="logo-email">
+				<img class="logo" src={logo} alt="Cyber logo" />
+				<a href="mailto:cyberclub@uci.edu">cyberclub@uci.edu</a>
+			</div>
 			<nav>
 				<a href="https://discord.gg/WjbSP2B9Ck">Discord</a>
-				<a href="https://instagram.com/cyberuci/">Instagram</a>
+				<a href="https://instagram.com/cyberuci">Instagram</a>
+				<a href="https://twitter.com/cyber_uci">Twitter</a>
+				<a href="https://github.com/cyberuci">GitHub</a>
 				<a
 					href="https://uci.us18.list-manage.com/subscribe?u=0029dcacaf8ca6a3b88c61750&id=701d18798e"
 				>
@@ -35,88 +28,68 @@
 				<a href="/contact">Contact</a>
 				<a href="/acknowledgments">Acknowledgments</a>
 			</nav>
-			<nav>
-				<a href="mailto:cyberclub@uci.edu">cyberclub@uci.edu</a>
-			</nav>
-		</footer>
-	</div>
-	<div bind:this={wrapper} />
-</div>
+		</div>
+		<p class="copyright">Copyright © 2023 Cyber @ UCI</p>
+	</footer>
+</Parallax>
 
 <style lang="scss">
-	#wrapper {
-		background: var(--cyber-blue-1);
-		overflow: hidden;
-		margin: 48px 0 0 0;
-
-		#transform {
-			transition: transform 5ms;
-		}
-	}
-
-	.cyber {
-		overflow: hidden;
-		padding: 48px 0 0 0;
-
-		p {
-			@keyframes scroll {
-				from {
-					transform: translateX(0);
-				}
-
-				to {
-					transform: translateX(-50%);
-				}
-			}
-
-			animation: scroll 15s linear infinite;
-			width: max-content;
-			color: var(--cyber-blue-2);
-			margin: 0;
-			white-space: nowrap;
-			text-align: center;
-			font-family: 'TINY';
-			font-style: normal;
-			font-weight: 120;
-			font-size: 20vw;
-			font-feature-settings: 'ss03' on, 'ss05' on, 'ss02' on, 'ss01' on;
-		}
-	}
+	@use '$lib/common/styles/styles' as styles;
 
 	footer {
-		padding: 16px 24px 64px 24px;
+		margin: 0 auto;
+		padding: 16px styles.$padding-x 64px styles.$padding-x;
 		color: var(--gray11);
+		max-width: 1024px;
+		width: 100%;
+	}
+
+	.row-one {
+		margin-bottom: 32px;
 		display: grid;
 		gap: 16px;
-		align-items: flex-end;
+		align-items: flex-start;
 		grid-template-columns: 1;
+
 		@media (min-width: 960px) {
-			grid-template-columns: repeat(5, 1fr);
+			grid-template-columns: repeat(4, 1fr);
 		}
 
-		.copyright {
-			margin: 0;
-			grid-column: 1;
-			@media (min-width: 960px) {
-				grid-column: 1 / span 2;
-			}
-		}
-
-		nav {
-			height: 100%;
+		.logo-email {
 			display: flex;
-			flex-direction: column;
-			gap: 4px;
+			align-items: center;
+			gap: 8px;
 
-			a {
-				color: var(--gray11);
-				text-decoration: none;
+			@media (min-width: 960px) {
+				grid-column: span 2;
+			}
 
-				&:hover {
-					color: var(--gray12);
-					text-decoration: underline;
-				}
+			.logo {
+				width: 22px;
+				height: 22px;
 			}
 		}
+	}
+
+	nav {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	a {
+		color: var(--gray11);
+		text-decoration: none;
+
+		&:hover {
+			color: var(--gray12);
+			text-decoration: underline;
+		}
+	}
+
+	.copyright {
+		margin: 0;
+		font-size: 12px;
 	}
 </style>
