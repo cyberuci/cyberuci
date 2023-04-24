@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import Title from '$lib/common/components/Title.svelte';
+	import Title from '$lib/common/components/Title/Title.svelte';
 	import Section from './Section.svelte';
 
 	export let data: PageData;
@@ -10,7 +10,7 @@
 	<title>Contact — Cyber @ UCI</title>
 </svelte:head>
 
-<Title>Contact</Title>
+<Title title="Contact" />
 <main>
 	{#each data.contactPage.sections as { title, description, contacts }}
 		<div class="section">

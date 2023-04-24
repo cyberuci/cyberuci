@@ -93,8 +93,10 @@
 			a {
 				color: var(--gray12);
 				text-decoration: none;
+				transition: color 150ms;
 
 				&:hover {
+					color: var(--cyber-blue-4);
 					text-decoration: underline;
 				}
 			}

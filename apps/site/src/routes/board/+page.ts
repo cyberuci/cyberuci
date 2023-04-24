@@ -5,7 +5,7 @@ import groq from 'groq';
 
 export const load = (async () => {
 	const query = groq`
-    *[_type == "board"] | order(year desc) {
+    *[_type == "board"] | order(year desc)[0] {
       year,
 			sections[] {
 				label,
@@ -27,8 +27,8 @@ export const load = (async () => {
 				person: Person;
 			}[];
 		}[];
-	}[];
-	const boards = client.fetch<QueryResult>(query);
+	};
+	const board = client.fetch<QueryResult>(query);
 
-	return { boards };
+	return { board };
 }) satisfies PageLoad;

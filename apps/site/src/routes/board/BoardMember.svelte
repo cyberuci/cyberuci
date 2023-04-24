@@ -42,15 +42,15 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 2px;
-		width: 160px;
+		width: 100%;
 
 		@media (min-width: 600px) {
-			width: 256px;
+			width: 100%;
 		}
 	}
 
 	.image {
-		width: 90%;
+		width: 100%;
 		aspect-ratio: 1;
 		background-color: var(--gray2);
 		border-radius: 12px;

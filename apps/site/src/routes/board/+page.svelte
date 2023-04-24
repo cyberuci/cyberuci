@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import Title from '$lib/common/components/Title.svelte';
-	import BoardYear from './BoardYear.svelte';
+	import Title from '$lib/common/components/Title/Title.svelte';
+	import Board from './Board.svelte';
 
 	export let data: PageData;
 </script>
@@ -10,18 +10,16 @@
 	<title>Board — Cyber @ UCI</title>
 </svelte:head>
 
-<Title>Board</Title>
+<Title title="Board 23" />
 <main>
-	{#each data.boards as board}
-		<BoardYear year={board.year} sections={board.sections} />
-	{/each}
+	<Board sections={data.board.sections} />
 </main>
 
 <style lang="scss">
 	@use '$lib/common/styles/styles' as styles;
 
 	main {
-		max-width: 100ch;
+		max-width: 1024px;
 		margin: 72px auto;
 		padding: 0 styles.$padding-x;
 	}

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import logo from './logo_monochrome.svg';
 	import Nav from './Nav.svelte';
 	import NavCollapsible from './NavCollapsible.svelte';
@@ -23,20 +22,22 @@
 		<NavCollapsible {links} />
 	</div>
 </header>
-<div class="buffer" />
 
 <style lang="scss">
 	header {
-		box-sizing: border-box;
+		z-index: 1000;
 		position: fixed;
+		box-sizing: border-box;
+		top: 0;
 		left: 0;
 		right: 0;
 		display: flex;
+
 		@media (min-width: 480px) {
-			position: absolute;
 			display: grid;
 			grid-template-columns: 1fr 3fr 1fr;
 		}
+
 		align-items: center;
 		gap: 16px;
 		padding: 16px 24px;
@@ -97,9 +98,5 @@
 		@media (max-width: 480px) {
 			display: block;
 		}
-	}
-
-	.buffer {
-		height: 72px;
 	}
 </style>
