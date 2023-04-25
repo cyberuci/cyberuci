@@ -15,7 +15,6 @@
 			<nav>
 				<a href="https://discord.gg/WjbSP2B9Ck">Discord</a>
 				<a href="https://instagram.com/cyberuci">Instagram</a>
-				<a href="https://twitter.com/cyber_uci">Twitter</a>
 				<a href="https://github.com/cyberuci">GitHub</a>
 				<a
 					href="https://uci.us18.list-manage.com/subscribe?u=0029dcacaf8ca6a3b88c61750&id=701d18798e"
