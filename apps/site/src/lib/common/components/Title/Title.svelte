@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
 	import Row from './Row.svelte';
 	import { characters } from 'tiny-font';
 
@@ -29,6 +31,7 @@
 	let weight = 1;
 	let gap = 200;
 	let steps = 5;
+	let done = false;
 
 	let animatedTitleCharacters = titleCharacters;
 
@@ -39,7 +42,10 @@
 			);
 			weight -= 1 / steps;
 
-			if (weight <= 0) clearInterval(timeout);
+			if (weight <= 0) {
+				clearInterval(timeout);
+				done = true;
+			}
 		}, gap);
 
 		return () => {
@@ -58,7 +64,16 @@
 			<Row {rowSize} />
 		{/each}
 		<div class="title-parent">
-			<span class="title">[{title.toUpperCase()}]</span>
+			{#if done}
+				<span
+					transition:fly={{
+						duration: 300,
+						y: -10,
+						easing: quintOut
+					}}
+					class="title">[{title.toUpperCase()}]</span
+				>
+			{/if}
 			<Row {rowSize} />
 		</div>
 		{#each animatedTitleCharacters as mask}
@@ -68,10 +83,8 @@
 			<Row {rowSize} />
 		{/each}
 	</div>
-	<!-- <h1><slot /></h1> -->
 </div>
 
-<!-- <div class="line" /> -->
 <style lang="scss">
 	@use '$lib/common/styles/styles' as styles;
 
