@@ -108,9 +108,10 @@
 
 		.title {
 			position: absolute;
-			bottom: 16px;
+			bottom: 24px;
 			color: var(--cyber-blue-4);
-			font-size: 12px;
+			font-size: 14px;
+			letter-spacing: -0.006em;
 		}
 	}
 </style>

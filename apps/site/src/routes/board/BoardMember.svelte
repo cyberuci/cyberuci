@@ -78,8 +78,8 @@
 		text-align: center;
 		margin: 0;
 		color: var(--gray11);
-		font-size: 14px;
-		letter-spacing: -0.006em;
-		line-height: 20px;
+		font-size: 16px;
+		letter-spacing: -0.011em;
+		line-height: 22px;
 	}
 </style>

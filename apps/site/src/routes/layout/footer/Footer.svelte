@@ -89,6 +89,7 @@
 
 	.copyright {
 		margin: 0;
-		font-size: 12px;
+		font-size: 14px;
+		letter-spacing: -0.006em;
 	}
 </style>
