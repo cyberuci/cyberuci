@@ -23,7 +23,7 @@
 	@use '$lib/common/styles/styles' as styles;
 
 	main {
-		max-width: 100ch;
+		max-width: styles.$max-width;
 		margin: 0 auto;
 		padding: 72px styles.$padding-x;
 	}

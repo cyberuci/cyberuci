@@ -27,12 +27,13 @@
 </div>
 
 <style lang="scss">
+	@use '$lib/common/styles/typography' as typography;
+
 	h2 {
-		font-size: 30px;
-		letter-spacing: -0.021em;
-		line-height: 42px;
-		font-weight: 500;
 		margin: 0 0 12px 0;
+		@include typography.title;
+		@include typography.xl;
+		font-weight: 600;
 	}
 
 	.description {

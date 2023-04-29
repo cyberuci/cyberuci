@@ -36,11 +36,11 @@
 	@use '$lib/common/styles/styles' as styles;
 
 	footer {
+		width: 100%;
+		max-width: styles.$max-width;
 		margin: 0 auto;
 		padding: 16px styles.$padding-x 64px styles.$padding-x;
 		color: var(--gray11);
-		max-width: 1024px;
-		width: 100%;
 	}
 
 	.row-one {

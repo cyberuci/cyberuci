@@ -1,5 +1,6 @@
 $breakpoint-1: 900px;
 $padding-x: var(--padding-x);
+$max-width: 1024px;
 
 @mixin grid {
 	margin: 0 auto;
