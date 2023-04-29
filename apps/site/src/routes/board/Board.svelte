@@ -25,6 +25,8 @@
 </article>
 
 <style lang="scss">
+	@use '$lib/common/styles/typography' as typography;
+
 	@keyframes slide-in {
 		from {
 			opacity: 0;
@@ -53,9 +55,9 @@
 
 			h2 {
 				margin: 8px 0 32px 0;
-				font-size: 1.5rem;
-				letter-spacing: -0.019rem;
-				font-weight: 450;
+				@include typography.title;
+				@include typography.l;
+				font-weight: 700;
 			}
 		}
 

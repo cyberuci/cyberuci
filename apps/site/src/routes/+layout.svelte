@@ -6,21 +6,8 @@
 </script>
 
 <svelte:head>
-	<link
-		rel="preload"
-		href="/fonts/inter/Inter-roman.var.woff2?v=3.19"
-		as="font"
-		type="font/woff2"
-		crossOrigin="anonymous"
-	/>
-	<link
-		rel="preload"
-		href="/fonts/inter/Inter-italic.var.woff2?v=3.19"
-		as="font"
-		type="font/woff2"
-		crossOrigin="anonymous"
-	/>
-	<link href="/fonts/inter/inter.css" rel="stylesheet" />
+	<link href="/fonts/blinker/blinker.css" rel="stylesheet" />
+	<link href="/fonts/jura/jura.css" rel="stylesheet" />
 	<link href="/fonts/tiny/TINY.css" rel="stylesheet" />
 </svelte:head>
 

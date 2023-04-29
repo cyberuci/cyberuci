@@ -87,6 +87,7 @@
 
 <style lang="scss">
 	@use '$lib/common/styles/styles' as styles;
+	@use '$lib/common/styles/typography' as typography;
 
 	.background {
 		background: var(--gray1);
@@ -110,8 +111,8 @@
 			position: absolute;
 			bottom: 24px;
 			color: var(--cyber-blue-4);
-			font-size: 14px;
-			letter-spacing: -0.006em;
+			@include typography.title;
+			@include typography.s;
 		}
 	}
 </style>

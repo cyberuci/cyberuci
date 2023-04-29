@@ -37,6 +37,8 @@
 </article>
 
 <style lang="scss">
+	@use '$lib/common/styles/typography' as typography;
+
 	article {
 		display: flex;
 		flex-direction: column;
@@ -68,10 +70,9 @@
 	h1 {
 		text-align: center;
 		margin: 12px 0 4px 0;
-		font-size: 20px;
-		font-weight: 400;
-		letter-spacing: -0.017em;
-		line-height: 28px;
+		@include typography.title;
+		@include typography.l;
+		font-weight: 600;
 	}
 
 	span {
