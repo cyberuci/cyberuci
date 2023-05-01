@@ -32,6 +32,38 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase:
     "https://github.com/cyberuci/cyberuci/tree/main/apps/docs",
+  useNextSeoProps() {
+    return {
+      titleTemplate: "%s – Cyber @ UCI",
+    };
+  },
+  head: (
+    <>
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/apple-touch-icon.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/favicon-32x32.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicon-16x16.png"
+      />
+      <link rel="manifest" href="/site.webmanifest" />
+    </>
+  ),
+  // cyberblue/4
+  primaryHue: {
+    dark: 214,
+    light: 209,
+  },
   footer: {
     text: "Cyber @ UCI Docs",
   },
