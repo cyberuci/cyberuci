@@ -1,11 +1,4 @@
 {
   "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
-  "contact": {
-    "title": "Visit Site ↗",
-    "type": "page",
-    "href": "https://cyberuci.com/",
-    "newWindow": true
-  }
+  "content-management": "Content Management"
 }
