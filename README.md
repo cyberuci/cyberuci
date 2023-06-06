@@ -62,7 +62,15 @@ pnpm dlx turbo link
 
 ## Acknowledgments
 
-Thanks to the following projects:
+Special thanks to the following people and projects.
+
+### People
+
+[Katherine Phung](https://www.linkedin.com/in/katherine-phung-b12003262/) for her countless contributions to the Cyber brand and site design.
+
+[Cyber Board](https://cyberuci.com/board)
+
+### Projects
 
 Inter: <https://rsms.me/inter/> (<https://github.com/rsms/inter>)
 
