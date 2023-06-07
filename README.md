@@ -66,7 +66,7 @@ Special thanks to the following people and projects.
 
 ### People
 
-[Katherine Phung](https://www.linkedin.com/in/katherine-phung-b12003262/) for her countless contributions to the Cyber brand and site design.
+[Katherine Phung](https://www.linkedin.com/in/katherine-phung-b12003262/) for her numerous contributions to the Cyber brand and site design.
 
 [Cyber Board](https://cyberuci.com/board)
 
