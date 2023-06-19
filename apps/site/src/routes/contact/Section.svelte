@@ -18,7 +18,12 @@
 		<div class="card">
 			<Profile {image} {name} size={96} />
 			<div class="details">
-				<p class="name">{name} ({pronouns?.[0]})</p>
+				<p class="name">
+					{name}
+					{#if pronouns}
+						({pronouns[0]})
+					{/if}
+				</p>
 				<p>{titles.join(', ')}</p>
 				<a href="mailto:{email}">{email}</a>
 			</div>
