@@ -1,4 +1,22 @@
-import type { SanityDocument } from '@sanity/client';
+import type { SanityDocument as SanityDocumentType } from '@sanity/client';
+import { z } from 'zod';
+
+export const SanityDocument = z.object({
+	_id: z.string(),
+	_createdAt: z.string().datetime(),
+	_updatedAt: z.string().datetime(),
+	_rev: z.string()
+});
+
+export const SanityReference = z.object({
+	_type: z.literal('reference'),
+	_ref: z.string()
+});
+
+export const SanityImageReference = z.object({
+	_type: z.literal('image'),
+	asset: SanityReference
+});
 
 export type SanityReference = {
 	_ref: string;
@@ -13,7 +31,7 @@ export type SanitySlug = {
 	current: string;
 };
 
-export type Person = SanityDocument<{
+export type Person = SanityDocumentType<{
 	_type: 'person';
 	name: string;
 	slug: SanitySlug;
@@ -25,7 +43,7 @@ export type Person = SanityDocument<{
 	graduation: number;
 }>;
 
-export type Board = SanityDocument<{
+export type Board = SanityDocumentType<{
 	_type: 'board';
 	year: number;
 	members: {

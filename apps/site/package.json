@@ -38,6 +38,7 @@
 	"dependencies": {
 		"@sanity/client": "^5.2.2",
 		"lucide-svelte": "^0.125.0",
-		"tiny-font": "workspace:*"
+		"tiny-font": "workspace:*",
+		"zod": "^3.21.4"
 	}
 }
