@@ -1,8 +1,10 @@
 <script lang="ts">
+	import type { PageData } from './$types';
 	import './global.scss';
-
 	import Header from './layout/header/Header.svelte';
 	import Footer from './layout/footer/Footer.svelte';
+
+	export let data: PageData;
 </script>
 
 <svelte:head>
@@ -16,4 +18,4 @@
 <main>
 	<slot />
 </main>
-<Footer />
+<Footer info={data.info} />

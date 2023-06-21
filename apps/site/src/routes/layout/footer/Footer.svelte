@@ -2,32 +2,36 @@
 	import Parallax from './Parallax.svelte';
 	import Marquee from './Marquee.svelte';
 	import logo from './logo.svg';
+	import type { Info } from '../../+layout';
+
+	export let info: Info;
 </script>
 
 <Parallax>
 	<Marquee />
 	<footer>
-		<div class="row-one">
-			<div class="logo-email">
-				<img class="logo" src={logo} alt="Cyber logo" />
-				<a href="mailto:cyberclub@uci.edu">cyberclub@uci.edu</a>
+		{#if info}
+			<div class="row-one">
+				<div class="logo-email">
+					<img class="logo" src={logo} alt="Cyber logo" />
+					<a href="mailto:{info.email}">{info.email}</a>
+				</div>
+				<nav>
+					{#each info.socials as { platform, link }}
+						<a href={link}>{platform}</a>
+					{/each}
+				</nav>
+				<nav>
+					<a href="/brand">Brand</a>
+					<a href="/contact">Contact</a>
+					<a href="/acknowledgments">Acknowledgments</a>
+				</nav>
 			</div>
-			<nav>
-				<a href="https://discord.gg/WjbSP2B9Ck">Discord</a>
-				<a href="https://instagram.com/cyberuci">Instagram</a>
-				<a href="https://github.com/cyberuci">GitHub</a>
-				<a
-					href="https://uci.us18.list-manage.com/subscribe?u=0029dcacaf8ca6a3b88c61750&id=701d18798e"
-				>
-					Mailing List
-				</a>
-			</nav>
-			<nav>
-				<a href="/brand">Brand</a>
-				<a href="/contact">Contact</a>
-				<a href="/acknowledgments">Acknowledgments</a>
-			</nav>
-		</div>
+		{:else}
+			<p class="error">
+				Failed to load footer. Visit our <a href="/contact">contact page</a> to get in touch.
+			</p>
+		{/if}
 		<p class="copyright">Copyright © 2023 Cyber @ UCI</p>
 	</footer>
 </Parallax>
@@ -85,6 +89,10 @@
 			color: var(--gray12);
 			text-decoration: underline;
 		}
+	}
+
+	.error {
+		margin: 48px 0;
 	}
 
 	.copyright {
