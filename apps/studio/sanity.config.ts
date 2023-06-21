@@ -3,6 +3,7 @@ import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
+import {EnvelopeIcon, UserIcon, UsersIcon, CalendarIcon} from '@sanity/icons'
 import groq from 'groq'
 
 export default defineConfig({
@@ -93,10 +94,12 @@ export default defineConfig({
           .items([
             S.listItem()
               .title('Contact Page')
+              .icon(EnvelopeIcon)
               .child(S.document().schemaType('contactPage').documentId('contactPage')),
             S.divider(),
             S.listItem()
               .title('People')
+              .icon(UserIcon)
               .child(
                 S.list()
                   .title('People')
@@ -115,6 +118,7 @@ export default defineConfig({
               ),
             S.listItem()
               .title('Boards')
+              .icon(UsersIcon)
               .child(
                 S.documentList()
                   .title('Boards')
@@ -124,6 +128,7 @@ export default defineConfig({
               ),
             S.listItem()
               .title('Events')
+              .icon(CalendarIcon)
               .child(
                 S.documentList()
                   .title('Events')

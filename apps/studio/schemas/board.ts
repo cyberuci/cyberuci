@@ -1,4 +1,5 @@
 import {defineType, defineField, defineArrayMember} from 'sanity'
+import {UsersIcon} from '@sanity/icons'
 
 const titles = ['President', 'External VP', 'Internal VP', 'Treasurer', 'Secretary']
 const terms = ['Fall', 'Winter', 'Spring']
@@ -6,6 +7,7 @@ const terms = ['Fall', 'Winter', 'Spring']
 export default defineType({
   name: 'board',
   title: 'Board',
+  icon: UsersIcon,
   type: 'document',
   fields: [
     defineField({

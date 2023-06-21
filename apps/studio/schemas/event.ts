@@ -1,8 +1,10 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {CalendarIcon} from '@sanity/icons'
 
 export default defineType({
   name: 'event',
   title: 'Event',
+  icon: CalendarIcon,
   type: 'document',
   fieldsets: [
     {
