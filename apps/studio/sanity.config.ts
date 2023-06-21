@@ -114,6 +114,9 @@ export default defineConfig({
               ),
             S.divider(),
             S.listItem()
+              .title('Landing Page')
+              .child(S.document().schemaType('landingPage').documentId('landingPage')),
+            S.listItem()
               .title('Contact Page')
               .icon(EnvelopeIcon)
               .child(S.document().schemaType('contactPage').documentId('contactPage')),
