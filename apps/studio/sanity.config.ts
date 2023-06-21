@@ -3,7 +3,14 @@ import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
-import {EnvelopeIcon, UserIcon, UsersIcon, CalendarIcon} from '@sanity/icons'
+import {
+  CogIcon,
+  EarthAmericasIcon,
+  EnvelopeIcon,
+  UserIcon,
+  UsersIcon,
+  CalendarIcon,
+} from '@sanity/icons'
 import groq from 'groq'
 
 export default defineConfig({
@@ -92,6 +99,20 @@ export default defineConfig({
         return S.list()
           .title('Content')
           .items([
+            S.listItem()
+              .title('Site Settings')
+              .icon(CogIcon)
+              .child(
+                S.list()
+                  .title('Site Settings')
+                  .items([
+                    S.listItem()
+                      .title('Info')
+                      .icon(EarthAmericasIcon)
+                      .child(S.document().schemaType('info').documentId('info')),
+                  ])
+              ),
+            S.divider(),
             S.listItem()
               .title('Contact Page')
               .icon(EnvelopeIcon)
