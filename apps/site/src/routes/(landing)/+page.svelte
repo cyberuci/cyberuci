@@ -108,7 +108,7 @@
 
 		span {
 			display: inline-block;
-			white-space: pre;
+			margin-right: 8px;
 		}
 	}
 
