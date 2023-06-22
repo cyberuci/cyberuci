@@ -5,27 +5,27 @@
 
 version: 2
 updates:
-  - package-ecosystem: "pnpm"
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
 
-  - package-ecosystem: "pnpm"
-    directory: "/apps/docs"
-    schedule:
-      interval: "daily"
+  # - package-ecosystem: "npm"
+  #   directory: "/apps/docs"
+  #   schedule:
+  #     interval: "daily"
 
-  - package-ecosystem: "pnpm"
-    directory: "/apps/og"
-    schedule:
-      interval: "daily"
+  # - package-ecosystem: "npm"
+  #   directory: "/apps/og"
+  #   schedule:
+  #     interval: "daily"
 
-  - package-ecosystem: "pnpm"
-    directory: "/apps/site"
-    schedule:
-      interval: "daily"
+  # - package-ecosystem: "npm"
+  #   directory: "/apps/site"
+  #   schedule:
+  #     interval: "daily"
 
-  - package-ecosystem: "pnpm"
-    directory: "/apps/studio"
-    schedule:
-      interval: "daily"
+  # - package-ecosystem: "npm"
+  #   directory: "/apps/studio"
+  #   schedule:
+  #     interval: "daily"
