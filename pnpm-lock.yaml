@@ -118,8 +118,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(eslint@8.43.0)(svelte@4.0.0)
       groq:
-        specifier: ^3.6.0
-        version: 3.6.0
+        specifier: ^3.12.2
+        version: 3.12.2
       prettier:
         specifier: ^2.8.0
         version: 2.8.4
@@ -154,8 +154,8 @@ importers:
         specifier: ^3.11.5
         version: 3.11.5(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
       groq:
-        specifier: ^3.11.5
-        version: 3.11.5
+        specifier: ^3.12.2
+        version: 3.12.2
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -5687,15 +5687,9 @@ packages:
     engines: {node: '>= 14'}
     dev: false
 
-  /groq@3.11.5:
-    resolution: {integrity: sha512-Uwi5lAIZr+1y5DGVCzgxhZEUTYjCWJhA6otjUDwV14qVH8ivIq0EeGQBCc3XgsAosYgzt7amv4MNpuiXtA3CJg==}
+  /groq@3.12.2:
+    resolution: {integrity: sha512-CHHWUIVkK5ZF1oYmXZ8svO7OtkMY/25JIj4ozjw4saCW09ukSO/WpyadikKKot+QIg9foRumxHmtFfcwt5zawg==}
     engines: {node: '>=14'}
-    dev: false
-
-  /groq@3.6.0:
-    resolution: {integrity: sha512-IJr1eRjIcpENtkBM+U1KB7VmHkObz02bb4NwtjoKy+Ak6CySvsvn3KOKflTryE2bIBDrPSAz4JXNOUZvMcVSlg==}
-    engines: {node: '>=14'}
-    dev: true
 
   /gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
