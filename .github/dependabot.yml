@@ -9,3 +9,23 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+
+  - package-ecosystem: "pnpm"
+    directory: "/apps/docs"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "pnpm"
+    directory: "/apps/og"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "pnpm"
+    directory: "/apps/site"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "pnpm"
+    directory: "/apps/studio"
+    schedule:
+      interval: "daily"
