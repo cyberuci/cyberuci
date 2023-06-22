@@ -9,23 +9,3 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-
-  # - package-ecosystem: "npm"
-  #   directory: "/apps/docs"
-  #   schedule:
-  #     interval: "daily"
-
-  # - package-ecosystem: "npm"
-  #   directory: "/apps/og"
-  #   schedule:
-  #     interval: "daily"
-
-  # - package-ecosystem: "npm"
-  #   directory: "/apps/site"
-  #   schedule:
-  #     interval: "daily"
-
-  # - package-ecosystem: "npm"
-  #   directory: "/apps/studio"
-  #   schedule:
-  #     interval: "daily"
