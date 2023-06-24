@@ -2,9 +2,7 @@ import { ImageResponse } from "next/server";
 
 import Logo from "./Logo";
 
-export const config = {
-  runtime: "experimental-edge",
-};
+export const runtime = "edge";
 
 const parameterRequired = (name: string) =>
   new Response(`${name} is a required parameter.`, {
