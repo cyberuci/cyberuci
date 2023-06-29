@@ -69,8 +69,8 @@ importers:
   apps/site:
     dependencies:
       '@sanity/client':
-        specifier: ^6.1.3
-        version: 6.1.3
+        specifier: ^6.1.5
+        version: 6.1.5
       lucide-svelte:
         specifier: ^0.125.0
         version: 0.125.0(svelte@4.0.0)
