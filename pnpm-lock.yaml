@@ -72,8 +72,8 @@ importers:
         specifier: ^6.1.5
         version: 6.1.5
       lucide-svelte:
-        specifier: ^0.125.0
-        version: 0.125.0(svelte@4.0.0)
+        specifier: ^0.257.0
+        version: 0.257.0(svelte@4.0.0)
       tiny-font:
         specifier: workspace:*
         version: link:../../packages/tiny-font
@@ -2590,17 +2590,6 @@ packages:
       get-it: 8.1.3
       golden-fleece: 1.0.9
       pkg-dir: 5.0.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
-  /@sanity/client@6.1.3:
-    resolution: {integrity: sha512-asO/AvN+/D1Ljd6UNPWlo/toeO6SmZdsxyl+fJdLfI9by4svp/K3hD4Qy2DXXmwOfGYqGSH7etv2lnRhu+C5YA==}
-    engines: {node: '>=14.18'}
-    dependencies:
-      '@sanity/eventsource': 5.0.0
-      get-it: 8.1.3
-      rxjs: 7.8.1
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -6784,10 +6773,10 @@ packages:
     dependencies:
       yallist: 4.0.0
 
-  /lucide-svelte@0.125.0(svelte@4.0.0):
-    resolution: {integrity: sha512-IP0uFGUBUe30H/dKhmvQbRkHQaFLM5klJljjLTCUSsrIAbGjPWkqPVjYUXl8VVqnFYLR9l8qJq1Bt4QYUq+hog==}
+  /lucide-svelte@0.257.0(svelte@4.0.0):
+    resolution: {integrity: sha512-URC6Yg0VTLlRWc0QU2JDK9Aiyup9BCd3D1ybmVd6kIOJR0JDEsIdZsHIk2uN4doom1gNsNWkr/m07B+klN/NEA==}
     peerDependencies:
-      svelte: ^3.49.0
+      svelte: '>=3 <5'
     dependencies:
       svelte: 4.0.0
     dev: false
