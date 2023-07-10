@@ -173,8 +173,8 @@ importers:
         version: 5.3.11(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
     devDependencies:
       '@sanity/eslint-config-studio':
-        specifier: ^2.0.2
-        version: 2.0.2(eslint@8.43.0)(typescript@5.1.6)
+        specifier: ^2.0.4
+        version: 2.0.4(eslint@8.43.0)(typescript@5.1.6)
       eslint:
         specifier: ^8.43.0
         version: 8.43.0
@@ -2834,8 +2834,8 @@ packages:
       diff-match-patch: 1.0.5
     dev: false
 
-  /@sanity/eslint-config-studio@2.0.2(eslint@8.43.0)(typescript@5.1.6):
-    resolution: {integrity: sha512-62FjNdpJAp/AJ/F7uLyXgE87JZK9AOlrH5hZ9cVIDOx1prTCqN78xliIuRLmm9WaUW+Jo/6WxBg3Tou8GFUG9g==}
+  /@sanity/eslint-config-studio@2.0.4(eslint@8.43.0)(typescript@5.1.6):
+    resolution: {integrity: sha512-1sqv0szQEt55i86GJDKGGROBRptUQte1gUyWutCf5iQJ+YlmolDJJerYXIiOhHFYqlI+r7KMRiDMc7s81pTYqQ==}
     dependencies:
       '@babel/core': 7.22.8
       '@babel/eslint-parser': 7.22.7(@babel/core@7.22.8)(eslint@8.43.0)
