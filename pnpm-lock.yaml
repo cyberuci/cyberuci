@@ -69,8 +69,8 @@ importers:
   apps/site:
     dependencies:
       '@sanity/client':
-        specifier: ^6.1.6
-        version: 6.1.6
+        specifier: ^6.1.7
+        version: 6.1.7
       lucide-svelte:
         specifier: ^0.258.0
         version: 0.258.0(svelte@4.0.5)
@@ -2807,8 +2807,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/client@6.1.6:
-    resolution: {integrity: sha512-pFg9Zbp2ztNwTRr3ct5og1YL64sGUUMeoQVkp4SQgcRvcMpHNK8E3cLL8cz+VCUpp7ERE3K7M5hlyb+vnglaDA==}
+  /@sanity/client@6.1.7:
+    resolution: {integrity: sha512-crleZDBic3VpmBhIuiVZNkJMxAWE/fj5v+hHBXt+2psW1CJrvBdTLX14f4cqC40W1YDDE4ZGrDkYuph6Y6/YzQ==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.0
@@ -3002,7 +3002,7 @@ packages:
   /@sanity/types@3.14.1:
     resolution: {integrity: sha512-13qj14LI69VsGE4+H+XrdFC7yUgHHtIHHqkqygBtvPAqfteVwDEG8KyWJ1+ZMXMUnz89fuTeP721DC3+AlrmPg==}
     dependencies:
-      '@sanity/client': 6.1.6
+      '@sanity/client': 6.1.7
       '@types/react': 18.2.14
     transitivePeerDependencies:
       - supports-color
