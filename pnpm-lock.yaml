@@ -75,6 +75,9 @@ importers:
       '@sanity/client':
         specifier: ^6.1.7
         version: 6.1.7
+      '@vercel/analytics':
+        specifier: ^1.0.1
+        version: 1.0.1
       lucide-svelte:
         specifier: ^0.258.0
         version: 0.258.0(svelte@4.0.5)
@@ -3661,6 +3664,10 @@ packages:
       - '@codemirror/language'
       - '@codemirror/lint'
       - '@codemirror/search'
+    dev: false
+
+  /@vercel/analytics@1.0.1:
+    resolution: {integrity: sha512-Ux0c9qUfkcPqng3vrR0GTrlQdqNJ2JREn/2ydrVuKwM3RtMfF2mWX31Ijqo1opSjNAq6rK76PwtANw6kl6TAow==}
     dev: false
 
   /@vercel/error-utils@1.0.10:
