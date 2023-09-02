@@ -78,6 +78,6 @@ TINY: <http://velvetyne.fr/fonts/tiny> (<https://github.com/jckfa/tinyfonts>)
 
 ## License
 
-This repo is source available and not licensed under an open source license.
+This repo is source available, but not licensed under an open source license.
 
 Copyright © 2023 Cyber @ UCI
