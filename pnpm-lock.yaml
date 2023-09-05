@@ -20,8 +20,8 @@ importers:
         specifier: ^2.12.3
         version: 2.12.3(next@13.4.8)(react-dom@18.2.0)(react@18.2.0)
       nextra-theme-docs:
-        specifier: ^2.8.0
-        version: 2.8.0(next@13.4.8)(nextra@2.12.3)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^2.12.3
+        version: 2.12.3(next@13.4.8)(nextra@2.12.3)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3909,11 +3909,6 @@ packages:
       wrap-ansi: 7.0.0
     dev: false
 
-  /clsx@1.2.1:
-    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
-    engines: {node: '>=6'}
-    dev: false
-
   /clsx@2.0.0:
     resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
@@ -7585,17 +7580,18 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /nextra-theme-docs@2.8.0(next@13.4.8)(nextra@2.12.3)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-JoSAILDVp0GxeVWWZBFGoRijE2RcjZcXrMa47Fssi254T5wF+gm0HvEOSwrTaKaPaUL+IfshAiKglvXNKGzbNw==}
+  /nextra-theme-docs@2.12.3(next@13.4.8)(nextra@2.12.3)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-aZywZwokk/h5HrUTh/bsU981Sd2prZks7ci+HNG9wuMnm+drp3PBmRKIuQxBCiJurePVBJ2Qk2/wTV3VECGKnA==}
     peerDependencies:
       next: '>=9.5.3'
-      nextra: 2.8.0
+      nextra: 2.12.3
       react: '>=16.13.1'
       react-dom: '>=16.13.1'
     dependencies:
       '@headlessui/react': 1.7.14(react-dom@18.2.0)(react@18.2.0)
       '@popperjs/core': 2.11.7
-      clsx: 1.2.1
+      clsx: 2.0.0
+      escape-string-regexp: 5.0.0
       flexsearch: 0.7.31
       focus-visible: 5.2.0
       git-url-parse: 13.1.0
@@ -7608,7 +7604,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       scroll-into-view-if-needed: 3.0.10
-      zod: 3.21.4
+      zod: 3.22.2
     dev: false
 
   /nextra@2.12.3(next@13.4.8)(react-dom@18.2.0)(react@18.2.0):
