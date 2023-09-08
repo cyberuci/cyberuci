@@ -37,7 +37,7 @@
 	"type": "module",
 	"dependencies": {
 		"@sanity/client": "^6.1.7",
-		"@vercel/analytics": "^1.0.1",
+		"@vercel/analytics": "^1.0.2",
 		"lucide-svelte": "^0.263.0",
 		"tiny-font": "workspace:*",
 		"zod": "^3.21.4"
