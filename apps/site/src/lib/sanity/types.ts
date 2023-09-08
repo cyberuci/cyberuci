@@ -26,11 +26,27 @@ export type SanityImageReference = {
 	_type: 'image';
 	asset: SanityReference;
 };
+
+export const SanitySlug = z.object({
+	_type: z.literal('slug'),
+	current: z.string()
+});
 export type SanitySlug = {
 	_type: 'slug';
 	current: string;
 };
 
+export const Person = z.object({
+	_type: z.literal('person'),
+	name: z.string(),
+	slug: SanitySlug,
+	pronouns: z.array(z.string()).optional(),
+	email: z.string().optional(),
+	discord: z.string().optional(),
+	image: SanityImageReference.optional(),
+	majors: z.array(z.string()).optional(),
+	graduation: z.number()
+});
 export type Person = SanityDocumentType<{
 	_type: 'person';
 	name: string;
