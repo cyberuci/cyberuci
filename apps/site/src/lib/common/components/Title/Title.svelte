@@ -29,8 +29,8 @@
 	);
 
 	let weight = 1;
-	let gap = 200;
-	let steps = 5;
+	let gap = 125;
+	let steps = 3;
 	let done = false;
 
 	let animatedTitleCharacters = titleCharacters;
