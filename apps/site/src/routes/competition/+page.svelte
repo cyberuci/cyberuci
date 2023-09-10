@@ -53,8 +53,8 @@
 		corporate network to attack and get as much access as possible within an allotted time.
 		Recruitment and meetings will start in the Spring.
 	</p>
-	<a href="https://nationalcyberleague.org/about">https://nationalcyberleague.org/about</a>
-
+	<a href="https://cp.tc/">https://cp.tc/</a>
+	
 	<h2>NCL</h2>
 	<p>
 		NCL is a national CTF hosted by Cyber Skyline and the National Cyber League Inc. non profit. It
@@ -62,7 +62,7 @@
 		and have 72 hours to complete them. One you complete one, you get a small piece of text called a
 		“flag”, indicating you got the required unauthorized access or solved the problem
 	</p>
-	<a href="https://cp.tc/">https://cp.tc/</a>
+	<a href="https://nationalcyberleague.org/about">https://nationalcyberleague.org/about</a>
 </main>
 
 <style lang="scss">
