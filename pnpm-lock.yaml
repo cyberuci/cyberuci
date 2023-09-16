@@ -81,8 +81,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/tiny-font
       zod:
-        specifier: ^3.21.4
-        version: 3.21.4
+        specifier: ^3.22.2
+        version: 3.22.2
     devDependencies:
       '@portabletext/svelte':
         specifier: ^2.0.0
