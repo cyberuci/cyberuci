@@ -14,7 +14,7 @@
 	"devDependencies": {
 		"@portabletext/svelte": "^2.0.0",
 		"@portabletext/types": "^2.0.6",
-		"@radix-ui/colors": "^0.1.8",
+		"@radix-ui/colors": "^2.1.0",
 		"@sanity/image-url": "^1.0.2",
 		"@sveltejs/adapter-vercel": "^3.0.3",
 		"@sveltejs/kit": "^1.22.1",
