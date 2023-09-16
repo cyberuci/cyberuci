@@ -121,8 +121,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(eslint@8.49.0)(svelte@4.2.0)
       groq:
-        specifier: ^3.16.4
-        version: 3.16.4
+        specifier: ^3.16.7
+        version: 3.16.7
       prettier:
         specifier: 3.0.0
         version: 3.0.0
@@ -157,8 +157,8 @@ importers:
         specifier: ^3.16.4
         version: 3.16.4(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
       groq:
-        specifier: ^3.16.4
-        version: 3.16.4
+        specifier: ^3.16.7
+        version: 3.16.7
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -5818,8 +5818,8 @@ packages:
     engines: {node: '>= 14'}
     dev: false
 
-  /groq@3.16.4:
-    resolution: {integrity: sha512-PexitOJcyUYLqGwim9VFyzhmCSLIMjN1e6Yfq8ZjO3U67VCIeTs0UI2XWHhjX4Lkx2O2gXeGZ2x1u/MRJhB3cQ==}
+  /groq@3.16.7:
+    resolution: {integrity: sha512-4Qlmwi9uQOyvc8YLFP5d+y8YssFnfK4imY3ZzP+U06LrV/KectnLsl/nDUQS2YfyTrQ7sGZQVNbhKw8DjT3phw==}
     engines: {node: '>=14.18.0'}
 
   /gunzip-maybe@1.4.2:
