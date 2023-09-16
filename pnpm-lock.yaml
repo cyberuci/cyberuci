@@ -154,8 +154,8 @@ importers:
         specifier: ^2.4.1
         version: 2.4.1(react@18.2.0)
       '@sanity/vision':
-        specifier: ^3.16.4
-        version: 3.16.4(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+        specifier: ^3.16.7
+        version: 3.16.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
       groq:
         specifier: ^3.16.7
         version: 3.16.7
@@ -2824,8 +2824,8 @@ packages:
       uuid: 8.3.2
     dev: false
 
-  /@sanity/vision@3.16.4(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11):
-    resolution: {integrity: sha512-3iV9TyhIeZUoiWMckFYotJBAsFFn7tuHoQMz3nZP+YZRdY1C5hC5h8yFQp22KHSW6tivhOza0g9Z2pfhsfWQtw==}
+  /@sanity/vision@3.16.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11):
+    resolution: {integrity: sha512-jewf3gtoAq5Iz6p2P0Cp0gctMMXUsil4vA311E6yXBvt03hvQDD68DaeNiwcbwWykCfoD7FvzmshrY17bCwkXQ==}
     peerDependencies:
       react: ^18
       styled-components: ^5.2
