@@ -88,8 +88,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(svelte@4.2.0)
       '@portabletext/types':
-        specifier: ^2.0.5
-        version: 2.0.5
+        specifier: ^2.0.6
+        version: 2.0.6
       '@radix-ui/colors':
         specifier: ^0.1.8
         version: 0.1.8
@@ -2518,11 +2518,11 @@ packages:
     resolution: {integrity: sha512-vr2SeDFUFV+VmRIyYsHBMimZLiiN0S7qIridt/YLJs3Wm1dI4jsfUam82AQwheSMjvWdBiBZ+Wsjq5HZBG4htw==}
     engines: {node: ^14.13.1 || >=16.0.0}
     dependencies:
-      '@portabletext/types': 2.0.5
+      '@portabletext/types': 2.0.6
     dev: true
 
-  /@portabletext/types@2.0.5:
-    resolution: {integrity: sha512-AceKp/Y6UIzvUe/T675oPKlO2Dnt1BVIiUpwhcplPzLeYqaYaWYvb7ricVyWj7j0rukYRgBRQdrTBvgo9E1D+g==}
+  /@portabletext/types@2.0.6:
+    resolution: {integrity: sha512-6iqorcsQ0Z1/4Y7PWLvoknyiUv0DngSPao+q5UIE0+0gT2cZwFdItUyLZRheG85AisSEvacHEEnvN+TT8mxXVg==}
     engines: {node: ^14.13.1 || >=16.0.0 || >=18.0.0}
     dev: true
 
