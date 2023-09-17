@@ -75,8 +75,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       lucide-svelte:
-        specifier: ^0.277.0
-        version: 0.277.0(svelte@4.2.0)
+        specifier: ^0.279.0
+        version: 0.279.0(svelte@4.2.0)
       tiny-font:
         specifier: workspace:*
         version: link:../../packages/tiny-font
@@ -6757,8 +6757,8 @@ packages:
     dependencies:
       yallist: 4.0.0
 
-  /lucide-svelte@0.277.0(svelte@4.2.0):
-    resolution: {integrity: sha512-HrlMk0mTOd3MVSWA2ZHR79QrCycLRV4pey4HWGnGGoVFsh0/P7zGyDCJxy/MKe2t4SJtcStLdKIybMHc5pjFSQ==}
+  /lucide-svelte@0.279.0(svelte@4.2.0):
+    resolution: {integrity: sha512-u9j8tMPxWsv5iXJvrUU/jpyML/k49flr7440UE8QM9V3u0OZt5+qaY5TMiPDTVRMdEELBg4d4ueW1+3Mo3VT4A==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:
