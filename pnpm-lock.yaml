@@ -91,8 +91,8 @@ importers:
         specifier: ^2.0.7
         version: 2.0.7
       '@radix-ui/colors':
-        specifier: ^0.1.8
-        version: 0.1.8
+        specifier: ^3.0.0
+        version: 3.0.0
       '@sanity/image-url':
         specifier: ^1.0.2
         version: 1.0.2
@@ -2526,8 +2526,8 @@ packages:
     engines: {node: ^14.13.1 || >=16.0.0 || >=18.0.0}
     dev: true
 
-  /@radix-ui/colors@0.1.8:
-    resolution: {integrity: sha512-jwRMXYwC0hUo0mv6wGpuw254Pd9p/R6Td5xsRpOmaWkUHlooNWqVcadgyzlRumMq3xfOTXwJReU0Jv+EIy4Jbw==}
+  /@radix-ui/colors@3.0.0:
+    resolution: {integrity: sha512-FUOsGBkHrYJwCSEtWRCIfQbZG7q1e6DgxCIOe1SUQzDe/7rXXeA47s8yCn6fuTNQAj1Zq4oTFi9Yjp3wzElcxg==}
     dev: true
 
   /@rexxars/react-json-inspector@8.0.1(react@18.2.0):
