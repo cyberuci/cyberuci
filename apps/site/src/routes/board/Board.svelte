@@ -42,8 +42,8 @@
 		grid-template-columns: repeat(auto-fill, minmax(144px, 1fr));
 		gap: 48px 6px;
 
-		@media (min-width: 1120px) {
-			grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
+		@media (min-width: 768px) {
+			grid-template-columns: repeat(5, 1fr);
 			gap: 48px 24px;
 		}
 
