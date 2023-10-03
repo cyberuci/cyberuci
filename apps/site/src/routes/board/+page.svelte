@@ -4,15 +4,16 @@
 	import Board from './Board.svelte';
 
 	export let data: PageData;
+	$: year = data.board.year % 100;
 </script>
 
 <svelte:head>
 	<title>Board — Cyber @ UCI</title>
 </svelte:head>
 
-<Title title="Board 23" />
+<Title title="Board {year}/{year + 1}" />
 <main>
-	<Board sections={data.board.sections} />
+	<Board members={data.board.members} />
 </main>
 
 <style lang="scss">
@@ -22,9 +23,5 @@
 		max-width: styles.$max-width;
 		margin: 72px auto;
 		padding: 0 styles.$padding-x;
-	}
-
-	.section {
-		margin-bottom: 96px;
 	}
 </style>

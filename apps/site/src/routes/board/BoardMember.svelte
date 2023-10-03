@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { z } from 'zod';
 	import type { Person } from '$lib/sanity/types';
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
@@ -6,13 +7,9 @@
 
 	const builder = imageUrlBuilder(client);
 
-	export let member: {
-		title: string;
-		terms: string[];
-		person: Person;
-	};
+	export let person: z.infer<typeof Person>;
+	export let titles: string[];
 
-	$: ({ title, person } = member);
 	$: ({ name, pronouns, image, majors, graduation } = person);
 </script>
 
@@ -28,7 +25,7 @@
 	<h1>
 		{name}
 	</h1>
-	<span>{title}</span>
+	<span>{titles.join(', ')}</span>
 	{#if pronouns}
 		<span>
 			({pronouns[0]})

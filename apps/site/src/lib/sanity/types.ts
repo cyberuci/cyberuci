@@ -36,7 +36,7 @@ export type SanitySlug = {
 	current: string;
 };
 
-export const Person = z.object({
+export const Person = SanityDocument.merge(z.object({
 	_type: z.literal('person'),
 	name: z.string(),
 	slug: SanitySlug,
@@ -46,7 +46,7 @@ export const Person = z.object({
 	image: SanityImageReference.optional(),
 	majors: z.array(z.string()).optional(),
 	graduation: z.number()
-});
+}));
 export type Person = SanityDocumentType<{
 	_type: 'person';
 	name: string;

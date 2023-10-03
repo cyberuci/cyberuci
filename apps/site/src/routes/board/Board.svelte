@@ -2,26 +2,19 @@
 	import type { PageData } from './$types';
 	import BoardMember from './BoardMember.svelte';
 
-	export let sections: PageData['board']['sections'];
+	export let members: PageData['board']['members'];
 </script>
 
 <article>
-	{#each sections as { label, members }}
-		<div class="section">
-			<div class="details">
-				{#if sections.length !== 1}
-					<h2>{label}</h2>
-				{/if}
+	<div class="board-members">
+		{#each members as { person, titles }, i}
+			<div class="section">
+				<div class="board-member" style:animation-delay="{100 * i}ms">
+					<BoardMember {person} {titles} />
+				</div>
 			</div>
-			<div class="board-members">
-				{#each members as member, i}
-					<div class="board-member" style:animation-delay="{100 * i}ms">
-						<BoardMember {member} />
-					</div>
-				{/each}
-			</div>
-		</div>
-	{/each}
+		{/each}
+	</div>
 </article>
 
 <style lang="scss">
@@ -42,38 +35,20 @@
 	article {
 		margin-bottom: 96px;
 	}
-	.section {
+
+	.board-members {
 		margin-bottom: 48px;
 		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(144px, 1fr));
+		gap: 48px 6px;
 
 		@media (min-width: 1120px) {
-			grid-template-columns: 1fr 4fr;
+			grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
+			gap: 48px 24px;
 		}
 
-		.details {
-			animation: slide-in 500ms cubic-bezier(0.165, 0.84, 0.44, 1);
-
-			h2 {
-				margin: 8px 0 32px 0;
-				@include typography.title;
-				@include typography.l;
-				font-weight: 700;
-			}
-		}
-
-		.board-members {
-			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(144px, 1fr));
-			gap: 48px 6px;
-
-			@media (min-width: 1120px) {
-				grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
-				gap: 48px 24px;
-			}
-
-			.board-member {
-				animation: slide-in 500ms cubic-bezier(0.165, 0.84, 0.44, 1) both;
-			}
+		.board-member {
+			animation: slide-in 500ms cubic-bezier(0.165, 0.84, 0.44, 1) both;
 		}
 	}
 </style>
