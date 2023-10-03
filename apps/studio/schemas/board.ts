@@ -27,6 +27,8 @@ export default defineType({
         defineArrayMember({
           name: 'section',
           title: 'Section',
+          description:
+            'Sections are no longer displayed separately on the board page. However, for members in more than one section, their titles are displayed in the order of their corresponding sections.',
           type: 'object',
           fields: [
             defineField({
