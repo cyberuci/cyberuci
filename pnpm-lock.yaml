@@ -69,8 +69,8 @@ importers:
   apps/site:
     dependencies:
       '@sanity/client':
-        specifier: ^6.4.12
-        version: 6.4.12
+        specifier: ^6.5.0
+        version: 6.5.0
       '@vercel/analytics':
         specifier: ^1.1.0
         version: 1.1.0
@@ -2616,6 +2616,17 @@ packages:
       - supports-color
     dev: false
 
+  /@sanity/client@6.5.0:
+    resolution: {integrity: sha512-Lvrqm0L0mSc/KixLEYjFl44LTCCUn/BaGQYh1rXO9mVo78sXfySG7Qja3ek8bJHZ6zqhyvwg+Ejb8xMZ3FsopQ==}
+    engines: {node: '>=14.18'}
+    dependencies:
+      '@sanity/eventsource': 5.0.0
+      get-it: 8.4.3
+      rxjs: 7.8.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@sanity/color@2.2.5:
     resolution: {integrity: sha512-tTi22KoKuER3sldXYl4c1Dq2zU7tMLDkljFiaUKVkBbu4PBvRGCFw75kXZnD2b4Bsp6vin+7sI+AKdCKRhfRuw==}
     dev: false
@@ -2784,7 +2795,7 @@ packages:
   /@sanity/types@3.18.0:
     resolution: {integrity: sha512-Z6gTUiAVOVM5JVRBr7Vw3HTOMmGP8Kz30eKlW0dFKc9MQhy83kkrATpA21ADXVyL/qKIMC5BTCRxhLtmrmW0Kw==}
     dependencies:
-      '@sanity/client': 6.4.12
+      '@sanity/client': 6.5.0
       '@types/react': 18.2.28
     transitivePeerDependencies:
       - supports-color
