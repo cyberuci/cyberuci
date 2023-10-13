@@ -13,9 +13,25 @@ export const SanityReference = z.object({
 	_ref: z.string()
 });
 
+export const SanityImageCrop = z.object({
+	_type: z.literal('sanity.imageCrop'),
+	top: z.number(),
+	bottom: z.number(),
+	left: z.number(),
+	right: z.number()
+});
+export const SanityImageHotspot = z.object({
+	_type: z.literal('sanity.imageHotspot'),
+	x: z.number(),
+	y: z.number(),
+	height: z.number(),
+	width: z.number()
+});
 export const SanityImageReference = z.object({
 	_type: z.literal('image'),
-	asset: SanityReference
+	asset: SanityReference,
+	crop: SanityImageCrop.optional(),
+	hotspot: SanityImageHotspot.optional()
 });
 
 export type SanityReference = {
@@ -36,17 +52,19 @@ export type SanitySlug = {
 	current: string;
 };
 
-export const Person = SanityDocument.merge(z.object({
-	_type: z.literal('person'),
-	name: z.string(),
-	slug: SanitySlug,
-	pronouns: z.array(z.string()).optional(),
-	email: z.string().optional(),
-	discord: z.string().optional(),
-	image: SanityImageReference.optional(),
-	majors: z.array(z.string()).optional(),
-	graduation: z.number()
-}));
+export const Person = SanityDocument.merge(
+	z.object({
+		_type: z.literal('person'),
+		name: z.string(),
+		slug: SanitySlug,
+		pronouns: z.array(z.string()).optional(),
+		email: z.string().optional(),
+		discord: z.string().optional(),
+		image: SanityImageReference.optional(),
+		majors: z.array(z.string()).optional(),
+		graduation: z.number()
+	})
+);
 export type Person = SanityDocumentType<{
 	_type: 'person';
 	name: string;
