@@ -127,8 +127,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       prettier-plugin-svelte:
-        specifier: ^3.1.1
-        version: 3.1.1(prettier@3.0.0)(svelte@4.2.7)
+        specifier: ^3.1.2
+        version: 3.1.2(prettier@3.0.0)(svelte@4.2.7)
       sass:
         specifier: ^1.69.5
         version: 1.69.5
@@ -8345,8 +8345,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  /prettier-plugin-svelte@3.1.1(prettier@3.0.0)(svelte@4.2.7):
-    resolution: {integrity: sha512-jLzaHfToav527/I5h2BMQfN3G5gylrJm54zFFyoXvUtfscI47877ftacUb+Eyse/3bXrhY+MtkyiuvruiHc+kg==}
+  /prettier-plugin-svelte@3.1.2(prettier@3.0.0)(svelte@4.2.7):
+    resolution: {integrity: sha512-7xfMZtwgAWHMT0iZc8jN4o65zgbAQ3+O32V6W7pXrqNvKnHnkoyQCGCbKeUyXKZLbYE0YhFRnamfxfkEGxm8qA==}
     peerDependencies:
       prettier: ^3.0.0
       svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
