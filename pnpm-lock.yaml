@@ -151,8 +151,8 @@ importers:
   apps/studio:
     dependencies:
       '@sanity/icons':
-        specifier: ^2.7.0
-        version: 2.7.0(react@18.2.0)
+        specifier: ^2.8.0
+        version: 2.8.0(react@18.2.0)
       '@sanity/vision':
         specifier: ^3.21.3
         version: 3.21.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
@@ -2820,8 +2820,8 @@ packages:
       mnemonist: 0.39.6
     dev: false
 
-  /@sanity/icons@2.7.0(react@18.2.0):
-    resolution: {integrity: sha512-vW/G8CB3+R1gww8C8ZjNchhpXrXSDLIJ0KnWy9iDlSWaFEnUrbi18yzCCrHRMFzXTPl2QtqZhjtE+A5Gyhf2QA==}
+  /@sanity/icons@2.8.0(react@18.2.0):
+    resolution: {integrity: sha512-Q8aKg+KPJPDLDR+beYZhtB3gYdq7zIyZQZ6HjaB/63KuidHzkIFuhVv8JS/rJNwWOn5lTuzmd+L/+U/Pv3klWw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^18
@@ -2927,8 +2927,8 @@ packages:
     dependencies:
       '@sanity/client': 6.10.0
       '@sanity/groq-store': 5.3.5(@sanity/client@6.10.0)
-      '@sanity/icons': 2.7.0(react@18.2.0)
-      '@sanity/preview-url-secret': 1.3.4(@sanity/client@6.10.0)(@sanity/icons@2.7.0)(sanity@3.21.3)
+      '@sanity/icons': 2.8.0(react@18.2.0)
+      '@sanity/preview-url-secret': 1.3.4(@sanity/client@6.10.0)(@sanity/icons@2.8.0)(sanity@3.21.3)
       '@sanity/ui': 1.9.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
       '@types/lodash.isequal': 4.5.8
       framer-motion: 10.16.16(react-dom@18.2.0)(react@18.2.0)
@@ -2945,7 +2945,7 @@ packages:
       - react-is
     dev: false
 
-  /@sanity/preview-url-secret@1.3.4(@sanity/client@6.10.0)(@sanity/icons@2.7.0)(sanity@3.21.3):
+  /@sanity/preview-url-secret@1.3.4(@sanity/client@6.10.0)(@sanity/icons@2.8.0)(sanity@3.21.3):
     resolution: {integrity: sha512-RCqGJpCGBdxUrZPHextJsDWtLJ2V7mZy96HboUI+E5OJ2tG042Ag32pJOQef70XgLE2ZBxKNNu1E6kBAE6wC1g==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -2959,7 +2959,7 @@ packages:
         optional: true
     dependencies:
       '@sanity/client': 6.10.0
-      '@sanity/icons': 2.7.0(react@18.2.0)
+      '@sanity/icons': 2.8.0(react@18.2.0)
       '@sanity/uuid': 3.0.2
       sanity: 3.21.3(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.11)
     dev: false
@@ -2998,7 +2998,7 @@ packages:
     dependencies:
       '@floating-ui/react-dom': 2.0.0(react-dom@18.2.0)(react@18.2.0)
       '@sanity/color': 2.2.5
-      '@sanity/icons': 2.7.0(react@18.2.0)
+      '@sanity/icons': 2.8.0(react@18.2.0)
       csstype: 3.1.2
       framer-motion: 10.16.16(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
@@ -3043,7 +3043,7 @@ packages:
       '@rexxars/react-json-inspector': 8.0.1(react@18.2.0)
       '@rexxars/react-split-pane': 0.1.93(react-dom@18.2.0)(react@18.2.0)
       '@sanity/color': 2.2.5
-      '@sanity/icons': 2.7.0(react@18.2.0)
+      '@sanity/icons': 2.8.0(react@18.2.0)
       '@sanity/ui': 1.9.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
       '@uiw/react-codemirror': 4.20.4(@codemirror/autocomplete@6.7.1)(@codemirror/language@6.7.0)(@codemirror/search@6.4.0)(@codemirror/view@6.12.0)(react-dom@18.2.0)(react@18.2.0)
       hashlru: 2.3.0
@@ -9265,7 +9265,7 @@ packages:
       '@sanity/eventsource': 5.0.0
       '@sanity/export': 3.21.3
       '@sanity/generate-help-url': 3.0.0
-      '@sanity/icons': 2.7.0(react@18.2.0)
+      '@sanity/icons': 2.8.0(react@18.2.0)
       '@sanity/image-url': 1.0.2
       '@sanity/import': 3.21.3
       '@sanity/logos': 2.1.2(@sanity/color@2.2.5)(react@18.2.0)
