@@ -38,7 +38,7 @@
 	"dependencies": {
 		"@sanity/client": "^6.10.0",
 		"@vercel/analytics": "^1.1.1",
-		"lucide-svelte": "^0.299.0",
+		"lucide-svelte": "^0.302.0",
 		"tiny-font": "workspace:*",
 		"zod": "^3.22.4"
 	}
