@@ -31,7 +31,7 @@ export const load = (async () => {
 			})[];
 		}[];
 	};
-	const contactPage = client.fetch<QueryResult>(query);
+	const contactPage = await client.fetch<QueryResult>(query);
 
 	return { contactPage };
 }) satisfies PageLoad;

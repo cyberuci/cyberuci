@@ -22,7 +22,7 @@ export const load = (async () => {
 		location: string;
 		description: string;
 	}[];
-	const events = client.fetch<QueryResult>(query);
+	const events = await client.fetch<QueryResult>(query);
 
 	return { events };
 }) satisfies PageLoad;

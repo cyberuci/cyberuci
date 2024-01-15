@@ -37,7 +37,7 @@ export const load = (async ({ params }) => {
 		description: string;
 		content: PortableTextBlock[];
 	};
-	const event = client.fetch<QueryResult>(query, { slug });
+	const event = await client.fetch<QueryResult>(query, { slug });
 
 	return { event };
 }) satisfies PageLoad;
