@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { ComponentType } from 'svelte';
 
+	import { ArrowRight } from 'lucide-svelte';
+
 	export let href: string;
 	export let icon: ComponentType | undefined = undefined;
 	export let svgPath: string | undefined = undefined;
@@ -26,11 +28,16 @@
 	{/if}
 
 	<span class="label">{label}</span>
+
+	<div class="arrow">
+		<ArrowRight size={16} />
+	</div>
 </a>
 
 <style lang="scss">
 	.cta-button {
 		all: unset;
+		position: relative;
 		cursor: pointer;
 		box-sizing: border-box;
 		width: 100%;
@@ -49,6 +56,11 @@
 		&:hover {
 			color: #202020;
 			background-color: rgba(255, 255, 255, 0.93);
+
+			.arrow {
+				transform: translateX(0);
+				opacity: 1;
+			}
 		}
 	}
 
@@ -58,5 +70,18 @@
 		font-size: 14px;
 		font-weight: 400;
 		line-height: 1;
+	}
+
+	.arrow {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		padding: 12px;
+		line-height: 0;
+		transform: translateX(-16px);
+		opacity: 0;
+		transition:
+			transform 150ms ease-out,
+			opacity 150ms ease-out;
 	}
 </style>

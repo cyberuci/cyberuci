@@ -69,7 +69,7 @@
 
 		@media (min-width: 640px) {
 			width: max-content;
-			grid-template-columns: 192px 192px;
+			grid-template-columns: 216px 216px;
 		}
 	}
 
