@@ -32,7 +32,8 @@
 	.cta-button {
 		all: unset;
 		cursor: pointer;
-		width: 192px;
+		box-sizing: border-box;
+		width: 100%;
 		height: 96px;
 		padding: 12px;
 		display: flex;

@@ -39,10 +39,18 @@
 		font-feature-settings: 'dlig' on;
 		font-family: 'BBB Strobo';
 		font-stretch: 175%;
-		font-size: 48px;
+		font-size: 32px;
 		font-weight: 400;
 		line-height: 130%;
 		margin: 0 0 32px 0;
+
+		@media (min-width: 384px) {
+			font-size: 40px;
+		}
+
+		@media (min-width: 512px) {
+			font-size: 48px;
+		}
 	}
 
 	.description {
@@ -57,12 +65,15 @@
 	}
 
 	.cta-buttons {
-		width: max-content;
 		display: grid;
 		gap: 1px;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		border-radius: 6px;
 		overflow: hidden;
+
+		@media (min-width: 640px) {
+			grid-template-columns: 192px 192px;
+		}
 	}
 
 	.background-image {
