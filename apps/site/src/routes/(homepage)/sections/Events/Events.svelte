@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Calendar, Map } from 'lucide-svelte';
-	import { siGoogle } from 'simple-icons';
+	import { siGooglecalendar } from 'simple-icons';
 </script>
 
 <div class="events">
@@ -31,7 +31,7 @@
 						xmlns="http://www.w3.org/2000/svg"
 						fill="currentColor"
 					>
-						<path d={siGoogle.path} />
+						<path d={siGooglecalendar.path} />
 					</svg>
 				</div>
 				<span>Add to Google Calendar</span>
