@@ -2,6 +2,7 @@
 	import Header from './sections/Header/Header.svelte';
 	import Events from './sections/Events/Events.svelte';
 	import Competitions from './sections/Competitions/Competitions.svelte';
+	import Hackerlab from './sections/Hackerlab/Hackerlab.svelte';
 </script>
 
 <svelte:head>
@@ -11,6 +12,7 @@
 <Header />
 <Events />
 <Competitions />
+<Hackerlab />
 
 <style lang="scss">
 </style>
