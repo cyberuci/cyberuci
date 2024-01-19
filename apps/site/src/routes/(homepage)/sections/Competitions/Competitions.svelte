@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Medal, Info } from 'lucide-svelte';
-	import { siGooglecalendar } from 'simple-icons';
 </script>
 
 <div class="competitions">
