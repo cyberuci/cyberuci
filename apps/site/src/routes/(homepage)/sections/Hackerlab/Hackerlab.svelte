@@ -27,7 +27,7 @@
 		font-feature-settings:
 			'dlig' on,
 			'ss05' on;
-		font-family: CommitMonoV142;
+		font-family: CommitMono;
 		font-size: 16px;
 		font-weight: 400;
 		line-height: 145%;
@@ -71,7 +71,7 @@
 			h3 {
 				margin: 0;
 				font-feature-settings: 'dlig' on;
-				font-family: 'TASA Explorer';
+				font-family: TASAExplorer;
 				font-size: 32px;
 				font-weight: 500;
 				line-height: 130%;
@@ -82,7 +82,7 @@
 				max-width: 672px;
 				text-wrap: balance;
 				font-feature-settings: 'ss05' on;
-				font-family: CommitMonoV142;
+				font-family: CommitMono;
 				font-size: 16px;
 				font-weight: 400;
 				line-height: 150%;

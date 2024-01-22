@@ -54,7 +54,7 @@
 		max-width: 672px;
 		text-wrap: balance;
 		font-feature-settings: 'ss05' on;
-		font-family: CommitMonoV142;
+		font-family: CommitMono;
 		font-size: 16px;
 		font-weight: 400;
 		line-height: 150%;
