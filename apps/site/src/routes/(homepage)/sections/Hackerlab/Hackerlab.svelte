@@ -1,10 +1,20 @@
 <script lang="ts">
 	import Carousel from './Carousel.svelte';
+	import Map from './Map.svelte';
 </script>
 
 <div class="hackerlab">
 	<h2 class="heading"><span class="rainbow">//////////////</span> Hackerlab</h2>
 	<Carousel />
+	<div class="info-parent">
+		<div class="info">
+			<h3>Visit HackerLab</h3>
+			<p class="description">HackerLab is Cyber@UCI's collaborative workspace located in ISEB.</p>
+		</div>
+		<div class="map">
+			<Map />
+		</div>
+	</div>
 </div>
 
 <style lang="scss">
@@ -41,6 +51,49 @@
 			);
 			background-clip: text;
 			-webkit-text-fill-color: transparent;
+		}
+	}
+
+	.info-parent {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 16px;
+
+		@media (min-width: 900px) {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.info {
+			border-radius: 32px;
+			background: #1c1c1c;
+			padding: 40px 24px;
+
+			h3 {
+				margin: 0;
+				font-feature-settings: 'dlig' on;
+				font-family: 'TASA Explorer';
+				font-size: 32px;
+				font-weight: 500;
+				line-height: 130%;
+			}
+
+			.description {
+				margin: 32px 0 48px 0;
+				max-width: 672px;
+				text-wrap: balance;
+				font-feature-settings: 'ss05' on;
+				font-family: CommitMonoV142;
+				font-size: 16px;
+				font-weight: 400;
+				line-height: 150%;
+			}
+		}
+
+		.map {
+			position: relative;
+			min-height: 384px;
+			border-radius: 32px;
+			overflow: hidden;
 		}
 	}
 </style>
