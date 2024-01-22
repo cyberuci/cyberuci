@@ -44,14 +44,14 @@
 		font-feature-settings:
 			'dlig' on,
 			'ss05' on;
-		font-family: CommitMonoV142;
+		font-family: CommitMono;
 		font-size: 16px;
 		font-weight: 400;
 		line-height: 145%;
 
 		h2 {
 			margin: 24px 0 32px 0;
-			font-family: TASA Explorer;
+			font-family: TASAExplorer;
 			font-size: 32px;
 			font-style: normal;
 			font-weight: 500;
