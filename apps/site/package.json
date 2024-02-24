@@ -16,7 +16,7 @@
 		"@portabletext/types": "^2.0.8",
 		"@radix-ui/colors": "^0.1.8",
 		"@sanity/image-url": "^1.0.2",
-		"@sveltejs/adapter-vercel": "^4.0.5",
+		"@sveltejs/adapter-vercel": "^5.1.0",
 		"@sveltejs/kit": "^2.4.3",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
 		"@types/debounce": "^1.2.4",
