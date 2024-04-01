@@ -1,3 +1,4 @@
+import home from './pages/home'
 import contact from './pages/contact'
 
 import person from './person'
@@ -6,4 +7,4 @@ import event from './event'
 
 import info from './info'
 
-export const schemaTypes = [contact, person, board, event, info]
+export const schemaTypes = [home, contact, person, board, event, info]
