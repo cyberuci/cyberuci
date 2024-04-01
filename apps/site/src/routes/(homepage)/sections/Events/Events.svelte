@@ -1,27 +1,38 @@
 <script lang="ts">
+	import type { z } from 'zod';
+	import type { _EventsQueryResult } from '../../+page';
+
 	import { Calendar, Map } from 'lucide-svelte';
-	import { siGooglecalendar } from 'simple-icons';
+	// import { siGooglecalendar } from 'simple-icons';
+
+	const dateTimeFormat = new Intl.DateTimeFormat('en', {
+		weekday: 'long',
+		month: 'long',
+		day: 'numeric',
+		hour: 'numeric',
+		minute: 'numeric'
+	});
+
+	export let events: z.infer<typeof _EventsQueryResult>;
 </script>
 
 <div class="events">
-	<div class="current">
-		<Calendar size={16} />
-		<h2>
-			Tomorrow, 6 - 7PM,<br />
-			<span class="title">Hands-on Intro to Ethical Hacking</span>
-		</h2>
-		<p class="description">
-			Learn about the crucial role of ethics in cybersecurity and gain practical skills to protect
-			and strengthen digital defenses while adhering to the highest moral standards. Join us to
-			become part of the solution in a world where responsible hacking is an essential line of
-			defense against cyber threats.
-		</p>
-		<div class="info">
-			<div class="location">
-				<Map size={16} />
-				<span>CyberLab, ISEB</span>
-			</div>
-			<div class="google-calendar">
+	{#if events.length > 0}
+		{@const currentEvent = events[0]}
+		<div class="current">
+			<Calendar size={16} />
+			<h2>
+				{dateTimeFormat.formatRange(currentEvent.start, currentEvent.end)},<br />
+				<span class="title">{currentEvent.title}</span>
+			</h2>
+			<p class="description">{currentEvent.description}</p>
+			<div class="info">
+				<div class="location">
+					<Map size={16} />
+					<span>{currentEvent.location}</span>
+				</div>
+				<!-- TODO: calendar download links -->
+				<!-- <div class="google-calendar">
 				<div class="icon">
 					<svg
 						width={(22 / 24) * 16}
@@ -39,10 +50,11 @@
 			<div class="download">
 				<Calendar size={16} />
 				<span>Download ICS</span>
+			</div> -->
 			</div>
 		</div>
-	</div>
-	<div class="next"></div>
+	{/if}
+	<!-- <div class="next"></div> -->
 </div>
 
 <style lang="scss">
@@ -51,9 +63,9 @@
 		display: grid;
 		gap: 16px;
 
-		@media (min-width: 1024px) {
-			grid-template-columns: 7fr 5fr;
-		}
+		// @media (min-width: 1024px) {
+		// 	grid-template-columns: 7fr 5fr;
+		// }
 	}
 
 	.current {

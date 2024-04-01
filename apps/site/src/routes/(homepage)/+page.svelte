@@ -6,6 +6,7 @@
 	import Competitions from './sections/Competitions/Competitions.svelte';
 	import Hackerlab from './sections/Hackerlab/Hackerlab.svelte';
 	import Socials from './sections/Socials/Socials.svelte';
+	import Footer from '../(legacy)/layout/footer/Footer.svelte';
 
 	export let data: PageData;
 </script>
@@ -15,7 +16,7 @@
 </svelte:head>
 
 <Header />
-<Events />
+<Events events={data.events} />
 <Competitions
 	subtitle={data.homepage.competitions.subtitle}
 	description={data.homepage.competitions.description}
