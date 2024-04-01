@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { Medal, Info } from 'lucide-svelte';
+
+	export let subtitle: string;
+	export let description: string;
 </script>
 
 <div class="competitions">
@@ -8,14 +11,9 @@
 		<Medal size={16} />
 		<h2>
 			Competitions<br />
-			<span class="title">CCDC, CPTC, & NCL</span>
+			<span class="subtitle">{subtitle}</span>
 		</h2>
-		<p class="description">
-			Cyber @ UCI hosts a competitive side for members who want to dive deeper into cybersecurity in
-			a competitive environment. The main competitions we compete in are the Collegiate Cyber
-			Defense Competition (CCDC), Collegiate Penetration Testing Competition (CPTC), and NCL
-			(National Cyber League).
-		</p>
+		<p class="description">{description}</p>
 		<div class="info">
 			<div class="learn-more">
 				<Info size={16} />
@@ -57,7 +55,7 @@
 			font-weight: 500;
 			line-height: 130%;
 
-			.title {
+			.subtitle {
 				color: var(--cyber-blue-4);
 			}
 		}

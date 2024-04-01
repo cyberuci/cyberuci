@@ -33,6 +33,13 @@ export const SanityImageReference = z.object({
 	crop: SanityImageCrop.optional(),
 	hotspot: SanityImageHotspot.optional()
 });
+export const SanityImageReferenceWithAlt = z.object({
+	_type: z.literal('image'),
+	asset: SanityReference,
+	crop: SanityImageCrop.optional(),
+	hotspot: SanityImageHotspot.optional(),
+	alt: z.string()
+});
 
 export type SanityReference = {
 	_ref: string;

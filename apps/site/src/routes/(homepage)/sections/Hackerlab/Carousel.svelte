@@ -2,8 +2,17 @@
 	// TODO: replace external drag scroll dependency
 	import 'scroll-snap-slider/dist/scroll-snap-slider.css';
 
+	import type { z } from 'zod';
+	import { SanityImageReferenceWithAlt } from '$lib/sanity/types';
+
 	import { ScrollSnapSlider, ScrollSnapDraggable } from 'scroll-snap-slider';
 	import { onMount } from 'svelte';
+	import { client } from '$lib/sanity/sanityClient';
+	import imageUrlBuilder from '@sanity/image-url';
+
+	const builder = imageUrlBuilder(client);
+
+	export let images: z.infer<typeof SanityImageReferenceWithAlt>[];
 
 	let content: HTMLUListElement;
 
@@ -20,12 +29,11 @@
 
 <!-- TODO: arrows and dots -->
 <ul bind:this={content} class="carousel scroll-snap-slider">
-	<li class="item">
-		<enhanced:img class="image" src="./image-1.jpg" alt="" />
-	</li>
-	<li class="item">
-		<enhanced:img class="image" src="./image-1.jpg" alt="" />
-	</li>
+	{#each images as image}
+		<li class="item">
+			<img class="image" src={builder.image(image).auto('format').url()} alt={image.alt} />
+		</li>
+	{/each}
 </ul>
 
 <style lang="scss">

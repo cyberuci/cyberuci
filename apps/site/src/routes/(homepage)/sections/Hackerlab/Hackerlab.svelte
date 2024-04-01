@@ -1,15 +1,21 @@
 <script lang="ts">
+	import type { z } from 'zod';
+	import { SanityImageReferenceWithAlt } from '$lib/sanity/types';
+
 	import Carousel from './Carousel.svelte';
 	import Map from './Map.svelte';
+
+	export let images: z.infer<typeof SanityImageReferenceWithAlt>[];
+	export let description: string;
 </script>
 
 <div class="hackerlab">
 	<h2 class="heading"><span class="rainbow">//////////////</span> Hackerlab</h2>
-	<Carousel />
+	<Carousel {images} />
 	<div class="info-parent">
 		<div class="info">
 			<h3>Visit HackerLab</h3>
-			<p class="description">HackerLab is Cyber@UCI's collaborative workspace located in ISEB.</p>
+			<p class="description">{description}</p>
 		</div>
 		<div class="map">
 			<Map />
