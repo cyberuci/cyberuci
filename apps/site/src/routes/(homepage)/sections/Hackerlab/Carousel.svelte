@@ -53,10 +53,15 @@
 
 	.item {
 		width: 100%;
-		height: 800px;
+		aspect-ratio: 3/4;
 		flex-shrink: 0;
 		scroll-snap-stop: always;
 		scroll-snap-align: center;
+
+		@media (min-width: 600px) {
+			aspect-ratio: initial;
+			height: 600px;
+		}
 	}
 
 	.image {
