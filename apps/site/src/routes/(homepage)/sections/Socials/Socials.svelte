@@ -94,5 +94,21 @@
 			width: 48px;
 			height: 48px;
 		}
+
+		&:focus-visible,
+		&:hover {
+			color: #202020;
+			background-color: var(--cyber-blue-5);
+
+			.arrow {
+				transform: translateX(0);
+				opacity: 1;
+			}
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--cyber-blue-4);
+			outline-offset: 2px;
+		}
 	}
 </style>

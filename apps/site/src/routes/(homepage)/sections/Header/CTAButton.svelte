@@ -53,6 +53,7 @@
 			color 150ms ease-out,
 			background-color 150ms ease-out;
 
+		&:focus-visible,
 		&:hover {
 			color: #202020;
 			background-color: rgba(255, 255, 255, 0.93);
@@ -61,6 +62,11 @@
 				transform: translateX(0);
 				opacity: 1;
 			}
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--cyber-blue-3);
+			outline-offset: 2px;
 		}
 	}
 
