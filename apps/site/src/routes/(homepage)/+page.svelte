@@ -24,7 +24,7 @@
 	images={data.homepage.hackerlab.images}
 	description={data.homepage.hackerlab.description}
 />
-<Socials />
+<Socials socials={data.socials.socials} />
 
 <style lang="scss">
 </style>

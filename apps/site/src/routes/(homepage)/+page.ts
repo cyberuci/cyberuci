@@ -4,7 +4,7 @@ import { client } from '$lib/sanity/sanityClient';
 import groq from 'groq';
 import z from 'zod';
 
-const QueryResult = z.object({
+const HomePageQueryResult = z.object({
 	competitions: z.object({
 		subtitle: z.string(),
 		description: z.string()
@@ -15,8 +15,17 @@ const QueryResult = z.object({
 	})
 });
 
+const SocialsQueryResult = z.object({
+	socials: z.array(
+		z.object({
+			platform: z.string(),
+			link: z.string()
+		})
+	)
+});
+
 export const load = (async () => {
-	const query = groq`
+	const homePageQuery = groq`
 		*[_id == "homePage"][0] {
 			competitions {
 				subtitle,
@@ -28,7 +37,15 @@ export const load = (async () => {
 			}
 		}
   `;
-	const homepage = QueryResult.parse(await client.fetch(query));
 
-	return { homepage };
+	const socialsQuery = groq`
+		*[_id == "info"][0] {
+			socials
+		}
+	`;
+
+	return {
+		homepage: HomePageQueryResult.parse(await client.fetch(homePageQuery)),
+		socials: SocialsQueryResult.parse(await client.fetch(socialsQuery))
+	};
 }) satisfies PageLoad;

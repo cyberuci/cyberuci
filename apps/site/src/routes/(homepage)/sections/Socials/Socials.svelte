@@ -1,31 +1,31 @@
 <script lang="ts">
 	import { siDiscord, siInstagram, siGithub } from 'simple-icons';
 
-	const socials = [
-		{
-			path: siDiscord.path,
-			href: ''
-		},
-		{
-			path: siInstagram.path,
-			href: ''
-		},
-		{
-			path: siGithub.path,
-			href: ''
-		}
-	];
+	export let socials: { platform: string; link: string }[];
 </script>
 
 <div class="socials">
 	<h2 class="heading"><span class="rainbow">//////////////</span> Socials</h2>
 	<div class="list">
-		{#each socials as { path, href }}
-			<a class="link" {href}>
-				<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-					<path d={path} />
-				</svg>
-			</a>
+		{#each socials as { platform, link }}
+			{#if ['Discord', 'Instagram', 'GitHub'].includes(platform)}
+				<a class="link" href={link}>
+					<svg
+						role="img"
+						viewBox="0 0 24 24"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="currentColor"
+					>
+						{#if platform === 'Discord'}
+							<path d={siDiscord.path} />
+						{:else if platform === 'Instagram'}
+							<path d={siInstagram.path} />
+						{:else if platform === 'GitHub'}
+							<path d={siGithub.path} />
+						{/if}
+					</svg>
+				</a>
+			{/if}
 		{/each}
 	</div>
 </div>
