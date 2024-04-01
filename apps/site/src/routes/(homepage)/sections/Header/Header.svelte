@@ -14,9 +14,14 @@
 		experience.
 	</p>
 	<div class="cta-buttons">
-		<CTAButton href="/hackerlab" icon={ActivitySquare} label="Visit HackerLab" />
+		<CTAButton href="#hackerlab" icon={ActivitySquare} label="Visit HackerLab" />
 		<CTAButton href="/events" icon={CalendarDays} label="Visit Events" />
-		<CTAButton href="/discord" svgPath={siDiscord.path} label="Join Our Discord" />
+		<!-- TODO: remove hardcoded discord invite -->
+		<CTAButton
+			href="https://discord.gg/WjbSP2B9Ck"
+			svgPath={siDiscord.path}
+			label="Join Our Discord"
+		/>
 		<CTAButton href="/competition" icon={Medal} label="Competition Teams" />
 	</div>
 	<enhanced:img class="background-image" src="./cover.jpg" alt="" />

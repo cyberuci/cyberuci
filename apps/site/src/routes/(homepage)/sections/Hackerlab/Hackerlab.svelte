@@ -9,7 +9,7 @@
 	export let description: string;
 </script>
 
-<div class="hackerlab">
+<div id="hackerlab" class="hackerlab">
 	<h2 class="heading"><span class="rainbow">//////////////</span> Hackerlab</h2>
 	<Carousel {images} />
 	<div class="info-parent">
