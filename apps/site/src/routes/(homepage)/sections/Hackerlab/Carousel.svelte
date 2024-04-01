@@ -18,6 +18,7 @@
 	});
 </script>
 
+<!-- TODO: arrows and dots -->
 <ul bind:this={content} class="carousel scroll-snap-slider">
 	<li class="item">
 		<enhanced:img class="image" src="./image-1.jpg" alt="" />
@@ -55,5 +56,6 @@
 		height: 100%;
 		border-radius: 48px;
 		pointer-events: none;
+		object-fit: cover;
 	}
 </style>
