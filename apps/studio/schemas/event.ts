@@ -41,6 +41,7 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
+    // TODO: store event times more robustly with timezone
     defineField({
       name: 'start',
       title: 'Start',
