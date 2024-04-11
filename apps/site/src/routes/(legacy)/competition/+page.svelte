@@ -33,10 +33,6 @@
 		while we are handed business tasks by the corporation who owns the network. It’s the best
 		applied cybersecurity experience you can get in college.
 	</p>
-	<p>
-		If you’re interested in that, come to our introductory meeting, held 10/02/2023 6:00-7:30pm in
-		ISEB 1550.
-	</p>
 	<h3>Previous notable results:</h3>
 	<ul>
 		<li>5th in Nationals, 2020-2021</li>
@@ -54,7 +50,7 @@
 		Recruitment and meetings will start in the Spring.
 	</p>
 	<a href="https://cp.tc/">https://cp.tc/</a>
-	
+
 	<h2>NCL</h2>
 	<p>
 		NCL is a national CTF hosted by Cyber Skyline and the National Cyber League Inc. non profit. It
