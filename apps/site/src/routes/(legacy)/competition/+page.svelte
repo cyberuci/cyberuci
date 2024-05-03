@@ -34,11 +34,27 @@
 		applied cybersecurity experience you can get in college.
 	</p>
 	<h3>Previous notable results:</h3>
+	<h4>2019</h4>
 	<ul>
-		<li>5th in Nationals, 2020-2021</li>
-		<li>1st in the Western Regionals 2020-2021</li>
-		<li>2nd in Western Regionals, 2022-2023</li>
-		<li>3rd in Western Regionals, 2018-2019</li>
+		<li>Western Region: 3rd Place</li>
+	</ul>
+	<h4>2021</h4>
+	<ul>
+		<li>Western Region: 1st Place</li>
+		<li>Nationals: 5th Place</li>
+	</ul>
+	<h4>2022</h4>
+	<ul>
+		<li>Western Region: 2nd Place</li>
+	</ul>
+	<h4>2023</h4>
+	<ul>
+		<li>Hivestorm: 1st Place</li>
+	</ul>
+	<h4>2024</h4>
+	<ul>
+		<li>Western Region: 2nd Place</li>
+		<li>CCDC Wildcard: 1st Place</li>
 	</ul>
 	<a href="https://www.nationalccdc.org/">https://www.nationalccdc.org/</a>
 
