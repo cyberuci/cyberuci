@@ -31,6 +31,8 @@
 </div>
 
 <style lang="scss">
+	@use '$lib/colors/variables.scss' as colors;
+
 	.socials {
 		margin: 160px 16px 16px 16px;
 	}
@@ -78,8 +80,8 @@
 		width: 100%;
 		padding: 48px;
 		text-decoration: none;
-		color: white;
-		background-color: #1c1c1c;
+		color: colors.$md-sys-color-on-primary-fixed;
+		background-color: colors.$md-sys-color-primary-fixed;
 		border-radius: 32px;
 
 		@media (min-width: 600px) {
@@ -98,7 +100,7 @@
 		&:focus-visible,
 		&:hover {
 			color: #202020;
-			background-color: var(--cyber-blue-5);
+			background-color: colors.$md-sys-color-primary-fixed-dim;
 
 			.arrow {
 				transform: translateX(0);
@@ -107,7 +109,7 @@
 		}
 
 		&:focus-visible {
-			outline: 2px solid var(--cyber-blue-4);
+			outline: 2px solid colors.$md-sys-color-primary-fixed-dim;
 			outline-offset: 2px;
 		}
 	}

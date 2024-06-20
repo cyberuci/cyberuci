@@ -24,6 +24,8 @@
 </div>
 
 <style lang="scss">
+	@use '$lib/colors/variables.scss' as colors;
+
 	.competitions {
 		margin: 16px;
 		display: grid;
@@ -37,8 +39,8 @@
 	.information {
 		padding: 32px 80px 80px 24px;
 		border-radius: 32px;
-		color: #fff;
-		background: #1c1c1c;
+		color: colors.$md-sys-color-on-surface;
+		background-color: colors.$md-sys-color-surface-container;
 		font-feature-settings:
 			'dlig' on,
 			'ss05' on;
