@@ -4,7 +4,7 @@
 	import { siDiscord } from 'simple-icons';
 </script>
 
-<div class="header">
+<div class="header force-dark-theme">
 	<h1 class="heading">
 		Cybersecurity matters.<br />
 		Be part of the solution.
@@ -28,12 +28,15 @@
 </div>
 
 <style lang="scss">
+	@use '$lib/colors/variables.scss' as colors;
+
 	.header {
 		position: relative;
 		border-radius: 48px;
 		overflow: hidden;
 		margin: 16px;
 		padding: calc(96px + 40px) 24px;
+		color: colors.$md-sys-color-on-background;
 	}
 
 	.heading {

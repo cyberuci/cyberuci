@@ -15,6 +15,22 @@
 	nav {
 		display: flex;
 		align-items: baseline;
+		position: relative;
+		padding: 2px;
+		border-radius: 1000px;
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		overflow: hidden;
+
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background-color: var(--gray2);
+			border-radius: 1000px;
+			opacity: 0.65;
+			z-index: -1;
+		}
 
 		& a {
 			padding: 12px;

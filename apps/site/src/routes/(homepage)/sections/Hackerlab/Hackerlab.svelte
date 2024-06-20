@@ -24,6 +24,8 @@
 </div>
 
 <style lang="scss">
+	@use '$lib/colors/variables.scss' as colors;
+
 	.hackerlab {
 		margin: 160px 16px 16px 16px;
 	}
@@ -71,7 +73,8 @@
 
 		.info {
 			border-radius: 32px;
-			background: #1c1c1c;
+			color: colors.$md-sys-color-on-surface;
+			background-color: colors.$md-sys-color-surface-container;
 			padding: 40px 24px;
 
 			h3 {
