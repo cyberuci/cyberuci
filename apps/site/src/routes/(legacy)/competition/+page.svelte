@@ -53,10 +53,19 @@
 	</ul>
 	<h4>2024</h4>
 	<ul>
+		<li>CCDC Nationals: 4th Place</li>
 		<li>Western Region: 2nd Place</li>
 		<li>CCDC Wildcard: 1st Place</li>
 	</ul>
 	<a href="https://www.nationalccdc.org/">https://www.nationalccdc.org/</a>
+	<a
+		href="https://ics.uci.edu/2024/04/18/uci-advances-to-national-collegiate-cyber-defense-competition/"
+		>UCI Advances to National Collegiate Cyber Defense Competition</a
+	>
+	<a
+		href="https://news.uci.edu/2024/07/01/cyberuci-team-places-fourth-in-national-cybersecurity-competition/"
+		>Cyber@UCI team places fourth in national cybersecurity competition</a
+	>
 
 	<h2>CPTC</h2>
 	<p>
@@ -93,5 +102,9 @@
 		@include typography.title;
 		@include typography.xl;
 		font-weight: 600;
+	}
+
+	a {
+		display: block;
 	}
 </style>

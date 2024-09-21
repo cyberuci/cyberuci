@@ -5,10 +5,8 @@
 	export let contacts: PageData['leads'];
 
 	const titles = new Map([
-		['9bc2103e-a025-4ecf-8217-8264320f7cc6', 'CCDC Co-Captain'],
-		['0087e2ca-fa5f-4dd5-bc03-12b0d882f5e6', 'CCDC Co-Captain'],
-		['b7426047-ee66-489a-b056-95564f95846c', 'CPTC Captain'],
-		['aa74ff34-626f-42ea-9bc7-9501eadcc821', 'NCL Lead']
+		['eb5e79ce-fe1e-480c-b623-3c8a5650986b', 'CCDC Co-Captain'],
+		['07851b47-20b5-40e9-bddb-8622b273b1d5', 'CCDC Co-Captain']
 	]);
 </script>
 
