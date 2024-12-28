@@ -1,5 +1,6 @@
 <script lang="ts">
 	import './global.scss';
+	import 'uno.css';
 </script>
 
 <svelte:head>

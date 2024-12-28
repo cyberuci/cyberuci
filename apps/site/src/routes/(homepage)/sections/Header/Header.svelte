@@ -29,20 +29,17 @@
 
 <style lang="scss">
 	@use '$lib/colors/variables.scss' as colors;
+	@use '$lib/common/styles/typography' as typography;
 
 	.header {
 		position: relative;
-		border-radius: 48px;
 		overflow: hidden;
-		margin: 16px;
 		padding: calc(96px + 40px) 24px;
 		color: colors.$md-sys-color-on-background;
 	}
 
 	.heading {
-		font-feature-settings: 'dlig' on;
-		font-family: 'BBB Strobo';
-		font-stretch: 175%;
+		@include typography.title;
 		font-size: 32px;
 		font-weight: 400;
 		line-height: 130%;
