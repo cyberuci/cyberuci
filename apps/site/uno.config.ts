@@ -20,6 +20,7 @@ export default defineConfig({
 
 		// Colors
 		background: 'bg-gray-1 dark:bg-graydark-1',
+		'background-2': 'bg-gray-2 dark:bg-graydark-2',
 		text: 'text-gray-12 dark:text-graydark-12'
 	},
 	extendTheme: (theme) => ({

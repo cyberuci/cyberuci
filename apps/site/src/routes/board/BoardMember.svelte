@@ -7,23 +7,36 @@
 
 	const builder = imageUrlBuilder(client);
 
-	export let person: z.infer<typeof Person>;
+	export let person: z.infer<typeof Person> & { ascii?: string };
 	export let titles: string[];
 
-	$: ({ name, pronouns, image, majors, graduation } = person);
+	$: ({ name, pronouns, image, majors, graduation, ascii } = person);
 </script>
 
 <article>
-	<div class="grid content-center w-full overflow-hidden aspect-ratio-square rounded-sm">
-		{#if image}
-			<img
-				class="object-cover w-full h-full"
-				src={builder.image(image).size(512, 512).url()}
-				alt={name}
-			/>
-		{:else}
-			<User color="var(--gray7)" />
-		{/if}
+	<div class="relative w-full aspect-ratio-square rounded-sm overflow-hidden group">
+		<div
+			class="absolute grid place-content-center overflow-hidden transition-opacity transition-150 opacity-100 group-hover:opacity-0"
+		>
+			<p
+				class="m-0 text-[1.55vw] sm:text-[0.81vw] lg:text-[0.55vw] font-mono line-height-none text-blue-9"
+			>
+				{ascii}
+			</p>
+		</div>
+		<div
+			class="absolute grid content-center opacity-0 group-hover:opacity-100 transition-opacity transition-150"
+		>
+			{#if image}
+				<img
+					class="object-cover w-full h-full"
+					src={builder.image(image).size(512, 512).url()}
+					alt={name}
+				/>
+			{:else}
+				<User color="var(--gray7)" />
+			{/if}
+		</div>
 	</div>
 	<h1 class="mt-6 mb-2 type-heading-1">
 		{name}
