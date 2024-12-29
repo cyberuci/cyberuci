@@ -4,9 +4,9 @@
 </script>
 
 <svelte:head>
-	<link href="/fonts/blinker/blinker.css" rel="stylesheet" />
-	<link href="/fonts/jura/jura.css" rel="stylesheet" />
-	<link href="/fonts/tiny/TINY.css" rel="stylesheet" />
+	<link href="/fonts/strobo/strobo.css" rel="stylesheet" />
+	<link href="/fonts/commit-mono/commit-mono.css" rel="stylesheet" />
+	<link href="/fonts/tasa-explorer/tasa-explorer.css" rel="stylesheet" />
 </svelte:head>
 
 <slot />

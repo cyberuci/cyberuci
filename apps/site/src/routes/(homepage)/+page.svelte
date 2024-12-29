@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	import { default as Nav } from '../(legacy)/layout/header/Header.svelte';
 	import Header from './sections/Header/Header.svelte';
 	import Events from './sections/Events/Events.svelte';
 	import Competitions from './sections/Competitions/Competitions.svelte';
@@ -15,7 +14,6 @@
 	<title>Cyber @ UCI</title>
 </svelte:head>
 
-<Nav />
 <Header />
 <Events events={data.events} />
 <Competitions
