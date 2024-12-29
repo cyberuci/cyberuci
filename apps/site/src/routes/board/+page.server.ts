@@ -6,6 +6,11 @@ import groq from 'groq';
 import z from 'zod';
 import asciify from 'asciify-image';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import type { Config } from '@sveltejs/adapter-vercel';
+
+export const config: Config = {
+	runtime: 'nodejs22.x'
+};
 
 const builder = imageUrlBuilder(client);
 
