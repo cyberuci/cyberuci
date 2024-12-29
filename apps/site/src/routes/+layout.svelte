@@ -1,6 +1,6 @@
 <script lang="ts">
-	import './global.scss';
 	import 'uno.css';
+	import './global.scss';
 </script>
 
 <svelte:head>
@@ -10,3 +10,9 @@
 </svelte:head>
 
 <slot />
+
+<style>
+	:global(body) {
+		@apply background text;
+	}
+</style>
