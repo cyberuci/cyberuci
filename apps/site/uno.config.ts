@@ -2,7 +2,7 @@ import { presetUno } from 'unocss';
 import { defineConfig } from 'unocss';
 import extractorSvelte from '@unocss/extractor-svelte';
 import transformerDirectives from '@unocss/transformer-directives';
-import { slate, slateDark } from '@radix-ui/colors';
+import { gray, grayDark } from '@radix-ui/colors';
 
 export default defineConfig({
 	presets: [presetUno({ dark: 'media' })],
@@ -31,8 +31,8 @@ export default defineConfig({
 			explorer: 'TASAExplorer, sans-serif'
 		},
 		colors: {
-			gray: Object.fromEntries(Object.values(slate).map((color, i) => [i + 1, color])),
-			graydark: Object.fromEntries(Object.values(slateDark).map((color, i) => [i + 1, color])),
+			gray: Object.fromEntries(Object.values(gray).map((color, i) => [i + 1, color])),
+			graydark: Object.fromEntries(Object.values(grayDark).map((color, i) => [i + 1, color])),
 
 			// cyber accent color
 			// https://www.radix-ui.com/colors/custom

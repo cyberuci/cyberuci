@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import Title from '$lib/common/components/Title.svelte';
-	import Board from './Board.svelte';
+	import BoardMember from './BoardMember.svelte';
 
 	export let data: PageData;
 	$: year = data.board.year % 100;
@@ -11,11 +11,17 @@
 	<title>Board — Cyber @ UCI</title>
 </svelte:head>
 
-<div class="mx-10">
-	<div class="mb-22">
+<div class="mx-10 py-60">
+	<div class="mb-24">
 		<Title title="Board {year}/{year + 1}" />
 	</div>
 	<main>
-		<Board members={data.board.members} />
+		<div class="grid grid-cols-3 gap-x-6 gap-y-18">
+			{#each data.board.members as { person, titles }, i}
+				<div style:animation-delay="{100 * i}ms">
+					<BoardMember {person} {titles} />
+				</div>
+			{/each}
+		</div>
 	</main>
 </div>

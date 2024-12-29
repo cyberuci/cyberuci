@@ -7,6 +7,7 @@
 	<link href="/fonts/strobo/strobo.css" rel="stylesheet" />
 	<link href="/fonts/commit-mono/commit-mono.css" rel="stylesheet" />
 	<link href="/fonts/tasa-explorer/tasa-explorer.css" rel="stylesheet" />
+	<link href="/fonts/blinker/blinker.css" rel="stylesheet" />
 </svelte:head>
 
 <slot />

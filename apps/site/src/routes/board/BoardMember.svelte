@@ -10,11 +10,11 @@
 	export let person: z.infer<typeof Person>;
 	export let titles: string[];
 
-	$: ({ name, pronouns, image } = person);
+	$: ({ name, pronouns, image, majors, graduation } = person);
 </script>
 
-<article class="flex flex-col gap-2">
-	<div class="grid content-center w-full overflow-hidden aspect-ratio-square bg-gray-9 rounded-xl">
+<article>
+	<div class="grid content-center w-full overflow-hidden aspect-ratio-square rounded-sm">
 		{#if image}
 			<img
 				class="object-cover w-full h-full"
@@ -25,14 +25,16 @@
 			<User color="var(--gray7)" />
 		{/if}
 	</div>
-	<h1 class="mt-6 mb-1 type-heading-1">
+	<h1 class="mt-6 mb-2 type-heading-1">
 		{name}
 	</h1>
-	<!-- TODO: refactor colors -->
-	<div class="flex flex-col gap-.5 type-body-2">
-		<span class="color-gray-5">{titles.join(', ')}</span>
+	<div class="flex flex-col gap-.5 type-body-2 text-gray-11 dark:text-graydark-11">
+		<span>{titles.join(', ')}</span>
+		{#if majors}
+			<span>{majors.join(', ')} {graduation}</span>
+		{/if}
 		{#if pronouns}
-			<span class="color-gray-5">
+			<span>
 				{pronouns.join(', ')}
 			</span>
 		{/if}
