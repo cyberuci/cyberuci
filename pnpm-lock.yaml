@@ -54,8 +54,8 @@ importers:
         specifier: 2.0.13
         version: 2.0.13
       '@radix-ui/colors':
-        specifier: ^0.1.8
-        version: 0.1.8
+        specifier: 3.0.0
+        version: 3.0.0
       '@sanity/client':
         specifier: 6.24.1
         version: 6.24.1(debug@3.2.7)
@@ -2155,8 +2155,8 @@ packages:
     resolution: {integrity: sha512-5xk5MSyQU9CrDho3Rsguj38jhijhD36Mk8S6mZo3huv6PM+t4M/5kJN2KFIxgvt4ONpvOEs1pVIZAV0cL0Vi+Q==}
     engines: {node: ^14.13.1 || >=16.0.0 || >=18.0.0}
 
-  '@radix-ui/colors@0.1.8':
-    resolution: {integrity: sha512-jwRMXYwC0hUo0mv6wGpuw254Pd9p/R6Td5xsRpOmaWkUHlooNWqVcadgyzlRumMq3xfOTXwJReU0Jv+EIy4Jbw==}
+  '@radix-ui/colors@3.0.0':
+    resolution: {integrity: sha512-FUOsGBkHrYJwCSEtWRCIfQbZG7q1e6DgxCIOe1SUQzDe/7rXXeA47s8yCn6fuTNQAj1Zq4oTFi9Yjp3wzElcxg==}
 
   '@rexxars/react-json-inspector@8.0.1':
     resolution: {integrity: sha512-XAsgQwqG8fbDGpWnsvOesRMgPfvwuU7Cx3/cUf/fNIRmGP8lj2YYIf5La/4ayvZLWlSw4tTb4BPCKdmK9D8RuQ==}
@@ -8298,7 +8298,7 @@ snapshots:
 
   '@portabletext/types@2.0.13': {}
 
-  '@radix-ui/colors@0.1.8': {}
+  '@radix-ui/colors@3.0.0': {}
 
   '@rexxars/react-json-inspector@8.0.1(react@18.2.0)':
     dependencies:

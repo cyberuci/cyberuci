@@ -4,13 +4,13 @@
 @use '$lib/colors/variables.scss' as colors;
 
 @import '@radix-ui/colors/gray.css';
-@import '@radix-ui/colors/grayA.css';
+@import '@radix-ui/colors/gray-alpha.css';
 @import '@radix-ui/colors/blue.css';
 @import '@radix-ui/colors/red.css';
 
-@import '@radix-ui/colors/grayDark.css' (prefers-color-scheme: dark);
-@import '@radix-ui/colors/blueDark.css' (prefers-color-scheme: dark);
-@import '@radix-ui/colors/redDark.css' (prefers-color-scheme: dark);
+@import '@radix-ui/colors/gray-dark.css' (prefers-color-scheme: dark);
+@import '@radix-ui/colors/blue-dark.css' (prefers-color-scheme: dark);
+@import '@radix-ui/colors/red-dark.css' (prefers-color-scheme: dark);
 
 html {
 	scroll-behavior: smooth;
