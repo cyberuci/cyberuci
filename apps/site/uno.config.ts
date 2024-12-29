@@ -11,7 +11,7 @@ export default defineConfig({
 	shortcuts: {
 		// Typograhy
 		'type-display':
-			"font-strobo [font-feature-settings:'dlig'] font-stretch-[175%] text-5xl font-normal my-8",
+			"font-strobo [font-feature-settings:'dlig'] text-5xl font-normal my-8 line-height-[130%]",
 		'type-label': 'font-mono text-sm',
 		'type-heading-1': 'font-explorer font-medium text-2xl',
 		'type-heading-2': 'font-explorer font-medium text-4xl',
