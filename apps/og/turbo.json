@@ -1,14 +1,8 @@
 {
-  "extends": [
-    "//"
-  ],
-  "pipeline": {
+  "extends": ["//"],
+  "tasks": {
     "build": {
-      "outputs": [
-        ".vercel/**",
-        ".next/**",
-        "!.next/cache/**"
-      ]
+      "outputs": [".vercel/**", ".next/**", "!.next/cache/**"]
     }
   }
 }
