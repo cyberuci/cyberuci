@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { siDiscord, siInstagram, siGithub } from 'simple-icons';
 
-	export let socials: { platform: string; link: string }[];
+	interface Props {
+		socials: { platform: string; link: string }[];
+	}
+
+	let { socials }: Props = $props();
 </script>
 
 <div class="socials">

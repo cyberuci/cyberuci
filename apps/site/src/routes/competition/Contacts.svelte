@@ -2,7 +2,11 @@
 	import type { PageData } from './$types';
 	import Profile from '$lib/common/components/Profile.svelte';
 
-	export let contacts: PageData['leads'];
+	interface Props {
+		contacts: PageData['leads'];
+	}
+
+	let { contacts }: Props = $props();
 
 	const titles = new Map([
 		['eb5e79ce-fe1e-480c-b623-3c8a5650986b', 'CCDC Co-Captain'],

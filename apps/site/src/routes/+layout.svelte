@@ -1,6 +1,13 @@
 <script lang="ts">
 	import 'uno.css';
 	import './global.scss';
+	import type { Snippet } from 'svelte';
+
+	interface Props {
+		children?: Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <svelte:head>
@@ -10,7 +17,7 @@
 	<link href="/fonts/blinker/blinker.css" rel="stylesheet" />
 </svelte:head>
 
-<slot />
+{@render children?.()}
 
 <style>
 	:global(body) {

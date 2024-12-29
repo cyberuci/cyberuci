@@ -1,13 +1,19 @@
 <script lang="ts">
 	import type { BlockComponentProps } from '@portabletext/svelte';
+	import type { Snippet } from 'svelte';
 
-	export let portableText: BlockComponentProps;
+	interface Props {
+		portableText: BlockComponentProps;
+		children?: Snippet;
+	}
 
-	$: ({ value } = portableText);
-	$: ({ style } = value);
+	let { portableText, children }: Props = $props();
+
+	let { value } = $derived(portableText);
+	let { style } = $derived(value);
 </script>
 
-<svelte:element this={style}><slot /></svelte:element>
+<svelte:element this={style}>{@render children?.()}</svelte:element>
 
 <style lang="scss">
 	* {

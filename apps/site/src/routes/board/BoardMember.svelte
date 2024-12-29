@@ -7,10 +7,14 @@
 
 	const builder = imageUrlBuilder(client);
 
-	export let person: z.infer<typeof Person> & { ascii?: string };
-	export let titles: string[];
+	interface Props {
+		person: z.infer<typeof Person> & { ascii?: string };
+		titles: string[];
+	}
 
-	$: ({ name, pronouns, image, majors, graduation, ascii } = person);
+	let { person, titles }: Props = $props();
+
+	let { name, pronouns, image, majors, graduation, ascii } = $derived(person);
 </script>
 
 <article>

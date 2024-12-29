@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { Medal, Info } from 'lucide-svelte';
 
-	export let subtitle: string;
-	export let description: string;
+	interface Props {
+		subtitle: string;
+		description: string;
+	}
+
+	let { subtitle, description }: Props = $props();
 </script>
 
 <div class="competitions">

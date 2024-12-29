@@ -3,7 +3,11 @@
 	import Title from '$lib/common/components/Title.svelte';
 	import Contact from './Contacts.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 </script>
 
 <svelte:head>

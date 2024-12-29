@@ -3,15 +3,20 @@
 
 	import { ArrowRight } from 'lucide-svelte';
 
-	export let href: string;
-	export let icon: ComponentType | undefined = undefined;
-	export let svgPath: string | undefined = undefined;
-	export let label: string;
+	interface Props {
+		href: string;
+		icon?: ComponentType | undefined;
+		svgPath?: string | undefined;
+		label: string;
+	}
+
+	let { href, icon = undefined, svgPath = undefined, label }: Props = $props();
 </script>
 
 <a class="cta-button" {href}>
 	{#if icon}
-		<svelte:component this={icon} size={16} />
+		{@const SvelteComponent = icon}
+		<SvelteComponent size={16} />
 	{:else if svgPath}
 		<svg
 			width={16}
@@ -24,7 +29,7 @@
 			<path d={svgPath} />
 		</svg>
 	{:else}
-		<div />
+		<div></div>
 	{/if}
 
 	<span class="label">{label}</span>

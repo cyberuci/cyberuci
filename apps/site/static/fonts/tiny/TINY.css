@@ -1,6 +1,8 @@
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-20.woff2') format('woff2'), url('TINY5x3-20.woff') format('woff');
+	src:
+		url('TINY5x3-20.woff2') format('woff2'),
+		url('TINY5x3-20.woff') format('woff');
 	font-weight: 20;
 	font-style: normal;
 	font-display: swap;
@@ -8,7 +10,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-40.woff2') format('woff2'), url('TINY5x3-40.woff') format('woff');
+	src:
+		url('TINY5x3-40.woff2') format('woff2'),
+		url('TINY5x3-40.woff') format('woff');
 	font-weight: 40;
 	font-style: normal;
 	font-display: swap;
@@ -16,7 +20,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-60.woff2') format('woff2'), url('TINY5x3-60.woff') format('woff');
+	src:
+		url('TINY5x3-60.woff2') format('woff2'),
+		url('TINY5x3-60.woff') format('woff');
 	font-weight: 60;
 	font-style: normal;
 	font-display: swap;
@@ -24,7 +30,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-80.woff2') format('woff2'), url('TINY5x3-80.woff') format('woff');
+	src:
+		url('TINY5x3-80.woff2') format('woff2'),
+		url('TINY5x3-80.woff') format('woff');
 	font-weight: 80;
 	font-style: normal;
 	font-display: swap;
@@ -32,7 +40,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-100.woff2') format('woff2'), url('TINY5x3-100.woff') format('woff');
+	src:
+		url('TINY5x3-100.woff2') format('woff2'),
+		url('TINY5x3-100.woff') format('woff');
 	font-weight: 100;
 	font-style: normal;
 	font-display: swap;
@@ -40,7 +50,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-120.woff2') format('woff2'), url('TINY5x3-120.woff') format('woff');
+	src:
+		url('TINY5x3-120.woff2') format('woff2'),
+		url('TINY5x3-120.woff') format('woff');
 	font-weight: 120;
 	font-style: normal;
 	font-display: swap;
@@ -48,7 +60,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-140.woff2') format('woff2'), url('TINY5x3-140.woff') format('woff');
+	src:
+		url('TINY5x3-140.woff2') format('woff2'),
+		url('TINY5x3-140.woff') format('woff');
 	font-weight: 140;
 	font-style: normal;
 	font-display: swap;
@@ -56,7 +70,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-160.woff2') format('woff2'), url('TINY5x3-160.woff') format('woff');
+	src:
+		url('TINY5x3-160.woff2') format('woff2'),
+		url('TINY5x3-160.woff') format('woff');
 	font-weight: 160;
 	font-style: normal;
 	font-display: swap;
@@ -64,7 +80,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-180.woff2') format('woff2'), url('TINY5x3-180.woff') format('woff');
+	src:
+		url('TINY5x3-180.woff2') format('woff2'),
+		url('TINY5x3-180.woff') format('woff');
 	font-weight: 180;
 	font-style: normal;
 	font-display: swap;
@@ -72,7 +90,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-200.woff2') format('woff2'), url('TINY5x3-200.woff') format('woff');
+	src:
+		url('TINY5x3-200.woff2') format('woff2'),
+		url('TINY5x3-200.woff') format('woff');
 	font-weight: 200;
 	font-style: normal;
 	font-display: swap;
@@ -80,7 +100,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-220.woff2') format('woff2'), url('TINY5x3-220.woff') format('woff');
+	src:
+		url('TINY5x3-220.woff2') format('woff2'),
+		url('TINY5x3-220.woff') format('woff');
 	font-weight: 220;
 	font-style: normal;
 	font-display: swap;
@@ -88,7 +110,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-240.woff2') format('woff2'), url('TINY5x3-240.woff') format('woff');
+	src:
+		url('TINY5x3-240.woff2') format('woff2'),
+		url('TINY5x3-240.woff') format('woff');
 	font-weight: 240;
 	font-style: normal;
 	font-display: swap;
@@ -96,7 +120,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-260.woff2') format('woff2'), url('TINY5x3-260.woff') format('woff');
+	src:
+		url('TINY5x3-260.woff2') format('woff2'),
+		url('TINY5x3-260.woff') format('woff');
 	font-weight: 260;
 	font-style: normal;
 	font-display: swap;
@@ -104,7 +130,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-280.woff2') format('woff2'), url('TINY5x3-280.woff') format('woff');
+	src:
+		url('TINY5x3-280.woff2') format('woff2'),
+		url('TINY5x3-280.woff') format('woff');
 	font-weight: 280;
 	font-style: normal;
 	font-display: swap;
@@ -112,7 +140,9 @@
 
 @font-face {
 	font-family: 'TINY';
-	src: url('TINY5x3-300.woff2') format('woff2'), url('TINY5x3-300.woff') format('woff');
+	src:
+		url('TINY5x3-300.woff2') format('woff2'),
+		url('TINY5x3-300.woff') format('woff');
 	font-weight: 300;
 	font-style: normal;
 	font-display: swap;

@@ -6,9 +6,13 @@
 		titles: string[];
 	};
 
-	export let title: string;
-	export let description: string;
-	export let contacts: Contact[];
+	interface Props {
+		title: string;
+		description: string;
+		contacts: Contact[];
+	}
+
+	let { title, description, contacts }: Props = $props();
 </script>
 
 <h2>{title}</h2>

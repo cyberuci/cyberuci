@@ -3,8 +3,12 @@
 	import Title from '$lib/common/components/Title.svelte';
 	import BoardMember from './BoardMember.svelte';
 
-	export let data: PageData;
-	$: year = data.board.year % 100;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
+	let year = $derived(data.board.year % 100);
 </script>
 
 <svelte:head>
