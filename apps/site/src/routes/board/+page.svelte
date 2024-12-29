@@ -11,10 +11,8 @@
 	<title>Board — Cyber @ UCI</title>
 </svelte:head>
 
-<div class="mx-10 py-60">
-	<div class="mb-24">
-		<Title title="Board {year}/{year + 1}" />
-	</div>
+<div class="mx-10 my-60">
+	<Title title="Board {year}/{year + 1}" />
 	<main>
 		<div class="grid grid-cols-3 gap-x-6 gap-y-18">
 			{#each data.board.members as { person, titles }, i}
