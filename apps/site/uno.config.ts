@@ -72,7 +72,7 @@ export default defineConfig({
 				}
 			},
 			spacing: {
-				'default-x': '0.75rem'
+				'default-x': '0.5rem'
 			}
 		};
 	}
