@@ -8,13 +8,13 @@
 	const builder = imageUrlBuilder(client);
 
 	interface Props {
-		person: z.infer<typeof Person> & { ascii?: string };
+		person: z.infer<typeof Person> & { ascii?: string; asciiInvert?: string };
 		titles: string[];
 	}
 
 	let { person, titles }: Props = $props();
 
-	let { name, pronouns, image, majors, graduation, ascii } = $derived(person);
+	let { name, pronouns, image, majors, graduation, ascii, asciiInvert } = $derived(person);
 </script>
 
 <article>
@@ -29,7 +29,8 @@
 			<p
 				class="m-0 text-[calc((100vw_-_7.5rem)*0.0185)] sm:text-[calc((100vw_-_9rem)/2*0.0185)] lg:text-[calc((100vw_-_10.5rem)/3*0.0185)] font-mono line-height-none text-blue-9"
 			>
-				{ascii}
+				<span class="hidden dark:inline">{ascii}</span>
+				<span class="inline dark:hidden">{asciiInvert}</span>
 			</p>
 		</div>
 		<div

@@ -14,8 +14,10 @@ export const config: Config = {
 
 const builder = imageUrlBuilder(client);
 
-const getAsciiImage = async (url: SanityImageSource) => {
-	return (await asciify(builder.image(url).width(64).height(64).sharpen(100).url(), {
+const getAsciiImage = async (url: SanityImageSource, invert: boolean = false) => {
+	const baseImageBuilder = builder.image(url).width(64).height(64).sharpen(100);
+	// invert param not working
+	return (await asciify((invert ? baseImageBuilder.invert(true) : baseImageBuilder).url(), {
 		fit: 'none',
 		width: 45,
 		height: 54,
@@ -42,7 +44,11 @@ const QueryResult = z.object({
 					if (member.person.image) {
 						return {
 							...member,
-							person: { ...member.person, ascii: await getAsciiImage(member.person.image) }
+							person: {
+								...member.person,
+								ascii: await getAsciiImage(member.person.image),
+								asciiInvert: await getAsciiImage(member.person.image, true)
+							}
 						};
 					} else {
 						return member;
