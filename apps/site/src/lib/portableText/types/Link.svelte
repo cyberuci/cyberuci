@@ -2,9 +2,13 @@
 	import type { CustomBlockComponentProps } from '@portabletext/svelte';
 	import { ExternalLink } from 'lucide-svelte';
 
-	export let portableText: CustomBlockComponentProps<{ label: string; url: string }>;
+	interface Props {
+		portableText: CustomBlockComponentProps<{ label: string; url: string }>;
+	}
 
-	$: link = portableText.value;
+	let { portableText }: Props = $props();
+
+	let link = $derived(portableText.value);
 </script>
 
 <a href={link.url}>

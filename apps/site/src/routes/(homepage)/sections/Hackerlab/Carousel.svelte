@@ -12,9 +12,13 @@
 
 	const builder = imageUrlBuilder(client);
 
-	export let images: z.infer<typeof SanityImageReferenceWithAlt>[];
+	interface Props {
+		images: z.infer<typeof SanityImageReferenceWithAlt>[];
+	}
 
-	let content: HTMLUListElement;
+	let { images }: Props = $props();
+
+	let content: HTMLUListElement = $state();
 
 	onMount(() => {
 		const slider = new ScrollSnapSlider({

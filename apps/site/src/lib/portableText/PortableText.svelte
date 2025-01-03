@@ -15,7 +15,11 @@
 	import Bullet from './list/Bullet.svelte';
 	import Number from './list/Number.svelte';
 
-	export let value: PortableTextBlock[];
+	interface Props {
+		value: PortableTextBlock[];
+	}
+
+	let { value }: Props = $props();
 </script>
 
 <PortableText

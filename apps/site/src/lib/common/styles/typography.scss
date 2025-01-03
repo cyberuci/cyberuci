@@ -22,8 +22,19 @@
 	line-height: 42px;
 }
 
+@mixin decorative {
+	font-feature-settings: 'dlig' on;
+	font-family: 'BBB Strobo';
+	font-stretch: 175%;
+}
+
 @mixin title {
-	font-family: 'Jura', sans-serif;
+	font-family: TASAExplorer;
+	font-weight: 500;
+}
+
+@mixin mono {
+	font-family: 'CommitMono';
 }
 
 @mixin body {

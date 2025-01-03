@@ -4,7 +4,8 @@
 	font-family: 'Jura';
 	font-style: normal;
 	font-weight: 300;
-	src: url('jura-v28-latin-300.woff2') format('woff2'),
+	src:
+		url('jura-v28-latin-300.woff2') format('woff2'),
 		url('jura-v28-latin-300.woff') format('woff');
 }
 /* jura-regular - latin */
@@ -13,7 +14,8 @@
 	font-family: 'Jura';
 	font-style: normal;
 	font-weight: 400;
-	src: url('jura-v28-latin-regular.woff2') format('woff2'),
+	src:
+		url('jura-v28-latin-regular.woff2') format('woff2'),
 		url('jura-v28-latin-regular.woff') format('woff');
 }
 /* jura-500 - latin */
@@ -22,7 +24,8 @@
 	font-family: 'Jura';
 	font-style: normal;
 	font-weight: 500;
-	src: url('jura-v28-latin-500.woff2') format('woff2'),
+	src:
+		url('jura-v28-latin-500.woff2') format('woff2'),
 		url('jura-v28-latin-500.woff') format('woff');
 }
 /* jura-600 - latin */
@@ -31,7 +34,8 @@
 	font-family: 'Jura';
 	font-style: normal;
 	font-weight: 600;
-	src: url('jura-v28-latin-600.woff2') format('woff2'),
+	src:
+		url('jura-v28-latin-600.woff2') format('woff2'),
 		url('jura-v28-latin-600.woff') format('woff');
 }
 /* jura-700 - latin */
@@ -40,6 +44,7 @@
 	font-family: 'Jura';
 	font-style: normal;
 	font-weight: 700;
-	src: url('jura-v28-latin-700.woff2') format('woff2'),
+	src:
+		url('jura-v28-latin-700.woff2') format('woff2'),
 		url('jura-v28-latin-700.woff') format('woff');
 }

@@ -6,9 +6,13 @@
 
 	const builder = imageUrlBuilder(client);
 
-	export let image: SanityImageReference | undefined;
-	export let name: string;
-	export let size: number;
+	interface Props {
+		image: SanityImageReference | undefined;
+		name: string;
+		size: number;
+	}
+
+	let { image, name, size }: Props = $props();
 </script>
 
 <div class="profile" style:width="{size}px" style:height="{size}px">

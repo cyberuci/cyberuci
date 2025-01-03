@@ -13,7 +13,11 @@
 		minute: 'numeric'
 	});
 
-	export let events: z.infer<typeof _EventsQueryResult>;
+	interface Props {
+		events: z.infer<typeof _EventsQueryResult>;
+	}
+
+	let { events }: Props = $props();
 </script>
 
 <div class="events">

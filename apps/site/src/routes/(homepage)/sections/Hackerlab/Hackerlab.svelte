@@ -5,8 +5,12 @@
 	import Carousel from './Carousel.svelte';
 	import Map from './Map.svelte';
 
-	export let images: z.infer<typeof SanityImageReferenceWithAlt>[];
-	export let description: string;
+	interface Props {
+		images: z.infer<typeof SanityImageReferenceWithAlt>[];
+		description: string;
+	}
+
+	let { images, description }: Props = $props();
 </script>
 
 <div id="hackerlab" class="hackerlab">

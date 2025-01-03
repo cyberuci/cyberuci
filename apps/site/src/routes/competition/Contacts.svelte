@@ -1,20 +1,21 @@
 <script lang="ts">
-	import type { Person } from '$lib/sanity/types';
+	import type { PageData } from './$types';
 	import Profile from '$lib/common/components/Profile.svelte';
 
-	type Contact = Pick<Person, '_id' | 'image' | 'name' | 'pronouns' | 'email'> & {
-		titles: string[];
-	};
+	interface Props {
+		contacts: PageData['leads'];
+	}
 
-	export let title: string;
-	export let description: string;
-	export let contacts: Contact[];
+	let { contacts }: Props = $props();
+
+	const titles = new Map([
+		['eb5e79ce-fe1e-480c-b623-3c8a5650986b', 'CCDC Co-Captain'],
+		['07851b47-20b5-40e9-bddb-8622b273b1d5', 'CCDC Co-Captain']
+	]);
 </script>
 
-<h2>{title}</h2>
-<p class="description">{description}</p>
 <div class="contacts">
-	{#each contacts as { _id, image, name, pronouns, email, titles } (_id)}
+	{#each contacts as { _id, image, name, pronouns, email } (_id)}
 		<div class="card">
 			<Profile {image} {name} size={96} />
 			<div class="details">
@@ -24,7 +25,7 @@
 						({pronouns[0]})
 					{/if}
 				</p>
-				<p>{titles.join(', ')}</p>
+				<p>{titles.get(_id)}</p>
 				<a href="mailto:{email}">{email}</a>
 			</div>
 		</div>
@@ -33,17 +34,6 @@
 
 <style lang="scss">
 	@use '$lib/common/styles/typography' as typography;
-
-	h2 {
-		margin: 0 0 12px 0;
-		@include typography.title;
-		@include typography.xl;
-		font-weight: 600;
-	}
-
-	.description {
-		margin: 12px 0 32px 0;
-	}
 
 	.contacts {
 		display: grid;
