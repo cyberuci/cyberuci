@@ -27,7 +27,7 @@
 			<!-- if done correctly, multiplier should remain constant across breakpoints -->
 			<!-- https://bugs.webkit.org/show_activity.cgi?id=225695 -->
 			<p
-				class="m-0 text-[calc((100vw_-_7.5rem)*0.0182)] sm:text-[calc((100vw_-_9rem)/2*0.0182)] lg:text-[calc((100vw_-_10.5rem)/3*0.0182)] font-mono line-height-none text-blue-9"
+				class="m-0 text-[calc((100vw_-_7.5rem)*0.0185)] sm:text-[calc((100vw_-_9rem)/2*0.0185)] lg:text-[calc((100vw_-_10.5rem)/3*0.0185)] font-mono line-height-none text-blue-9"
 			>
 				{ascii}
 			</p>
