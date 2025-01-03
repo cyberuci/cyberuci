@@ -18,18 +18,22 @@
 </script>
 
 <article>
-	<div class="relative w-full aspect-ratio-square rounded-sm overflow-hidden group">
+	<div class="relative w-full overflow-hidden rounded-sm aspect-ratio-square group">
 		<div
-			class="absolute grid place-content-center overflow-hidden transition-opacity transition-150 opacity-100 group-hover:opacity-0"
+			class="absolute grid overflow-hidden transition-opacity opacity-100 place-content-center transition-150 group-hover:opacity-0"
 		>
+			<!-- font-size breakpoints are manually calculated -->
+			<!-- calc((100vw - <page margins> * 2 + <gap> * (<num columns> - 1)) / <num columns> * <multiplier>) -->
+			<!-- if done correctly, multiplier should remain constant across breakpoints -->
+			<!-- https://bugs.webkit.org/show_activity.cgi?id=225695 -->
 			<p
-				class="m-0 text-[1.55vw] sm:text-[0.81vw] lg:text-[0.55vw] font-mono line-height-none text-blue-9"
+				class="m-0 text-[calc((100vw_-_7.5rem)*0.0182)] sm:text-[calc((100vw_-_9rem)/2*0.0182)] lg:text-[calc((100vw_-_10.5rem)/3*0.0182)] font-mono line-height-none text-blue-9"
 			>
 				{ascii}
 			</p>
 		</div>
 		<div
-			class="absolute grid content-center opacity-0 group-hover:opacity-100 transition-opacity transition-150"
+			class="absolute grid content-center transition-opacity opacity-0 group-hover:opacity-100 transition-150"
 		>
 			{#if image}
 				<img

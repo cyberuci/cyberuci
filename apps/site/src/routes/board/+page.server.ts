@@ -18,7 +18,7 @@ const getAsciiImage = async (url: SanityImageSource) => {
 	return (await asciify(builder.image(url).width(64).height(64).sharpen(100).url(), {
 		fit: 'none',
 		width: 45,
-		height: 55,
+		height: 54,
 		color: false
 	})) as string;
 };
