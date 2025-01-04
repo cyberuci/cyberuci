@@ -13,10 +13,14 @@
 {#snippet ListItem({ title, content, href }: ListItemProps)}
 	<li>
 		<NavigationMenu.Link
-			class="block h-full select-none rounded-sm p-3 decoration-none background-3"
+			class="group block h-full select-none rounded-sm p-3 decoration-none background-3"
 			{href}
 		>
-			<div class="type-label text terminal-before">{title}</div>
+			<div
+				class="type-label text terminal-before group-hover:text-blue-11 dark:group-hover:text-bluedark-11"
+			>
+				{title}
+			</div>
 			<p class="mb-2 mt-1.5 text-sm text-gray-11 font-mono dark:text-graydark-11">
 				{content}
 			</p>
@@ -52,7 +56,7 @@
 						<li class="row-span-3">
 							<NavigationMenu.Link
 								href="/competition"
-								class="relative h-full w-full flex flex-col justify-end overflow-hidden rounded-sm p-3 decoration-none"
+								class="group relative h-full w-full flex flex-col justify-end overflow-hidden rounded-sm p-3 decoration-none"
 							>
 								<div
 									class="absolute left-0 top-0 h-full w-full from-graya-2 to-graya-12 bg-gradient-to-b -z-1"
@@ -62,7 +66,9 @@
 									src="./competition.jpg"
 									alt="2024 CCDC team standing in front of a banner"
 								/>
-								<div class="type-label text-graydark-12 before:text-graydark-11 terminal-before">
+								<div
+									class="type-label text-graydark-12 before:text-graydark-11 terminal-before group-hover:text-bluedark-11"
+								>
 									Competition
 								</div>
 								<p class="mb-2 mt-1.5 text-sm text-graydark-11 font-mono">
