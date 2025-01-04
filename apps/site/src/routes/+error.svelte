@@ -17,8 +17,8 @@
 	};
 </script>
 
-<div class="flex flex-col items-center justify-center h-md">
-	<h1 class="flex text-3 md:text-4 text-bluedark-9">
+<div class="h-md flex flex-col items-center justify-center">
+	<h1 class="flex text-3 text-bluedark-9 md:text-4">
 		{#each page.status.toString() as digit}
 			<pre>{numbers[digit as keyof typeof numbers]}</pre>
 		{/each}
