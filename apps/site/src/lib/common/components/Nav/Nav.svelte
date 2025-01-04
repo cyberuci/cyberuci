@@ -17,11 +17,11 @@
 			{href}
 		>
 			<div
-				class="type-label text terminal-before group-hover:text-blue-11 dark:group-hover:text-bluedark-11"
+				class="type-label group-hover:text-blue-11 text dark:group-hover:text-bluedark-11 terminal-before"
 			>
 				{title}
 			</div>
-			<p class="mb-2 mt-1.5 text-gray-11 dark:text-graydark-11 type-body-1">
+			<p class="mb-2 mt-1.5 type-body-1 text-gray-11 dark:text-graydark-11">
 				{content}
 			</p>
 		</NavigationMenu.Link>
@@ -67,11 +67,11 @@
 									alt="2024 CCDC team standing in front of a banner"
 								/>
 								<div
-									class="type-label text-graydark-12 before:text-graydark-11 terminal-before group-hover:text-bluedark-11"
+									class="type-label text-graydark-12 before:text-graydark-11 group-hover:text-bluedark-11 terminal-before"
 								>
 									Competition
 								</div>
-								<p class="mb-2 mt-1.5 text-graydark-11 type-body-1">
+								<p class="mb-2 mt-1.5 type-body-1 text-graydark-11">
 									Cyber's competition teams and history.
 								</p>
 							</NavigationMenu.Link>
@@ -107,7 +107,7 @@
 
 		<div class="absolute right-0 top-full">
 			<NavigationMenu.Viewport
-				class="data-[state=closed]:navout h-[var(--bits-navigation-menu-viewport-height)] w-[var(--bits-navigation-menu-viewport-width)] data-[state=open]:navin overflow-hidden border border border-gray-6 rounded-sm border-solid dark:border-graydark-6 background-2"
+				class="h-[var(--bits-navigation-menu-viewport-height)] w-[var(--bits-navigation-menu-viewport-width)] data-[state=closed]:navout data-[state=open]:navin overflow-hidden border border border-gray-6 rounded-sm border-solid dark:border-graydark-6 background-2"
 			/>
 		</div>
 	</NavigationMenu.Root>

@@ -14,7 +14,7 @@
 
 <a
 	href={portableText.value.href}
-	class="decoration-underline text-blue-12 dark:text-bluedark-12 hover:decoration-dashed"
+	class="text-blue-12 decoration-underline dark:text-bluedark-12 hover:decoration-dashed"
 >
 	{@render children?.()}
 </a>

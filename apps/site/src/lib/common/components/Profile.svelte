@@ -14,10 +14,10 @@
 	let { image, name }: Props = $props();
 </script>
 
-<div class="overflow-hidden grid place-content-center background-2">
+<div class="grid place-content-center overflow-hidden background-2">
 	{#if image}
 		<img
-			class="w-full h-full"
+			class="h-full w-full"
 			src={builder.image(image).width(512).height(512).dpr(2).url()}
 			alt={name}
 		/>
