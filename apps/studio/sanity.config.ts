@@ -131,6 +131,10 @@ export default defineConfig({
 							.icon(ConfettiIcon)
 							.child(S.document().schemaType('competitionPage').documentId('competitionPage')),
 						S.listItem()
+							.title('Subteams Page')
+							.icon(UsersIcon)
+							.child(S.document().schemaType('subteamsPage').documentId('subteamsPage')),
+						S.listItem()
 							.title('Contact Page')
 							.icon(EnvelopeIcon)
 							.child(S.document().schemaType('contactPage').documentId('contactPage')),
