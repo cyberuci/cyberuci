@@ -15,101 +15,31 @@
 	let { title, description, contacts }: Props = $props();
 </script>
 
-<h2>{title}</h2>
-<p class="description">{description}</p>
-<div class="contacts">
+<h2 class="type-heading-2 mt-18 mb-3">{title}</h2>
+<p class="mb-8 text-gray-11 dark:text-graydark-11 type-body-2">{description}</p>
+<div class="grid grid-cols-[repeat(auto-fill,_minmax(320px,1fr))] gap-1">
 	{#each contacts as { _id, image, name, pronouns, email, titles } (_id)}
-		<div class="card">
-			<Profile {image} {name} size={96} />
-			<div class="details">
-				<p class="name">
+		<div class="flex flex-col gap-6 background-2 px-3 py-8 rounded-sm">
+			<div class="overflow-hidden size-30 rounded-full self-center">
+				<Profile {image} {name} />
+			</div>
+			<div>
+				<p class="mb-2 mt-2 font-explorer font-500 text-5 pb-1">
 					{name}
-					{#if pronouns}
-						({pronouns[0]})
-					{/if}
 				</p>
-				<p>{titles.join(', ')}</p>
-				<a href="mailto:{email}">{email}</a>
+				<div class="flex flex-col type-body-2 text-gray-11 dark:text-graydark-11">
+					<span>{titles.join(', ')}</span>
+					{#if pronouns}
+						<span>
+							{pronouns.join(', ')}
+						</span>
+					{/if}
+					<a
+						class="text-blue-12 dark:text-bluedark-12 hover:decoration-dashed"
+						href="mailto:{email}">{email}</a
+					>
+				</div>
 			</div>
 		</div>
 	{/each}
 </div>
-
-<style lang="scss">
-	@use '$lib/common/styles/typography' as typography;
-
-	h2 {
-		margin: 0 0 12px 0;
-		@include typography.title;
-		@include typography.xl;
-		font-weight: 600;
-	}
-
-	.description {
-		margin: 12px 0 32px 0;
-	}
-
-	.contacts {
-		display: grid;
-		gap: 12px;
-
-		@media (min-width: 400px) {
-			grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-		}
-	}
-
-	.card {
-		background-color: var(--gray2);
-		box-sizing: border-box;
-		border-radius: 16px;
-		align-items: flex-start;
-		display: flex;
-		gap: 24px;
-		padding: 16px;
-		flex-direction: column;
-
-		@media (min-width: 400px) {
-			flex-direction: row;
-			align-items: center;
-			padding: 32px;
-		}
-
-		.profile {
-			width: 96px;
-			height: 96px;
-			border-radius: 1000px;
-			background: var(--gray1);
-		}
-
-		.details {
-			display: flex;
-			flex-direction: column;
-			gap: 2px;
-			font-size: 14px;
-			letter-spacing: -0.006em;
-			line-height: 20px;
-
-			.name {
-				font-size: 20px;
-				letter-spacing: -0.017em;
-				line-height: 28px;
-				margin: 0 0 6px 0;
-			}
-
-			p {
-				margin: 0;
-			}
-
-			a {
-				color: var(--gray12);
-				text-decoration: none;
-				transition: color 150ms;
-
-				&:hover {
-					color: var(--cyber-blue-4);
-					text-decoration: underline;
-				}
-			}
-		}
-	}
-</style>

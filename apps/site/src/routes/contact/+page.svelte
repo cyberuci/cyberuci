@@ -14,25 +14,13 @@
 	<title>Contact — Cyber @ UCI</title>
 </svelte:head>
 
-<Title title="Contact" />
-<main>
-	{#each data.contactPage.sections as { title, description, contacts }}
-		<div class="section">
-			<Section {title} {description} {contacts} />
-		</div>
-	{/each}
-</main>
-
-<style lang="scss">
-	@use '$lib/common/styles/styles' as styles;
-
-	main {
-		max-width: styles.$max-width;
-		margin: 0 auto;
-		padding: 72px styles.$padding-x;
-	}
-
-	.section {
-		margin-bottom: 96px;
-	}
-</style>
+<div class="mx-default-x my-60">
+	<Title title="Contact" />
+	<main>
+		{#each data.contactPage.sections as { title, description, contacts }}
+			<div class="mb-24">
+				<Section {title} {description} {contacts} />
+			</div>
+		{/each}
+	</main>
+</div>

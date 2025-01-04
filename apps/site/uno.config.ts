@@ -13,7 +13,7 @@ export default defineConfig({
 			"font-strobo [font-feature-settings:'dlig'] text-5xl font-normal my-8 line-height-[130%]",
 		'type-label': 'font-mono text-sm',
 		'type-heading-1': 'font-explorer font-medium text-2xl',
-		'type-heading-2': 'font-explorer font-medium text-4xl',
+		'type-heading-2': 'font-explorer font-medium text-8',
 		'type-body-1': 'font-sans text-sm line-height-snug',
 		'type-body-2': 'font-sans text-base line-height-relaxed',
 
