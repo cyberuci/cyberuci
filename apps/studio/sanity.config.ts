@@ -9,7 +9,6 @@ import {
 	EnvelopeIcon,
 	UserIcon,
 	UsersIcon,
-	CalendarIcon,
 	HomeIcon
 } from '@sanity/icons';
 import groq from 'groq';
@@ -155,16 +154,6 @@ export default defineConfig({
 									.filter('_type == "board"')
 									.menuItems([...S.documentTypeList('board').getMenuItems()!])
 									.defaultOrdering([{ field: 'year', direction: 'desc' }])
-							),
-						S.listItem()
-							.title('Events')
-							.icon(CalendarIcon)
-							.child(
-								S.documentList()
-									.title('Events')
-									.filter('_type == "event"')
-									.menuItems([...S.documentTypeList('event').getMenuItems()!])
-									.defaultOrdering([{ field: 'start', direction: 'desc' }])
 							)
 					]);
 			}
