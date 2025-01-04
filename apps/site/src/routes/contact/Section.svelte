@@ -16,7 +16,7 @@
 </script>
 
 <h2 class="mb-3 mt-18 type-heading-2">{title}</h2>
-<p class="mb-8 type-body-2 text-gray-11 dark:text-graydark-11">{description}</p>
+<p class="mb-8 max-w-prose type-body-2 text-gray-11 dark:text-graydark-11">{description}</p>
 <div class="grid grid-cols-[repeat(auto-fill,_minmax(320px,1fr))] gap-1">
 	{#each contacts as { _id, image, name, pronouns, email, titles } (_id)}
 		<div class="flex flex-col gap-6 rounded-sm px-3 py-8 background-2">
