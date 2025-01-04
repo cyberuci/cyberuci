@@ -7,6 +7,7 @@ export default defineConfig({
 	presets: [presetUno({ dark: 'media' })],
 	extractors: [extractorSvelte()],
 	transformers: [transformerDirectives()],
+	rules: [['transform-3d', { 'transform-style': 'preserve-3d' }]],
 	shortcuts: {
 		// Typograhy
 		'type-display':
@@ -25,7 +26,12 @@ export default defineConfig({
 		'background-3': 'bg-gray-3 dark:bg-graydark-3',
 		'background-4': 'bg-gray-4 dark:bg-graydark-4',
 		'background-5': 'bg-gray-5 dark:bg-graydark-5',
-		text: 'text-gray-12 dark:text-graydark-12'
+		text: 'text-gray-12 dark:text-graydark-12',
+
+		navin:
+			'animate-keyframes-navin animate-duration-750 animate-ease-out transform-origin-top transform-3d',
+		navout:
+			'animate-keyframes-navout animate-duration-150 animate-ease transform-origin-top transform-3d'
 	},
 	extendTheme: (theme) => ({
 		...theme,
@@ -76,6 +82,12 @@ export default defineConfig({
 		},
 		spacing: {
 			'default-x': '3.75rem'
+		},
+		animation: {
+			keyframes: {
+				navin: '{from{transform:rotateX(-40deg);opacity:0;}to{transform:rotateX(0deg);opacity:1;}}',
+				navout: '{from{transform:rotateX(0deg);opacity:1;}to{transform:rotateX(-40deg);opacity:0;}}'
+			}
 		}
 	})
 });

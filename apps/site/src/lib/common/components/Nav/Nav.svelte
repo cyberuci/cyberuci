@@ -107,7 +107,7 @@
 
 		<div class="absolute right-0 top-full">
 			<NavigationMenu.Viewport
-				class="h-[var(--bits-navigation-menu-viewport-height)] w-[var(--bits-navigation-menu-viewport-width)] overflow-hidden border border border-gray-6 rounded-sm border-solid dark:border-graydark-6 background-2"
+				class="data-[state=closed]:navout h-[var(--bits-navigation-menu-viewport-height)] w-[var(--bits-navigation-menu-viewport-width)] data-[state=open]:navin overflow-hidden border border border-gray-6 rounded-sm border-solid dark:border-graydark-6 background-2"
 			/>
 		</div>
 	</NavigationMenu.Root>
