@@ -15,7 +15,7 @@ export default defineConfig({
 		'type-heading-1': 'font-explorer font-medium text-2xl',
 		'type-heading-2': 'font-explorer font-medium text-4xl',
 		'type-body-1': 'font-sans text-sm line-height-snug',
-		'type-body-2': 'font-sans text-base line-height-snug',
+		'type-body-2': 'font-sans text-base line-height-relaxed',
 
 		'terminal-before': "before:content-['~_$_'] before:text-gray-11 dark:before:text-graydark-11",
 

@@ -27,6 +27,3 @@
 	description={data.homepage.hackerlab.description}
 />
 <Socials socials={data.socials.socials} />
-
-<style lang="scss">
-</style>

@@ -21,7 +21,7 @@
 			>
 				{title}
 			</div>
-			<p class="mb-2 mt-1.5 text-sm text-gray-11 font-mono dark:text-graydark-11">
+			<p class="mb-2 mt-1.5 text-gray-11 dark:text-graydark-11 type-body-1">
 				{content}
 			</p>
 		</NavigationMenu.Link>
@@ -71,7 +71,7 @@
 								>
 									Competition
 								</div>
-								<p class="mb-2 mt-1.5 text-sm text-graydark-11 font-mono">
+								<p class="mb-2 mt-1.5 text-graydark-11 type-body-1">
 									Cyber's competition teams and history.
 								</p>
 							</NavigationMenu.Link>

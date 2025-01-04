@@ -58,7 +58,7 @@ const QueryResult = z.object({
 		})
 });
 
-export const load = (async () => {
+export const load: PageServerLoad = async () => {
 	const query = groq`
 		{
 			"year": *[_type == "board"] | order(year desc)[0].year,
@@ -71,4 +71,4 @@ export const load = (async () => {
 	const board = await QueryResult.parseAsync(await client.fetch(query));
 
 	return { board };
-}) satisfies PageServerLoad;
+};

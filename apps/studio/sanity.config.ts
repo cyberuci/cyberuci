@@ -5,6 +5,7 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
 import {
 	CogIcon,
+	ConfettiIcon,
 	EarthAmericasIcon,
 	EnvelopeIcon,
 	UserIcon,
@@ -125,6 +126,10 @@ export default defineConfig({
 							.title('Home Page')
 							.icon(HomeIcon)
 							.child(S.document().schemaType('homePage').documentId('homePage')),
+						S.listItem()
+							.title('Competition Page')
+							.icon(ConfettiIcon)
+							.child(S.document().schemaType('competitionPage').documentId('competitionPage')),
 						S.listItem()
 							.title('Contact Page')
 							.icon(EnvelopeIcon)

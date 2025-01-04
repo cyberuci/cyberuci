@@ -1,9 +1,9 @@
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import type { Person } from '$lib/sanity/types';
 import { client } from '$lib/sanity/sanityClient';
 import groq from 'groq';
 
-export const load = (async () => {
+export const load: PageServerLoad = async () => {
 	const query = groq`
     *[_type == "contactPage"][0] {
 			sections[] {
@@ -34,4 +34,4 @@ export const load = (async () => {
 	const contactPage = await client.fetch<QueryResult>(query);
 
 	return { contactPage };
-}) satisfies PageLoad;
+};

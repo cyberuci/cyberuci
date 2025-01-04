@@ -1,4 +1,4 @@
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import { SanityImageReferenceWithAlt } from '$lib/sanity/types';
 import { client } from '$lib/sanity/sanityClient';
 import groq from 'groq';
@@ -24,7 +24,7 @@ const SocialsQueryResult = z.object({
 	)
 });
 
-export const load = (async () => {
+export const load: PageServerLoad = async () => {
 	const homePageQuery = groq`
 		*[_id == "homePage"][0] {
 			competitions {
@@ -48,4 +48,4 @@ export const load = (async () => {
 		homepage: HomePageQueryResult.parse(await client.fetch(homePageQuery)),
 		socials: SocialsQueryResult.parse(await client.fetch(socialsQuery))
 	};
-}) satisfies PageLoad;
+};
