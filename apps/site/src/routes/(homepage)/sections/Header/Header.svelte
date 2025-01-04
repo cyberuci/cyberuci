@@ -1,4 +1,4 @@
-<div class="my-6 mx-default-x">
+<div class="mx-default-x my-6">
 	<h1 class="type-display mt-80">
 		Cybersecurity matters.<br />
 		Be part of the solution.
@@ -8,4 +8,4 @@
 		experience.
 	</p> -->
 </div>
-<enhanced:img class="object-cover w-full h-auto max-h-xl" src="./cover.jpg" alt="" />
+<enhanced:img class="h-auto max-h-xl w-full object-cover" src="./cover.jpg" alt="" />
