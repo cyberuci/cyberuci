@@ -24,6 +24,10 @@ export default defineConfig({
 		enabled: false
 	},
 
+	tasks: {
+		enabled: false
+	},
+
 	plugins: [
 		structureTool({
 			structure: async (S, context: ConfigContext) => {
