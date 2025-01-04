@@ -1,6 +1,6 @@
 import type { ConfigContext } from 'sanity';
 import { defineConfig } from 'sanity';
-import { deskTool } from 'sanity/desk';
+import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
 import {
@@ -21,8 +21,12 @@ export default defineConfig({
 	projectId: 'bbsuwd70',
 	dataset: 'production',
 
+	scheduledPublishing: {
+		enabled: false
+	},
+
 	plugins: [
-		deskTool({
+		structureTool({
 			structure: async (S, context: ConfigContext) => {
 				const { getClient } = context;
 				const client = getClient({ apiVersion: '2023-04-08' });
