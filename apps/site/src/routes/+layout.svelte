@@ -2,7 +2,7 @@
 	import 'uno.css';
 	import './global.scss';
 	import type { Snippet } from 'svelte';
-	import Nav from '$lib/common/components/Nav.svelte';
+	import Nav from '$lib/common/components/Nav/Nav.svelte';
 
 	interface Props {
 		children?: Snippet;
@@ -22,6 +22,10 @@
 {@render children?.()}
 
 <style>
+	:global(*) {
+		@apply box-border;
+	}
+
 	:global(body) {
 		@apply background text;
 	}
