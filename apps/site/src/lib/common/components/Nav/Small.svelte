@@ -12,18 +12,18 @@
 
 {#snippet link(href: string, text: string, description?: string)}
 	<a
-		class="py-7 px-5 border-t dark:border-t-graydark-6 border-t-gray-6 border-t-solid decoration-none"
+		class="border-t border-t-gray-6 border-t-solid px-5 py-7 decoration-none dark:border-t-graydark-6"
 		{href}
 	>
 		<p class="m-0 type-heading-2 text">{text}</p>
 		{#if description}
-			<p class="m-0 mt-2.5 text-gray-11 dark:text-graydark-11 type-body-1">{description}</p>
+			<p class="m-0 mt-2.5 type-body-1 text-gray-11 dark:text-graydark-11">{description}</p>
 		{/if}
 	</a>
 {/snippet}
 
 <Dialog.Root bind:open={isOpen}>
-	<Dialog.Trigger class="border-none bg-transparent p-3 text line-height-0">
+	<Dialog.Trigger class="border-none bg-transparent p-3 line-height-0 text">
 		<Menu size={16} />
 	</Dialog.Trigger>
 	<Dialog.Portal>
@@ -45,15 +45,15 @@
 				{#if open}
 					<div
 						{...props}
-						class="fixed w-full left-0 top-0 background-2"
+						class="fixed left-0 top-0 w-full background-2"
 						transition:fly={{
 							y: '-100%',
 							easing: cubicOut
 						}}
 					>
-						<div class="flex items-center justify-between py-3 px-5">
+						<div class="flex items-center justify-between px-5 py-3">
 							<a href="/" class="h-7 text-0" onclick={() => (isOpen = false)}><Logo /></a>
-							<Dialog.Close class="border-none bg-transparent p-3 text line-height-0">
+							<Dialog.Close class="border-none bg-transparent p-3 line-height-0 text">
 								<X size={16} />
 							</Dialog.Close>
 						</div>
