@@ -14,6 +14,7 @@
 	<a
 		class="border-t border-t-gray-6 border-t-solid px-5 py-7 decoration-none dark:border-t-graydark-6"
 		{href}
+		onclick={() => (isOpen = false)}
 	>
 		<p class="m-0 type-heading-2 text">{text}</p>
 		{#if description}
