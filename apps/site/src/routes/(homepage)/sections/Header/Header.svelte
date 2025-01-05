@@ -1,5 +1,5 @@
 <div class="my-6 space-x">
-	<h1 class="mt-60 sm:mt-80 type-display">
+	<h1 class="mt-60 type-display sm:mt-80">
 		Cybersecurity matters.<br />
 		Be part of the solution.
 	</h1>
