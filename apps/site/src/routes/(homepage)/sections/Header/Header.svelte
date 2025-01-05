@@ -8,4 +8,4 @@
 		experience.
 	</p> -->
 </div>
-<enhanced:img class="h-auto max-h-xl w-full object-cover" src="./cover.jpg" alt="" />
+<enhanced:img class="h-2xl h-auto w-full object-cover" src="./cover.jpg" alt="" />
