@@ -6,6 +6,8 @@
 	import { fade, fly } from 'svelte/transition';
 
 	let isOpen = $state(false);
+
+	$inspect(isOpen);
 </script>
 
 {#snippet link(href: string, text: string, description?: string)}
@@ -38,7 +40,7 @@
 				{/if}
 			{/snippet}
 		</Dialog.Overlay>
-		<Dialog.Content forceMount>
+		<Dialog.Content forceMount interactOutsideBehavior="ignore">
 			{#snippet child({ props, open })}
 				{#if open}
 					<div
@@ -50,13 +52,7 @@
 						}}
 					>
 						<div class="flex items-center justify-between py-3 px-5">
-							<a
-								href="/"
-								class="h-7 text-0"
-								onclick={() => {
-									isOpen = false;
-								}}><Logo /></a
-							>
+							<a href="/" class="h-7 text-0" onclick={() => (isOpen = false)}><Logo /></a>
 							<Dialog.Close class="border-none bg-transparent p-3 text line-height-0">
 								<X size={16} />
 							</Dialog.Close>
