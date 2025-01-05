@@ -28,7 +28,7 @@
 		<Menu size={16} />
 	</Dialog.Trigger>
 	<Dialog.Portal>
-		<Dialog.Overlay forceMount>
+		<Dialog.Overlay forceMount onclick={() => (isOpen = false)}>
 			{#snippet child({ props, open })}
 				{#if open}
 					<div
