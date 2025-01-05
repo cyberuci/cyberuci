@@ -11,10 +11,10 @@ export default defineConfig({
 	shortcuts: {
 		// Typograhy
 		'type-display':
-			"font-strobo [font-feature-settings:'dlig'] text-5xl font-normal my-8 line-height-[130%]",
+			"font-strobo [font-feature-settings:'dlig'] text-3xl md:text-4xl lg:text-5xl font-normal my-8 line-height-[130%]",
 		'type-label': 'font-mono text-sm',
-		'type-heading-1': 'font-explorer font-medium text-2xl',
-		'type-heading-2': 'font-explorer font-medium text-8',
+		'type-heading-1': 'font-explorer font-medium text-xl md:text-2xl',
+		'type-heading-2': 'font-explorer font-medium text-6 md:text-8',
 		'type-body-1': 'font-sans text-sm line-height-snug',
 		'type-body-2': 'font-sans text-base line-height-relaxed',
 
@@ -31,7 +31,9 @@ export default defineConfig({
 		navin:
 			'animate-keyframes-navin animate-duration-750 animate-ease-out transform-origin-top transform-3d',
 		navout:
-			'animate-keyframes-navout animate-duration-150 animate-ease transform-origin-top transform-3d'
+			'animate-keyframes-navout animate-duration-150 animate-ease transform-origin-top transform-3d',
+
+		'space-x': 'px-5 sm:px-10 md:px-15 max-w-7xl mx-auto'
 	},
 	extendTheme: (theme) => ({
 		...theme,
@@ -79,9 +81,6 @@ export default defineConfig({
 				11: '#75bbff',
 				12: '#cae6ff'
 			}
-		},
-		spacing: {
-			'default-x': '3.75rem'
 		},
 		animation: {
 			keyframes: {

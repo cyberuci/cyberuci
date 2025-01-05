@@ -14,7 +14,7 @@
 	<title>Subteams — Cyber @ UCI</title>
 </svelte:head>
 
-<div class="mx-default-x my-60">
+<div class="my-60 space-x">
 	<Title title="Subteams" />
 	<main>
 		{#each data.subteams.subteams as { name, description }}

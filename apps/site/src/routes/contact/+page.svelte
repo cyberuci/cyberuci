@@ -14,7 +14,7 @@
 	<title>Contact — Cyber @ UCI</title>
 </svelte:head>
 
-<div class="mx-default-x my-60">
+<div class="my-60 space-x">
 	<Title title="Contact" />
 	<main>
 		{#each data.contactPage.sections as { title, description, contacts }}

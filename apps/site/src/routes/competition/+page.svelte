@@ -14,7 +14,7 @@
 	<title>Competition — Cyber @ UCI</title>
 </svelte:head>
 
-<div class="mx-default-x my-60">
+<div class="my-60 space-x">
 	<Title title="Competition" />
 	<PortableText value={data.competitionPage.content} />
 </div>

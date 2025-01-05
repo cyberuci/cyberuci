@@ -15,7 +15,7 @@
 	<title>Board — Cyber @ UCI</title>
 </svelte:head>
 
-<div class="mx-default-x my-60">
+<div class="my-60 space-x">
 	<Title title="Board {year}/{year + 1}" />
 	<main>
 		<div class="grid grid-cols-1 gap-x-6 gap-y-18 lg:grid-cols-3 sm:grid-cols-2">

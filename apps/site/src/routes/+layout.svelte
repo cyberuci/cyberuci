@@ -20,7 +20,7 @@
 
 <Nav />
 {@render children?.()}
-<div class="w-full h-md gradient"></div>
+<div class="gradient h-md w-full"></div>
 
 <style>
 	:global(*) {
