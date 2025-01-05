@@ -20,19 +20,19 @@
 	{value}
 	components={{
 		types: {
-			// @ts-ignore
+			// @ts-expect-error svelte 5 incompatibility
 			link: Link
 		},
 		marks: {
-			// @ts-ignore
+			// @ts-expect-error svelte 5 incompatibility
 			link: Link
 		},
 		block: {
-			// @ts-ignore
+			// @ts-expect-error svelte 5 incompatibility
 			normal: Paragraph,
-			// @ts-ignore
+			// @ts-expect-error svelte 5 incompatibility
 			h2: Heading,
-			// @ts-ignore
+			// @ts-expect-error svelte 5 incompatibility
 			h3: Heading
 		}
 	}}
