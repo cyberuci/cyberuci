@@ -20,7 +20,7 @@
 			</p>
 			<a
 				href="/competition"
-				class="flex items-center gap-2 text-blue-12 decoration-none dark:text-bluedark-12"
+				class="flex items-center gap-2 type-body-2 text-blue-12 decoration-none dark:text-bluedark-12"
 			>
 				<Info size={16} />
 				<span class="pb-.5">Learn More</span>

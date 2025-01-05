@@ -1,6 +1,5 @@
 <script lang="ts">
 	import 'uno.css';
-	import './global.scss';
 	import type { Snippet } from 'svelte';
 	import Nav from '$lib/common/components/Nav/Nav.svelte';
 
@@ -30,7 +29,7 @@
 	}
 
 	:global(body) {
-		@apply background text;
+		@apply background text m-0;
 	}
 
 	.gradient {
