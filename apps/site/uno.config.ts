@@ -83,7 +83,9 @@ export default defineConfig({
 			}
 		},
 		animation: {
+			...theme.animation,
 			keyframes: {
+				...theme.animation?.keyframes,
 				navin: '{from{transform:rotateX(-40deg);opacity:0;}to{transform:rotateX(0deg);opacity:1;}}',
 				navout: '{from{transform:rotateX(0deg);opacity:1;}to{transform:rotateX(-40deg);opacity:0;}}'
 			}
