@@ -16,6 +16,8 @@
 	<link href="/fonts/commit-mono/commit-mono.css" rel="stylesheet" />
 	<link href="/fonts/tasa-explorer/tasa-explorer.css" rel="stylesheet" />
 	<link href="/fonts/blinker/blinker.css" rel="stylesheet" />
+	<meta name="theme-color" content="#FCFCFC" media="(prefers-color-scheme: light)" />
+	<meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
 </svelte:head>
 
 <Nav />
