@@ -9,7 +9,7 @@
 	import * as pmtiles from 'pmtiles';
 	import layers from 'protomaps-themes-base';
 
-	let mapContainer: HTMLDivElement;
+	let mapContainer: HTMLDivElement = $state();
 
 	const lng = -117.844285,
 		lat = 33.642956;
@@ -82,7 +82,7 @@
 	});
 </script>
 
-<div class="map" bind:this={mapContainer} />
+<div class="map" bind:this={mapContainer}></div>
 
 <style lang="scss">
 	.map {

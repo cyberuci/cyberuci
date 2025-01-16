@@ -1,13 +1,8 @@
 {
-  "extends": [
-    "//"
-  ],
-  "pipeline": {
-    "build": {
-      "outputs": [
-        ".vercel/**",
-        ".svelte-kit/**"
-      ]
-    }
-  }
+	"extends": ["//"],
+	"tasks": {
+		"build": {
+			"outputs": [".vercel/**", ".svelte-kit/**"]
+		}
+	}
 }

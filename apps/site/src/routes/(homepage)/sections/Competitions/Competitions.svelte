@@ -1,89 +1,33 @@
 <script lang="ts">
 	import { Medal, Info } from 'lucide-svelte';
 
-	export let subtitle: string;
-	export let description: string;
+	interface Props {
+		description: string;
+	}
+
+	let { description }: Props = $props();
 </script>
 
-<div class="competitions">
-	<enhanced:img class="image" src="./hivestorm-2.jpeg" alt="" />
-	<div class="information">
-		<Medal size={16} />
-		<h2>
-			Competitions<br />
-			<span class="subtitle">{subtitle}</span>
-		</h2>
-		<p class="description">{description}</p>
-		<div class="info">
-			<div class="learn-more">
+<div class="my-24 space-x">
+	<div class="grid items-start gap-y-15 lg:grid-cols-16">
+		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+			<Medal size={18} />
+			<h2 class="type-label font-550">Competition</h2>
+		</div>
+		<div class="lg:col-start-5 lg:col-end-14">
+			<p class="mb-6 mt-2 max-w-prose line-height-relaxed type-heading-1">
+				{description}
+			</p>
+			<a
+				href="/competition"
+				class="flex items-center gap-2 type-body-2 text-blue-12 decoration-none dark:text-bluedark-12"
+			>
 				<Info size={16} />
-				<span>Learn More</span>
-			</div>
+				<span class="pb-.5">Learn More</span>
+			</a>
+		</div>
+		<div class="lg:col-start-4 lg:row-start-2 lg:col-end-15">
+			<enhanced:img class="h-auto w-full rounded-sm" src="./hivestorm-2.jpeg" alt="" />
 		</div>
 	</div>
 </div>
-
-<style lang="scss">
-	@use '$lib/colors/variables.scss' as colors;
-
-	.competitions {
-		margin: 16px;
-		display: grid;
-		gap: 16px;
-
-		@media (min-width: 1024px) {
-			grid-template-columns: 5fr 7fr;
-		}
-	}
-
-	.information {
-		padding: 32px 80px 80px 24px;
-		border-radius: 32px;
-		color: colors.$md-sys-color-on-surface;
-		background-color: colors.$md-sys-color-surface-container;
-		font-feature-settings:
-			'dlig' on,
-			'ss05' on;
-		font-family: CommitMono;
-		font-size: 16px;
-		font-weight: 400;
-		line-height: 145%;
-
-		h2 {
-			margin: 24px 0 32px 0;
-			font-family: TASAExplorer;
-			font-size: 32px;
-			font-style: normal;
-			font-weight: 500;
-			line-height: 130%;
-
-			.subtitle {
-				color: var(--cyber-blue-4);
-			}
-		}
-
-		.description {
-			margin: 32px 0 40px 0;
-		}
-
-		.info {
-			margin: 40px 0 0 0;
-
-			> * {
-				display: flex;
-				align-items: center;
-				gap: 12px;
-				font-size: 14px;
-				line-height: 145%;
-				margin: 8px 0;
-			}
-		}
-	}
-
-	.image {
-		border-radius: 32px;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-</style>

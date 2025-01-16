@@ -1,11 +1,10 @@
-<p><slot /></p>
-
-<style lang="scss">
-	p {
-		margin: 0;
-		font-family: Inter, sans-serif;
-		font-size: 16px;
-		letter-spacing: -0.011em;
-		line-height: 27px;
+<script lang="ts">
+	import type { Snippet } from 'svelte';
+	interface Props {
+		children?: Snippet;
 	}
-</style>
+
+	let { children }: Props = $props();
+</script>
+
+<p class="max-w-prose type-body-2">{@render children?.()}</p>

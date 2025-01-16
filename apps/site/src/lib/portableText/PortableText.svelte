@@ -2,44 +2,38 @@
 	import type { PortableTextBlock } from '@portabletext/types';
 	import { PortableText } from '@portabletext/svelte';
 
-	import Link from './types/Link.svelte';
-	import PDF from './types/PDF.svelte';
-
-	import Strong from './marks/Strong.svelte';
-	import Code from './marks/Code.svelte';
+	import Link from './marks/Link.svelte';
 
 	import Paragraph from './blocks/Paragraph.svelte';
-	import Quote from './blocks/Quote.svelte';
 	import Heading from './blocks/Heading.svelte';
 
-	import Bullet from './list/Bullet.svelte';
-	import Number from './list/Number.svelte';
+	interface Props {
+		value: PortableTextBlock[];
+	}
 
-	export let value: PortableTextBlock[];
+	let { value }: Props = $props();
 </script>
 
+<!-- these type errors are from svelte 5 incompatibility (i think?) -->
 <PortableText
 	onMissingComponent={false}
 	{value}
 	components={{
 		types: {
-			link: Link,
-			pdf: PDF
+			// @ts-expect-error svelte 5 incompatibility
+			link: Link
 		},
 		marks: {
-			strong: Strong,
-			code: Code
+			// @ts-expect-error svelte 5 incompatibility
+			link: Link
 		},
 		block: {
+			// @ts-expect-error svelte 5 incompatibility
 			normal: Paragraph,
-			blockquote: Quote,
-			h1: Heading,
+			// @ts-expect-error svelte 5 incompatibility
 			h2: Heading,
+			// @ts-expect-error svelte 5 incompatibility
 			h3: Heading
-		},
-		list: {
-			bullet: Bullet,
-			number: Number
 		}
 	}}
 />

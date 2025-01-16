@@ -1,10 +1,21 @@
-import home from './pages/home'
-import contact from './pages/contact'
+import home from './pages/home';
+import competition, { achievements } from './pages/competition';
+import subteams from './pages/subteams';
+import contact from './pages/contact';
 
-import person from './person'
-import board from './board'
-import event from './event'
+import person from './person';
+import board from './board';
+// import event from './event';
 
-import info from './info'
+import info from './info';
 
-export const schemaTypes = [home, contact, person, board, event, info]
+export const schemaTypes = [
+	home,
+	competition,
+	achievements,
+	subteams,
+	contact,
+	person,
+	board,
+	info
+];

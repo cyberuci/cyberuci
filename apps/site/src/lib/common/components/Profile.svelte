@@ -6,30 +6,22 @@
 
 	const builder = imageUrlBuilder(client);
 
-	export let image: SanityImageReference | undefined;
-	export let name: string;
-	export let size: number;
+	interface Props {
+		image: SanityImageReference | undefined;
+		name: string;
+	}
+
+	let { image, name }: Props = $props();
 </script>
 
-<div class="profile" style:width="{size}px" style:height="{size}px">
+<div class="grid place-content-center overflow-hidden background-2">
 	{#if image}
-		<img src={builder.image(image).width(96).height(96).dpr(2).url()} alt={name} />
+		<img
+			class="h-full w-full"
+			src={builder.image(image).width(512).height(512).dpr(2).url()}
+			alt={name}
+		/>
 	{:else}
-		<User color="var(--gray7)" />
+		<User class="text-gray-9" />
 	{/if}
 </div>
-
-<style lang="scss">
-	.profile {
-		overflow: hidden;
-		display: grid;
-		place-content: center;
-		border-radius: 1000px;
-		background: var(--gray1);
-
-		img {
-			width: 100%;
-			height: auto;
-		}
-	}
-</style>

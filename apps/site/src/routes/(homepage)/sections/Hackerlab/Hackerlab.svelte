@@ -2,107 +2,41 @@
 	import type { z } from 'zod';
 	import { SanityImageReferenceWithAlt } from '$lib/sanity/types';
 
-	import Carousel from './Carousel.svelte';
-	import Map from './Map.svelte';
+	import { Cpu } from 'lucide-svelte';
 
-	export let images: z.infer<typeof SanityImageReferenceWithAlt>[];
-	export let description: string;
+	import { client } from '$lib/sanity/sanityClient';
+	import imageUrlBuilder from '@sanity/image-url';
+
+	const builder = imageUrlBuilder(client);
+
+	interface Props {
+		images: z.infer<typeof SanityImageReferenceWithAlt>[];
+		description: string;
+	}
+
+	let { images, description }: Props = $props();
 </script>
 
-<div id="hackerlab" class="hackerlab">
-	<h2 class="heading"><span class="rainbow">//////////////</span> Hackerlab</h2>
-	<Carousel {images} />
-	<div class="info-parent">
-		<div class="info">
-			<h3>Visit HackerLab</h3>
-			<p class="description">{description}</p>
+<div class="my-24 space-x">
+	<div class="grid items-start gap-y-15 lg:grid-cols-16">
+		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+			<Cpu size={18} />
+			<h2 class="type-label font-550">HackerLab</h2>
 		</div>
-		<div class="map">
-			<Map />
+		<div class="lg:col-start-5 lg:col-end-14">
+			<p class="mb-6 mt-2 max-w-prose line-height-relaxed type-heading-1">
+				{description}
+			</p>
+		</div>
+		<div class="lg:col-start-4 lg:row-start-2 lg:col-end-15">
+			<!-- <enhanced:img class="w-full h-auto rounded-sm" src="./hivestorm-2.jpeg" alt="" /> -->
+			{#each images as image}
+				<img
+					class="h-auto w-full rounded-sm"
+					src={builder.image(image).auto('format').url()}
+					alt={image.alt}
+				/>
+			{/each}
 		</div>
 	</div>
 </div>
-
-<style lang="scss">
-	@use '$lib/colors/variables.scss' as colors;
-
-	.hackerlab {
-		margin: 160px 16px 16px 16px;
-	}
-
-	.heading {
-		margin: 0;
-		font-feature-settings:
-			'dlig' on,
-			'ss05' on;
-		font-family: CommitMono;
-		font-size: 16px;
-		font-weight: 400;
-		line-height: 145%;
-
-		.rainbow {
-			background: linear-gradient(
-				90deg,
-				#f00,
-				#ff8000,
-				#ff0,
-				#80ff00,
-				#0f0,
-				#00ff7f,
-				#0ff,
-				#0080ff,
-				#4a4a95,
-				#602c95,
-				#a01aa0,
-				#c0116a,
-				#f00
-			);
-			background-clip: text;
-			-webkit-text-fill-color: transparent;
-		}
-	}
-
-	.info-parent {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 16px;
-
-		@media (min-width: 900px) {
-			grid-template-columns: 1fr 1fr;
-		}
-
-		.info {
-			border-radius: 32px;
-			color: colors.$md-sys-color-on-surface;
-			background-color: colors.$md-sys-color-surface-container;
-			padding: 40px 24px;
-
-			h3 {
-				margin: 0;
-				font-feature-settings: 'dlig' on;
-				font-family: TASAExplorer;
-				font-size: 32px;
-				font-weight: 500;
-				line-height: 130%;
-			}
-
-			.description {
-				margin: 32px 0 48px 0;
-				max-width: 672px;
-				text-wrap: balance;
-				font-feature-settings: 'ss05' on;
-				font-family: CommitMono;
-				font-size: 16px;
-				font-weight: 400;
-				line-height: 150%;
-			}
-		}
-
-		.map {
-			position: relative;
-			min-height: 384px;
-			border-radius: 32px;
-			overflow: hidden;
-		}
-	}
-</style>
