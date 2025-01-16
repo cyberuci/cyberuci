@@ -8,34 +8,18 @@
 	const builder = imageUrlBuilder(client);
 
 	interface Props {
-		person: z.infer<typeof Person> & { ascii?: string; asciiInvert?: string };
+		person: z.infer<typeof Person>;
 		titles: string[];
 	}
 
 	let { person, titles }: Props = $props();
 
-	let { name, pronouns, image, majors, graduation, ascii, asciiInvert } = $derived(person);
+	let { name, pronouns, image, majors, graduation } = $derived(person);
 </script>
 
 <article>
-	<div class="group relative aspect-ratio-square w-full overflow-hidden rounded-sm">
-		<div
-			class="absolute grid place-content-center overflow-hidden opacity-100 transition-150 transition-opacity group-hover:opacity-0"
-		>
-			<!-- font-size breakpoints are manually calculated -->
-			<!-- calc((100vw - <page margins> * 2 + <gap> * (<num columns> - 1)) / <num columns> * <multiplier>) -->
-			<!-- if done correctly, multiplier should remain constant across breakpoints -->
-			<!-- https://bugs.webkit.org/show_activity.cgi?id=225695 -->
-			<p
-				class="m-0 text-[calc((100vw_-_7.5rem)*0.0185)] text-blue-9 line-height-none font-mono lg:text-[calc((100vw_-_10.5rem)/3*0.0185)] sm:text-[calc((100vw_-_9rem)/2*0.0185)]"
-			>
-				<span class="hidden dark:inline">{ascii}</span>
-				<span class="inline dark:hidden">{asciiInvert}</span>
-			</p>
-		</div>
-		<div
-			class="absolute grid content-center opacity-0 transition-150 transition-opacity group-hover:opacity-100"
-		>
+	<div class="relative aspect-ratio-square w-full overflow-hidden rounded-sm">
+		<div class="absolute grid content-center transition-150 transition-opacity">
 			{#if image}
 				<img
 					class="h-full w-full object-cover"
