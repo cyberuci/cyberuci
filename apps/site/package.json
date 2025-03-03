@@ -14,7 +14,7 @@
 	"devDependencies": {
 		"@eslint/compat": "1.2.4",
 		"@eslint/js": "9.17.0",
-		"@portabletext/svelte": "2.1.11",
+		"@portabletext/svelte": "3.0.0",
 		"@portabletext/types": "2.0.13",
 		"@radix-ui/colors": "3.0.0",
 		"@sanity/client": "6.28.2",
