@@ -4,6 +4,7 @@
 
 	import Link from './marks/Link.svelte';
 
+	import Achievements from './blocks/Achievements.svelte';
 	import Paragraph from './blocks/Paragraph.svelte';
 	import Heading from './blocks/Heading.svelte';
 
@@ -19,7 +20,8 @@
 	{value}
 	components={{
 		types: {
-			link: Link
+			link: Link,
+			achievements: Achievements
 		},
 		marks: {
 			link: Link
