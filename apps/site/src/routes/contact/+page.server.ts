@@ -1,10 +1,9 @@
 import type { PageServerLoad } from './$types';
-import type { Person } from '$lib/sanity/types';
 import { client } from '$lib/sanity/sanityClient';
-import groq from 'groq';
+import { defineQuery } from 'groq';
 
 export const load: PageServerLoad = async () => {
-	const query = groq`
+	const contactPageQuery = defineQuery(`
     *[_type == "contactPage"][0] {
 			sections[] {
 				_key,
@@ -20,18 +19,8 @@ export const load: PageServerLoad = async () => {
 				}
 			}
 		}
-  `;
-	type QueryResult = {
-		sections: {
-			_key: string;
-			title: string;
-			description: string;
-			contacts: (Pick<Person, '_id' | 'image' | 'name' | 'pronouns' | 'email'> & {
-				titles: string[];
-			})[];
-		}[];
-	};
-	const contactPage = await client.fetch<QueryResult>(query);
+  `);
+	const contactPage = await client.fetch(contactPageQuery);
 
 	return { contactPage };
 };

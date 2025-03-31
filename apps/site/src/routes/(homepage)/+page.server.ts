@@ -1,32 +1,10 @@
 import type { PageServerLoad } from './$types';
-import { SanityImageReferenceWithAlt } from '$lib/sanity/types';
 import { client } from '$lib/sanity/sanityClient';
-import groq from 'groq';
-import z from 'zod';
+import { defineQuery } from 'groq';
 
-const HomePageQueryResult = z.object({
-	competitions: z.object({
-		subtitle: z.string(),
-		description: z.string()
-	}),
-	hackerlab: z.object({
-		description: z.string(),
-		images: z.array(SanityImageReferenceWithAlt)
-	})
-});
-
-const SocialsQueryResult = z.object({
-	socials: z.array(
-		z.object({
-			platform: z.string(),
-			link: z.string()
-		})
-	)
-});
-
-export const load: PageServerLoad = async () => {
-	const homePageQuery = groq`
-		*[_id == "homePage"][0] {
+const fetchHome = async () => {
+	const homePageQuery = defineQuery(`
+		*[_type == 'homePage' && _id == "homePage"][0] {
 			competitions {
 				subtitle,
 				description,
@@ -36,16 +14,36 @@ export const load: PageServerLoad = async () => {
 				images,
 			}
 		}
-  `;
+  `);
 
-	const socialsQuery = groq`
-		*[_id == "info"][0] {
+	const homeData = await client.fetch(homePageQuery);
+
+	if (homeData === null) {
+		throw Error('Homepage document is null.');
+	}
+
+	return homeData;
+};
+
+const fetchSocials = async () => {
+	const socialsQuery = defineQuery(`
+		*[_type == 'info' && _id == "info"][0] {
 			socials
 		}
-	`;
+	`);
 
+	const socialsData = await client.fetch(socialsQuery);
+
+	if (socialsData === null) {
+		throw Error('Socials document is null.');
+	}
+
+	return socialsData;
+};
+
+export const load: PageServerLoad = async () => {
 	return {
-		homepage: HomePageQueryResult.parse(await client.fetch(homePageQuery)),
-		socials: SocialsQueryResult.parse(await client.fetch(socialsQuery))
+		homepage: await fetchHome(),
+		socials: await fetchSocials()
 	};
 };

@@ -1,15 +1,11 @@
 <script lang="ts">
-	import type { Person } from '$lib/sanity/types';
+	import type { PageData } from './$types';
 	import Profile from '$lib/common/components/Profile.svelte';
-
-	type Contact = Pick<Person, '_id' | 'image' | 'name' | 'pronouns' | 'email'> & {
-		titles: string[];
-	};
 
 	interface Props {
 		title: string;
 		description: string;
-		contacts: Contact[];
+		contacts: PageData['contactPage']['sections'][0]['contacts'];
 	}
 
 	let { title, description, contacts }: Props = $props();

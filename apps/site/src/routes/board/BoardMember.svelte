@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type { z } from 'zod';
-	import type { Person } from '$lib/sanity/types';
+	import type { PageData } from './$types';
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
 	import { User } from 'lucide-svelte';
@@ -8,12 +7,11 @@
 	const builder = imageUrlBuilder(client);
 
 	interface Props {
-		person: z.infer<typeof Person>;
+		person: PageData['board']['members'][0];
 		titles: string[];
 	}
 
 	let { person, titles }: Props = $props();
-
 	let { name, pronouns, image, majors, graduation } = $derived(person);
 </script>
 

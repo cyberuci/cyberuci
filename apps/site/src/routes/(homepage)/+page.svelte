@@ -18,12 +18,6 @@
 </svelte:head>
 
 <Header />
-<Competitions
-	subtitle={data.homepage.competitions.subtitle}
-	description={data.homepage.competitions.description}
-/>
-<Hackerlab
-	images={data.homepage.hackerlab.images}
-	description={data.homepage.hackerlab.description}
-/>
+<Competitions description={data.homepage.competitions.description} />
+<Hackerlab section={data.homepage.hackerlab} />
 <Socials socials={data.socials.socials} />

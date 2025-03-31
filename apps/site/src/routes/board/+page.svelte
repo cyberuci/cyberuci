@@ -1,13 +1,9 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import type { PageProps } from './$types';
 	import Title from '$lib/common/components/Title.svelte';
 	import BoardMember from './BoardMember.svelte';
 
-	interface Props {
-		data: PageData;
-	}
-
-	let { data }: Props = $props();
+	let { data }: PageProps = $props();
 	let year = $derived(data.board.year % 100);
 </script>
 

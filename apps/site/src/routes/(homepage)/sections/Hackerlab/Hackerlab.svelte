@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type { z } from 'zod';
-	import { SanityImageReferenceWithAlt } from '$lib/sanity/types';
+	import type { PageData } from '../../$types';
 
 	import { Cpu } from 'lucide-svelte';
 
@@ -10,11 +9,10 @@
 	const builder = imageUrlBuilder(client);
 
 	interface Props {
-		images: z.infer<typeof SanityImageReferenceWithAlt>[];
-		description: string;
+		section: PageData['homepage']['hackerlab'];
 	}
 
-	let { images, description }: Props = $props();
+	let { section }: Props = $props();
 </script>
 
 <div class="my-24 space-x">
@@ -25,12 +23,12 @@
 		</div>
 		<div class="lg:col-start-5 lg:col-end-14">
 			<p class="mb-6 mt-2 max-w-prose line-height-relaxed type-heading-1">
-				{description}
+				{section.description}
 			</p>
 		</div>
 		<div class="lg:col-start-4 lg:row-start-2 lg:col-end-15">
 			<!-- <enhanced:img class="w-full h-auto rounded-sm" src="./hivestorm-2.jpeg" alt="" /> -->
-			{#each images as image}
+			{#each section.images as image}
 				<img
 					class="h-auto w-full rounded-sm"
 					src={builder.image(image).auto('format').url()}
