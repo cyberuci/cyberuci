@@ -1,3 +1,4 @@
 {
-  "conventionalCommits.scopes": ["studio", "site"]
+	"conventionalCommits.scopes": ["studio", "site"],
+	"editor.defaultFormatter": "esbenp.prettier-vscode"
 }
