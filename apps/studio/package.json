@@ -1,8 +1,6 @@
 {
-	"name": "cyberucicom",
-	"version": "1.0.0",
+	"name": "studio",
 	"main": "package.json",
-	"license": "MIT",
 	"scripts": {
 		"dev": "sanity dev",
 		"start": "sanity start",
