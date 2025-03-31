@@ -13,18 +13,18 @@
 		"sanity"
 	],
 	"dependencies": {
-		"@sanity/icons": "3.5.7",
-		"@sanity/vision": "3.68.3",
-		"groq": "3.68.3",
-		"lucide-react": "0.469.0",
-		"react": "18.3.1",
-		"react-dom": "18.3.1",
-		"react-is": "18.3.1",
-		"sanity": "3.68.3",
-		"styled-components": "6.1.13"
+		"@sanity/icons": "3.7.0",
+		"@sanity/vision": "3.81.0",
+		"groq": "3.81.0",
+		"lucide-react": "0.485.0",
+		"react": "19.1.0",
+		"react-dom": "19.1.0",
+		"react-is": "19.1.0",
+		"sanity": "3.81.0",
+		"styled-components": "6.1.16"
 	},
 	"devDependencies": {
-		"@sanity/eslint-config-studio": "5.0.1",
+		"@sanity/eslint-config-studio": "5.0.2",
 		"prettier": "catalog:",
 		"typescript": "catalog:"
 	}
