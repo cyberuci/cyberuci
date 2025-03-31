@@ -2,7 +2,7 @@ import type { PageServerLoad } from './$types';
 import { client } from '$lib/sanity/sanityClient';
 import { defineQuery } from 'groq';
 
-export const load: PageServerLoad = async () => {
+const fetchBoard = async () => {
 	const boardPageQuery = defineQuery(`
 		{
 			"year": *[_type == "board"] | order(year desc)[0].year,
@@ -12,7 +12,15 @@ export const load: PageServerLoad = async () => {
 			}
 		}
   `);
-	const board = await client.fetch(boardPageQuery);
+	const { year, members } = await client.fetch(boardPageQuery);
 
-	return { board };
+	if (year === null || members === null) {
+		throw Error('Failed to retrieve current board year.');
+	}
+
+	return { year, members };
+};
+
+export const load: PageServerLoad = async () => {
+	return { board: await fetchBoard() };
 };

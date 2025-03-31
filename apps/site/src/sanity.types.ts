@@ -89,12 +89,12 @@ export type Board = {
 	_updatedAt: string;
 	_rev: string;
 	year: number;
-	sections?: Array<{
+	sections: Array<{
 		label: string;
-		members?: Array<{
+		members: Array<{
 			title: string;
 			terms?: Array<string>;
-			person?: {
+			person: {
 				_ref: string;
 				_type: 'reference';
 				_weak?: boolean;
@@ -119,6 +119,9 @@ export type Person = {
 	pronouns?: Array<string>;
 	email?: string;
 	discord?: string;
+	website?: string;
+	linkedin?: string;
+	instagram?: string;
 	image?: {
 		asset?: {
 			_ref: string;
@@ -379,6 +382,9 @@ export type BoardPageQueryResult = {
 			pronouns?: Array<string>;
 			email?: string;
 			discord?: string;
+			website?: string;
+			linkedin?: string;
+			instagram?: string;
 			image?: {
 				asset?: {
 					_ref: string;
@@ -393,8 +399,8 @@ export type BoardPageQueryResult = {
 			majors?: Array<string>;
 			graduation: number;
 		};
-		titles: Array<string | null> | null;
-	} | null> | null;
+		titles: Array<string> | null;
+	}> | null;
 };
 
 // Source: ./src/routes/competition/+page.server.ts
@@ -450,7 +456,7 @@ export type ContactPageQueryResult = {
 			name: string;
 			pronouns: Array<string> | null;
 			email: string | null;
-			titles: Array<string | null> | null;
+			titles: Array<string> | null;
 		}> | null;
 	}> | null;
 } | null;

@@ -4,6 +4,7 @@
 	import BoardMember from './BoardMember.svelte';
 
 	let { data }: PageProps = $props();
+	data.board.year;
 	let year = $derived(data.board.year % 100);
 </script>
 

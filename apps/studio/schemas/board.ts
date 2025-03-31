@@ -74,7 +74,8 @@ export default defineType({
 											name: 'person',
 											title: 'Person',
 											type: 'reference',
-											to: [{ type: 'person' }]
+											to: [{ type: 'person' }],
+											validation: (Rule) => Rule.required()
 										})
 									],
 
@@ -87,7 +88,7 @@ export default defineType({
 									}
 								})
 							],
-							validation: (Rule) => Rule.unique()
+							validation: (Rule) => Rule.unique().required()
 						})
 					],
 
@@ -102,7 +103,7 @@ export default defineType({
 					}
 				})
 			],
-			validation: (Rule) => Rule.unique()
+			validation: (Rule) => Rule.unique().required()
 		})
 	],
 

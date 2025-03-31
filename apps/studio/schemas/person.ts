@@ -43,9 +43,22 @@ export default defineType({
 		defineField({
 			name: 'discord',
 			title: 'Discord Username',
-			type: 'string',
-			validation: (Rule) =>
-				Rule.regex(/^\w+#\d{4}$/).error('Does not match the following pattern: username#0000.')
+			type: 'string'
+		}),
+		defineField({
+			name: 'website',
+			title: 'Personal Website',
+			type: 'string'
+		}),
+		defineField({
+			name: 'linkedin',
+			title: 'LinkedIn',
+			type: 'string'
+		}),
+		defineField({
+			name: 'instagram',
+			title: 'Instagram',
+			type: 'string'
 		}),
 		defineField({
 			name: 'image',

@@ -514,7 +514,7 @@
 													},
 													"dereferencesTo": "person"
 												},
-												"optional": true
+												"optional": false
 											},
 											"_type": {
 												"type": "objectAttribute",
@@ -537,7 +537,7 @@
 										}
 									}
 								},
-								"optional": true
+								"optional": false
 							},
 							"_type": {
 								"type": "objectAttribute",
@@ -560,7 +560,7 @@
 						}
 					}
 				},
-				"optional": true
+				"optional": false
 			}
 		}
 	},
@@ -632,6 +632,27 @@
 				"optional": true
 			},
 			"discord": {
+				"type": "objectAttribute",
+				"value": {
+					"type": "string"
+				},
+				"optional": true
+			},
+			"website": {
+				"type": "objectAttribute",
+				"value": {
+					"type": "string"
+				},
+				"optional": true
+			},
+			"linkedin": {
+				"type": "objectAttribute",
+				"value": {
+					"type": "string"
+				},
+				"optional": true
+			},
+			"instagram": {
 				"type": "objectAttribute",
 				"value": {
 					"type": "string"

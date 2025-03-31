@@ -2,17 +2,19 @@
 	import type { PageData } from './$types';
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
-	import { User } from 'lucide-svelte';
+	import { User, Globe } from 'lucide-svelte';
+	import { siLinkedin, siInstagram } from 'simple-icons';
 
 	const builder = imageUrlBuilder(client);
 
 	interface Props {
-		person: PageData['board']['members'][0];
+		person: PageData['board']['members'][0]['person'];
 		titles: string[];
 	}
 
 	let { person, titles }: Props = $props();
-	let { name, pronouns, image, majors, graduation } = $derived(person);
+	let { name, pronouns, image, majors, graduation, website, linkedin, instagram } =
+		$derived(person);
 </script>
 
 <article>
@@ -29,9 +31,54 @@
 			{/if}
 		</div>
 	</div>
-	<h1 class="mb-2 mt-6 type-heading-1">
-		{name}
-	</h1>
+	<div class="mb-2 mt-6 flex items-baseline justify-between">
+		<h1 class="type-heading-1 m-0">
+			{name}
+		</h1>
+		<div class="flex items-baseline gap-1.5">
+			{#if website}
+				<a
+					class="text-blue-12 dark:text-bluedark-12 hover:dark:text-bluedark-11 hover:text-blue-11 line-height-none"
+					href={website}
+					aria-label="{name}'s Website"
+				>
+					<Globe size={20} />
+				</a>
+			{/if}
+			{#if linkedin}
+				<a
+					class="text-blue-12 dark:text-bluedark-12 hover:dark:text-bluedark-11 hover:text-blue-11 line-height-none size-5"
+					href={linkedin}
+					aria-label="{name}'s LinkedIn"
+				>
+					<svg
+						fill="currentColor"
+						width="20"
+						viewBox="0 0 24 24"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path d={siLinkedin.path}></path>
+					</svg>
+				</a>
+			{/if}
+			{#if instagram}
+				<a
+					class="text-blue-12 dark:text-bluedark-12 hover:dark:text-bluedark-11 hover:text-blue-11 line-height-none size-5"
+					href={instagram}
+					aria-label="{name}'s Instagram"
+				>
+					<svg
+						fill="currentColor"
+						width="20"
+						viewBox="0 0 24 24"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path d={siInstagram.path}></path>
+					</svg>
+				</a>
+			{/if}
+		</div>
+	</div>
 	<div class="flex flex-col gap-.5 type-body-2 text-gray-11 dark:text-graydark-11">
 		<span>{titles.join(', ')}</span>
 		{#if majors}
