@@ -41,6 +41,8 @@
 					class="text-blue-12 dark:text-bluedark-12 hover:dark:text-bluedark-11 hover:text-blue-11 line-height-none"
 					href={website}
 					aria-label="{name}'s Website"
+					target="_blank"
+					rel="noopener noreferrer"
 				>
 					<Globe size={20} />
 				</a>
@@ -50,6 +52,8 @@
 					class="text-blue-12 dark:text-bluedark-12 hover:dark:text-bluedark-11 hover:text-blue-11 line-height-none size-5"
 					href="https://www.linkedin.com/in/{linkedin}"
 					aria-label="{name}'s LinkedIn"
+					target="_blank"
+					rel="noopener noreferrer"
 				>
 					<svg
 						fill="currentColor"
@@ -66,6 +70,8 @@
 					class="text-blue-12 dark:text-bluedark-12 hover:dark:text-bluedark-11 hover:text-blue-11 line-height-none size-5"
 					href="https://www.instagram.com/{instagram}"
 					aria-label="{name}'s Instagram"
+					target="_blank"
+					rel="noopener noreferrer"
 				>
 					<svg
 						fill="currentColor"
