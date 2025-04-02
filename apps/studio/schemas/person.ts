@@ -48,17 +48,19 @@ export default defineType({
 		defineField({
 			name: 'website',
 			title: 'Personal Website',
-			type: 'string'
+			type: 'url'
 		}),
 		defineField({
 			name: 'linkedin',
-			title: 'LinkedIn',
-			type: 'string'
+			title: 'LinkedIn Username',
+			type: 'string',
+			validation: (rule) => rule.regex(/[A-z0-9_-]+/).error('LinkedIn Username not valid.')
 		}),
 		defineField({
 			name: 'instagram',
-			title: 'Instagram',
-			type: 'string'
+			title: 'Instagram Username',
+			type: 'string',
+			validation: (rule) => rule.regex(/[A-z0-9_-]+/).error('Instagram Username not valid.')
 		}),
 		defineField({
 			name: 'image',

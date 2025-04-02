@@ -48,7 +48,7 @@
 			{#if linkedin}
 				<a
 					class="text-blue-12 dark:text-bluedark-12 hover:dark:text-bluedark-11 hover:text-blue-11 line-height-none size-5"
-					href={linkedin}
+					href="https://www.linkedin.com/in/{linkedin}"
 					aria-label="{name}'s LinkedIn"
 				>
 					<svg
@@ -64,7 +64,7 @@
 			{#if instagram}
 				<a
 					class="text-blue-12 dark:text-bluedark-12 hover:dark:text-bluedark-11 hover:text-blue-11 line-height-none size-5"
-					href={instagram}
+					href="https://www.instagram.com/{instagram}"
 					aria-label="{name}'s Instagram"
 				>
 					<svg
