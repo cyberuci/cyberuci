@@ -15,14 +15,14 @@
 	],
 	"dependencies": {
 		"@sanity/icons": "3.7.0",
-		"@sanity/vision": "3.81.0",
-		"groq": "3.81.0",
-		"lucide-react": "0.485.0",
+		"@sanity/vision": "3.86.1",
+		"groq": "3.86.1",
+		"lucide-react": "0.503.0",
 		"react": "19.1.0",
 		"react-dom": "19.1.0",
 		"react-is": "19.1.0",
-		"sanity": "3.81.0",
-		"styled-components": "6.1.16"
+		"sanity": "3.86.1",
+		"styled-components": "6.1.17"
 	},
 	"devDependencies": {
 		"@sanity/eslint-config-studio": "5.0.2",
