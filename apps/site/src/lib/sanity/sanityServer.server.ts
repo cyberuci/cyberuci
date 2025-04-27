@@ -8,8 +8,7 @@ const client = createClient({
 	dataset: PUBLIC_SANITY_DATASET,
 	apiVersion: '2023-03-13',
 	token: SANITY_TOKEN,
-	useCdn: !dev,
-	perspective: 'drafts'
+	useCdn: !dev
 });
 
 export { client };
