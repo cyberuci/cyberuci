@@ -129,6 +129,7 @@ export type Person = {
 			_weak?: boolean;
 			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 		};
+		media?: unknown;
 		hotspot?: SanityImageHotspot;
 		crop?: SanityImageCrop;
 		_type: 'image';
@@ -242,6 +243,7 @@ export type HomePage = {
 				_weak?: boolean;
 				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 			};
+			media?: unknown;
 			hotspot?: SanityImageHotspot;
 			crop?: SanityImageCrop;
 			alt: string;
@@ -347,6 +349,7 @@ export type HomePageQueryResult = {
 				_weak?: boolean;
 				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 			};
+			media?: unknown;
 			hotspot?: SanityImageHotspot;
 			crop?: SanityImageCrop;
 			alt: string;
@@ -367,9 +370,9 @@ export type SocialsQueryResult = {
 
 // Source: ./src/routes/board/+page.server.ts
 // Variable: boardPageQuery
-// Query: {			"year": *[_type == "board"] | order(year desc)[0].year,			"members": *[_type == "board"] | order(year desc)[0].sections[].members[].person-> {				"person": @,				"titles": *[_type == "board"] | order(year desc)[0].sections[].members[person._ref match ^._id].title			}		}
-export type BoardPageQueryResult = {
-	year: number | null;
+// Query: *[_type == "board"] | order(year desc) {			"year": @.year,			"members": @.sections[].members[].person-> {				"person": @,				"titles": ^.sections[].members[person._ref match ^._id].title			}		}
+export type BoardPageQueryResult = Array<{
+	year: number;
 	members: Array<{
 		person: {
 			_id: string;
@@ -392,6 +395,7 @@ export type BoardPageQueryResult = {
 					_weak?: boolean;
 					[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 				};
+				media?: unknown;
 				hotspot?: SanityImageHotspot;
 				crop?: SanityImageCrop;
 				_type: 'image';
@@ -399,9 +403,9 @@ export type BoardPageQueryResult = {
 			majors?: Array<string>;
 			graduation: number;
 		};
-		titles: Array<string> | null;
-	}> | null;
-};
+		titles: Array<string>;
+	}>;
+}>;
 
 // Source: ./src/routes/competition/+page.server.ts
 // Variable: competitionPageQuery
@@ -449,6 +453,7 @@ export type ContactPageQueryResult = {
 					_weak?: boolean;
 					[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 				};
+				media?: unknown;
 				hotspot?: SanityImageHotspot;
 				crop?: SanityImageCrop;
 				_type: 'image';
@@ -477,7 +482,7 @@ declare module '@sanity/client' {
 	interface SanityQueries {
 		'\n\t\t*[_type == \'homePage\' && _id == "homePage"][0] {\n\t\t\tcompetitions {\n\t\t\t\tsubtitle,\n\t\t\t\tdescription,\n\t\t\t},\n\t\t\thackerlab {\n\t\t\t\tdescription,\n\t\t\t\timages,\n\t\t\t}\n\t\t}\n  ': HomePageQueryResult;
 		'\n\t\t*[_type == \'info\' && _id == "info"][0] {\n\t\t\tsocials\n\t\t}\n\t': SocialsQueryResult;
-		'\n\t\t{\n\t\t\t"year": *[_type == "board"] | order(year desc)[0].year,\n\t\t\t"members": *[_type == "board"] | order(year desc)[0].sections[].members[].person-> {\n\t\t\t\t"person": @,\n\t\t\t\t"titles": *[_type == "board"] | order(year desc)[0].sections[].members[person._ref match ^._id].title\n\t\t\t}\n\t\t}\n  ': BoardPageQueryResult;
+		'\n\t\t*[_type == "board"] | order(year desc) {\n\t\t\t"year": @.year,\n\t\t\t"members": @.sections[].members[].person-> {\n\t\t\t\t"person": @,\n\t\t\t\t"titles": ^.sections[].members[person._ref match ^._id].title\n\t\t\t}\n\t\t}\n  ': BoardPageQueryResult;
 		'\n    *[_type == "competitionPage"][0] {\n\t\t\tcontent\n\t\t}\n  ': CompetitionPageQueryResult;
 		'\n    *[_type == "contactPage"][0] {\n\t\t\tsections[] {\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\tcontacts[]-> {\n\t\t\t\t\t_id,\n\t\t\t\t\timage,\n\t\t\t\t\tname,\n\t\t\t\t\tpronouns,\n\t\t\t\t\temail,\n\t\t\t\t\t"titles": *[_type == "board"] | order(year desc)[0].sections[].members[person._ref match ^._id].title\n\t\t\t\t}\n\t\t\t}\n\t\t}\n  ': ContactPageQueryResult;
 		'\n    *[_type == "subteamsPage"][0] {\n\t\t\tsubteams[] {\n\t\t\t\tname,\n\t\t\t\tdescription\n\t\t\t}\n\t\t}\n  ': SubteamPageQueryResult;
