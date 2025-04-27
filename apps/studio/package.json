@@ -1,6 +1,7 @@
 {
 	"name": "studio",
 	"main": "package.json",
+	"version": "0.0.0",
 	"scripts": {
 		"dev": "sanity dev",
 		"start": "sanity start",
@@ -10,9 +11,6 @@
 		"format": "prettier --write .",
 		"extract": "sanity schema extract --enforce-required-fields"
 	},
-	"keywords": [
-		"sanity"
-	],
 	"dependencies": {
 		"@sanity/icons": "3.7.0",
 		"@sanity/vision": "3.86.1",
