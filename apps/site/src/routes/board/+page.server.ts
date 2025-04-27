@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { client } from '$lib/sanity/sanityServer.server';
+import { client } from '$lib/sanity/sanityClient';
 import { defineQuery } from 'groq';
 
 const fetchBoard = async () => {
