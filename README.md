@@ -22,6 +22,15 @@ This turborepo has some additional tools:
 - [Prettier](https://prettier.io) for code formatting
 
 ## Build
+If it is your first time, you will need to install the dependencies:
+
+```sh
+cd cyberuci
+npm install -g pnpm
+pnpm install
+```
+(Assumes you already have Node and npm installed.)
+
 
 To build all apps and packages, run the following command:
 
