@@ -26,6 +26,10 @@
 		class="group m-0 flex flex-1 list-none items-baseline justify-center gap-4 p-0"
 	>
 		{@render ItemLink({
+			href: '/competition',
+			label: 'Competition'
+		})}
+		{@render ItemLink({
 			href: '/board',
 			label: 'Board'
 		})}

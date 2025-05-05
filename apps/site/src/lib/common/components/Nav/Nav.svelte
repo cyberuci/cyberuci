@@ -9,6 +9,6 @@
 		<div class="h-7 text-0"><Logo /></div>
 		<span class="type-label hover:text-blue-11 dark:hover:text-bluedark-11">CyberUCI</span>
 	</a>
-	<div class="hidden sm:block"><Big /></div>
-	<div class="block sm:hidden"><Small /></div>
+	<div class="hidden lg:block"><Big /></div>
+	<div class="block lg:hidden"><Small /></div>
 </nav>
