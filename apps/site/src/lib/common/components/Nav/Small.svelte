@@ -6,8 +6,6 @@
 	import { fade, fly } from 'svelte/transition';
 
 	let isOpen = $state(false);
-
-	$inspect(isOpen);
 </script>
 
 {#snippet link(href: string, text: string, description?: string)}
