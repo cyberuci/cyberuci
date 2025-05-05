@@ -21,18 +21,15 @@
 <article>
 	{#if expanded}
 		<div class="relative aspect-ratio-square w-full overflow-hidden rounded-sm">
-
-				{#if image}
-					<img
-						class="h-full w-full object-cover"
-						src={builder.image(image).size(512, 512).url()}
-						alt={name}
-					/>
-				{:else}
-					<div class="h-full w-full bg-blue-2 dark:bg-bluedark-2">
-					</div>
-				{/if}
-
+			{#if image}
+				<img
+					class="h-full w-full object-cover"
+					src={builder.image(image).size(512, 512).url()}
+					alt={name}
+				/>
+			{:else}
+				<div class="h-full w-full bg-blue-2 dark:bg-bluedark-2"></div>
+			{/if}
 		</div>
 	{/if}
 	<div class="mb-2 mt-6 flex items-baseline justify-between">
