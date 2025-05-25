@@ -20,7 +20,7 @@
 
 <article>
 	{#if expanded}
-		<div class="relative aspect-ratio-square w-full overflow-hidden rounded-sm">
+		<div class="relative aspect-ratio-square w-full overflow-hidden rounded-sm mb-6">
 			{#if image}
 				<img
 					class="h-full w-full object-cover"
@@ -32,7 +32,7 @@
 			{/if}
 		</div>
 	{/if}
-	<div class="mb-2 mt-6 flex items-baseline justify-between">
+	<div class="mb-2 flex items-baseline justify-between">
 		<h1 class="type-heading-1 m-0">
 			{name}
 		</h1>
