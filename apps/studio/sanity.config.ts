@@ -139,6 +139,8 @@ export default defineConfig({
 							.icon(EnvelopeIcon)
 							.child(S.document().schemaType('contactPage').documentId('contactPage')),
 						S.divider(),
+						S.documentTypeListItem('news'),
+						S.divider(),
 						S.listItem()
 							.title('People')
 							.icon(UserIcon)

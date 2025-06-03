@@ -5,6 +5,7 @@ import contact from './pages/contact';
 
 import person from './person';
 import board from './board';
+import news from './news';
 // import event from './event';
 
 import info from './info';
@@ -17,5 +18,6 @@ export const schemaTypes = [
 	contact,
 	person,
 	board,
-	info
+	info,
+	news
 ];
