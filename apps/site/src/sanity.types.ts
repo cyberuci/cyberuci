@@ -540,6 +540,40 @@ export type ContactPageQueryResult = {
 	}> | null;
 } | null;
 
+// Source: ./src/routes/news/+page.server.ts
+// Variable: newsPageQuery
+// Query: *[_type == "news"] {			title,			slug,			date,		}
+export type NewsPageQueryResult = Array<{
+	title: string;
+	slug: Slug;
+	date: string;
+}>;
+
+// Source: ./src/routes/news/[slug]/+page.server.ts
+// Variable: newsStoryPageQuery
+// Query: *[_type == "news" && slug.current == $slug][0] {			content,			title		}
+export type NewsStoryPageQueryResult = {
+	content: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'h2' | 'h3' | 'normal';
+		listItem?: never;
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
+	title: string;
+} | null;
+
 // Source: ./src/routes/subteams/+page.server.ts
 // Variable: subteamPageQuery
 // Query: *[_type == "subteamsPage"][0] {			subteams[] {				name,				description			}		}
@@ -559,6 +593,8 @@ declare module '@sanity/client' {
 		'\n\t\t*[_type == "board"] | order(year desc) {\n\t\t\tyear,\n\t\t\tsections[] {\n\t\t\t\tlabel,\n\t\t\t\t"members": members[].person-> {\n\t\t\t\t\t"person": @,\n\t\t\t\t\t"titles": ^.members[person._ref match ^._id].title\n\t\t\t\t} \n\t\t\t}\n\t\t}\n  ': BoardPageQueryResult;
 		'\n    *[_type == "competitionPage"][0] {\n\t\t\tcontent\n\t\t}\n  ': CompetitionPageQueryResult;
 		'\n    *[_type == "contactPage"][0] {\n\t\t\tsections[] {\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\tcontacts[]-> {\n\t\t\t\t\t_id,\n\t\t\t\t\timage,\n\t\t\t\t\tname,\n\t\t\t\t\tpronouns,\n\t\t\t\t\temail,\n\t\t\t\t\t"titles": *[_type == "board"] | order(year desc)[0].sections[].members[person._ref match ^._id].title\n\t\t\t\t}\n\t\t\t}\n\t\t}\n  ': ContactPageQueryResult;
+		'\n    *[_type == "news"] {\n\t\t\ttitle,\n\t\t\tslug,\n\t\t\tdate,\n\t\t}\n  ': NewsPageQueryResult;
+		'\n   \t*[_type == "news" && slug.current == $slug][0] {\n\t\t\tcontent,\n\t\t\ttitle\n\t\t}\n  ': NewsStoryPageQueryResult;
 		'\n    *[_type == "subteamsPage"][0] {\n\t\t\tsubteams[] {\n\t\t\t\tname,\n\t\t\t\tdescription\n\t\t\t}\n\t\t}\n  ': SubteamPageQueryResult;
 	}
 }
