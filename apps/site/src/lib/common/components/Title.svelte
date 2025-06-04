@@ -3,24 +3,16 @@
 
 	interface Props {
 		title: string;
-		size?: 'display' | 'normal' | 'small';
+		size?: 'large' | 'small';
 	}
 
-	const { title, size = 'display' }: Props = $props();
+	const { title, size = 'large' }: Props = $props();
 </script>
 
-<div
-	class={clsx(
-		size == 'display' && 'mb-24 mt-60',
-		size == 'normal' && 'mb-24 mt-60',
-		size == 'small' && 'mb-10 mt-38'
-	)}
->
-	{#if size === 'display'}
+<div class={clsx(size == 'large' && 'mb-24 mt-60', size == 'small' && 'mb-10 mt-38')}>
+	{#if size === 'large'}
 		<p class="type-label">[{title.toUpperCase()}]</p>
 		<h1 class="type-display">{title}</h1>
-	{:else if size === 'normal'}
-		<h1 class="type-heading-2 max-w-40ch">{title}</h1>
 	{:else if size === 'small'}
 		<p class="type-label">{title.toUpperCase()}</p>
 	{/if}
