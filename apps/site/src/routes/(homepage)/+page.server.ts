@@ -11,6 +11,7 @@ const fetchHome = async () => {
 					title,
 					cover,
 					date,
+					slug,
 				},
 			},
 			competitions {
@@ -20,7 +21,7 @@ const fetchHome = async () => {
 			hackerlab {
 				description,
 				images,
-			}
+			},
 		}
   `);
 

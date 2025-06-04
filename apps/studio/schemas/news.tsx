@@ -21,6 +21,15 @@ export default defineType({
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({
+			name: 'slug',
+			type: 'slug',
+			title: 'Slug',
+			options: {
+				source: 'title'
+			},
+			validation: (Rule) => Rule.required()
+		}),
+		defineField({
 			name: 'cover',
 			type: 'image',
 			title: 'Cover',
@@ -42,9 +51,6 @@ export default defineType({
 					marks: {
 						decorators: []
 					}
-				}),
-				defineArrayMember({
-					type: 'achievements'
 				})
 			],
 			validation: (Rule) => Rule.required()

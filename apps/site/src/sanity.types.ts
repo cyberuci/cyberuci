@@ -210,6 +210,7 @@ export type News = {
 	_rev: string;
 	date: string;
 	title: string;
+	slug: Slug;
 	cover: {
 		asset?: {
 			_ref: string;
@@ -222,29 +223,24 @@ export type News = {
 		crop?: SanityImageCrop;
 		_type: 'image';
 	};
-	content: Array<
-		| {
-				children?: Array<{
-					marks?: Array<string>;
-					text?: string;
-					_type: 'span';
-					_key: string;
-				}>;
-				style?: 'normal' | 'h2' | 'h3';
-				listItem?: never;
-				markDefs?: Array<{
-					href?: string;
-					_type: 'link';
-					_key: string;
-				}>;
-				level?: number;
-				_type: 'block';
-				_key: string;
-		  }
-		| ({
-				_key: string;
-		  } & Achievements)
-	>;
+	content: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal' | 'h2' | 'h3';
+		listItem?: never;
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -389,7 +385,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/routes/(homepage)/+page.server.ts
 // Variable: homePageQuery
-// Query: *[_type == 'homePage' && _id == "homePage"][0] {			highlightNews {				enable,				article -> {					title,					cover,					date,				},			},			competitions {				subtitle,				description,			},			hackerlab {				description,				images,			}		}
+// Query: *[_type == 'homePage' && _id == "homePage"][0] {			highlightNews {				enable,				article -> {					title,					cover,					date,					slug,				},			},			competitions {				subtitle,				description,			},			hackerlab {				description,				images,			},		}
 export type HomePageQueryResult = {
 	highlightNews: {
 		enable: boolean | null;
@@ -408,6 +404,7 @@ export type HomePageQueryResult = {
 				_type: 'image';
 			};
 			date: string;
+			slug: Slug;
 		} | null;
 	} | null;
 	competitions: {
@@ -557,7 +554,7 @@ export type SubteamPageQueryResult = {
 import '@sanity/client';
 declare module '@sanity/client' {
 	interface SanityQueries {
-		'\n\t\t*[_type == \'homePage\' && _id == "homePage"][0] {\n\t\t\thighlightNews {\n\t\t\t\tenable,\n\t\t\t\tarticle -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tcover,\n\t\t\t\t\tdate,\n\t\t\t\t},\n\t\t\t},\n\t\t\tcompetitions {\n\t\t\t\tsubtitle,\n\t\t\t\tdescription,\n\t\t\t},\n\t\t\thackerlab {\n\t\t\t\tdescription,\n\t\t\t\timages,\n\t\t\t}\n\t\t}\n  ': HomePageQueryResult;
+		'\n\t\t*[_type == \'homePage\' && _id == "homePage"][0] {\n\t\t\thighlightNews {\n\t\t\t\tenable,\n\t\t\t\tarticle -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tcover,\n\t\t\t\t\tdate,\n\t\t\t\t\tslug,\n\t\t\t\t},\n\t\t\t},\n\t\t\tcompetitions {\n\t\t\t\tsubtitle,\n\t\t\t\tdescription,\n\t\t\t},\n\t\t\thackerlab {\n\t\t\t\tdescription,\n\t\t\t\timages,\n\t\t\t},\n\t\t}\n  ': HomePageQueryResult;
 		'\n\t\t*[_type == \'info\' && _id == "info"][0] {\n\t\t\tsocials\n\t\t}\n\t': SocialsQueryResult;
 		'\n\t\t*[_type == "board"] | order(year desc) {\n\t\t\tyear,\n\t\t\tsections[] {\n\t\t\t\tlabel,\n\t\t\t\t"members": members[].person-> {\n\t\t\t\t\t"person": @,\n\t\t\t\t\t"titles": ^.members[person._ref match ^._id].title\n\t\t\t\t} \n\t\t\t}\n\t\t}\n  ': BoardPageQueryResult;
 		'\n    *[_type == "competitionPage"][0] {\n\t\t\tcontent\n\t\t}\n  ': CompetitionPageQueryResult;
