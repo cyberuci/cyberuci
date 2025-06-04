@@ -26,6 +26,10 @@
 		class="group m-0 flex flex-1 list-none items-baseline justify-center gap-4 p-0"
 	>
 		{@render ItemLink({
+			href: '/news',
+			label: 'News'
+		})}
+		{@render ItemLink({
 			href: '/competition',
 			label: 'Competition'
 		})}
@@ -36,14 +40,6 @@
 		{@render ItemLink({
 			href: '/subteams',
 			label: 'Subteams'
-		})}
-		{@render ItemLink({
-			href: '/brand',
-			label: 'Brand'
-		})}
-		{@render ItemLink({
-			href: '/contact',
-			label: 'Contact'
 		})}
 
 		<div class="absolute right-0 top-full">

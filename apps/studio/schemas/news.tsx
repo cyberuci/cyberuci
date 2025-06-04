@@ -8,14 +8,23 @@ export default defineType({
 	type: 'document',
 	fields: [
 		defineField({
+			name: 'date',
+			type: 'date',
+			title: 'Date',
+			initialValue: new Date().toISOString().slice(0, 10),
+			validation: (Rule) => Rule.required()
+		}),
+		defineField({
 			name: 'title',
 			type: 'string',
-			title: 'Title'
+			title: 'Title',
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'cover',
 			type: 'image',
-			title: 'Cover'
+			title: 'Cover',
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'content',
@@ -37,7 +46,8 @@ export default defineType({
 				defineArrayMember({
 					type: 'achievements'
 				})
-			]
+			],
+			validation: (Rule) => Rule.required()
 		})
 	]
 });

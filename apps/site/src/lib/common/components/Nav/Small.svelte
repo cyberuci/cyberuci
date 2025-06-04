@@ -57,6 +57,7 @@
 							</Dialog.Close>
 						</div>
 						<div class="flex flex-col">
+							{@render link('/news', 'News')}
 							{@render link(
 								'/competition',
 								'Competition',
@@ -64,8 +65,6 @@
 							)}
 							{@render link('/board', 'Board')}
 							{@render link('/subteams', 'Subteams', 'Subteams and org structure.')}
-							{@render link('/brand', 'Brand', 'Brand assets and guidelines.')}
-							{@render link('/contact', 'Contact')}
 						</div>
 					</div>
 				{/if}
