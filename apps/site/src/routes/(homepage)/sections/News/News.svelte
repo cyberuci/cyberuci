@@ -14,7 +14,7 @@
 	const { news }: Props = $props();
 </script>
 
-<div class="min-h-lg h-3xl max-h-[70svh] relative mb-60">
+<div class="min-h-lg h-3xl max-h-[70svh] relative mb-60 text-graydark-12">
 	<div class="flex flex-col justify-end h-full gap-4 pb-15 space-x sm:bt-30">
 		<h1 class="m-0 type-heading-2 max-w-[40ch] text-balance">
 			{news.article?.title}
@@ -25,7 +25,7 @@
 			</span>
 			<a
 				href="/news/{news.article?.slug.current}"
-				class="flex items-end gap-1 text type-label hover:text-blue-12 decoration-none hover:dark:text-bluedark-12 hover:decoration-underline"
+				class="flex items-end gap-1 text-graydark-12 type-label decoration-none hover:text-bluedark-12 hover:decoration-underline"
 			>
 				Full Story <ArrowUpRight class="mb-.5" size={16} />
 			</a>
