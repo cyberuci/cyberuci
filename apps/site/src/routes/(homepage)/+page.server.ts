@@ -10,7 +10,8 @@ const fetchHome = async () => {
 				article -> {
 					title,
 					cover,
-				}
+					date,
+				},
 			},
 			competitions {
 				subtitle,
