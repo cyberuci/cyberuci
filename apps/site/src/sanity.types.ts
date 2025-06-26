@@ -13,61 +13,6 @@
  */
 
 // Source: schema.json
-export type SanityImagePaletteSwatch = {
-	_type: 'sanity.imagePaletteSwatch';
-	background?: string;
-	foreground?: string;
-	population?: number;
-	title?: string;
-};
-
-export type SanityImagePalette = {
-	_type: 'sanity.imagePalette';
-	darkMuted?: SanityImagePaletteSwatch;
-	lightVibrant?: SanityImagePaletteSwatch;
-	darkVibrant?: SanityImagePaletteSwatch;
-	vibrant?: SanityImagePaletteSwatch;
-	dominant?: SanityImagePaletteSwatch;
-	lightMuted?: SanityImagePaletteSwatch;
-	muted?: SanityImagePaletteSwatch;
-};
-
-export type SanityImageDimensions = {
-	_type: 'sanity.imageDimensions';
-	height?: number;
-	width?: number;
-	aspectRatio?: number;
-};
-
-export type SanityFileAsset = {
-	_id: string;
-	_type: 'sanity.fileAsset';
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	originalFilename?: string;
-	label?: string;
-	title?: string;
-	description?: string;
-	altText?: string;
-	sha1hash?: string;
-	extension?: string;
-	mimeType?: string;
-	size?: number;
-	assetId?: string;
-	uploadId?: string;
-	path?: string;
-	url?: string;
-	source?: SanityAssetSourceData;
-};
-
-export type Geopoint = {
-	_type: 'geopoint';
-	lat?: number;
-	lng?: number;
-	alt?: number;
-};
-
 export type Info = {
 	_id: string;
 	_type: 'info';
@@ -136,12 +81,6 @@ export type Person = {
 	};
 	majors?: Array<string>;
 	graduation: number;
-};
-
-export type Slug = {
-	_type: 'slug';
-	current: string;
-	source?: string;
 };
 
 export type ContactPage = {
@@ -231,6 +170,15 @@ export type HomePage = {
 	_createdAt: string;
 	_updatedAt: string;
 	_rev: string;
+	highlightNews?: {
+		enable?: boolean;
+		article?: {
+			_ref: string;
+			_type: 'reference';
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: 'news';
+		};
+	};
 	competitions: {
 		subtitle: string;
 		description: string;
@@ -254,12 +202,71 @@ export type HomePage = {
 	};
 };
 
-export type SanityImageCrop = {
-	_type: 'sanity.imageCrop';
-	top?: number;
-	bottom?: number;
-	left?: number;
-	right?: number;
+export type News = {
+	_id: string;
+	_type: 'news';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	date: string;
+	title: string;
+	slug: Slug;
+	cover: {
+		asset?: {
+			_ref: string;
+			_type: 'reference';
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+		};
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		_type: 'image';
+	};
+	content: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal' | 'h2' | 'h3';
+		listItem?: never;
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
+};
+
+export type SanityImagePaletteSwatch = {
+	_type: 'sanity.imagePaletteSwatch';
+	background?: string;
+	foreground?: string;
+	population?: number;
+	title?: string;
+};
+
+export type SanityImagePalette = {
+	_type: 'sanity.imagePalette';
+	darkMuted?: SanityImagePaletteSwatch;
+	lightVibrant?: SanityImagePaletteSwatch;
+	darkVibrant?: SanityImagePaletteSwatch;
+	vibrant?: SanityImagePaletteSwatch;
+	dominant?: SanityImagePaletteSwatch;
+	lightMuted?: SanityImagePaletteSwatch;
+	muted?: SanityImagePaletteSwatch;
+};
+
+export type SanityImageDimensions = {
+	_type: 'sanity.imageDimensions';
+	height?: number;
+	width?: number;
+	aspectRatio?: number;
 };
 
 export type SanityImageHotspot = {
@@ -268,6 +275,36 @@ export type SanityImageHotspot = {
 	y?: number;
 	height?: number;
 	width?: number;
+};
+
+export type SanityImageCrop = {
+	_type: 'sanity.imageCrop';
+	top?: number;
+	bottom?: number;
+	left?: number;
+	right?: number;
+};
+
+export type SanityFileAsset = {
+	_id: string;
+	_type: 'sanity.fileAsset';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	originalFilename?: string;
+	label?: string;
+	title?: string;
+	description?: string;
+	altText?: string;
+	sha1hash?: string;
+	extension?: string;
+	mimeType?: string;
+	size?: number;
+	assetId?: string;
+	uploadId?: string;
+	path?: string;
+	url?: string;
+	source?: SanityAssetSourceData;
 };
 
 export type SanityImageAsset = {
@@ -293,13 +330,6 @@ export type SanityImageAsset = {
 	source?: SanityAssetSourceData;
 };
 
-export type SanityAssetSourceData = {
-	_type: 'sanity.assetSourceData';
-	name?: string;
-	id?: string;
-	url?: string;
-};
-
 export type SanityImageMetadata = {
 	_type: 'sanity.imageMetadata';
 	location?: Geopoint;
@@ -311,31 +341,72 @@ export type SanityImageMetadata = {
 	isOpaque?: boolean;
 };
 
+export type Geopoint = {
+	_type: 'geopoint';
+	lat?: number;
+	lng?: number;
+	alt?: number;
+};
+
+export type Slug = {
+	_type: 'slug';
+	current: string;
+	source?: string;
+};
+
+export type SanityAssetSourceData = {
+	_type: 'sanity.assetSourceData';
+	name?: string;
+	id?: string;
+	url?: string;
+};
+
 export type AllSanitySchemaTypes =
-	| SanityImagePaletteSwatch
-	| SanityImagePalette
-	| SanityImageDimensions
-	| SanityFileAsset
-	| Geopoint
 	| Info
 	| Board
 	| Person
-	| Slug
 	| ContactPage
 	| SubteamsPage
 	| Achievements
 	| CompetitionPage
 	| HomePage
-	| SanityImageCrop
+	| News
+	| SanityImagePaletteSwatch
+	| SanityImagePalette
+	| SanityImageDimensions
 	| SanityImageHotspot
+	| SanityImageCrop
+	| SanityFileAsset
 	| SanityImageAsset
-	| SanityAssetSourceData
-	| SanityImageMetadata;
+	| SanityImageMetadata
+	| Geopoint
+	| Slug
+	| SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/routes/(homepage)/+page.server.ts
 // Variable: homePageQuery
-// Query: *[_type == 'homePage' && _id == "homePage"][0] {			competitions {				subtitle,				description,			},			hackerlab {				description,				images,			}		}
+// Query: *[_type == 'homePage' && _id == "homePage"][0] {			highlightNews {				enable,				article -> {					title,					cover,					date,					slug,				},			},			competitions {				subtitle,				description,			},			hackerlab {				description,				images,			},		}
 export type HomePageQueryResult = {
+	highlightNews: {
+		enable: boolean | null;
+		article: {
+			title: string;
+			cover: {
+				asset?: {
+					_ref: string;
+					_type: 'reference';
+					_weak?: boolean;
+					[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+				};
+				media?: unknown;
+				hotspot?: SanityImageHotspot;
+				crop?: SanityImageCrop;
+				_type: 'image';
+			};
+			date: string;
+			slug: Slug;
+		} | null;
+	} | null;
 	competitions: {
 		subtitle: string;
 		description: string;
@@ -469,6 +540,40 @@ export type ContactPageQueryResult = {
 	}> | null;
 } | null;
 
+// Source: ./src/routes/news/+page.server.ts
+// Variable: newsPageQuery
+// Query: *[_type == "news"] {			title,			slug,			date,		}
+export type NewsPageQueryResult = Array<{
+	title: string;
+	slug: Slug;
+	date: string;
+}>;
+
+// Source: ./src/routes/news/[slug]/+page.server.ts
+// Variable: newsStoryPageQuery
+// Query: *[_type == "news" && slug.current == $slug][0] {			content,			title		}
+export type NewsStoryPageQueryResult = {
+	content: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'h2' | 'h3' | 'normal';
+		listItem?: never;
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
+	title: string;
+} | null;
+
 // Source: ./src/routes/subteams/+page.server.ts
 // Variable: subteamPageQuery
 // Query: *[_type == "subteamsPage"][0] {			subteams[] {				name,				description			}		}
@@ -483,11 +588,13 @@ export type SubteamPageQueryResult = {
 import '@sanity/client';
 declare module '@sanity/client' {
 	interface SanityQueries {
-		'\n\t\t*[_type == \'homePage\' && _id == "homePage"][0] {\n\t\t\tcompetitions {\n\t\t\t\tsubtitle,\n\t\t\t\tdescription,\n\t\t\t},\n\t\t\thackerlab {\n\t\t\t\tdescription,\n\t\t\t\timages,\n\t\t\t}\n\t\t}\n  ': HomePageQueryResult;
+		'\n\t\t*[_type == \'homePage\' && _id == "homePage"][0] {\n\t\t\thighlightNews {\n\t\t\t\tenable,\n\t\t\t\tarticle -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tcover,\n\t\t\t\t\tdate,\n\t\t\t\t\tslug,\n\t\t\t\t},\n\t\t\t},\n\t\t\tcompetitions {\n\t\t\t\tsubtitle,\n\t\t\t\tdescription,\n\t\t\t},\n\t\t\thackerlab {\n\t\t\t\tdescription,\n\t\t\t\timages,\n\t\t\t},\n\t\t}\n  ': HomePageQueryResult;
 		'\n\t\t*[_type == \'info\' && _id == "info"][0] {\n\t\t\tsocials\n\t\t}\n\t': SocialsQueryResult;
 		'\n\t\t*[_type == "board"] | order(year desc) {\n\t\t\tyear,\n\t\t\tsections[] {\n\t\t\t\tlabel,\n\t\t\t\t"members": members[].person-> {\n\t\t\t\t\t"person": @,\n\t\t\t\t\t"titles": ^.members[person._ref match ^._id].title\n\t\t\t\t} \n\t\t\t}\n\t\t}\n  ': BoardPageQueryResult;
 		'\n    *[_type == "competitionPage"][0] {\n\t\t\tcontent\n\t\t}\n  ': CompetitionPageQueryResult;
 		'\n    *[_type == "contactPage"][0] {\n\t\t\tsections[] {\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\tcontacts[]-> {\n\t\t\t\t\t_id,\n\t\t\t\t\timage,\n\t\t\t\t\tname,\n\t\t\t\t\tpronouns,\n\t\t\t\t\temail,\n\t\t\t\t\t"titles": *[_type == "board"] | order(year desc)[0].sections[].members[person._ref match ^._id].title\n\t\t\t\t}\n\t\t\t}\n\t\t}\n  ': ContactPageQueryResult;
+		'\n    *[_type == "news"] {\n\t\t\ttitle,\n\t\t\tslug,\n\t\t\tdate,\n\t\t}\n  ': NewsPageQueryResult;
+		'\n   \t*[_type == "news" && slug.current == $slug][0] {\n\t\t\tcontent,\n\t\t\ttitle\n\t\t}\n  ': NewsStoryPageQueryResult;
 		'\n    *[_type == "subteamsPage"][0] {\n\t\t\tsubteams[] {\n\t\t\t\tname,\n\t\t\t\tdescription\n\t\t\t}\n\t\t}\n  ': SubteamPageQueryResult;
 	}
 }

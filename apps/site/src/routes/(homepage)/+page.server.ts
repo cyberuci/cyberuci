@@ -5,6 +5,15 @@ import { defineQuery } from 'groq';
 const fetchHome = async () => {
 	const homePageQuery = defineQuery(`
 		*[_type == 'homePage' && _id == "homePage"][0] {
+			highlightNews {
+				enable,
+				article -> {
+					title,
+					cover,
+					date,
+					slug,
+				},
+			},
 			competitions {
 				subtitle,
 				description,
@@ -12,7 +21,7 @@ const fetchHome = async () => {
 			hackerlab {
 				description,
 				images,
-			}
+			},
 		}
   `);
 

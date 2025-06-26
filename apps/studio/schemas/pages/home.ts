@@ -6,6 +6,25 @@ export default defineType({
 	type: 'document',
 	fields: [
 		defineField({
+			name: 'highlightNews',
+			title: 'Highlight News',
+			type: 'object',
+			fields: [
+				defineField({
+					name: 'enable',
+					title: 'Enable',
+					type: 'boolean',
+					description: 'Showcase news article as homepage rather than default landing text.'
+				}),
+				defineField({
+					name: 'article',
+					title: 'News Article',
+					type: 'reference',
+					to: [{ type: 'news' }]
+				})
+			]
+		}),
+		defineField({
 			name: 'competitions',
 			title: 'Competitions',
 			type: 'object',

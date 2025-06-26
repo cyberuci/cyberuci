@@ -3,7 +3,7 @@
 
 	interface Props {
 		title: string;
-		size: 'large' | 'small';
+		size?: 'large' | 'small';
 	}
 
 	const { title, size = 'large' }: Props = $props();
