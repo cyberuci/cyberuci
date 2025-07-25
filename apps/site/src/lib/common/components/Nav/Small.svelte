@@ -9,11 +9,7 @@
 </script>
 
 {#snippet link(href: string, text: string, description?: string)}
-	<a
-		class="border-t border-t-gray-6 border-t-solid px-5 py-7 decoration-none dark:border-t-graydark-6"
-		{href}
-		onclick={() => (isOpen = false)}
-	>
+	<a class="block mx-5 my-5 decoration-none" {href} onclick={() => (isOpen = false)}>
 		<p class="m-0 type-heading-2 text">{text}</p>
 		{#if description}
 			<p class="m-0 mt-2.5 type-body-1 text-gray-11 dark:text-graydark-11">{description}</p>
@@ -56,15 +52,13 @@
 								<X size={16} />
 							</Dialog.Close>
 						</div>
-						<div class="flex flex-col">
+						<div class="pb-4">
 							{@render link('/news', 'News')}
-							{@render link(
-								'/competition',
-								'Competition',
-								"Cyber's competition teams and history."
-							)}
+							{@render link('/competition', 'Competition')}
+							{@render link('/subteams', 'Subteams')}
 							{@render link('/board', 'Board')}
-							{@render link('/subteams', 'Subteams', 'Subteams and org structure.')}
+							{@render link('/contact', 'Contact')}
+							{@render link('/brand', 'Brand')}
 						</div>
 					</div>
 				{/if}
