@@ -34,7 +34,7 @@
 		"eslint-plugin-svelte": "3.9.1",
 		"globals": "16.2.0",
 		"groq": "3.91.0",
-		"lucide-svelte": " 0.511.0",
+		"lucide-svelte": "0.525.0",
 		"prettier": "catalog:",
 		"prettier-plugin-svelte": "3.4.0",
 		"sanity": "3.91.0",
