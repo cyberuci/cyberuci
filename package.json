@@ -20,8 +20,8 @@
     "turbo": "2.3.3"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": "22.x"
   },
   "dependencies": {},
-  "packageManager": "pnpm@10.5.2"
+  "packageManager": "pnpm@10.13.1"
 }
