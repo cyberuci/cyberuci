@@ -83,6 +83,33 @@ export type Person = {
 	graduation: number;
 };
 
+export type Resource = {
+	_id: string;
+	_type: 'resource';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	title: string;
+	description: string;
+	notes?: string;
+	category?: 'documentation' | 'tool' | 'video' | 'other';
+	link?: string;
+	image?: {
+		asset?: {
+			_ref: string;
+			_type: 'reference';
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+		};
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt: string;
+		_type: 'image';
+	};
+	tags?: Array<string>;
+};
+
 export type ContactPage = {
 	_id: string;
 	_type: 'contactPage';
@@ -365,6 +392,7 @@ export type AllSanitySchemaTypes =
 	| Info
 	| Board
 	| Person
+	| Resource
 	| ContactPage
 	| SubteamsPage
 	| Achievements
@@ -542,7 +570,7 @@ export type ContactPageQueryResult = {
 
 // Source: ./src/routes/news/+page.server.ts
 // Variable: newsPageQuery
-// Query: *[_type == "news"] {			title,			slug,			date,		}
+// Query: *[_type == "news"] | order(date desc) {			title,			slug,			date,		}
 export type NewsPageQueryResult = Array<{
 	title: string;
 	slug: Slug;
@@ -574,6 +602,25 @@ export type NewsStoryPageQueryResult = {
 	title: string;
 } | null;
 
+// Source: ./src/routes/resources/+page.server.ts
+// Variable: resourcesQuery
+// Query: *[_type == "resource"] {      _id,      title,      description,      notes,      category,      link,      image {        asset->{          url        },        alt      },      tags    }
+export type ResourcesQueryResult = Array<{
+	_id: string;
+	title: string;
+	description: string;
+	notes: string | null;
+	category: 'documentation' | 'other' | 'tool' | 'video' | null;
+	link: string | null;
+	image: {
+		asset: {
+			url: string | null;
+		} | null;
+		alt: string;
+	} | null;
+	tags: Array<string> | null;
+}>;
+
 // Source: ./src/routes/subteams/+page.server.ts
 // Variable: subteamPageQuery
 // Query: *[_type == "subteamsPage"][0] {			subteams[] {				name,				description			}		}
@@ -593,8 +640,9 @@ declare module '@sanity/client' {
 		'\n\t\t*[_type == "board"] | order(year desc) {\n\t\t\tyear,\n\t\t\tsections[] {\n\t\t\t\tlabel,\n\t\t\t\t"members": members[].person-> {\n\t\t\t\t\t"person": @,\n\t\t\t\t\t"titles": ^.members[person._ref match ^._id].title\n\t\t\t\t} \n\t\t\t}\n\t\t}\n  ': BoardPageQueryResult;
 		'\n    *[_type == "competitionPage"][0] {\n\t\t\tcontent\n\t\t}\n  ': CompetitionPageQueryResult;
 		'\n    *[_type == "contactPage"][0] {\n\t\t\tsections[] {\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\tcontacts[]-> {\n\t\t\t\t\t_id,\n\t\t\t\t\timage,\n\t\t\t\t\tname,\n\t\t\t\t\tpronouns,\n\t\t\t\t\temail,\n\t\t\t\t\t"titles": *[_type == "board"] | order(year desc)[0].sections[].members[person._ref match ^._id].title\n\t\t\t\t}\n\t\t\t}\n\t\t}\n  ': ContactPageQueryResult;
-		'\n    *[_type == "news"] {\n\t\t\ttitle,\n\t\t\tslug,\n\t\t\tdate,\n\t\t}\n  ': NewsPageQueryResult;
+		'\n\t\t*[_type == "news"] | order(date desc) {\n\t\t\ttitle,\n\t\t\tslug,\n\t\t\tdate,\n\t\t}\n  ': NewsPageQueryResult;
 		'\n   \t*[_type == "news" && slug.current == $slug][0] {\n\t\t\tcontent,\n\t\t\ttitle\n\t\t}\n  ': NewsStoryPageQueryResult;
+		'\n    *[_type == "resource"] {\n      _id,\n      title,\n      description,\n      notes,\n      category,\n      link,\n      image {\n        asset->{\n          url\n        },\n        alt\n      },\n      tags\n    }\n  ': ResourcesQueryResult;
 		'\n    *[_type == "subteamsPage"][0] {\n\t\t\tsubteams[] {\n\t\t\t\tname,\n\t\t\t\tdescription\n\t\t\t}\n\t\t}\n  ': SubteamPageQueryResult;
 	}
 }
