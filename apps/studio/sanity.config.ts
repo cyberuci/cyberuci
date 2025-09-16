@@ -142,6 +142,7 @@ export default defineConfig({
 						S.divider(),
 						S.documentTypeListItem('news'),
 						S.documentTypeListItem('resource').title('Resources').icon(DashboardIcon),
+						S.documentTypeListItem('sponsor').title('Sponsors'),
 						S.divider(),
 						S.listItem()
 							.title('People')

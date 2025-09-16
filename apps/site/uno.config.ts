@@ -27,6 +27,7 @@ export default defineConfig({
 		'background-4': 'bg-gray-4 dark:bg-graydark-4',
 		'background-5': 'bg-gray-5 dark:bg-graydark-5',
 		text: 'text-gray-12 dark:text-graydark-12',
+		'text-2': 'text-gray-11 dark:text-graydark-11',
 
 		navin:
 			'animate-keyframes-navin animate-duration-750 animate-ease-out transform-origin-top transform-3d',
