@@ -10,36 +10,37 @@
 
 <div class="my-60 space-x">
 	<Title title="Resources" />
-	{#each data.resources as resource (resource._id)}
-		<li class="p-4 rounded bg-gray-200">
-			<h2 class="text-xl font-semibold">{resource.title}</h2>
-
-			<p class="mt-1">{resource.description}</p>
-
-			<p class="mt-1 italic text-sm">Category: {resource.category}</p>
-
-			{#if resource.link}
-				<a
-					href={resource.link}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="text-blue-600 underline mt-2 block"
-				>
-					Visit Resource
-				</a>
-			{/if}
-
-			{#if resource.image?.asset?.url}
-				<img
-					src={resource.image.asset.url}
-					alt={resource.image.alt}
-					class="mt-3 rounded max-w-xs"
-				/>
-			{/if}
-
-			{#if resource.tags?.length}
-				<p class="mt-2 text-sm">Tags: {resource.tags.join(', ')}</p>
-			{/if}
-		</li>
-	{/each}
+	<div class="grid grid-cols-[repeat(auto-fill,_minmax(480px,1fr))] gap-1">
+		{#each data.resources as resource (resource._id)}
+			<div class="px-3 py-3 rounded-sm background-2">
+				<p class="my-2 font-normal uppercase type-label">{resource.category}</p>
+				<h2 class="mt-8 mb-6 font-semibold type-heading-1">{resource.title}</h2>
+				{#if resource.notes}
+					<p class="max-w-prose type-body-2">
+						{resource.notes}
+					</p>
+				{/if}
+				<p class="max-w-prose type-body-2 text-gray-11 dark:text-graydark-11">
+					{resource.description}
+				</p>
+				{#if resource.link}
+					<a
+						href={resource.link}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="block my-2 type-body-2 text-blue-12 decoration-underline dark:text-bluedark-12 hover:decoration-dashed"
+					>
+						Visit Resource
+					</a>
+				{/if}
+				{#if resource.image?.asset?.url}
+					<img
+						src={resource.image.asset.url}
+						alt={resource.image.alt}
+						class="object-contain my-4 max-w-20 max-h-20"
+					/>
+				{/if}
+			</div>
+		{/each}
+	</div>
 </div>
