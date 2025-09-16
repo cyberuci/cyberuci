@@ -29,9 +29,9 @@ export default defineType({
 			type: 'string',
 			options: {
 				list: [
-					{ title: 'Documentation', value: 'documentation' },
 					{ title: 'Tool', value: 'tool' },
-					{ title: 'Video', value: 'video' },
+					{ title: 'Guide', value: 'guide' },
+					{ title: 'Certification', value: 'certification' },
 					{ title: 'Other', value: 'other' }
 				],
 				layout: 'dropdown'
