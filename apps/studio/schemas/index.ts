@@ -2,7 +2,7 @@ import home from './pages/home';
 import competition, { achievements } from './pages/competition';
 import subteams from './pages/subteams';
 import contact from './pages/contact';
-import resource from './pages/resources'
+import resource from './resource';
 import person from './person';
 import board from './board';
 import news from './news';
