@@ -13,6 +13,43 @@
  */
 
 // Source: schema.json
+export type Sponsor = {
+	_id: string;
+	_type: 'sponsor';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	since: string;
+	tier: 'gold' | 'silver' | 'special';
+	name: string;
+	logo: {
+		asset?: {
+			_ref: string;
+			_type: 'reference';
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+		};
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt: string;
+		_type: 'image';
+	};
+	logoDark?: {
+		asset?: {
+			_ref: string;
+			_type: 'reference';
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+		};
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		_type: 'image';
+	};
+	note?: string;
+};
+
 export type Info = {
 	_id: string;
 	_type: 'info';
@@ -92,7 +129,7 @@ export type Resource = {
 	title: string;
 	description: string;
 	notes?: string;
-	category?: 'documentation' | 'tool' | 'video' | 'other';
+	category?: 'tool' | 'guide' | 'certification' | 'other';
 	link?: string;
 	image?: {
 		asset?: {
@@ -389,6 +426,7 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+	| Sponsor
 	| Info
 	| Board
 	| Person
@@ -610,7 +648,7 @@ export type ResourcesQueryResult = Array<{
 	title: string;
 	description: string;
 	notes: string | null;
-	category: 'documentation' | 'other' | 'tool' | 'video' | null;
+	category: 'certification' | 'guide' | 'other' | 'tool' | null;
 	link: string | null;
 	image: {
 		asset: {
@@ -619,6 +657,28 @@ export type ResourcesQueryResult = Array<{
 		alt: string;
 	} | null;
 	tags: Array<string> | null;
+}>;
+
+// Source: ./src/routes/sponsors/+page.server.ts
+// Variable: sponsorQuery
+// Query: *[_type == "sponsor"] {			_id,			since,			tier,			name,			logo {				asset->{					url				},				alt			},			logoDark {				asset->{					url				}			},			note		}
+export type SponsorQueryResult = Array<{
+	_id: string;
+	since: string;
+	tier: 'gold' | 'silver' | 'special';
+	name: string;
+	logo: {
+		asset: {
+			url: string | null;
+		} | null;
+		alt: string;
+	};
+	logoDark: {
+		asset: {
+			url: string | null;
+		} | null;
+	} | null;
+	note: string | null;
 }>;
 
 // Source: ./src/routes/subteams/+page.server.ts
@@ -643,6 +703,7 @@ declare module '@sanity/client' {
 		'\n\t\t*[_type == "news"] | order(date desc) {\n\t\t\ttitle,\n\t\t\tslug,\n\t\t\tdate,\n\t\t}\n  ': NewsPageQueryResult;
 		'\n   \t*[_type == "news" && slug.current == $slug][0] {\n\t\t\tcontent,\n\t\t\ttitle\n\t\t}\n  ': NewsStoryPageQueryResult;
 		'\n    *[_type == "resource"] {\n      _id,\n      title,\n      description,\n      notes,\n      category,\n      link,\n      image {\n        asset->{\n          url\n        },\n        alt\n      },\n      tags\n    }\n  ': ResourcesQueryResult;
+		'\n\t\t*[_type == "sponsor"] {\n\t\t\t_id,\n\t\t\tsince,\n\t\t\ttier,\n\t\t\tname,\n\t\t\tlogo {\n\t\t\t\tasset->{\n\t\t\t\t\turl\n\t\t\t\t},\n\t\t\t\talt\n\t\t\t},\n\t\t\tlogoDark {\n\t\t\t\tasset->{\n\t\t\t\t\turl\n\t\t\t\t}\n\t\t\t},\n\t\t\tnote\n\t\t}\n  ': SponsorQueryResult;
 		'\n    *[_type == "subteamsPage"][0] {\n\t\t\tsubteams[] {\n\t\t\t\tname,\n\t\t\t\tdescription\n\t\t\t}\n\t\t}\n  ': SubteamPageQueryResult;
 	}
 }

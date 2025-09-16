@@ -7,7 +7,7 @@ import person from './person';
 import board from './board';
 import news from './news';
 // import event from './event';
-
+import sponsor from './sponsor';
 import info from './info';
 
 export const schemaTypes = [
@@ -20,5 +20,6 @@ export const schemaTypes = [
 	person,
 	board,
 	info,
-	news
+	news,
+	sponsor
 ];
