@@ -3,31 +3,27 @@ import { client } from '$lib/sanity/sanityClient';
 import { defineQuery } from 'groq';
 
 export const load: PageServerLoad = async () => {
-  const resourcePageQuery = defineQuery(`
-    *[_type == "resources"][0] {
+	const resourcesQuery = defineQuery(`
+    *[_type == "resource"] {
+      _id,
       title,
-      resources[]{
-        _key,
-        title,
-        description,
-        category,
-        link,
-        image{
-          asset->{
-            _id,
-            url
-          },
-          alt
+      description,
+      notes,
+      category,
+      link,
+      image {
+        asset->{
+          url
         },
-        tags
-      }
+        alt
+      },
+      tags
     }
   `);
 
-  const resourcePage = await client.fetch(resourcePageQuery);
+	const resources = await client.fetch(resourcesQuery);
 
-  return {
-    pageTitle: resourcePage?.title || 'Resources',
-    resources: resourcePage?.resources || []
-  };
+	return {
+		resources
+	};
 };
