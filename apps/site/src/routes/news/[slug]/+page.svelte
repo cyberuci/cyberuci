@@ -15,7 +15,7 @@
 	<title>{data.newsStoryPage.title} — Cyber @ UCI</title>
 </svelte:head>
 
-<div class="my-60 space-x">
+<div class="my-40 space-x">
 	<a
 		href="/news"
 		class="flex items-end gap-1 type-label text decoration-none hover:dark:text-bluedark-12 hover:text-blue-12"

@@ -15,7 +15,7 @@
 	<title>Board — Cyber @ UCI</title>
 </svelte:head>
 
-<main class="my-60 space-x">
+<main class="my-40 space-x">
 	{#each data.board as { year, sections }}
 		{@const expanded = year >= cutoffYear}
 		{@const sectionCount = sections.length}

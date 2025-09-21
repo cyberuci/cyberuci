@@ -8,7 +8,7 @@
 	<title>Resources — Cyber @ UCI</title>
 </svelte:head>
 
-<div class="my-60 space-x">
+<div class="my-40 space-x">
 	<Title title="Resources" />
 	<div class="grid grid-cols-[repeat(auto-fill,_minmax(480px,1fr))] gap-1">
 		{#each data.resources as resource (resource._id)}

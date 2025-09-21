@@ -14,7 +14,7 @@
 	<title>News — Cyber @ UCI</title>
 </svelte:head>
 
-<div class="my-60 space-x">
+<div class="my-40 space-x">
 	<Title title="News" />
 	{#each data.newsPage as { title, slug, date }}
 		<a

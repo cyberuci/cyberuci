@@ -10,7 +10,7 @@
 	<title>Sponsors — Cyber @ UCI</title>
 </svelte:head>
 
-<main class="my-60 space-x">
+<main class="my-40 space-x">
 	<Title title="Sponsors" />
 	{#if data.sponsors.gold}
 		<Title title="Gold Tier" size="small" />

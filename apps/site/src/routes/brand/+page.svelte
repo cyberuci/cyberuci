@@ -12,7 +12,7 @@
 	<title>Brand — Cyber @ UCI</title>
 </svelte:head>
 
-<div class="my-60 space-x">
+<div class="my-40 space-x">
 	<Title title="Brand" />
 	<main>
 		<div class="mb-16 text">

@@ -9,7 +9,7 @@
 	const { title, size = 'large' }: Props = $props();
 </script>
 
-<div class={clsx(size == 'large' && 'mb-24 mt-60', size == 'small' && 'mb-10 mt-38')}>
+<div class={clsx(size == 'large' && 'mb-20 mt-40', size == 'small' && 'mb-10 mt-38')}>
 	{#if size === 'large'}
 		<p class="type-label">[{title.toUpperCase()}]</p>
 		<h1 class="type-display">{title}</h1>
