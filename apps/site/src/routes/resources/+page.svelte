@@ -14,7 +14,14 @@
 		{#each data.resources as resource (resource._id)}
 			<div class="px-3 py-3 rounded-sm background-2">
 				<p class="my-2 font-normal uppercase type-label">{resource.category}</p>
-				<h2 class="mt-8 mb-6 font-semibold type-heading-1">{resource.title}</h2>
+				{#if resource.image?.asset?.url}
+					<img
+						src={resource.image.asset.url}
+						alt={resource.image.alt}
+						class="object-contain my-2 mt-8 max-w-20 max-h-10"
+					/>
+				{/if}
+				<h2 class="mt-2 mb-6 font-semibold type-heading-1">{resource.title}</h2>
 				{#if resource.notes}
 					<p class="max-w-prose type-body-2">
 						{resource.notes}
@@ -32,13 +39,6 @@
 					>
 						Visit Resource
 					</a>
-				{/if}
-				{#if resource.image?.asset?.url}
-					<img
-						src={resource.image.asset.url}
-						alt={resource.image.alt}
-						class="object-contain my-4 max-w-20 max-h-20"
-					/>
 				{/if}
 			</div>
 		{/each}
