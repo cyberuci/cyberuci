@@ -12,10 +12,10 @@
 	const { sponsorTeir }: Props = $props();
 </script>
 
-<div class="flex flex-col flex-wrap items-center md:justify-center md:flex-row gap-x-16 gap-y-24">
+<div class="flex flex-col flex-wrap items-start md:justify-center md:flex-row gap-x-16 gap-y-24">
 	{#each sponsorTeir as { _id, logo, logoDark, name, since, note } (_id)}
-		<div class="min-w-min max-w-60">
-			<div class="h-30 max-w-60">
+		<div class="w-60">
+			<div class="h-30 w-60">
 				<img
 					class="object-contain size-full dark:hidden"
 					src={builder.image(logo).width(1024).url()}
