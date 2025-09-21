@@ -26,16 +26,16 @@ export default defineType({
 		defineField({
 			name: 'category',
 			title: 'Category',
-			type: 'string',
-			options: {
-				list: [
-					{ title: 'Tool', value: 'tool' },
-					{ title: 'Guide', value: 'guide' },
-					{ title: 'Certification', value: 'certification' },
-					{ title: 'Other', value: 'other' }
-				],
-				layout: 'dropdown'
-			}
+			type: 'string'
+			// options: {
+			// 	list: [
+			// 		{ title: 'Tool', value: 'tool' },
+			// 		{ title: 'Guide', value: 'guide' },
+			// 		{ title: 'Certification', value: 'certification' },
+			// 		{ title: 'Other', value: 'other' }
+			// 	],
+			// 	layout: 'dropdown'
+			// }
 		}),
 		defineField({
 			name: 'link',
