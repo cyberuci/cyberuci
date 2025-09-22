@@ -1,6 +1,15 @@
 <script lang="ts">
 	import { NavigationMenu } from 'bits-ui';
-	import { ChevronDown, type Icon, LucideBrush, LucideMail, LucideUsers } from 'lucide-svelte';
+	import {
+		BookMarked,
+		Group,
+		type Icon,
+		LucideBrush,
+		LucideMail,
+		LucideUsers,
+		Trophy
+	} from 'lucide-svelte';
+	import ListGroup from './ListGroup.svelte';
 
 	interface ItemLinkProps {
 		label: string;
@@ -26,7 +35,7 @@
 {/snippet}
 
 {#snippet ListItem({ title, Icon, href }: ListItemProps)}
-	<li class="w-30 h-35">
+	<li class="w-38 h-35">
 		<NavigationMenu.Link
 			class="group/list block h-full select-none rounded-sm p-3 decoration-none border-gray-4 dark:border-graydark-4 border  border-solid hover:border-gray-5 dark:hover:border-graydark-5 hover:background-3 flex flex-col transition-colors"
 			{href}
@@ -48,51 +57,52 @@
 	delayDuration={0}
 >
 	<NavigationMenu.List
-		class="group m-0 flex flex-1 list-none items-baseline justify-center gap-4 p-0"
+		class="group m-0 flex flex-1 list-none items-baseline justify-center gap-5 p-0"
 	>
+		<ListGroup name="Engage">
+			{@render ListItem({
+				href: '/subteams',
+				title: 'Subteams',
+				Icon: Group
+			})}
+			{@render ListItem({
+				href: '/competition',
+				title: 'Competition',
+				Icon: Trophy
+			})}
+			{@render ListItem({
+				href: '/resources',
+				title: 'Resources',
+				Icon: BookMarked
+			})}
+		</ListGroup>
+
+		<ListGroup name="About">
+			{@render ListItem({
+				href: '/board',
+				title: 'Board',
+				Icon: LucideUsers
+			})}
+			{@render ListItem({
+				href: '/brand',
+				title: 'Brand',
+				Icon: LucideBrush
+			})}
+			{@render ListItem({
+				href: '/contact',
+				title: 'Contact',
+				Icon: LucideMail
+			})}
+		</ListGroup>
+
 		{@render ItemLink({
 			href: '/news',
 			label: 'News'
 		})}
 		{@render ItemLink({
-			href: '/competition',
-			label: 'Competition'
+			href: '/sponsors',
+			label: 'Sponsors'
 		})}
-		{@render ItemLink({
-			href: '/subteams',
-			label: 'Subteams'
-		})}
-
-		<NavigationMenu.Item>
-			<NavigationMenu.Trigger
-				class="group flex items-center gap-1 border-none bg-transparent py-2 type-label hover:text-blue-11 text dark:hover:text-bluedark-11 terminal-before data-[state=open]:text-blue-11 dark:data-[state=open]:text-bluedark-11"
-			>
-				About
-				<ChevronDown
-					class="size-3 transition duration-200 group-data-[state=open]:rotate-180"
-					aria-hidden="true"
-				/>
-			</NavigationMenu.Trigger>
-			<NavigationMenu.Content class="absolute left-0 top-0 z-50">
-				<ul class="flex m-0 list-none gap-2 p-2">
-					{@render ListItem({
-						href: '/board',
-						title: 'Board',
-						Icon: LucideUsers
-					})}
-					{@render ListItem({
-						href: '/contact',
-						title: 'Contact',
-						Icon: LucideMail
-					})}
-					{@render ListItem({
-						href: '/brand',
-						title: 'Brand',
-						Icon: LucideBrush
-					})}
-				</ul>
-			</NavigationMenu.Content>
-		</NavigationMenu.Item>
 
 		<div class="absolute right-0 top-125%">
 			<NavigationMenu.Viewport

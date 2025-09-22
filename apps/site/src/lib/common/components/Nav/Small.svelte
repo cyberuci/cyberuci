@@ -53,12 +53,14 @@
 							</Dialog.Close>
 						</div>
 						<div class="pb-4">
-							{@render link('/news', 'News')}
-							{@render link('/competition', 'Competition')}
 							{@render link('/subteams', 'Subteams')}
+							{@render link('/competition', 'Competition')}
+							{@render link('/resources', 'Resources')}
 							{@render link('/board', 'Board')}
-							{@render link('/contact', 'Contact')}
 							{@render link('/brand', 'Brand')}
+							{@render link('/contact', 'Contact')}
+							{@render link('/news', 'News')}
+							{@render link('/sponsors', 'Sponsors')}
 						</div>
 					</div>
 				{/if}
