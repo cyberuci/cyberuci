@@ -14,14 +14,14 @@
 	<Title title="Sponsors" />
 	{#if data.sponsors.gold}
 		<Title title="Gold Tier" size="small" />
-		<SponsorTier sponsorTeir={data.sponsors.gold} />
+		<SponsorTier sponsorTier={data.sponsors.gold} />
 	{/if}
 	{#if data.sponsors.silver}
 		<Title title="Silver Tier" size="small" />
-		<SponsorTier sponsorTeir={data.sponsors.silver} />
+		<SponsorTier sponsorTier={data.sponsors.silver} />
 	{/if}
 	{#if data.sponsors.special}
 		<Title title="Special Thanks" size="small" />
-		<SponsorTier sponsorTeir={data.sponsors.special} />
+		<SponsorTier sponsorTier={data.sponsors.special} />
 	{/if}
 </main>
