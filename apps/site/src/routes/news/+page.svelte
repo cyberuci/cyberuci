@@ -20,10 +20,10 @@
 <div class="my-40 space-x">
 	<Title title="News" />
 	{#each data.newsPage as { title, slug, date, cover }}
-		<div class="group md:flex gap-5 my-10">
+		<div class="group md:flex gap-5 my-10 w-full">
 			<img
 				alt="The cover of the article."
-				class="md:size-1/2 size-full my-5 md:my-0 rounded-sm"
+				class="md:w-1/3 size-full my-5 md:my-0 rounded-sm flex-shrink-0"
 				src={builder.image(cover).width(1024).height(600).url()}
 				/>
 			<a
