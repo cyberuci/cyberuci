@@ -6,14 +6,14 @@
 	const builder = imageUrlBuilder(client);
 
 	interface Props {
-		sponsorTeir: NonNullable<PageData['sponsors']['gold']>;
+		sponsorTier: NonNullable<PageData['sponsors']['gold']>;
 	}
 
-	const { sponsorTeir }: Props = $props();
+	const { sponsorTier }: Props = $props();
 </script>
 
 <div class="flex flex-col flex-wrap items-start md:justify-center md:flex-row gap-x-16 gap-y-24">
-	{#each sponsorTeir as { _id, logo, logoDark, name, since, note } (_id)}
+	{#each sponsorTier as { _id, logo, logoDark, name, since, note } (_id)}
 		<div class="w-60">
 			<div class="h-30 w-60">
 				<img

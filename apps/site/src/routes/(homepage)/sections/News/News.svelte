@@ -34,6 +34,7 @@
 	<div class="absolute inset-0 object-cover w-full h-full -z-1 gradient"></div>
 	{#if news.article}
 		<img
+			alt="The cover of the featured news article."
 			class="absolute inset-0 object-cover w-full h-full -z-2"
 			src={builder.image(news.article.cover).auto('format').url()}
 		/>

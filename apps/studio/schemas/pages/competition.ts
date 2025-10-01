@@ -5,7 +5,6 @@ export const achievements = defineType({
 	name: 'achievements',
 	title: 'Achievements',
 	type: 'object',
-	// icon: <Medal size={14} strokeWidth={1.5} />,
 	fields: [
 		defineField({
 			name: 'years',
