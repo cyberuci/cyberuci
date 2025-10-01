@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Title from '$lib/common/components/Title.svelte';
+	import { ArrowUpRight } from 'lucide-svelte';
 	import type { PageData } from './$types';
 	let { data }: { data: PageData } = $props();
 </script>
@@ -37,7 +38,7 @@
 						rel="noopener noreferrer"
 						class="block my-2 type-body-2 text-blue-12 decoration-underline dark:text-bluedark-12 hover:decoration-dashed"
 					>
-						Visit Resource
+						Visit Resource <ArrowUpRight size={12} />
 					</a>
 				{/if}
 			</div>
