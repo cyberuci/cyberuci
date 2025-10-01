@@ -20,21 +20,21 @@
 <div class="my-40 space-x">
 	<Title title="News" />
 	{#each data.newsPage as { title, slug, date, cover }}
-		<div class="group md:flex gap-5 my-10 w-full">
+		<a
+			href="/news/{slug.current}"
+			class="block lg:flex gap-5 my-8 w-full text decoration-none group-hover:dark:text-bluedark-12 group-hover:text-blue-12"
+		>
 			<img
 				alt="The cover of the article."
-				class="md:w-1/3 size-full my-5 md:my-0 rounded-sm flex-shrink-0"
+				class="lg:w-1/3 size-full my-5 lg:my-0 rounded-sm flex-shrink-0"
 				src={builder.image(cover).width(1024).height(600).url()}
-				/>
-			<a
-				href="/news/{slug.current}"
-				class="text decoration-none hover:dark:text-bluedark-12 hover:text-blue-12 group"
-			>
-				<span class="block type-heading-2 max-w-40ch group-hover:decoration-underline"
+			/>
+			<div>
+				<span class="block type-heading-2 mb-3 max-w-40ch group-hover:decoration-underline"
 					>{title}</span
 				>
 				<span class="block type-label">{date}</span>
-			</a>
-		</div>
+			</div>
+		</a>
 	{/each}
 </div>
