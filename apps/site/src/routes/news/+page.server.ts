@@ -8,6 +8,7 @@ export const load: PageServerLoad = async () => {
 			title,
 			slug,
 			date,
+			cover,
 		}
   `);
 	const newsPage = await client.fetch(newsPageQuery);

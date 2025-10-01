@@ -608,11 +608,23 @@ export type ContactPageQueryResult = {
 
 // Source: ./src/routes/news/+page.server.ts
 // Variable: newsPageQuery
-// Query: *[_type == "news"] | order(date desc) {			title,			slug,			date,		}
+// Query: *[_type == "news"] | order(date desc) {			title,			slug,			date,			cover,		}
 export type NewsPageQueryResult = Array<{
 	title: string;
 	slug: Slug;
 	date: string;
+	cover: {
+		asset?: {
+			_ref: string;
+			_type: 'reference';
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+		};
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		_type: 'image';
+	};
 }>;
 
 // Source: ./src/routes/news/[slug]/+page.server.ts
@@ -700,7 +712,7 @@ declare module '@sanity/client' {
 		'\n\t\t*[_type == "board"] | order(year desc) {\n\t\t\tyear,\n\t\t\tsections[] {\n\t\t\t\tlabel,\n\t\t\t\t"members": members[].person-> {\n\t\t\t\t\t"person": @,\n\t\t\t\t\t"titles": ^.members[person._ref match ^._id].title\n\t\t\t\t} \n\t\t\t}\n\t\t}\n  ': BoardPageQueryResult;
 		'\n    *[_type == "competitionPage"][0] {\n\t\t\tcontent\n\t\t}\n  ': CompetitionPageQueryResult;
 		'\n    *[_type == "contactPage"][0] {\n\t\t\tsections[] {\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\tcontacts[]-> {\n\t\t\t\t\t_id,\n\t\t\t\t\timage,\n\t\t\t\t\tname,\n\t\t\t\t\tpronouns,\n\t\t\t\t\temail,\n\t\t\t\t\t"titles": *[_type == "board"] | order(year desc)[0].sections[].members[person._ref match ^._id].title\n\t\t\t\t}\n\t\t\t}\n\t\t}\n  ': ContactPageQueryResult;
-		'\n\t\t*[_type == "news"] | order(date desc) {\n\t\t\ttitle,\n\t\t\tslug,\n\t\t\tdate,\n\t\t}\n  ': NewsPageQueryResult;
+		'\n\t\t*[_type == "news"] | order(date desc) {\n\t\t\ttitle,\n\t\t\tslug,\n\t\t\tdate,\n\t\t\tcover,\n\t\t}\n  ': NewsPageQueryResult;
 		'\n   \t*[_type == "news" && slug.current == $slug][0] {\n\t\t\tcontent,\n\t\t\ttitle\n\t\t}\n  ': NewsStoryPageQueryResult;
 		'\n    *[_type == "resource"] {\n      _id,\n      title,\n      description,\n      notes,\n      category,\n      link,\n      image {\n        asset->{\n          url\n        },\n        alt\n      },\n      tags\n    }\n  ': ResourcesQueryResult;
 		'\n\t\t*[_type == "sponsor"] {\n\t\t\t_id,\n\t\t\tsince,\n\t\t\ttier,\n\t\t\tname,\n\t\t\tlogo {\n\t\t\t\tasset->{\n\t\t\t\t\turl\n\t\t\t\t},\n\t\t\t\talt\n\t\t\t},\n\t\t\tlogoDark {\n\t\t\t\tasset->{\n\t\t\t\t\turl\n\t\t\t\t}\n\t\t\t},\n\t\t\tnote\n\t\t}\n  ': SponsorQueryResult;
