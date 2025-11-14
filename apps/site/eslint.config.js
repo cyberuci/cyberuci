@@ -1,5 +1,6 @@
 import prettier from 'eslint-config-prettier';
 import js from '@eslint/js';
+import { defineConfig } from 'eslint/config';
 import { includeIgnoreFile } from '@eslint/compat';
 import svelte from 'eslint-plugin-svelte';
 import globals from 'globals';
@@ -9,8 +10,9 @@ import unocss from '@unocss/eslint-config/flat';
 import ts from 'typescript-eslint';
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
-export default ts.config(
+export default defineConfig(
 	includeIgnoreFile(gitignorePath),
+	{ ignores: ['pnpm-lock.yaml'] },
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...svelte.configs['flat/recommended'],
