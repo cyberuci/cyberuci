@@ -31,3 +31,6 @@ yarn-error.log*
 
 # turbo
 .turbo
+
+# CF fails to install tools and fails build
+.tool-versions
