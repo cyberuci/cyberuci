@@ -12,17 +12,17 @@
 	const { sponsorTier }: Props = $props();
 </script>
 
-<div class="flex flex-col flex-wrap items-start md:justify-center md:flex-row gap-x-16 gap-y-24">
+<div class="flex flex-col flex-wrap items-start gap-x-16 gap-y-24 md:flex-row md:justify-center">
 	{#each sponsorTier as { _id, logo, logoDark, name, since, note } (_id)}
 		<div class="w-60">
 			<div class="h-30 w-60">
 				<img
-					class="object-contain size-full dark:hidden"
+					class="size-full object-contain dark:hidden"
 					src={builder.image(logo).width(1024).url()}
 					alt={name}
 				/>
 				<img
-					class="object-contain size-full light:hidden"
+					class="size-full object-contain light:hidden"
 					src={builder
 						.image(logoDark ? logoDark : logo)
 						.width(1024)

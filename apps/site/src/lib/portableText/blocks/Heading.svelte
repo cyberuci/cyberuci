@@ -14,7 +14,7 @@
 <svelte:element
 	this={el}
 	class={clsx(
-		el === 'h2' && 'type-heading-2 mt-18 mb-8',
-		el === 'h3' && 'type-heading-1 mt-12 mb-6'
+		el === 'h2' && 'mb-8 mt-18 type-heading-2',
+		el === 'h3' && 'mb-6 mt-12 type-heading-1'
 	)}>{@render children?.()}</svelte:element
 >

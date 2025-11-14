@@ -18,11 +18,13 @@
 	<title>Cyber @ UCI</title>
 </svelte:head>
 
-{#if data.homepage.highlightNews && data.homepage.highlightNews.enable}
-	<News news={data.homepage.highlightNews} />
+{#if data.homepage.highlightNews?.enable && data.homepage.highlightNews.article}
+	<News article={data.homepage.highlightNews.article} />
 {:else}
 	<Header />
 {/if}
 <Competitions description={data.homepage.competitions.description} />
 <Hackerlab section={data.homepage.hackerlab} />
-<Socials socials={data.socials.socials} />
+{#if data.socials.socials}
+	<Socials socials={data.socials.socials} />
+{/if}

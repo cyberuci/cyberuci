@@ -13,16 +13,16 @@
 	<Title title="Resources" />
 	<div class="grid grid-cols-[repeat(auto-fill,_minmax(480px,1fr))] gap-1">
 		{#each data.resources as resource (resource._id)}
-			<div class="px-3 py-3 rounded-sm background-2">
-				<p class="my-2 font-normal uppercase type-label">{resource.category}</p>
+			<div class="rounded-sm background-2 px-3 py-3">
+				<p class="my-2 type-label font-normal uppercase">{resource.category}</p>
 				{#if resource.image?.asset?.url}
 					<img
 						src={resource.image.asset.url}
 						alt={resource.image.alt}
-						class="object-contain my-2 mt-8 max-w-20 max-h-10"
+						class="my-2 mt-8 max-h-10 max-w-20 object-contain"
 					/>
 				{/if}
-				<h2 class="mt-2 mb-6 font-semibold type-heading-1">{resource.title}</h2>
+				<h2 class="mb-6 mt-2 type-heading-1 font-semibold">{resource.title}</h2>
 				{#if resource.notes}
 					<p class="max-w-prose type-body-2">
 						{resource.notes}
@@ -32,12 +32,14 @@
 					{resource.description}
 				</p>
 				{#if resource.link}
+					<!-- eslint-disable svelte/no-navigation-without-resolve -->
 					<a
 						href={resource.link}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="block my-2 type-body-2 text-blue-12 decoration-underline dark:text-bluedark-12 hover:decoration-dashed"
+						class="my-2 block type-body-2 text-blue-12 decoration-underline dark:text-bluedark-12 hover:decoration-dashed"
 					>
+						<!-- eslint-enable svelte/no-navigation-without-resolve -->
 						Visit Resource <ArrowUpRight size={12} />
 					</a>
 				{/if}

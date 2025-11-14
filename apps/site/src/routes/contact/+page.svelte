@@ -17,7 +17,7 @@
 <div class="my-40 space-x">
 	<Title title="Contact" />
 	<main>
-		{#each data.contactPage.sections as { title, description, contacts }}
+		{#each data.contactPage.sections as { _key, title, description, contacts } (_key)}
 			<div class="mb-24">
 				<Section {title} {description} {contacts} />
 			</div>

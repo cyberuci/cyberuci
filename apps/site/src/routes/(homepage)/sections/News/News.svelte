@@ -4,41 +4,42 @@
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
 	import { ArrowUpRight } from 'lucide-svelte';
+	import { resolve } from '$app/paths';
 
 	const builder = imageUrlBuilder(client);
 
 	interface Props {
-		news: NonNullable<PageData['homepage']['highlightNews']>;
+		article: NonNullable<NonNullable<PageData['homepage']['highlightNews']>['article']>;
 	}
 
-	const { news }: Props = $props();
+	const { article }: Props = $props();
 </script>
 
-<div class="min-h-lg h-3xl max-h-[70svh] relative mb-60 text-graydark-12">
-	<div class="flex flex-col justify-end h-full gap-4 pb-15 space-x sm:bt-30">
-		<h1 class="m-0 type-heading-2 max-w-[40ch] text-balance">
-			{news.article?.title}
+<div class="relative mb-60 h-3xl max-h-[70svh] min-h-lg text-graydark-12">
+	<div class="sm:bt-30 space-x h-full flex flex-col justify-end gap-4 pb-15">
+		<h1 class="m-0 max-w-[40ch] text-balance type-heading-2">
+			{article.title}
 		</h1>
 		<div class="flex gap-6">
 			<span class="type-label">
-				{news.article?.date}
+				{article.date}
 			</span>
 			<a
-				href="/news/{news.article?.slug.current}"
-				class="flex items-end gap-1 text-graydark-12 type-label decoration-none hover:text-bluedark-12 hover:decoration-underline"
+				href={resolve('/news/[slug]', {
+					slug: article.slug.current
+				})}
+				class="flex items-end gap-1 type-label text-graydark-12 decoration-none hover:text-bluedark-12 hover:decoration-underline"
 			>
 				Full Story <ArrowUpRight class="mb-.5" size={16} />
 			</a>
 		</div>
 	</div>
-	<div class="absolute inset-0 object-cover w-full h-full -z-1 gradient"></div>
-	{#if news.article}
-		<img
-			alt="The cover of the featured news article."
-			class="absolute inset-0 object-cover w-full h-full -z-2"
-			src={builder.image(news.article.cover).auto('format').url()}
-		/>
-	{/if}
+	<div class="gradient absolute inset-0 h-full w-full object-cover -z-1"></div>
+	<img
+		alt="The cover of the featured news article."
+		class="absolute inset-0 h-full w-full object-cover -z-2"
+		src={builder.image(article.cover).auto('format').url()}
+	/>
 </div>
 
 <style lang="scss">

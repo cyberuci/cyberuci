@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import Title from '$lib/common/components/Title.svelte';
 	import PortableText from '$lib/portableText/PortableText.svelte';
 	import { ArrowLeft } from 'lucide-svelte';
+	import { resolve } from '$app/paths';
 
 	interface Props {
 		data: PageData;
@@ -17,10 +17,10 @@
 
 <div class="my-40 space-x">
 	<a
-		href="/news"
-		class="flex items-end gap-1 type-label text decoration-none hover:dark:text-bluedark-12 hover:text-blue-12"
+		href={resolve('/news')}
+		class="flex items-end gap-1 type-label text decoration-none hover:text-blue-12 hover:dark:text-bluedark-12"
 		><ArrowLeft class="mb-.5" size={16} /> All News</a
 	>
-	<h1 class="mb-24 type-heading-2 max-w-40ch">{data.newsStoryPage.title}</h1>
+	<h1 class="mb-24 max-w-40ch type-heading-2">{data.newsStoryPage.title}</h1>
 	<PortableText value={data.newsStoryPage.content} />
 </div>

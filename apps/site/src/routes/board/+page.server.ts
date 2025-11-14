@@ -5,8 +5,10 @@ import { defineQuery } from 'groq';
 const fetchBoard = async () => {
 	const boardPageQuery = defineQuery(`
 		*[_type == "board"] | order(year desc) {
+			_id,
 			year,
 			sections[] {
+				_key,
 				label,
 				"members": members[].person-> {
 					"person": @,

@@ -15,7 +15,7 @@
 <p class="mb-8 max-w-prose type-body-2 text-gray-11 dark:text-graydark-11">{description}</p>
 <div class="grid grid-cols-[repeat(auto-fill,_minmax(320px,1fr))] gap-1">
 	{#each contacts as { _id, image, name, pronouns, email, titles } (_id)}
-		<div class="flex flex-col gap-6 rounded-sm px-3 py-8 background-2">
+		<div class="flex flex-col gap-6 rounded-sm background-2 px-3 py-8">
 			<div class="size-30 self-center overflow-hidden rounded-full">
 				<Profile {image} {name} />
 			</div>

@@ -12,6 +12,8 @@
 	<title>Brand — Cyber @ UCI</title>
 </svelte:head>
 
+<!-- eslint-disable svelte/no-navigation-without-resolve -->
+
 <div class="my-40 space-x">
 	<Title title="Brand" />
 	<main>
@@ -48,7 +50,7 @@
 					<img class="mx-auto block w-30 p-6" alt="cyber uci logo color" src={logoColor} />
 					<div class="flex">
 						<a
-							class="flex flex-1 items-center justify-center gap-2 p-3 decoration-none active:background-4 hover:background-3 text"
+							class="flex flex-1 items-center justify-center gap-2 p-3 text decoration-none active:background-4 hover:background-3"
 							href={logoColor}
 							download="cyber_uci_logo_color.svg"
 						>
@@ -56,7 +58,7 @@
 							SVG
 						</a>
 						<a
-							class="flex flex-1 items-center justify-center gap-2 p-3 decoration-none active:background-4 hover:background-3 text"
+							class="flex flex-1 items-center justify-center gap-2 p-3 text decoration-none active:background-4 hover:background-3"
 							href={logoColorPng}
 							download="cyber_uci_logo_color.png"
 						>
@@ -69,7 +71,7 @@
 					<img class="mx-auto block w-30 p-6" alt="cyber uci logo color" src={logoMonochrome} />
 					<div class="flex">
 						<a
-							class="flex flex-1 items-center justify-center gap-2 p-3 decoration-none active:background-4 hover:background-3 text"
+							class="flex flex-1 items-center justify-center gap-2 p-3 text decoration-none active:background-4 hover:background-3"
 							href={logoMonochrome}
 							download="cyber_uci_logo_monochrome.svg"
 						>
@@ -77,7 +79,7 @@
 							SVG
 						</a>
 						<a
-							class="flex flex-1 items-center justify-center gap-2 p-3 decoration-none active:background-4 hover:background-3 text"
+							class="flex flex-1 items-center justify-center gap-2 p-3 text decoration-none active:background-4 hover:background-3"
 							href={logoMonochromePng}
 							download="cyber_uci_logo_monochrome.png"
 						>

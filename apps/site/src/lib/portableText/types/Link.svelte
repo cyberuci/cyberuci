@@ -11,7 +11,9 @@
 	let link = $derived(portableText.value);
 </script>
 
+<!-- eslint-disable svelte/no-navigation-without-resolve -->
 <a href={link.url}>
+	<!-- eslint-enable svelte/no-navigation-without-resolve -->
 	<span>{link.label}</span>
 	<ExternalLink size={20} strokeWidth={2} />
 </a>

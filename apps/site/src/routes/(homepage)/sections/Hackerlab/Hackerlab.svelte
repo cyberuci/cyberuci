@@ -22,13 +22,13 @@
 			<h2 class="type-label font-550">HackerLab</h2>
 		</div>
 		<div class="lg:col-start-5 lg:col-end-14">
-			<p class="mb-6 mt-2 max-w-prose line-height-relaxed type-heading-1">
+			<p class="mb-6 mt-2 max-w-prose type-heading-1 line-height-relaxed">
 				{section.description}
 			</p>
 		</div>
 		<div class="lg:col-start-4 lg:row-start-2 lg:col-end-15">
 			<!-- <enhanced:img class="w-full h-auto rounded-sm" src="./hivestorm-2.jpeg" alt="" /> -->
-			{#each section.images as image}
+			{#each section.images as image (image._key)}
 				<img
 					class="h-auto w-full rounded-sm"
 					src={builder.image(image).auto('format').url()}

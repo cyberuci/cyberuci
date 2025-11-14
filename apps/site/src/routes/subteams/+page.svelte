@@ -17,7 +17,7 @@
 <div class="my-40 space-x">
 	<Title title="Subteams" />
 	<main>
-		{#each data.subteams.subteams as { name, description }}
+		{#each data.subteams.subteams as { _key, name, description } (_key)}
 			<div class="mb-24">
 				<Section {name} {description} />
 			</div>

@@ -16,24 +16,24 @@
 </svelte:head>
 
 <main class="my-40 space-x">
-	{#each data.board as { year, sections }}
+	{#each data.board as { _id, year, sections } (_id)}
 		{@const expanded = year >= cutoffYear}
 		{@const sectionCount = sections.length}
 		<div>
 			<Title title="Board {year - 2000}/{year - 2000 + 1}" size={expanded ? 'large' : 'small'} />
 
-			{#each sections as { label, members }}
+			{#each sections as { _key, label, members } (_key)}
 				{#if sectionCount > 1}
-					<h2 class="type-label font-normal uppercase my-3">{label}</h2>
+					<h2 class="my-3 type-label font-normal uppercase">{label}</h2>
 				{/if}
 				<div
 					class={clsx(
-						'grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 mb-20',
+						'grid grid-cols-1 mb-20 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2',
 						expanded && 'gap-x-6 gap-y-16',
 						!expanded && 'gap-x-6 gap-y-9'
 					)}
 				>
-					{#each members as { person, titles }, i}
+					{#each members as { person, titles } (person._id)}
 						<div>
 							<BoardMember {person} {titles} {expanded} />
 						</div>

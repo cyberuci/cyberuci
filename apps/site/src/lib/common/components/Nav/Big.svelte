@@ -26,7 +26,7 @@
 {#snippet ItemLink({ label, href }: ItemLinkProps)}
 	<NavigationMenu.Item>
 		<NavigationMenu.Link
-			class="py-2 type-label decoration-none before:text-gray-11 hover:text-blue-11 text before:content-['~_$_'] dark:before:text-graydark-11 dark:hover:text-bluedark-11 transition-colors"
+			class="py-2 type-label text decoration-none transition-colors before:text-gray-11 hover:text-blue-11 before:content-['~_$_'] dark:before:text-graydark-11 dark:hover:text-bluedark-11"
 			{href}
 		>
 			{label}
@@ -35,17 +35,17 @@
 {/snippet}
 
 {#snippet ListItem({ title, Icon, href }: ListItemProps)}
-	<li class="w-38 h-35">
+	<li class="h-35 w-38">
 		<NavigationMenu.Link
-			class="group/list block h-full select-none rounded-sm p-3 decoration-none border-gray-4 dark:border-graydark-4 border  border-solid hover:border-gray-5 dark:hover:border-graydark-5 hover:background-3 flex flex-col transition-colors"
+			class="group/list block h-full flex flex-col select-none border border-gray-4 rounded-sm border-solid p-3 decoration-none transition-colors dark:border-graydark-4 hover:border-gray-5 hover:background-3 dark:hover:border-graydark-5"
 			{href}
 		>
 			<div
-				class="text flex-grow-1 group-hover/list:text-blue-11 dark:group-hover/list:text-blue-11 transition-colors"
+				class="flex-grow-1 text transition-colors group-hover/list:text-blue-11 dark:group-hover/list:text-blue-11"
 			>
 				<Icon size="24" />
 			</div>
-			<div class="type-label text terminal-before">
+			<div class="type-label terminal-before text">
 				{title}
 			</div>
 		</NavigationMenu.Link>
@@ -106,7 +106,7 @@
 
 		<div class="absolute right-0 top-125%">
 			<NavigationMenu.Viewport
-				class="h-[var(--bits-navigation-menu-viewport-height)] w-[var(--bits-navigation-menu-viewport-width)] data-[state=closed]:navout data-[state=open]:navin overflow-hidden border border-gray-4 rounded-md border-solid dark:border-graydark-4 background-2"
+				class="h-[var(--bits-navigation-menu-viewport-height)] w-[var(--bits-navigation-menu-viewport-width)] overflow-hidden border border-gray-4 rounded-md border-solid background-2 data-[state=closed]:navout data-[state=open]:navin dark:border-graydark-4"
 			/>
 		</div>
 	</NavigationMenu.List>

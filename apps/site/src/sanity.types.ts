@@ -505,12 +505,25 @@ export type SocialsQueryResult = {
 	}> | null;
 } | null;
 
+// Source: ./src/routes/aif/+page.server.ts
+// Variable: aifSocialsQuery
+// Query: *[_type == 'info' && _id == "info"][0] {			socials		}
+export type AifSocialsQueryResult = {
+	socials: Array<{
+		platform: string;
+		link: string;
+		_key: string;
+	}> | null;
+} | null;
+
 // Source: ./src/routes/board/+page.server.ts
 // Variable: boardPageQuery
-// Query: *[_type == "board"] | order(year desc) {			year,			sections[] {				label,				"members": members[].person-> {					"person": @,					"titles": ^.members[person._ref match ^._id].title				} 			}		}
+// Query: *[_type == "board"] | order(year desc) {			_id,			year,			sections[] {				_key,				label,				"members": members[].person-> {					"person": @,					"titles": ^.members[person._ref match ^._id].title				} 			}		}
 export type BoardPageQueryResult = Array<{
+	_id: string;
 	year: number;
 	sections: Array<{
+		_key: string;
 		label: string;
 		members: Array<{
 			person: {
@@ -608,8 +621,9 @@ export type ContactPageQueryResult = {
 
 // Source: ./src/routes/news/+page.server.ts
 // Variable: newsPageQuery
-// Query: *[_type == "news"] | order(date desc) {			title,			slug,			date,			cover,		}
+// Query: *[_type == "news"] | order(date desc) {			_id,			title,			slug,			date,			cover,		}
 export type NewsPageQueryResult = Array<{
+	_id: string;
 	title: string;
 	slug: Slug;
 	date: string;
@@ -695,9 +709,11 @@ export type SponsorQueryResult = Array<{
 
 // Source: ./src/routes/subteams/+page.server.ts
 // Variable: subteamPageQuery
-// Query: *[_type == "subteamsPage"][0] {			subteams[] {				name,				description			}		}
+// Query: *[_type == "subteamsPage"][0] {			_id,			subteams[] {				_key,				name,				description			}		}
 export type SubteamPageQueryResult = {
+	_id: string;
 	subteams: Array<{
+		_key: string;
 		name: string | null;
 		description: string | null;
 	}> | null;
@@ -708,14 +724,16 @@ import '@sanity/client';
 declare module '@sanity/client' {
 	interface SanityQueries {
 		'\n\t\t*[_type == \'homePage\' && _id == "homePage"][0] {\n\t\t\thighlightNews {\n\t\t\t\tenable,\n\t\t\t\tarticle -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tcover,\n\t\t\t\t\tdate,\n\t\t\t\t\tslug,\n\t\t\t\t},\n\t\t\t},\n\t\t\tcompetitions {\n\t\t\t\tsubtitle,\n\t\t\t\tdescription,\n\t\t\t},\n\t\t\thackerlab {\n\t\t\t\tdescription,\n\t\t\t\timages,\n\t\t\t},\n\t\t}\n  ': HomePageQueryResult;
-		'\n\t\t*[_type == \'info\' && _id == "info"][0] {\n\t\t\tsocials\n\t\t}\n\t': SocialsQueryResult;
-		'\n\t\t*[_type == "board"] | order(year desc) {\n\t\t\tyear,\n\t\t\tsections[] {\n\t\t\t\tlabel,\n\t\t\t\t"members": members[].person-> {\n\t\t\t\t\t"person": @,\n\t\t\t\t\t"titles": ^.members[person._ref match ^._id].title\n\t\t\t\t} \n\t\t\t}\n\t\t}\n  ': BoardPageQueryResult;
+		'\n\t\t*[_type == \'info\' && _id == "info"][0] {\n\t\t\tsocials\n\t\t}\n\t':
+			| SocialsQueryResult
+			| AifSocialsQueryResult;
+		'\n\t\t*[_type == "board"] | order(year desc) {\n\t\t\t_id,\n\t\t\tyear,\n\t\t\tsections[] {\n\t\t\t\t_key,\n\t\t\t\tlabel,\n\t\t\t\t"members": members[].person-> {\n\t\t\t\t\t"person": @,\n\t\t\t\t\t"titles": ^.members[person._ref match ^._id].title\n\t\t\t\t} \n\t\t\t}\n\t\t}\n  ': BoardPageQueryResult;
 		'\n    *[_type == "competitionPage"][0] {\n\t\t\tcontent\n\t\t}\n  ': CompetitionPageQueryResult;
 		'\n    *[_type == "contactPage"][0] {\n\t\t\tsections[] {\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\tcontacts[]-> {\n\t\t\t\t\t_id,\n\t\t\t\t\timage,\n\t\t\t\t\tname,\n\t\t\t\t\tpronouns,\n\t\t\t\t\temail,\n\t\t\t\t\t"titles": *[_type == "board"] | order(year desc)[0].sections[].members[person._ref match ^._id].title\n\t\t\t\t}\n\t\t\t}\n\t\t}\n  ': ContactPageQueryResult;
-		'\n\t\t*[_type == "news"] | order(date desc) {\n\t\t\ttitle,\n\t\t\tslug,\n\t\t\tdate,\n\t\t\tcover,\n\t\t}\n  ': NewsPageQueryResult;
+		'\n\t\t*[_type == "news"] | order(date desc) {\n\t\t\t_id,\n\t\t\ttitle,\n\t\t\tslug,\n\t\t\tdate,\n\t\t\tcover,\n\t\t}\n  ': NewsPageQueryResult;
 		'\n   \t*[_type == "news" && slug.current == $slug][0] {\n\t\t\tcontent,\n\t\t\ttitle\n\t\t}\n  ': NewsStoryPageQueryResult;
 		'\n    *[_type == "resource"] {\n      _id,\n      title,\n      description,\n      notes,\n      category,\n      link,\n      image {\n        asset->{\n          url\n        },\n        alt\n      },\n      tags\n    }\n  ': ResourcesQueryResult;
 		'\n\t\t*[_type == "sponsor"] {\n\t\t\t_id,\n\t\t\tsince,\n\t\t\ttier,\n\t\t\tname,\n\t\t\tlogo {\n\t\t\t\tasset->{\n\t\t\t\t\turl\n\t\t\t\t},\n\t\t\t\talt\n\t\t\t},\n\t\t\tlogoDark {\n\t\t\t\tasset->{\n\t\t\t\t\turl\n\t\t\t\t}\n\t\t\t},\n\t\t\tnote\n\t\t}\n  ': SponsorQueryResult;
-		'\n    *[_type == "subteamsPage"][0] {\n\t\t\tsubteams[] {\n\t\t\t\tname,\n\t\t\t\tdescription\n\t\t\t}\n\t\t}\n  ': SubteamPageQueryResult;
+		'\n\t\t*[_type == "subteamsPage"][0] {\n\t\t\t_id,\n\t\t\tsubteams[] {\n\t\t\t\t_key,\n\t\t\t\tname,\n\t\t\t\tdescription\n\t\t\t}\n\t\t}\n  ': SubteamPageQueryResult;
 	}
 }

@@ -13,7 +13,7 @@
 
 <NavigationMenu.Item>
 	<NavigationMenu.Trigger
-		class="group flex items-center gap-1 border-none bg-transparent py-2 p-0 type-label hover:text-blue-11 text dark:hover:text-bluedark-11 terminal-before data-[state=open]:text-blue-11 dark:data-[state=open]:text-bluedark-11"
+		class="group flex items-center gap-1 border-none bg-transparent p-0 py-2 type-label terminal-before text data-[state=open]:text-blue-11 hover:text-blue-11 dark:data-[state=open]:text-bluedark-11 dark:hover:text-bluedark-11"
 	>
 		{name}
 		<ChevronDown
@@ -22,7 +22,7 @@
 		/>
 	</NavigationMenu.Trigger>
 	<NavigationMenu.Content class="absolute left-0 top-0 z-50">
-		<ul class="flex m-0 list-none gap-2 p-2">
+		<ul class="m-0 flex list-none gap-2 p-2">
 			{@render children()}
 		</ul>
 	</NavigationMenu.Content>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { Medal, Info } from 'lucide-svelte';
 
 	interface Props {
@@ -15,11 +16,11 @@
 			<h2 class="type-label font-550">Competition</h2>
 		</div>
 		<div class="lg:col-start-5 lg:col-end-14">
-			<p class="mb-6 mt-2 max-w-prose line-height-relaxed type-heading-1">
+			<p class="mb-6 mt-2 max-w-prose type-heading-1 line-height-relaxed">
 				{description}
 			</p>
 			<a
-				href="/competition"
+				href={resolve('/competition')}
 				class="flex items-center gap-2 type-body-2 text-blue-12 decoration-none dark:text-bluedark-12"
 			>
 				<Info size={16} />

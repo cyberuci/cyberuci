@@ -3,6 +3,7 @@
 	import Title from '$lib/common/components/Title.svelte';
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
+	import { resolve } from '$app/paths';
 
 	interface Props {
 		data: PageData;
@@ -19,18 +20,20 @@
 
 <div class="my-40 space-x">
 	<Title title="News" />
-	{#each data.newsPage as { title, slug, date, cover }}
+	{#each data.newsPage as { _id, title, slug, date, cover } (_id)}
 		<a
-			href="/news/{slug.current}"
-			class="block lg:flex gap-5 my-8 w-full text decoration-none group-hover:dark:text-bluedark-12 group-hover:text-blue-12"
+			href={resolve('/news/[slug]', {
+				slug: slug.current
+			})}
+			class="my-8 block w-full gap-5 text decoration-none lg:flex group-hover:text-blue-12 group-hover:dark:text-bluedark-12"
 		>
 			<img
 				alt="The cover of the article."
-				class="lg:w-1/3 size-full my-5 lg:my-0 rounded-sm flex-shrink-0"
+				class="my-5 size-full flex-shrink-0 rounded-sm lg:my-0 lg:w-1/3"
 				src={builder.image(cover).width(1024).height(600).url()}
 			/>
 			<div>
-				<span class="block type-heading-2 mb-3 max-w-40ch group-hover:decoration-underline"
+				<span class="mb-3 block max-w-40ch type-heading-2 group-hover:decoration-underline"
 					>{title}</span
 				>
 				<span class="block type-label">{date}</span>

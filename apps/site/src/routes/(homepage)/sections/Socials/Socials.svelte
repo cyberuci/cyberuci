@@ -1,9 +1,11 @@
 <script lang="ts">
+	import type { PageData } from '../../$types';
+
 	import { MessageCircle } from 'lucide-svelte';
 	import { siDiscord, siInstagram, siGithub } from 'simple-icons';
 
 	interface Props {
-		socials: { platform: string; link: string }[];
+		socials: NonNullable<PageData['socials']['socials']>;
 	}
 
 	let { socials }: Props = $props();
@@ -17,13 +19,15 @@
 		</div>
 		<div class="lg:col-start-5 lg:col-end-14">
 			<div class="mb-6 mt-2 flex flex-col gap-6">
-				{#each socials as { platform, link }}
+				{#each socials as { _key, platform, link } (_key)}
 					{#if ['Discord', 'Instagram', 'GitHub'].includes(platform)}
 						<div>
+							<!-- eslint-disable svelte/no-navigation-without-resolve -->
 							<a
 								class="w-full flex items-center gap-4 text-blue-12 dark:text-bluedark-12 hover:decoration-dotted"
 								href={link}
 							>
+								<!-- eslint-enable svelte/no-navigation-without-resolve -->
 								<svg
 									class="size-8"
 									role="img"

@@ -22,5 +22,7 @@ export const load: PageServerLoad = async () => {
   `);
 	const contactPage = await client.fetch(contactPageQuery);
 
+	if (contactPage === null) throw Error('Failed to load contacts.');
+
 	return { contactPage };
 };

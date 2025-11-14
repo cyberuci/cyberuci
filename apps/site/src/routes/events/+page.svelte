@@ -12,7 +12,7 @@
 		style="border:solid 1px #777"
 		frameborder="0"
 		scrolling="no"
-		class="w-full h-[75vh]"
+		class="h-[75vh] w-full"
 		title="Google Calendar"
 	></iframe>
 </div>
