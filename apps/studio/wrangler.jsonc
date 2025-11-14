@@ -1,0 +1,11 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "cyberuci-studio",
+	"compatibility_date": "2025-11-13",
+	"assets": {
+		"directory": "dist"
+	},
+	"observability": {
+		"enabled": true
+	}
+}

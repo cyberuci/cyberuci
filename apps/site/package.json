@@ -4,12 +4,15 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "vite preview",
+		"preview": "pnpm run build && wrangler dev",
+		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"typegen": "sanity typegen generate"
+		"lint": "prettier --check . && eslint .",
+		"deploy": "pnpm run build && wrangler deploy",
+		"sanity-typegen": "sanity typegen generate",
+		"cf-typegen": "wrangler types ./src/worker-configuration.d.ts"
 	},
 	"devDependencies": {
 		"@eslint/compat": "1.2.9",
@@ -19,7 +22,7 @@
 		"@radix-ui/colors": "3.0.0",
 		"@sanity/client": "7.4.0",
 		"@sanity/image-url": "1.1.0",
-		"@sveltejs/adapter-vercel": "5.7.2",
+		"@sveltejs/adapter-cloudflare": "7.2.4",
 		"@sveltejs/enhanced-img": "0.6.0",
 		"@sveltejs/kit": "2.21.2",
 		"@sveltejs/vite-plugin-svelte": "5.1.0",
@@ -49,6 +52,7 @@
 		"typescript-eslint": "8.31.1",
 		"unocss": "66.1.3",
 		"vite": "6.3.5",
+		"wrangler": "4.48.0",
 		"zod": "3.25.49"
 	},
 	"type": "module"

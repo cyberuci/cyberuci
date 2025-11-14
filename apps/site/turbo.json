@@ -11,7 +11,6 @@
 			],
 			"env": [
 				"SANITY_TOKEN",
-				"PUBLIC_OG_BASE_URL",
 				"PUBLIC_SANITY_PROJECT_ID",
 				"PUBLIC_SANITY_DATASET",
 				"PUBLIC_NAME"
