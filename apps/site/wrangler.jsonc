@@ -11,6 +11,10 @@
 	"observability": {
 		"enabled": true
 	},
+	// Also defined separately in the CF Workers Build settings.
+	// Defining here again for runtime, but probably not necessary because we use all variables statically.
+	// SvelteKit should embed the values directly at build time.
+	// Changing the values below probably won't affect anything!
 	"vars": {
 		"PUBLIC_SANITY_PROJECT_ID": "bbsuwd70",
 		"PUBLIC_SANITY_DATASET": "production",
