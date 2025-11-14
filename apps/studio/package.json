@@ -23,7 +23,6 @@
 		"styled-components": "6.1.19"
 	},
 	"devDependencies": {
-		"@sanity/eslint-config-studio": "5.0.2",
 		"prettier": "catalog:",
 		"typescript": "catalog:",
 		"wrangler": "4.48.0"

@@ -13,15 +13,18 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md,json}\""
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "husky": "9.1.7",
+    "lint-staged": "16.2.6",
     "prettier": "3.6.2",
+    "prettier-plugin-svelte": "3.4.0",
     "turbo": "2.6.1"
   },
   "engines": {
     "node": "22.x"
   },
-  "dependencies": {},
   "packageManager": "pnpm@10.13.1"
 }
