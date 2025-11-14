@@ -1,20 +1,10 @@
 {
 	"$schema": "https://turborepo.com/schema.json",
-	"extends": [
-		"//"
-	],
+	"extends": ["//"],
 	"tasks": {
 		"build": {
-			"outputs": [
-				".vercel/**",
-				".svelte-kit/**"
-			],
-			"env": [
-				"SANITY_TOKEN",
-				"PUBLIC_SANITY_PROJECT_ID",
-				"PUBLIC_SANITY_DATASET",
-				"PUBLIC_NAME"
-			]
+			"outputs": [".vercel/**", ".svelte-kit/**"],
+			"env": ["SANITY_TOKEN", "PUBLIC_SANITY_PROJECT_ID", "PUBLIC_SANITY_DATASET", "PUBLIC_NAME"]
 		}
 	}
 }
