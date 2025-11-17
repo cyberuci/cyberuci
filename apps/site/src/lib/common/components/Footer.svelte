@@ -62,7 +62,10 @@
 		<div class="mb-16 mt-4 h-24 max-w-full w-48 flex">
 			<a href={resolve('/')}><Logo /></a>
 		</div>
-		<div class="md:grid-cols- grid max-w-50% w-full gap-8 {columns.length} sm:grid-cols-1">
+		<div
+			class="grid grid-cols-1 max-w-35% w-full gap-8 md:[grid-template-columns:var(--cols)]"
+			style={`--cols: repeat(${columns.length}, minmax(0, 1fr))`}
+		>
 			{#each columns as col (col.title)}
 				{@render Column({ col })}
 			{/each}
