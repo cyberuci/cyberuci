@@ -6,7 +6,7 @@
 </script>
 
 <div class="my-6 space-x flex flex-col">
-	<div class="flex flex-row gap-x-6">
+	<div class="flex flex-col items-center md:flex-row md:items-start md:gap-x-6">
 		<video
 			width="320"
 			height="240"
@@ -20,9 +20,10 @@
 			<track kind="captions" srclang="en" label="English" default />
 			Your browser does not support the video tag.
 		</video>
-		<div>
-			Check out these links to explore our club!
-			<ul class="list-none">
+		<div class="flex flex-col items-center text-center md:ml-4 md:items-start md:text-left">
+			<p class="text-center type-label text">Check out these links to explore our club!</p>
+
+			<ul class="flex flex-wrap list-none justify-center md:justify-start">
 				<!--Use the tenary to change color and text when we figure out how to know when the hacker lab
 				is open or not-->
 				<ListItem
@@ -66,7 +67,7 @@
 		</div>
 	</div>
 
-	<h1 class="type-display mt-10 sm:mt-10">
+	<h1 class="type-display mt-0 sm:mt-0">
 		Cybersecurity matters.<br />
 		Be part of the solution.
 	</h1>
