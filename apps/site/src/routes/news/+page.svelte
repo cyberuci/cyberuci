@@ -26,7 +26,6 @@
 		);
 
 		data['newsPage'][i]['date'] = new Intl.DateTimeFormat('en-US', options).format(date);
-		// console.log(new Intl.DateTimeFormat("en-US", options).format(date));
 	}
 </script>
 
@@ -52,7 +51,7 @@
 				<span class="mb-3 block max-w-40ch type-heading-2 group-hover:decoration-underline"
 					>{title}</span
 				>
-				<span class="block type-label" id="_id">{date}</span>
+				<span class="block type-label">{date}</span>
 			</div>
 		</a>
 	{/each}
