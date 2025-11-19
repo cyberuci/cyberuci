@@ -13,8 +13,6 @@
 	let { data }: Props = $props();
 
 	const builder = imageUrlBuilder(client);
-
-	console.log(data);
 </script>
 
 <svelte:head>
