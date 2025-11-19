@@ -12,6 +12,22 @@
 	const builder = imageUrlBuilder(client);
 
 	let { data }: Props = $props();
+
+	let options: Intl.DateTimeFormatOptions = {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric'
+	};
+
+	for (let i = 0; i < data['newsPage'].length; i++) {
+		const date_list = data['newsPage'][i]['date'].split('-');
+		const date = new Date(
+			Date.UTC(parseInt(date_list[0]), parseInt(date_list[1]), parseInt(date_list[2]))
+		);
+
+		data['newsPage'][i]['date'] = new Intl.DateTimeFormat('en-US', options).format(date);
+		// console.log(new Intl.DateTimeFormat("en-US", options).format(date));
+	}
 </script>
 
 <svelte:head>
@@ -36,7 +52,7 @@
 				<span class="mb-3 block max-w-40ch type-heading-2 group-hover:decoration-underline"
 					>{title}</span
 				>
-				<span class="block type-label">{date}</span>
+				<span class="block type-label" id="_id">{date}</span>
 			</div>
 		</a>
 	{/each}
