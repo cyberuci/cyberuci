@@ -15,9 +15,20 @@ export const load: PageServerLoad = async ({ params: { slug } }) => {
 		slug
 	});
 
+	const newsPageRecentQuery = defineQuery(`
+		*[_type == "news"] | order(date desc) [0...4] {
+			_id,
+			title,
+			slug,
+			date,
+			cover,
+		}
+  `);
+	const newsPage = await client.fetch(newsPageRecentQuery);
+
 	if (!newsStoryPage) {
 		return error(404);
 	}
 
-	return { newsStoryPage };
+	return { newsStoryPage, newsPage };
 };
