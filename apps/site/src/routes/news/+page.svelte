@@ -19,14 +19,13 @@
 		day: 'numeric'
 	};
 
-	for (let i = 0; i < data['newsPage'].length; i++) {
-		const date_list = data['newsPage'][i]['date'].split('-');
-		const date = new Date(
-			Date.UTC(parseInt(date_list[0]), parseInt(date_list[1]), parseInt(date_list[2]))
-		);
+	// for (let i = 0; i < data['newsPage'].length; i++) {
+	// 	const date = new Date(
+	// 		data['newsPage'][i]['date']
+	// 	);
 
-		data['newsPage'][i]['date'] = new Intl.DateTimeFormat('en-US', options).format(date);
-	}
+	// 	data['newsPage'][i]['date'] = new Intl.DateTimeFormat('en-US', options).format(date);
+	// }
 </script>
 
 <svelte:head>
@@ -51,7 +50,11 @@
 				<span class="mb-3 block max-w-40ch type-heading-2 group-hover:decoration-underline"
 					>{title}</span
 				>
-				<span class="block type-label">{date}</span>
+				{#if date}
+					<span class="block type-label"
+						>{new Intl.DateTimeFormat('en-US', options).format(new Date(date))}</span
+					>
+				{/if}
 			</div>
 		</a>
 	{/each}
