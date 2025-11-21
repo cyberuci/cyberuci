@@ -1,5 +1,5 @@
 <script lang="ts">
-	import videoFile from './RandomTestVideo_1280x720.mp4';
+	import placeholder from './cover.jpg';
 	import ListItem from './ListItem.svelte';
 	import { CalendarDays, Medal, FlaskConical, MessagesSquare } from 'lucide-svelte';
 	let hackerLabOpen = true;
@@ -7,7 +7,14 @@
 
 <div class="my-6 space-x flex flex-col">
 	<div class="flex flex-col items-center md:flex-row md:items-start md:gap-x-6">
-		<video
+		<img
+			src={placeholder}
+			alt="the place where the video is supposed to be"
+			width="320"
+			height="240"
+			class="mb-2 block h-auto w-4/5 rounded-lg object-cover shadow-lg"
+		/>
+		<!-- <video
 			width="320"
 			height="240"
 			autoplay
@@ -19,7 +26,7 @@
 			<source src={videoFile} type="video/mp4" />
 			<track kind="captions" srclang="en" label="English" default />
 			Your browser does not support the video tag.
-		</video>
+		</video> -->
 		<div class="flex flex-col items-center text-center md:ml-4 md:items-start md:text-left">
 			<p class="text-center type-label text">Check out these links to explore our club!</p>
 
@@ -71,9 +78,9 @@
 		Cybersecurity matters.<br />
 		Be part of the solution.
 	</h1>
-	<p class="description">
+	<!-- <p class="description">
 		Cyber@UCI is a community dedicated to making cybersecurity accessible to everyone, regardless of
 		experience.
-	</p>
+	</p> -->
 </div>
 <enhanced:img class="h-2xl w-full object-cover" src="./cover.jpg" alt="" />

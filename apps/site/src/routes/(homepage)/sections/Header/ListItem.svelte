@@ -25,7 +25,7 @@
 	}
 </script>
 
-<li class="h-35 w-38 flex">
+<li class="h-30 w-33 flex">
 	<button
 		type="button"
 		class="group/list hover:bg-gray-100 block h-full h-full w-full flex flex-col flex-col cursor-pointer select-none appearance-none justify-between border border-gray-4 rounded-sm border-solid bg-transparent p-3 text-left decoration-none transition-colors dark:border-graydark-4 hover:border-gray-5 dark:hover:bg-graydark-5"

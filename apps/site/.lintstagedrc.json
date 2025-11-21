@@ -1,3 +1,3 @@
 {
-	"**/*.{js,ts,svelte,css,json,md}": ["eslint --fix", "prettier --write"]
+	"*": ["eslint --fix", "prettier --write", "eslint"]
 }
