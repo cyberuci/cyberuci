@@ -14,5 +14,15 @@ export const load: PageServerLoad = async () => {
   `);
 	const newsPage = await client.fetch(newsPageQuery);
 
-	return { newsPage };
+	const externalNewsLinkQuery = defineQuery(`
+		*[_type == "newsLink"] | order(date desc) {
+			date,
+			title,
+			source,
+			link,
+		}
+  `);
+	const externalNewsLink = await client.fetch(externalNewsLinkQuery);
+
+	return { newsPage, externalNewsLink };
 };
