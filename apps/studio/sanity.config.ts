@@ -140,20 +140,12 @@ export default defineConfig({
 							.icon(EnvelopeIcon)
 							.child(S.document().schemaType('contactPage').documentId('contactPage')),
 						S.divider(),
-						S.listItem().title('News').icon(CogIcon).child(
-							// S.list()
-							// 	.title('News')
-							// 	.items(
-							// 		S.documentTypeListItems().filter(
-							// 			item => {
-							// 				const id = item.getId()
-							// 				return id && ["news", "newsLink"].includes(id)
-							// 			}
-							// 		)
-							// 	)
-							S.documentList().title('News').filter('_type == "news" || _type == "newsLink"')
-						),
-						// S.documentTypeListItem('news'),
+						S.listItem()
+							.title('News')
+							.icon(CogIcon)
+							.child(
+								S.documentList().title('News').filter('_type == "news" || _type == "newsLink"')
+							),
 						S.documentTypeListItem('resource').title('Resources').icon(DashboardIcon),
 						S.documentTypeListItem('sponsor').title('Sponsors'),
 						S.divider(),

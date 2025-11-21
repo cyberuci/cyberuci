@@ -21,9 +21,9 @@ export default defineType({
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({
-			name: 'cover',
-			type: 'image',
-			title: 'Cover',
+			name: 'source',
+			type: 'string',
+			title: 'Source',
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({

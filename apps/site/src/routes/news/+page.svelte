@@ -18,14 +18,6 @@
 		month: 'long',
 		day: 'numeric'
 	};
-
-	// for (let i = 0; i < data['newsPage'].length; i++) {
-	// 	const date = new Date(
-	// 		data['newsPage'][i]['date']
-	// 	);
-
-	// 	data['newsPage'][i]['date'] = new Intl.DateTimeFormat('en-US', options).format(date);
-	// }
 </script>
 
 <svelte:head>
