@@ -24,11 +24,21 @@ export const load: PageServerLoad = async ({ params: { slug } }) => {
 			cover,
 		}
   `);
-	const newsPage = await client.fetch(newsPageRecentQuery);
+	const recentNewsPage = await client.fetch(newsPageRecentQuery);
+
+	const externalNewsLinkRecentQuery = defineQuery(`
+		*[_type == "newsLink"] | order(date desc) {
+			date,
+			title,
+			source,
+			link,
+		}
+  `);
+	const recentExternalNewsLink = await client.fetch(externalNewsLinkRecentQuery);
 
 	if (!newsStoryPage) {
 		return error(404);
 	}
 
-	return { newsStoryPage, newsPage };
+	return { newsStoryPage, recentNewsPage, recentExternalNewsLink };
 };
