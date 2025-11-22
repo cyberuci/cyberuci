@@ -16,7 +16,7 @@ export const load: PageServerLoad = async ({ params: { slug } }) => {
 	});
 
 	const newsPageRecentQuery = defineQuery(`
-		*[_type == "news"] | order(date desc) [0...4] {
+		*[_type == "news"] | order(date desc) [0...3] {
 			_id,
 			title,
 			slug,
@@ -27,7 +27,7 @@ export const load: PageServerLoad = async ({ params: { slug } }) => {
 	const recentNewsPage = await client.fetch(newsPageRecentQuery);
 
 	const externalNewsLinkRecentQuery = defineQuery(`
-		*[_type == "newsLink"] | order(date desc) {
+		*[_type == "newsLink"] | order(date desc) [0...3] {
 			date,
 			title,
 			source,
