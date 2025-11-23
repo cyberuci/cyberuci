@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import Title from '$lib/common/components/Title.svelte';
-	import NewsPreview from './[slug]/NewsPreview.svelte';
+	import NewsPreview from './NewsPreview.svelte';
 
 	interface Props {
 		data: PageData;

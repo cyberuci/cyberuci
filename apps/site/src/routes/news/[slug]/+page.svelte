@@ -3,7 +3,7 @@
 	import PortableText from '$lib/portableText/PortableText.svelte';
 	import { ArrowLeft } from 'lucide-svelte';
 	import { resolve } from '$app/paths';
-	import NewsPreview from './NewsPreview.svelte';
+	import NewsPreview from '../NewsPreview.svelte';
 
 	interface Props {
 		data: PageData;
