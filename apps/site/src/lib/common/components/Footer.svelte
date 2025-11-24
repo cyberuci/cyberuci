@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import Logo from './Logo.svelte';
+	import { siDiscord, siInstagram, siGithub } from 'simple-icons';
 
 	interface FooterItem {
 		text: string;
@@ -13,6 +14,14 @@
 	}
 
 	const columns: FooterColumn[] = [
+		{
+			title: 'Connect',
+			items: [
+				{ text: 'Discord', href: 'https://discord.gg/cyberuci' },
+				{ text: 'Instagram', href: 'https://www.instagram.com/cyber_at_uci/' },
+				{ text: 'GitHub', href: 'https://github.com/cyberuci' }
+			]
+		},
 		{
 			title: 'Engage',
 			items: [
@@ -39,9 +48,24 @@
 		<!-- eslint-disable svelte/no-navigation-without-resolve -->
 		<a
 			href={item.href}
-			class="type-label text-graydark-11 no-underline hover:text-blue-11 dark:hover:text-bluedark-11"
-			>{item.text}</a
+			class="flex items-center type-label text-graydark-11 no-underline hover:text-blue-11 dark:hover:text-bluedark-11"
+			{...item.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
 		>
+			{#if item.text === 'Discord'}
+				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor">
+					<path d={siDiscord.path} />
+				</svg>
+			{:else if item.text === 'Instagram'}
+				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor">
+					<path d={siInstagram.path} />
+				</svg>
+			{:else if item.text === 'GitHub'}
+				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor">
+					<path d={siGithub.path} />
+				</svg>
+			{/if}
+			{item.text}
+		</a>
 		<!-- eslint-enable svelte/no-navigation-without-resolve -->
 	</li>
 {/snippet}
@@ -63,7 +87,7 @@
 			<a href={resolve('/')}><Logo /></a>
 		</div>
 		<div
-			class="grid grid-cols-1 max-w-35% w-full gap-8 md:[grid-template-columns:var(--cols)]"
+			class="grid grid-cols-1 max-w-60% w-full gap-8 md:[grid-template-columns:var(--cols)]"
 			style={`--cols: repeat(${columns.length}, minmax(0, 1fr))`}
 		>
 			{#each columns as col (col.title)}
