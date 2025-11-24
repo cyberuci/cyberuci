@@ -21,7 +21,7 @@ export const load: PageServerLoad = async ({ params: { slug } }) => {
 	const newsArticleTitle = newsStoryPage.title;
 
 	const externalNewsLinkQuery = defineQuery(`
-   	*[_type == "newsLink" && title == $newsArticleTitle][0] {
+   	*[_type == "newsLink" && title match $newsArticleTitle][0] {
 			date,
 			title,
 			source,

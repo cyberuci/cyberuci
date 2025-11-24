@@ -16,6 +16,7 @@
 
 <div class="my-40 space-x">
 	<Title title="News" />
+
 	{#each data.newsPage as { _id, title, slug, date, cover }, i (_id)}
 		<div class="mb-5 flex flex-col lg:flex-row">
 			<NewsPreview

@@ -53,9 +53,9 @@
 
 	<h1 class="mt-24 max-w-40ch type-heading-2">Read More:</h1>
 
-	<div class="flex flex-col lg:flex-row space-x-4">
+	<div class="flex flex-col lg:flex-row lg:space-x-4">
 		{#each data.recentNewsPage as { _id, title, slug, date, cover }, i (_id)}
-			<div class="flex flex-row lg:flex-col">
+			<div class="mb-5 flex flex-col lg:flex-col">
 				<NewsPreview
 					{title}
 					slug={slug.current}
