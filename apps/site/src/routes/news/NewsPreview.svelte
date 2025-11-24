@@ -52,21 +52,23 @@
 		</a>
 
 		{#if date}
-			<span class="block type-label"
-				>{new Intl.DateTimeFormat('en-US', options).format(new Date(date))}</span
-			>
+			<span class="block type-label">
+				{new Intl.DateTimeFormat('en-US', options).format(new Date(date))}
+			</span>
 		{/if}
 
 		{#if source}
-			<a
-				href={externalLink}
-				rel="external"
-				target="_blank"
-				style="color: white"
-				class="type-label underline underline"
-			>
-				{source} ⧉
-			</a>
+			<span class="block type-label">
+				<a
+					href={externalLink}
+					rel="external"
+					target="_blank"
+					style="color: white"
+					class="underline"
+				>
+					{source} ⧉
+				</a>
+			</span>
 		{/if}
 	</div>
 </div>
