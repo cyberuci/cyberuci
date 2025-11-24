@@ -39,7 +39,7 @@
 				style="color: white"
 				class="underline"
 			>
-				By: {data.externalNewsLink.source} ⧉
+				{data.externalNewsLink.source} ⧉
 			</a>
 			<br />
 		{/if}
