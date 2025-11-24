@@ -17,13 +17,16 @@
 <div class="my-40 space-x">
 	<Title title="News" />
 	{#each data.newsPage as { _id, title, slug, date, cover }, i (_id)}
-		<NewsPreview
-			{title}
-			slug={slug.current}
-			{date}
-			{cover}
-			source={data.externalNewsLink[i].source}
-			externalLink={data.externalNewsLink[i].link}
-		/>
+		<div class="mb-5 flex flex-col lg:flex-row">
+			<NewsPreview
+				{title}
+				slug={slug.current}
+				{date}
+				{cover}
+				source={data.externalNewsLink[i].source}
+				externalLink={data.externalNewsLink[i].link}
+				relativeSize="l"
+			/>
+		</div>
 	{/each}
 </div>

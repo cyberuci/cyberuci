@@ -3,7 +3,7 @@
 	import PortableText from '$lib/portableText/PortableText.svelte';
 	import { ArrowLeft } from 'lucide-svelte';
 	import { resolve } from '$app/paths';
-	import NewsPreviewHorizontal from '../NewsPreviewHorizontal.svelte';
+	import NewsPreview from '../NewsPreview.svelte';
 
 	interface Props {
 		data: PageData;
@@ -55,14 +55,17 @@
 
 	<div class="flex flex-col lg:flex-row space-x-4">
 		{#each data.recentNewsPage as { _id, title, slug, date, cover }, i (_id)}
-			<NewsPreviewHorizontal
-				{title}
-				slug={slug.current}
-				{date}
-				{cover}
-				source={data.recentExternalLink[i].source}
-				externalLink={data.recentExternalLink[i].link}
-			/>
+			<div class="flex flex-row lg:flex-col">
+				<NewsPreview
+					{title}
+					slug={slug.current}
+					{date}
+					{cover}
+					source={data.recentExternalLink[i].source}
+					externalLink={data.recentExternalLink[i].link}
+					relativeSize="s"
+				/>
+			</div>
 		{/each}
 	</div>
 </div>
