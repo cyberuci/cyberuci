@@ -3,7 +3,7 @@
 	import PortableText from '$lib/portableText/PortableText.svelte';
 	import { ArrowLeft } from 'lucide-svelte';
 	import { resolve } from '$app/paths';
-	import NewsPreview from '../NewsPreview.svelte';
+	import NewsPreviewHorizontal from '../NewsPreviewHorizontal.svelte';
 
 	interface Props {
 		data: PageData;
@@ -16,8 +16,6 @@
 		month: 'long',
 		day: 'numeric'
 	};
-
-	console.log(data.externalNewsLink);
 </script>
 
 <svelte:head>
@@ -41,7 +39,7 @@
 				style="color: white"
 				class="underline"
 			>
-				{data.externalNewsLink.source} ⧉
+				By: {data.externalNewsLink.source} ⧉
 			</a>
 			<br />
 		{/if}
@@ -55,14 +53,16 @@
 
 	<h1 class="mt-24 max-w-40ch type-heading-2">Read More:</h1>
 
-	{#each data.recentNewsPage as { _id, title, slug, date, cover }, i (_id)}
-		<NewsPreview
-			{title}
-			slug={slug.current}
-			{date}
-			{cover}
-			source={data.recentExternalLink[i].source}
-			externalLink={data.recentExternalLink[i].link}
-		/>
-	{/each}
+	<div class="flex flex-col lg:flex-row space-x-4">
+		{#each data.recentNewsPage as { _id, title, slug, date, cover }, i (_id)}
+			<NewsPreviewHorizontal
+				{title}
+				slug={slug.current}
+				{date}
+				{cover}
+				source={data.recentExternalLink[i].source}
+				externalLink={data.recentExternalLink[i].link}
+			/>
+		{/each}
+	</div>
 </div>
