@@ -95,5 +95,5 @@
 			{/each}
 		</div>
 	</div>
-	<p class="text-xs type-label">© 2025 Cyber @ UCI. All rights reserved.</p>
+	<p class="text-xs type-label">© {new Date().getFullYear()} Cyber @ UCI. All rights reserved.</p>
 </footer>
