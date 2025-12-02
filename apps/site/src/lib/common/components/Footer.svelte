@@ -52,15 +52,15 @@
 			{...item.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
 		>
 			{#if item.text === 'Discord'}
-				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor">
+				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 					<path d={siDiscord.path} />
 				</svg>
 			{:else if item.text === 'Instagram'}
-				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor">
+				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 					<path d={siInstagram.path} />
 				</svg>
 			{:else if item.text === 'GitHub'}
-				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor">
+				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 					<path d={siGithub.path} />
 				</svg>
 			{/if}
