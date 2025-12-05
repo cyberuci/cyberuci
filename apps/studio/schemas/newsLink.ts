@@ -1,9 +1,9 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 import { Newspaper } from 'lucide-react';
 
 export default defineType({
 	name: 'newsLink',
-	title: 'New Links',
+	title: 'News Links',
 	icon: Newspaper,
 	type: 'document',
 	fields: [

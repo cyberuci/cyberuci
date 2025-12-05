@@ -36,8 +36,7 @@
 				href={data.externalNewsLink.link}
 				rel="external"
 				target="_blank"
-				style="color: white"
-				class="underline"
+				class="text-white underline"
 			>
 				{data.externalNewsLink.source} ⧉
 			</a>
@@ -54,7 +53,7 @@
 	<h1 class="mt-24 max-w-40ch type-heading-2">Read More:</h1>
 
 	<div class="flex flex-col lg:flex-row lg:space-x-4">
-		{#each data.recentNewsPage as { _id, title, slug, date, cover }, i (_id)}
+		{#each data.recentArticles as { _id, title, slug, date, cover }, i (_id)}
 			<div class="mb-5 flex flex-col lg:flex-col">
 				<NewsPreview
 					{title}

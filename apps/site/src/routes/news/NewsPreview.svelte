@@ -2,12 +2,13 @@
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
 	import { resolve } from '$app/paths';
+	import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 	interface Props {
 		title: string;
 		slug: string;
 		date: string;
-		cover: object;
+		cover: SanityImageSource;
 		source: string;
 		externalLink: string;
 		relativeSize: string;
@@ -28,7 +29,7 @@
 	href={resolve('/news/[slug]', {
 		slug: slug
 	})}
-	class={`mr-5 ${relativeSize == 's' ? 'lg:w-3/3 mb-5' : 'lg:w-1/3'}`}
+	class={`mr-5 ${relativeSize === 's' ? 'lg:w-3/3 mb-5' : 'lg:w-1/3'}`}
 >
 	<img
 		alt="The cover of the article."
@@ -46,7 +47,7 @@
 	>
 		<div class="line-clamp-3 mb-3">
 			<span
-				class={`block max-w-40ch type-heading-2 group-hover:decoration-underline ${relativeSize == 's' ? 'text-2xl' : ''}`}
+				class={`block max-w-40ch type-heading-2 group-hover:decoration-underline ${relativeSize === 's' ? 'text-2xl' : ''}`}
 				>{title}</span
 			>
 		</div>
@@ -60,7 +61,7 @@
 
 	{#if source}
 		<span class="block type-label">
-			<a href={externalLink} rel="external" target="_blank" style="color: white" class="underline">
+			<a href={externalLink} rel="external" target="_blank" class="text-white underline">
 				{source} ⧉
 			</a>
 		</span>
