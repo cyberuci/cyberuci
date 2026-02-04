@@ -7,5 +7,11 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	"routes": [
+		{
+			"pattern": "content.cyberuci.com",
+			"custom_domain": true
+		}
+	]
 }
