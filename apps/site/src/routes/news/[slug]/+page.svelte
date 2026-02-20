@@ -36,8 +36,7 @@
 				href={data.externalNewsLink.link}
 				rel="external"
 				target="_blank"
-				class="underline"
-				style="color: white"
+				class="text-[#ffffff] underline"
 			>
 				{data.externalNewsLink.source} ⧉
 			</a>

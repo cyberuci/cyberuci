@@ -61,7 +61,7 @@
 
 	{#if source}
 		<span class="block type-label">
-			<a href={externalLink} rel="external" target="_blank" class="underline" style="color: white">
+			<a href={externalLink} rel="external" target="_blank" class="text-[#ffffff] underline">
 				{source} ⧉
 			</a>
 		</span>
