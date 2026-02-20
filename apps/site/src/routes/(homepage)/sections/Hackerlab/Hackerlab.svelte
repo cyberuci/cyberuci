@@ -15,7 +15,7 @@
 	let { section }: Props = $props();
 </script>
 
-<div class="my-24 space-x">
+<div class="my-24 space-x" id="hacker-lab">
 	<div class="grid items-start gap-y-15 lg:grid-cols-16">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<Cpu size={18} />
