@@ -7,7 +7,8 @@
 		LucideBrush,
 		LucideMail,
 		LucideUsers,
-		Trophy
+		Trophy,
+		Calendar
 	} from 'lucide-svelte';
 	import ListGroup from './ListGroup.svelte';
 
@@ -64,6 +65,11 @@
 				href: '/subteams',
 				title: 'Subteams',
 				Icon: Group
+			})}
+			{@render ListItem({
+				href: '/events',
+				title: 'Events',
+				Icon: Calendar
 			})}
 			{@render ListItem({
 				href: '/competition',
