@@ -7,7 +7,6 @@ const fetchNewsPageQuery = async () => {
 		*[_type == "news"] | order(date desc) {
 			_id,
 			title,
-			slug,
 			date,
 			cover,
 		}
@@ -25,8 +24,6 @@ const fetchNewsPageQuery = async () => {
 const fetchExternalNewsLink = async () => {
 	const externalNewsLinkQuery = defineQuery(`
 		*[_type == "newsLink"] | order(date desc) {
-			date,
-			title,
 			source,
 			link,
 		}
