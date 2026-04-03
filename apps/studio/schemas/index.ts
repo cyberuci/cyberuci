@@ -6,7 +6,7 @@ import resource from './resource';
 import person from './person';
 import board from './board';
 import news from './news';
-import newsLink from './newsLink';
+// import newsLink from './newsLink';
 // import event from './event';
 import sponsor from './sponsor';
 import info from './info';
@@ -22,6 +22,5 @@ export const schemaTypes = [
 	board,
 	info,
 	news,
-	newsLink,
 	sponsor
 ];

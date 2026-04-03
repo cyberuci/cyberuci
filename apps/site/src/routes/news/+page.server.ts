@@ -5,10 +5,11 @@ import { defineQuery } from 'groq';
 const fetchNewsPageQuery = async () => {
 	const newsPageQuery = defineQuery(`
 		*[_type == "news"] | order(date desc) {
-			_id,
 			title,
 			date,
 			cover,
+			source,
+			link,
 		}
   	`);
 
@@ -21,26 +22,8 @@ const fetchNewsPageQuery = async () => {
 	return newsPage;
 };
 
-const fetchExternalNewsLink = async () => {
-	const externalNewsLinkQuery = defineQuery(`
-		*[_type == "newsLink"] | order(date desc) {
-			source,
-			link,
-		}
-  	`);
-
-	const externalNewsLink = await client.fetch(externalNewsLinkQuery);
-
-	if (externalNewsLink == null) {
-		throw Error('External news link data is null.');
-	}
-
-	return externalNewsLink;
-};
-
 export const load: PageServerLoad = async () => {
 	return {
-		newsPage: await fetchNewsPageQuery(),
-		externalNewsLink: await fetchExternalNewsLink()
+		newsPage: await fetchNewsPageQuery()
 	};
 };
