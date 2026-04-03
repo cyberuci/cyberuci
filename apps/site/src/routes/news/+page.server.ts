@@ -5,6 +5,7 @@ import { defineQuery } from 'groq';
 const fetchNewsPageQuery = async () => {
 	const newsPageQuery = defineQuery(`
 		*[_type == "news"] | order(date desc) {
+			_id,
 			title,
 			date,
 			cover,
