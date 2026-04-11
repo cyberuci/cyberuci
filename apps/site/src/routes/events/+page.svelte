@@ -5,6 +5,7 @@
 	import { ScheduleXCalendar } from '@schedule-x/svelte';
 	import { createCalendar, createViewMonthGrid } from '@schedule-x/calendar';
 	import '@schedule-x/theme-default/dist/index.css';
+	import 'temporal-polyfill/global';
 	import { Temporal } from 'temporal-polyfill';
 
 	let calendarApp;
