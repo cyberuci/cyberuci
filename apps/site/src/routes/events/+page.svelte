@@ -1,18 +1,57 @@
 <script lang="ts">
 	import Title from '$lib/common/components/Title.svelte';
+
+	import { onMount } from 'svelte';
+	import { ScheduleXCalendar } from '@schedule-x/svelte';
+	import { createCalendar, createViewMonthGrid } from '@schedule-x/calendar';
+	import '@schedule-x/theme-default/dist/index.css';
+	import { Temporal } from 'temporal-polyfill';
+
+	let calendarApp;
+
+	onMount(() => {
+		calendarApp = createCalendar({
+			views: [createViewMonthGrid()],
+			events: [
+				{
+					id: '1',
+					title: 'Event 1',
+					start: Temporal.PlainDate.from('2026-04-06'),
+					end: Temporal.PlainDate.from('2026-04-06')
+				},
+				{
+					id: '2',
+					title: 'Event 2',
+					start: Temporal.ZonedDateTime.from('2026-04-06T02:00:00+09:00[Asia/Tokyo]'),
+					end: Temporal.ZonedDateTime.from('2026-04-06T04:00:00+09:00[Asia/Tokyo]')
+				}
+			]
+		});
+	});
 </script>
 
 <svelte:head>
 	<title>Events — Cyber @ UCI</title>
 </svelte:head>
-<div class="my-40 space-x">
+
+<main class="my-40 space-x">
 	<Title title="Events" />
-	<iframe
-		src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FLos_Angeles&showPrint=0&src=Y3liZXJjbHViQHVjaS5lZHU&src=Y19lbWpxa281OWhmMGFkMWxpM29tdWVrNDBsMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=ZWxpdTE1QHVjaS5lZHU&color=%23039be5&color=%23b39ddb&color=%230b8043&color=%23616161"
-		style="border:solid 1px #777"
-		frameborder="0"
-		scrolling="no"
-		class="h-[75vh] w-full"
-		title="Google Calendar"
-	></iframe>
-</div>
+
+	<div class="calendar-wrapper">
+		{#if calendarApp}
+			<ScheduleXCalendar {calendarApp} />
+		{/if}
+	</div>
+</main>
+
+<style>
+	.calendar-wrapper {
+		width: 100%;
+	}
+	:global(.sx-svelte-calendar-wrapper) {
+		height: 100vh;
+	}
+	:global(.sx__calendar) {
+		@apply type-label; /* This works if using UnoCSS/Tailwind */
+	}
+</style>

@@ -53,5 +53,13 @@
 		"wrangler": "4.48.0",
 		"zod": "4.1.12"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@preact/signals": "^2.9.0",
+		"@schedule-x/calendar": "^4.4.0",
+		"@schedule-x/svelte": "^3.0.0",
+		"@schedule-x/theme-default": "^4.4.0",
+		"preact": "^10.29.1",
+		"temporal-polyfill": "^0.3.2"
+	}
 }
