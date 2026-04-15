@@ -1,8 +1,6 @@
 <script lang="ts">
 	import type { PageData } from '../../$types';
 
-	import { Cpu } from 'lucide-svelte';
-
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
 
@@ -18,8 +16,17 @@
 <div class="my-24 space-x" id="hacker-lab">
 	<div class="grid items-start gap-y-15 lg:grid-cols-16">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
-			<Cpu size={18} />
-			<h2 class="type-label font-550">HackerLab</h2>
+			<h2 class="type-label font-550">
+				<span aria-hidden="true"
+					><span style="color:#FF6B6B">/</span><span style="color:#FF9F43">/</span><span
+						style="color:#FECA57">/</span
+					><span style="color:#1DD1A1">/</span><span style="color:#48DBFB">/</span><span
+						style="color:#54A0FF">/</span
+					><span style="color:#5F27CD">/</span><span style="color:#C44FE3">/</span><span
+						style="color:#FF6B9D">/</span
+					></span
+				> HackerLab
+			</h2>
 		</div>
 		<div class="lg:col-start-5 lg:col-end-14">
 			<p class="mb-6 mt-2 max-w-prose type-heading-1 line-height-relaxed">
