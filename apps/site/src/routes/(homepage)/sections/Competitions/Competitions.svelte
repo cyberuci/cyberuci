@@ -19,6 +19,7 @@
 </script>
 
 <div class="my-24 space-x">
+<<<<<<< HEAD
 	<div class="card flex flex-col overflow-hidden rounded-2xl md:flex-row">
 		{#if imageSrc}
 			<div class="w-full flex-shrink-0 p-3 md:w-1/2">
