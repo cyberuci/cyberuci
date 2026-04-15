@@ -1,20 +1,22 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import cover from './cover.jpg';
 	import ListItem from './ListItem.svelte';
 	import { CalendarDays, Medal, FlaskConical, MessagesSquare } from 'lucide-svelte';
-	//let hackerLabOpen = true;
 </script>
 
-<div class="my-6 space-x flex flex-col px-3">
-	<h1 class="type-display mt-0 sm:mt-0">
-		Cybersecurity matters.<br />
-		Be part of the solution.
-	</h1>
-	<div class="flex flex-col items-center md:flex-row md:items-start md:gap-x-0">
+<div class="space-x mb-6" style="margin-top: -68px;">
+	<div class="relative overflow-hidden rounded-2xl">
+		<img src={cover} class="block h-auto w-full" alt="" />
+		<div class="absolute inset-0" style="background: rgba(0,0,0,0.72);"></div>
 		<div
-			class="m-0 h-full w-full flex flex-col items-center justify-end p-0 text-center md:ml-0 md:items-start md:text-left"
+			class="absolute inset-0 z-10 flex flex-col justify-between px-8 pb-8"
+			style="padding-top: calc(68px + 2rem);"
 		>
-			<div class="h-50"></div>
+			<h1 class="text-white type-display mb-0 mt-0">
+				Cybersecurity matters.<br />
+				Be part of the solution.
+			</h1>
 			<ul class="grid grid-cols-2 mx-auto w-fit list-none gap-0.5">
 				<ListItem
 					Icon={FlaskConical}
@@ -33,7 +35,6 @@
 						await goto('/events');
 					}}
 				/>
-
 				<ListItem
 					Icon={MessagesSquare}
 					title="Join Our Discord"
@@ -41,7 +42,6 @@
 						window.open('https://discord.gg/fMzGVSRMkU', '_blank', 'noopener,noreferrer');
 					}}
 				/>
-
 				<ListItem
 					Icon={Medal}
 					title="Competition Team"

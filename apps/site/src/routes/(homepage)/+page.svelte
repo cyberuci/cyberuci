@@ -24,7 +24,7 @@
 	<Header />
 {/if}
 <Competitions description={data.homepage.competitions.description} />
-<Hackerlab section={data.homepage.hackerlab} />
+<Hackerlab />
 {#if data.socials.socials}
 	<Socials socials={data.socials.socials} />
 {/if}
