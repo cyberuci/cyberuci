@@ -56,11 +56,11 @@
 	"type": "module",
 	"dependencies": {
 		"@preact/signals": "^2.9.0",
-		"@schedule-x/calendar": "^4.4.0",
-		"@schedule-x/calendar-controls": "^4.4.0",
+		"@schedule-x/calendar": "^3.7.3",
+		"@schedule-x/calendar-controls": "^3.7.3",
 		"@schedule-x/svelte": "^3.0.0",
-		"@schedule-x/theme-default": "^4.4.0",
+		"@schedule-x/theme-default": "^3.7.3",
 		"preact": "^10.29.1",
-		"temporal-polyfill": "^0.3.2"
+		"temporal-polyfill": "0.3.0"
 	}
 }
