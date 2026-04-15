@@ -57,6 +57,7 @@
 	"dependencies": {
 		"@preact/signals": "^2.9.0",
 		"@schedule-x/calendar": "^4.4.0",
+		"@schedule-x/calendar-controls": "^4.4.0",
 		"@schedule-x/svelte": "^3.0.0",
 		"@schedule-x/theme-default": "^4.4.0",
 		"preact": "^10.29.1",
