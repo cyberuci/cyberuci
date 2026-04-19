@@ -3,7 +3,7 @@
 </script>
 
 <div class="my-24 space-x">
-	<div class="grid grid-cols-2 gap-3">
+	<div class="grid grid-cols-1 gap-3 md:grid-cols-2">
 		<!-- Featured event card -->
 		<div class="featured-card flex flex-col gap-4 rounded-2xl p-6">
 			<CalendarDays size={20} />

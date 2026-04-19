@@ -10,8 +10,8 @@
 </script>
 
 <div class="my-24 space-x">
-	<div class="card flex overflow-hidden rounded-2xl">
-		<div class="w-1/2 flex-shrink-0 p-3">
+	<div class="card flex flex-col overflow-hidden rounded-2xl md:flex-row">
+		<div class="w-full flex-shrink-0 p-3 md:w-1/2">
 			<enhanced:img
 				class="h-full w-full rounded-xl object-cover"
 				src="./hivestorm-2.jpeg"
