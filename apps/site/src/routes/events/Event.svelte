@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { Temporal } from 'temporal-polyfill';
+	import { CalendarColors } from './CalendarColors';
+
 	import 'temporal-polyfill/global';
 
 	interface Props {
@@ -13,7 +15,7 @@
 
 	let currentTime = Temporal.Now.zonedDateTimeISO();
 
-	let { id, title, start, end, location }: Props = $props();
+	let { id, title, start, end, calendarId, location }: Props = $props();
 
 	let dateOptions: Intl.DateTimeFormatOptions = {
 		weekday: 'short',
@@ -28,27 +30,34 @@
 	};
 </script>
 
-<div>
-	{#if Temporal.PlainDateTime.compare(currentTime, start) == -1}
+{#if Temporal.PlainDateTime.compare(currentTime, start) == -1}
+	<div
+		class="mb-[10px] w-full flex flex-row rounded-md"
+		style:background-color={CalendarColors[calendarId]?.lightColors?.container}
+		style:color={CalendarColors[calendarId]?.lightColors?.onContainer}
+		id="{id}_side_view"
+	>
 		<div
-			class="mb-10px w-full rounded-md bg-#3D3D3D pb-17px pl-17px pr-17px pt-1px"
-			id="{id}_side_view"
-		>
+			style="width: 3%;"
+			class="rounded-l-md"
+			style:background-color={CalendarColors[calendarId]?.lightColors?.main}
+		></div>
+
+		<div style="width: 97%" class="pl-[17px] pr-[17px] pt-[1px]">
 			<p class="type-label">
 				<b>
 					{new Intl.DateTimeFormat(undefined, timeOptions).format(start.toPlainTime())} -
 					{new Intl.DateTimeFormat(undefined, timeOptions).format(end.toPlainTime())}
 					{new Intl.DateTimeFormat('en-US', dateOptions).format(new Date(start.toLocaleString()))}
 				</b>: {title}
-			</p>
+				<br />
 
-			<div class="flex flex-row">
 				{#if location != ''}
-					<span class="type-label"
+					<span class="block pt-[5px] type-label"
 						><i class="fa fa-map-marker" aria-hidden="true"></i> {location}</span
 					>
 				{/if}
-			</div>
+			</p>
 		</div>
-	{/if}
-</div>
+	</div>
+{/if}
