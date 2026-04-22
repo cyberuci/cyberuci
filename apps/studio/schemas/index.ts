@@ -2,6 +2,7 @@ import home from './pages/home';
 import competition, { achievements } from './pages/competition';
 import subteams from './pages/subteams';
 import contact from './pages/contact';
+import corporate from './pages/corporate';
 import resource from './resource';
 import person from './person';
 import board from './board';
@@ -17,6 +18,7 @@ export const schemaTypes = [
 	achievements,
 	subteams,
 	contact,
+	corporate,
 	resource,
 	person,
 	board,
