@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Temporal } from 'temporal-polyfill';
-	import { CalendarColors } from './CalendarColors';
+	import { CalendarColors } from './calendarColors';
 
 	import 'temporal-polyfill/global';
 
