@@ -1,4 +1,4 @@
-import { GOOGLE_CALENDER_API_KEY } from '$env/static/private';
+import { GOOGLE_CALENDAR_API_KEY } from '$env/static/private';
 
 export interface GoogleCalendarEvent {
 	kind: 'calendar#event';
@@ -41,7 +41,7 @@ export const load = async () => {
 	const calendar_info: Record<string, GoogleCalendarEvent[]> = {};
 
 	for (const [calendar_name, calendar_id] of Object.entries(CALENDAR_IDs)) {
-		const url = `https://www.googleapis.com/calendar/v3/calendars/${calendar_id}/events?key=${GOOGLE_CALENDER_API_KEY}&timeMin=2026-01-01T00:00:00Z&timeMax=2026-07-01T00:00:00Z&singleEvents=true&orderBy=startTime`;
+		const url = `https://www.googleapis.com/calendar/v3/calendars/${calendar_id}/events?key=${GOOGLE_CALENDAR_API_KEY}&timeMin=2026-01-01T00:00:00Z&timeMax=2026-07-01T00:00:00Z&singleEvents=true&orderBy=startTime`;
 
 		const response = await fetch(url);
 		const data = await response.json();
