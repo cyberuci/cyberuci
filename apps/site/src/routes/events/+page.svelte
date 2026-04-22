@@ -3,7 +3,7 @@
 
 	import Title from '$lib/common/components/Title.svelte';
 	import Event from './Event.svelte';
-	import { CalendarColors } from './CalendarColors';
+	import { CalendarColors } from './calendarColors';
 	import { type GoogleCalendarEvent } from './+page.server';
 
 	import type { PageData } from './$types';
