@@ -60,6 +60,7 @@
 		"@schedule-x/calendar-controls": "^3.7.3",
 		"@schedule-x/svelte": "^3.0.0",
 		"@schedule-x/theme-default": "^3.7.3",
+		"@splinetool/runtime": "^1.12.87",
 		"preact": "^10.29.1",
 		"temporal-polyfill": "0.3.0"
 	}

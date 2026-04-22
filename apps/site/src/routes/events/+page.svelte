@@ -37,8 +37,6 @@
 	const calendarControls = createCalendarControlsPlugin();
 
 	onMount(() => {
-		let prevEventClicked: HTMLElement | null = null;
-
 		async function loadAllCalendars() {
 			for (const [calendar_name, calendar_data] of Object.entries(data.events)) {
 				calendarEvents.push(
@@ -70,25 +68,23 @@
 				events: calendarEvents,
 				callbacks: {
 					onEventClick(event) {
-						const eventId = event.id + '_side_view';
-						const eventSide = document.getElementById(eventId);
+						const largeScreenSize = 1024;
+
+						const eventSide = document.getElementById(event.id + '_side_view');
 						const eventDetails = document.getElementById('eventDetails');
 
 						if (eventSide != null && eventDetails != null) {
-							const targetPosition = eventSide.offsetTop - eventDetails.offsetTop;
-
-							prevEventClicked?.classList.remove('bg-#212121');
-							prevEventClicked?.classList.add('bg-#3D3D3D');
-
-							eventSide.classList.remove('bg-#3D3D3D');
-							eventSide.classList.add('bg-#212121');
-
-							prevEventClicked = eventSide;
-
-							eventDetails.scrollTo({
-								top: targetPosition,
-								behavior: 'smooth'
-							});
+							if (window.innerWidth >= largeScreenSize) {
+								let targetPosition = eventSide.offsetTop - eventDetails.offsetTop;
+								eventDetails.scrollTo({
+									top: targetPosition,
+									behavior: 'smooth'
+								});
+							} else
+								window.scrollTo({
+									top: eventSide.offsetTop - 10,
+									behavior: 'smooth'
+								});
 						}
 					}
 				},
@@ -115,8 +111,22 @@
 			</div>
 		</div>
 
-		<div id="eventDetails" class="h-75vh w-20/20 overflow-scroll pl-40px lg:w-7/20">
-			<p class="text-1.1rem type-label">Upcoming Events</p>
+		<div
+			id="eventDetails"
+			class="mt-1.2rem w-20/20 pl-[0px] lg:mt-0 lg:h-80vh lg:w-7/20 lg:overflow-scroll lg:pl-40px"
+		>
+			<p class="mb-[10px] text-lg type-label">Upcoming Events</p>
+
+			<!-- <div class="flex flex-row mb-[15px]">
+				{#each Object.entries(CalendarColors) as [calendarId, colorDetails]}
+					<div class="w-fit h-fit rounded-md m-[0px] mr-[5px]" 
+						style:background-color={colorDetails?.lightColors?.container}
+						style:color={colorDetails?.lightColors?.onContainer}>
+						<p class="type-label m-[5px]">{calendarId}</p>
+					</div>
+				{/each}
+			</div> -->
+
 			{#each calendarEvents as event (event.id)}
 				<Event
 					id={event.id}

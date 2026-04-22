@@ -1,5 +1,5 @@
 .sx-svelte-calendar-wrapper {
-	height: 75vh;
+	height: 80vh;
 
 	--sx-color-background: #151515;
 	--sx-internal-color-text: #fff;
@@ -19,11 +19,11 @@
 }
 
 .sx__date-picker__years-view-accordion__month {
-	font-size: 0.8rem;
+	font-size: 0.875rem;
 }
 
 .sx__date-picker__years-accordion__expand-button {
-	font-size: 0.8rem;
+	font-size: 0.875rem;
 }
 
 .sx__button:hover {
@@ -31,11 +31,15 @@
 }
 
 .sx__date-picker__month-view-header__month-year {
-	font-size: 1rem !important;
+	font-size: 0.875rem !important;
 }
 
 .sx__calendar .sx__date-picker__day-names {
-	font-size: 0.7rem !important;
+	font-size: 0.875rem !important;
+}
+
+.sx__range-heading {
+	font-size: 0.875rem !important;
 }
 
 .sx__calendar .sx__date-picker__week {
