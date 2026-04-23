@@ -16,9 +16,9 @@
 		"@sanity/vision": "4.15.0",
 		"groq": "4.15.0",
 		"lucide-react": "0.503.0",
-		"react": "19.2.0",
-		"react-dom": "19.2.0",
-		"react-is": "19.2.0",
+		"react": "19.2.5",
+		"react-dom": "19.2.5",
+		"react-is": "19.2.5",
 		"sanity": "4.15.0",
 		"styled-components": "6.1.19"
 	},
