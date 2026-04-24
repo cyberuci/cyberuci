@@ -5,9 +5,9 @@
 	import { CalendarDays, Medal, FlaskConical, MessagesSquare } from 'lucide-svelte';
 </script>
 
-<div class="space-x mb-6" style="margin-top: -68px;">
-	<div class="relative overflow-hidden rounded-2xl">
-		<img src={cover} class="block h-auto w-full" alt="" />
+<div class="mb-6" style="margin-top: -68px">
+	<div class="relative overflow-hidden" style="height: 100svh;">
+		<img src={cover} class="absolute inset-0 h-full w-full object-cover" alt="" />
 		<div class="absolute inset-0" style="background: rgba(0,0,0,0.72);"></div>
 		<div
 			class="absolute inset-0 z-10 flex flex-col justify-between px-8 pb-8"

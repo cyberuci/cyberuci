@@ -24,7 +24,7 @@
 {:else}
 	<Header />
 {/if}
-<Events />
+<Events event={data.nextEvent} />
 <Competitions description={data.homepage.competitions.description} />
 <Hackerlab />
 {#if data.socials.socials}

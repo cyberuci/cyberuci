@@ -30,9 +30,9 @@
 
 <style>
 	.btn {
-		background-color: #e0e0e0; /* gray-5 */
-		color: #202020; /* gray-12 */
-		border-color: #cecece; /* gray-7 */
+		background-color: rgba(255, 255, 255, 0.15);
+		color: white;
+		border-color: rgba(255, 255, 255, 0.3);
 		transition:
 			background-color 0.15s,
 			color 0.15s,
@@ -40,16 +40,16 @@
 	}
 
 	.btn:hover {
-		background-color: black;
-		color: white;
-		border-color: black;
+		background-color: white;
+		color: black;
+		border-color: white;
 	}
 
 	@media (prefers-color-scheme: dark) {
 		.btn {
-			background-color: #222222; /* graydark-3 */
-			color: #eeeeee; /* graydark-12 */
-			border-color: #484848; /* graydark-7 */
+			background-color: rgba(255, 255, 255, 0.15);
+			color: white;
+			border-color: rgba(255, 255, 255, 0.3);
 		}
 
 		.btn:hover {
