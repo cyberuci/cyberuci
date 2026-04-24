@@ -1,5 +1,7 @@
 import { type CalendarType } from '@schedule-x/calendar';
 
+export const DescriptionSizeView = '_side_view';
+
 export const CalendarColors: Record<string, CalendarType> = {
 	General: {
 		colorName: 'General',

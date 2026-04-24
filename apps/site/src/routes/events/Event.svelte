@@ -3,8 +3,10 @@
 	import { CalendarColors } from '$lib/common/components/Calendar/constants';
 	import { showDescription } from '$lib/common/components/Calendar/calendarApp';
 
-	import { slide } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
+	import Time from './Time.svelte';
+
+	import { MapPin } from 'lucide-svelte';
+	import { CalendarDays } from 'lucide-svelte';
 
 	import 'temporal-polyfill/global';
 
@@ -21,20 +23,6 @@
 	let currentTime = Temporal.Now.zonedDateTimeISO();
 
 	let { id, title, description, start, end, calendarId, location }: Props = $props();
-
-	let weekDayFormat: Intl.DateTimeFormatOptions = {
-		weekday: 'long'
-	};
-
-	let dateFormat: Intl.DateTimeFormatOptions = {
-		month: 'numeric',
-		day: 'numeric'
-	};
-
-	let timeFormat: Intl.DateTimeFormatOptions = {
-		hour: 'numeric',
-		minute: 'numeric'
-	};
 </script>
 
 {#if Temporal.PlainDateTime.compare(currentTime, start) == -1}
@@ -44,39 +32,30 @@
 		onclick={() => showDescription(id + '_description', true)}
 	>
 		<div
-			class="w-2/100 rounded-l-md lg:w-3/100"
+			class="w-2/100 rounded-l-md"
 			style:background-color={CalendarColors[calendarId]?.lightColors?.main}
 		></div>
 
-		<div class="lg: width: 97/100 w-98/100 pl-[17px] pr-[17px] pt-[1px]">
-			<p class="type-label">
-				<span class="block pt-[5px] type-label">
-					<i class="fa-solid fa-calendar"></i> <b>{title} </b><br /></span
-				>
-				<span class="block pt-[5px] type-label">
-					<i class="fa-solid fa-clock"></i>
-					{new Intl.DateTimeFormat('en-US', weekDayFormat).format(new Date(start.toLocaleString()))}
-					({new Intl.DateTimeFormat('en-US', dateFormat).format(new Date(start.toLocaleString()))})
-					{new Intl.DateTimeFormat(undefined, timeFormat).format(start.toPlainTime())} -
-					{new Intl.DateTimeFormat(undefined, timeFormat).format(end.toPlainTime())}
-					<br /></span
-				>
+		<div class="w-98/100 pb-[0.875rem] pl-[17px] pr-[17px] pt-[0.875rem]">
+			<div class="m-none mb-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+				<CalendarDays size={18} fill="#111" />
+				<b><p class="m-none type-label">{title}</p></b>
+			</div>
 
-				{#if location != ''}
-					<span class="block pt-[5px] type-label"
-						><i class="fa fa-map-marker" aria-hidden="true"></i> {location}</span
-					>
-				{/if}
-			</p>
+			<Time {start} {end} />
+
+			{#if location != ''}
+				<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+					<MapPin size={18} />
+					<p class="m-none type-label">{location}</p>
+				</div>
+			{/if}
 
 			{#if description != ''}
-				<div
-					id="{id}_description"
-					transition:slide={{ duration: 300, easing: quintOut }}
-					class="hide-content hidden"
-				>
-					<hr />
-					<p class="mt-[14px] type-label">
+				<div id="{id}_description" class="h-[0px] overflow-hidden">
+					<hr class="mb-[0.5rem] mt-[0.5rem]" />
+
+					<p class="m-none mt-[0.5rem] type-label">
 						{description}
 					</p>
 				</div>

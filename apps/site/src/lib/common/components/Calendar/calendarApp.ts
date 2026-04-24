@@ -8,49 +8,106 @@ import {
 import { createCalendarControlsPlugin } from '@schedule-x/calendar-controls';
 import { CalendarColors } from './constants';
 
-export function showDescription(descriptionId: string, closeIfOpen: boolean) {
-	const description = document.getElementById(descriptionId);
+const LARGE_SCREEN_SIZE = 1024;
+const SCROLL_OFFSET = 10;
 
-	if (description == null) return;
+function closeDescription(event: HTMLElement) {
+	setTimeout(() => {
+		event.style.transition = 'height 0.5s ease';
+		event.style.height = 0 + 'px';
+	}, 10);
+}
 
-	if (closeIfOpen) {
-		if (description.style.display == 'block') description.style.display = 'none';
-		else description.style.display = 'block';
-	} else {
-		description.style.display = 'block';
+function openDescription(event: HTMLElement) {
+	const eventHeight = event.scrollHeight;
+
+	setTimeout(() => {
+		event.style.transition = 'height 0.5s ease';
+		event.style.height = eventHeight + 'px';
+	}, 10);
+}
+
+function closeAllEvents(eachEventDetail: HTMLCollection | undefined) {
+	if (!eachEventDetail) return;
+
+	for (const event of eachEventDetail) {
+		const eventDescription = document.getElementById(
+			event.id.replaceAll('_side_view', '_description')
+		);
+		if (eventDescription) closeDescription(eventDescription);
 	}
 }
 
-function scrollToEvent(event: CalendarEventExternal) {
-	const largeScreenSize = 1024;
+export function showDescription(descriptionId: string, closeIfOpen: boolean) {
+	const currEventDescription = document.getElementById(descriptionId);
+	const allEvents = document.getElementById('eventDetails')?.children;
 
-	const eventSide = document.getElementById(event.id + '_side_view');
-	const eventDetails = document.getElementById('eventDetails');
+	closeAllEvents(allEvents);
 
-	const eventDescription = document.getElementById(event.id + '_description');
+	if (currEventDescription == null) return;
 
-	if (eventSide != null && eventDetails != null) {
-		if (window.innerWidth >= largeScreenSize) {
-			const targetPosition = eventSide.offsetTop - eventDetails.offsetTop;
-			eventDetails.scrollTo({
-				top: targetPosition,
-				behavior: 'smooth'
+	if (closeIfOpen) {
+		if (currEventDescription.style.height == '' || currEventDescription.style.height == '0px') {
+			openDescription(currEventDescription);
+		} else closeDescription(currEventDescription);
+	} else {
+		openDescription(currEventDescription);
+	}
+}
+
+function getTargetPosition(
+	event: HTMLElement,
+	allEventDetails: HTMLElement
+): [number, Window | HTMLElement] {
+	let targetPosition;
+	let container;
+
+	if (window.innerWidth >= LARGE_SCREEN_SIZE) {
+		container = allEventDetails;
+		targetPosition = event.offsetTop - allEventDetails.offsetTop - SCROLL_OFFSET;
+	} else {
+		container = window;
+		targetPosition = event.offsetTop - SCROLL_OFFSET;
+	}
+
+	return [targetPosition, container];
+}
+
+function scrollEventIntoView(event: HTMLElement, allEventDetails: HTMLElement) {
+	return new Promise<void>((resolve) => {
+		setTimeout(() => {
+			const [targetPosition, container] = getTargetPosition(event, allEventDetails);
+
+			requestAnimationFrame(() => {
+				container.scrollTo({
+					top: targetPosition,
+					behavior: 'smooth'
+				});
 			});
-		} else {
-			window.scrollTo({
-				top: eventSide.offsetTop - 10,
-				behavior: 'smooth'
-			});
-		}
 
-		if (eventDescription) showDescription(event.id + '_description', false);
+			const handleTransitionEnd = () => {
+				event.removeEventListener('scrollend', handleTransitionEnd);
+				resolve();
+			};
+
+			container.addEventListener('scrollend', handleTransitionEnd);
+		}, 10);
+	});
+}
+
+async function scrollToEvent(event: CalendarEventExternal) {
+	const specificEvent = document.getElementById(event.id + '_side_view');
+	const allEventDetails = document.getElementById('eventDetails');
+
+	if (specificEvent != null && allEventDetails != null) {
+		await scrollEventIntoView(specificEvent, allEventDetails);
+		await showDescription(event.id + '_description', false);
 	}
 }
 
 export function createApp(events: CalendarEvent[]): CalendarApp {
 	const calendarControls = createCalendarControlsPlugin();
 
-	// calendarControls.setMaxDate();
 	console.log(Temporal.Now.plainDateISO());
 
 	const calendarApp: CalendarApp = createCalendar(

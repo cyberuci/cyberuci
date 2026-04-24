@@ -25,6 +25,7 @@
 
 	onMount(() => {
 		calendarEvents = loadAllCalendars(data.events);
+		console.log(calendarEvents);
 		calendarApp = createApp(calendarEvents);
 	});
 </script>
