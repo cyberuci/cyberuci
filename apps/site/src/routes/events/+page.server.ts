@@ -1,6 +1,8 @@
 import { GOOGLE_CALENDAR_API_KEY } from '$env/static/private';
 import { type GoogleCalendarEvent } from '$lib/common/components/Calendar/types';
 
+const BASE_URL = 'https://www.googleapis.com/calendar/v3/calendars/';
+
 export const load = async () => {
 	const CALENDAR_IDs = {
 		Networking:
@@ -10,10 +12,22 @@ export const load = async () => {
 		CTF: 'c_321fdac9dfcd3c938f08eb9e9f2e0f2c2664f1de200c803b36331054d0571257@group.calendar.google.com'
 	};
 
+	const parameters = {
+		key: GOOGLE_CALENDAR_API_KEY,
+		timeMin: '2026-01-01T00:00:00Z',
+		timeMax: '2027-01-01T00:00:00Z',
+		singleEvents: 'true',
+		orderBy: 'startTime'
+	};
+
 	const calendar_info: Record<string, GoogleCalendarEvent[]> = {};
 
 	for (const [calendar_name, calendar_id] of Object.entries(CALENDAR_IDs)) {
-		const url = `https://www.googleapis.com/calendar/v3/calendars/${calendar_id}/events?key=${GOOGLE_CALENDAR_API_KEY}&timeMin=2026-01-01T00:00:00Z&timeMax=2026-07-01T00:00:00Z&singleEvents=true&orderBy=startTime`;
+		let url = BASE_URL + `${calendar_id}/events?`;
+
+		for (const [name, value] of Object.entries(parameters)) url += `${name}=${value}&`;
+
+		url = url.substring(0, url.length - 1);
 
 		const response = await fetch(url);
 		const data = await response.json();

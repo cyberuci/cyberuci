@@ -27,7 +27,7 @@
 
 {#if Temporal.PlainDateTime.compare(currentTime, start) == -1}
 	<button
-		class="mb-[10px] w-full flex flex-row rounded-md border-none bg-[#333333] p-none text-left color-[#fff]"
+		class="mb-[0.5rem] w-full flex flex-row rounded-md border-none bg-[#333333] p-none text-left color-[#fff]"
 		id="{id}_side_view"
 		onclick={() => showDescription(id + '_description', true)}
 	>
@@ -36,7 +36,7 @@
 			style:background-color={CalendarColors[calendarId]?.lightColors?.main}
 		></div>
 
-		<div class="w-98/100 pb-[0.875rem] pl-[17px] pr-[17px] pt-[0.875rem]">
+		<div class="w-98/100 pb-[0.875rem] pl-[1rem] pr-[1rem] pt-[0.875rem]">
 			<div class="m-none mb-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 				<CalendarDays size={18} fill="#111" />
 				<b><p class="m-none type-label">{title}</p></b>

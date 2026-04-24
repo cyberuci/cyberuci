@@ -25,7 +25,6 @@
 
 	onMount(() => {
 		calendarEvents = loadAllCalendars(data.events);
-		console.log(calendarEvents);
 		calendarApp = createApp(calendarEvents);
 	});
 </script>
@@ -48,9 +47,9 @@
 
 		<div
 			id="eventDetails"
-			class="mt-1.2rem w-20/20 pl-none lg:mt-0 lg:h-80vh lg:w-7/20 lg:overflow-scroll lg:pl-[1.7rem]"
+			class="mt-[1.2rem] w-20/20 pl-none lg:mt-0 lg:h-80vh lg:w-7/20 lg:overflow-scroll lg:pl-[1.7rem]"
 		>
-			<p class="mb-[10px] text-lg type-label">Upcoming Events</p>
+			<p class="mb-[0.875rem] text-lg type-label">Upcoming Events</p>
 
 			{#each calendarEvents as event (event.id)}
 				<Event
