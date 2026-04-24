@@ -3,7 +3,7 @@ import { Temporal } from 'temporal-polyfill';
 import 'temporal-polyfill/global';
 
 export function loadAllCalendars(data: Record<string, GoogleCalendarEvent[]>): CalendarEvent[] {
-	const events: CalendarEvent[] = [];
+	const events = [];
 
 	for (const [calendarName, calendarData] of Object.entries(data)) {
 		events.push(
@@ -11,9 +11,14 @@ export function loadAllCalendars(data: Record<string, GoogleCalendarEvent[]>): C
 				const startStr = event.start.dateTime ?? `${event.start.date}T00:00:00Z`;
 				const endStr = event.end.dateTime ?? `${event.end.date}T23:59:59Z`;
 
+				const cleanDescription = event.description
+					?.replaceAll('<span>', '')
+					.replaceAll('</span>', '');
+
 				return {
 					id: event.id || `${i}`,
 					title: event.summary,
+					description: cleanDescription || '',
 					start: Temporal.ZonedDateTime.from(`${startStr}[America/Los_Angeles]`),
 					end: Temporal.ZonedDateTime.from(`${endStr}[America/Los_Angeles]`),
 					calendarId: calendarName,

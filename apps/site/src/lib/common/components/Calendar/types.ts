@@ -1,6 +1,7 @@
 export interface CalendarEvent {
 	id: string;
 	title: string;
+	description: string;
 	start: Temporal.ZonedDateTime;
 	end: Temporal.ZonedDateTime;
 	calendarId: string;

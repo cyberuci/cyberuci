@@ -47,7 +47,7 @@
 
 		<div
 			id="eventDetails"
-			class="mt-1.2rem w-20/20 pl-[0px] lg:mt-0 lg:h-80vh lg:w-7/20 lg:overflow-scroll lg:pl-40px"
+			class="mt-1.2rem w-20/20 pl-none lg:mt-0 lg:h-80vh lg:w-7/20 lg:overflow-scroll lg:pl-[1.7rem]"
 		>
 			<p class="mb-[10px] text-lg type-label">Upcoming Events</p>
 
@@ -55,6 +55,7 @@
 				<Event
 					id={event.id}
 					title={event.title}
+					description={event.description}
 					start={event.start}
 					end={event.end}
 					calendarId={event.calendarId}
