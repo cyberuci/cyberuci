@@ -16,7 +16,7 @@
 <li>
 	<button
 		type="button"
-		class="btn block h-30 w-90 flex flex-col cursor-pointer select-none appearance-none items-start justify-between border rounded-md border-solid p-2 text-left"
+		class="btn block h-30 w-full flex flex-col cursor-pointer select-none appearance-none items-start justify-between border rounded-md border-solid p-2 text-left md:w-90"
 		on:click={handleClick}
 	>
 		<div class="flex-shrink-0">
