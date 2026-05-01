@@ -14,6 +14,7 @@
 		id: string;
 		title: string;
 		description: string;
+		eventType: string;
 		experience: string;
 		start: Temporal.ZonedDateTime;
 		end: Temporal.ZonedDateTime;
@@ -21,9 +22,10 @@
 		colors: CalendarType;
 	}
 
-	let currentTime = Temporal.Now.zonedDateTimeISO().subtract({ weeks: 10 });
+	let currentTime = Temporal.Now.zonedDateTimeISO().subtract({ weeks: 1 });
 
-	let { id, title, description, experience, start, end, location, colors }: Props = $props();
+	let { id, title, description, eventType, experience, start, end, location, colors }: Props =
+		$props();
 
 	const cleanedDescription = DOMPurify.sanitize(description);
 </script>
@@ -34,7 +36,11 @@
 		id="{id}_side_view"
 		onclick={() => showDescription(id + '_description', true)}
 	>
-		<div class="w-2/100 rounded-l-md" style:background-color={colors?.lightColors?.main}></div>
+		<div
+			class="w-2/100 rounded-l-md"
+			style:background-color={colors?.lightColors?.main}
+			title={eventType}
+		></div>
 
 		<div class="w-98/100 pb-[0.875rem] pl-[1rem] pr-[1rem] pt-[0.875rem]">
 			<div class="m-none mb-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
