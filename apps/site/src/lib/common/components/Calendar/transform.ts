@@ -11,14 +11,10 @@ export function loadAllCalendars(data: Record<string, GoogleCalendarEvent[]>): C
 				const startStr = event.start.dateTime ?? `${event.start.date}T00:00:00Z`;
 				const endStr = event.end.dateTime ?? `${event.end.date}T23:59:59Z`;
 
-				const cleanDescription = event.description
-					?.replaceAll('<span>', '')
-					.replaceAll('</span>', '');
-
 				return {
 					id: event.id || `${i}`,
 					title: event.summary,
-					description: cleanDescription || '',
+					description: event.description || '',
 					start: Temporal.ZonedDateTime.from(`${startStr}[America/Los_Angeles]`),
 					end: Temporal.ZonedDateTime.from(`${endStr}[America/Los_Angeles]`),
 					calendarId: calendarName,

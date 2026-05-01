@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Temporal } from 'temporal-polyfill';
-	import { CalendarColors } from '$lib/common/components/Calendar/constants';
+	import { type CalendarType } from '@schedule-x/calendar';
 	import { showDescription } from '$lib/common/components/Calendar/calendarApp';
 	import DOMPurify from 'dompurify';
 
@@ -17,13 +17,13 @@
 		description: string;
 		start: Temporal.ZonedDateTime;
 		end: Temporal.ZonedDateTime;
-		calendarId: string;
 		location: string;
+		colors: CalendarType;
 	}
 
 	let currentTime = Temporal.Now.zonedDateTimeISO().subtract({ weeks: 10 });
 
-	let { id, title, description, start, end, calendarId, location }: Props = $props();
+	let { id, title, description, start, end, location, colors }: Props = $props();
 
 	const cleanedDescription = DOMPurify.sanitize(description);
 </script>
@@ -34,10 +34,7 @@
 		id="{id}_side_view"
 		onclick={() => showDescription(id + '_description', true)}
 	>
-		<div
-			class="w-2/100 rounded-l-md"
-			style:background-color={CalendarColors[calendarId]?.lightColors?.main}
-		></div>
+		<div class="w-2/100 rounded-l-md" style:background-color={colors?.lightColors?.main}></div>
 
 		<div class="w-98/100 pb-[0.875rem] pl-[1rem] pr-[1rem] pt-[0.875rem]">
 			<div class="m-none mb-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">

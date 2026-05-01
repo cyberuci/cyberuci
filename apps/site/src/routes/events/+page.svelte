@@ -25,7 +25,7 @@
 
 	onMount(() => {
 		calendarEvents = loadAllCalendars(data.events);
-		calendarApp = createApp(calendarEvents);
+		calendarApp = createApp(calendarEvents, data.colors);
 	});
 </script>
 
@@ -58,8 +58,8 @@
 					description={event.description}
 					start={event.start}
 					end={event.end}
-					calendarId={event.calendarId}
 					location={event.location}
+					colors={data.colors[event.calendarId]}
 				/>
 			{/each}
 		</div>

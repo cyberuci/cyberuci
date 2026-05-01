@@ -6,7 +6,7 @@ import {
 	type CalendarEventExternal
 } from '@schedule-x/calendar';
 import { createCalendarControlsPlugin } from '@schedule-x/calendar-controls';
-import { CalendarColors } from './constants';
+import { type CalendarType } from '@schedule-x/calendar';
 
 const LARGE_SCREEN_SIZE = 1024;
 const SCROLL_OFFSET = 10;
@@ -105,22 +105,24 @@ async function scrollToEvent(event: CalendarEventExternal) {
 	}
 }
 
-export function createApp(events: CalendarEvent[]): CalendarApp {
+export function createApp(
+	events: CalendarEvent[],
+	colors: Record<string, CalendarType>
+): CalendarApp {
 	const calendarControls = createCalendarControlsPlugin();
-
-	console.log(Temporal.Now.plainDateISO());
 
 	const calendarApp: CalendarApp = createCalendar(
 		{
 			views: [createViewMonthGrid()],
-			calendars: CalendarColors,
+			calendars: colors,
 			events: events,
 			callbacks: {
 				onEventClick(event) {
 					scrollToEvent(event);
 				}
 			},
-			timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+			timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+			firstDayOfWeek: 7
 		},
 		[calendarControls]
 	);
