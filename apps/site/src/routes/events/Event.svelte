@@ -2,6 +2,7 @@
 	import { Temporal } from 'temporal-polyfill';
 	import { CalendarColors } from '$lib/common/components/Calendar/constants';
 	import { showDescription } from '$lib/common/components/Calendar/calendarApp';
+	import DOMPurify from 'dompurify';
 
 	import Time from './Time.svelte';
 
@@ -20,9 +21,11 @@
 		location: string;
 	}
 
-	let currentTime = Temporal.Now.zonedDateTimeISO();
+	let currentTime = Temporal.Now.zonedDateTimeISO().subtract({ weeks: 10 });
 
 	let { id, title, description, start, end, calendarId, location }: Props = $props();
+
+	const cleanedDescription = DOMPurify.sanitize(description);
 </script>
 
 {#if Temporal.PlainDateTime.compare(currentTime, start) == -1}
@@ -38,15 +41,15 @@
 
 		<div class="w-98/100 pb-[0.875rem] pl-[1rem] pr-[1rem] pt-[0.875rem]">
 			<div class="m-none mb-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
-				<CalendarDays size={18} fill="#111" />
+				<CalendarDays size={18} class="min-w-[18px]" />
 				<b><p class="m-none type-label">{title}</p></b>
 			</div>
 
 			<Time {start} {end} />
 
 			{#if location != ''}
-				<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
-					<MapPin size={18} />
+				<div class="mt-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+					<MapPin size={18} class="min-w-[18px]" />
 					<p class="m-none type-label">{location}</p>
 				</div>
 			{/if}
@@ -56,7 +59,8 @@
 					<hr class="mb-[0.5rem] mt-[0.5rem]" />
 
 					<p class="m-none mt-[0.5rem] type-label">
-						{description}
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+						{@html cleanedDescription}
 					</p>
 				</div>
 			{/if}

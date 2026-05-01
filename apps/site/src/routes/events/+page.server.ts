@@ -1,21 +1,28 @@
 import { GOOGLE_CALENDAR_API_KEY } from '$env/static/private';
 import { type GoogleCalendarEvent } from '$lib/common/components/Calendar/types';
+import { Temporal } from 'temporal-polyfill';
 
 const BASE_URL = 'https://www.googleapis.com/calendar/v3/calendars/';
 
 export const load = async () => {
 	const CALENDAR_IDs = {
-		Networking:
-			'c_ffeb03c12c883c8f5d1638fecc00add84e795d5d35ac417011a2aba3a2072cad@group.calendar.google.com',
+		CDCC: 'c_90c6de8b1a0ad2c1b355fee84568f69e1cd38e9a56be211c9e239758693eebe9@group.calendar.google.com',
 		General:
-			'c_807f21e21257c1601714e7410f5a4d507be844f565db927629770fd0dc41e1df@group.calendar.google.com',
-		CTF: 'c_321fdac9dfcd3c938f08eb9e9f2e0f2c2664f1de200c803b36331054d0571257@group.calendar.google.com'
+			'c_4240ffad5958e508540f6dce6c0a24ade342731f13dd4ef986d62f1feba559a8@group.calendar.google.com',
+		Networking:
+			'c_06646e682d1489eae05bdc388992c574292532c2731849c8be626767e8d00463@group.calendar.google.com',
+		Social:
+			'c_66daac0c50ca306dce85ecddffcfc9f06aae0f460c4de84eb74c31197aba8aa3@group.calendar.google.com',
+		CPTC: 'c_e1897d3d838edc5066edf565df753902b3d1dc92d6a805c2f5e7fc993c1d9e00@group.calendar.google.com',
+		CTF: 'c_d6949f41289231733fb264a371fa59a473e8bed5ecb8fe5668ef768e804fffa0@group.calendar.google.com'
 	};
+
+	const now = Temporal.Now.plainDateISO();
+	const oneYearAgo = now.subtract({ years: 1 });
 
 	const parameters = {
 		key: GOOGLE_CALENDAR_API_KEY,
-		timeMin: '2026-01-01T00:00:00Z',
-		timeMax: '2027-01-01T00:00:00Z',
+		timeMin: `${oneYearAgo.toString()}T00:00:00Z`,
 		singleEvents: 'true',
 		orderBy: 'startTime'
 	};

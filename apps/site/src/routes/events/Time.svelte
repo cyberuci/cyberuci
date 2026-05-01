@@ -27,7 +27,7 @@
 	};
 </script>
 
-<div class="mb-[0.5rem] mt-none flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+<div class="mt-none flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 	<Clock size={18} />
 	<p class="m-none type-label">
 		{new Intl.DateTimeFormat('en-US', weekDayFormat).format(new Date(start.toLocaleString()))}
