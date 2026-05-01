@@ -55,11 +55,7 @@ export const load = async () => {
 	const calendarInfo: Record<string, GoogleCalendarEvent[]> = {};
 	const calendarColors: Record<string, CalendarType> = {};
 
-	console.log(CALENDAR_INFO);
-
 	for (const [_, calendar] of Object.entries(CALENDAR_INFO['calendarData'])) {
-		console.log(_);
-
 		let url = BASE_URL + `${calendar.calendarLink}/events?`;
 
 		for (const [name, value] of Object.entries(parameters)) url += `${name}=${value}&`;
@@ -78,6 +74,8 @@ export const load = async () => {
 				onContainer: calendar.textColor.hex
 			}
 		};
+
+		console.log(_);
 	}
 
 	return { events: calendarInfo, colors: calendarColors || [] };

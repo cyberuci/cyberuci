@@ -56,6 +56,7 @@
 					id={event.id}
 					title={event.title}
 					description={event.description}
+					experience={event.experience}
 					start={event.start}
 					end={event.end}
 					location={event.location}

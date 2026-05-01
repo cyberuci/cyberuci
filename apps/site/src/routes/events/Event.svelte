@@ -6,8 +6,7 @@
 
 	import Time from './Time.svelte';
 
-	import { MapPin } from 'lucide-svelte';
-	import { CalendarDays } from 'lucide-svelte';
+	import { MapPin, CalendarDays, CircleGauge } from 'lucide-svelte';
 
 	import 'temporal-polyfill/global';
 
@@ -15,6 +14,7 @@
 		id: string;
 		title: string;
 		description: string;
+		experience: string;
 		start: Temporal.ZonedDateTime;
 		end: Temporal.ZonedDateTime;
 		location: string;
@@ -23,7 +23,7 @@
 
 	let currentTime = Temporal.Now.zonedDateTimeISO().subtract({ weeks: 10 });
 
-	let { id, title, description, start, end, location, colors }: Props = $props();
+	let { id, title, description, experience, start, end, location, colors }: Props = $props();
 
 	const cleanedDescription = DOMPurify.sanitize(description);
 </script>
@@ -43,6 +43,11 @@
 			</div>
 
 			<Time {start} {end} />
+
+			<div class="mt-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+				<CircleGauge size={18} class="min-w-[18px]" />
+				<p class="m-none type-label">{experience}</p>
+			</div>
 
 			{#if location != ''}
 				<div class="mt-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
