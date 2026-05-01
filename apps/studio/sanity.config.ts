@@ -3,6 +3,7 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
+import { colorInput } from '@sanity/color-input';
 import {
 	CogIcon,
 	ConfettiIcon,
@@ -146,6 +147,10 @@ export default defineConfig({
 							.child(
 								S.documentList().title('News').filter('_type == "news" || _type == "newsLink"')
 							),
+						S.listItem()
+							.title('Calendar')
+							.icon(EnvelopeIcon)
+							.child(S.documentList().title('Calendar').filter('_type == "calendar"')),
 						S.documentTypeListItem('resource').title('Resources').icon(DashboardIcon),
 						S.documentTypeListItem('sponsor').title('Sponsors'),
 						S.divider(),
@@ -190,7 +195,8 @@ export default defineConfig({
 			//
 			//     ]),
 		}),
-		visionTool()
+		visionTool(),
+		colorInput()
 	],
 
 	schema: {

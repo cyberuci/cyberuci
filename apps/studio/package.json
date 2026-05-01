@@ -12,6 +12,7 @@
 		"deploy": "pnpm run build && wrangler deploy"
 	},
 	"dependencies": {
+		"@sanity/color-input": "^6.0.4",
 		"@sanity/icons": "3.7.4",
 		"@sanity/vision": "4.15.0",
 		"groq": "4.15.0",
