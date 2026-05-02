@@ -17,8 +17,8 @@
 		{
 			title: 'Connect',
 			items: [
-				{ text: 'Discord', href: 'https://discord.gg/cyberuci' },
-				{ text: 'Instagram', href: 'https://www.instagram.com/cyber_at_uci/' },
+				{ text: 'Discord', href: 'https://discord.cyberuci.com/' },
+				{ text: 'Instagram', href: 'https://www.instagram.com/cyberuci/' },
 				{ text: 'GitHub', href: 'https://github.com/cyberuci' }
 			]
 		},
