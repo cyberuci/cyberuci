@@ -1,0 +1,76 @@
+.sx-svelte-calendar-wrapper {
+	height: 80vh;
+
+	--sx-color-background: #151515;
+	--sx-internal-color-text: #fff;
+
+	--sx-border: 1px solid #3d3d3d;
+
+	--sx-color-primary: #888888;
+
+	--sx-color-on-primary-container: #21005e;
+	--sx-color-surface-tint: #bdbdbd;
+	--sx-color-on-background: #fff;
+	--sx-internal-color-light-gray: #3d3d3d;
+}
+
+.sx__is-expanded .sx__date-picker__years-accordion__expand-button {
+	background-color: #959595;
+}
+
+.sx__date-picker__years-view-accordion__month {
+	font-size: 0.875rem;
+}
+
+.sx__date-picker__years-accordion__expand-button {
+	font-size: 0.875rem;
+}
+
+.sx__button:hover {
+	background-color: #3d3d3d !important;
+}
+
+.sx__date-picker__month-view-header__month-year {
+	font-size: 0.875rem !important;
+}
+
+.sx__calendar .sx__date-picker__day-names {
+	font-size: 0.875rem !important;
+}
+
+.sx__range-heading {
+	font-size: 0.875rem !important;
+}
+
+.sx__calendar .sx__date-picker__week {
+	font-size: 0.4rem !important;
+}
+
+.sx__date-picker-popup {
+	max-width: 300px !important;
+	max-height: 350px !important;
+}
+
+.sx__calendar {
+	@apply type-label; /* This works if using UnoCSS/Tailwind */
+}
+
+/* Optional: Add a browser tooltip for the full name */
+.sx__event {
+	cursor: pointer;
+}
+
+.sx__date-picker__month-view-header__month-year {
+	pointer-events: none !important; /* Disables clicking to open the year accordion */
+	cursor: default !important;
+}
+
+/* 2. Hide the chevron icon specifically if you want it to look non-interactive */
+.sx__date-picker__month-view-header__month-year .sx__chevron {
+	display: none !important;
+}
+
+/* 3. Safety: Ensure the years accordion is hidden if somehow triggered */
+.sx__date-picker__years-view-accordion {
+	display: none !important;
+}

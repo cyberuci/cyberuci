@@ -10,6 +10,7 @@ import news from './news';
 // import event from './event';
 import sponsor from './sponsor';
 import info from './info';
+import calendar from './calendar';
 
 export const schemaTypes = [
 	home,
@@ -22,5 +23,6 @@ export const schemaTypes = [
 	board,
 	info,
 	news,
+	calendar,
 	sponsor
 ];

@@ -9,6 +9,9 @@ const config = {
 
 	kit: {
 		adapter: adapter({})
+	},
+	env: {
+		dir: '../..' // Points back to the monorepo root
 	}
 };
 
