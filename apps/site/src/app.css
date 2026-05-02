@@ -52,25 +52,29 @@
 }
 
 .sx__calendar {
-	@apply type-label; /* This works if using UnoCSS/Tailwind */
+	@apply type-label;
 }
 
-/* Optional: Add a browser tooltip for the full name */
 .sx__event {
 	cursor: pointer;
 }
 
 .sx__date-picker__month-view-header__month-year {
-	pointer-events: none !important; /* Disables clicking to open the year accordion */
+	pointer-events: none !important;
 	cursor: default !important;
 }
 
-/* 2. Hide the chevron icon specifically if you want it to look non-interactive */
 .sx__date-picker__month-view-header__month-year .sx__chevron {
 	display: none !important;
 }
 
-/* 3. Safety: Ensure the years accordion is hidden if somehow triggered */
 .sx__date-picker__years-view-accordion {
 	display: none !important;
+}
+
+@media only screen and (max-width: 1000px) {
+	.sx__month-grid-event-time,
+	.sx__date-grid-event-time {
+		display: none !important;
+	}
 }
