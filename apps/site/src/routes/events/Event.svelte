@@ -22,7 +22,7 @@
 		colors: CalendarType;
 	}
 
-	let currentTime = Temporal.Now.zonedDateTimeISO().subtract({ weeks: 1 });
+	let currentTime = Temporal.Now.zonedDateTimeISO().subtract({ weeks: 0 });
 
 	let { id, title, description, eventType, experience, start, end, location, colors }: Props =
 		$props();
