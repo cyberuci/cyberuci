@@ -53,5 +53,17 @@
 		"wrangler": "4.48.0",
 		"zod": "4.1.12"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@preact/signals": "^2.9.0",
+		"@sanity/color-input": "^6.0.4",
+		"@schedule-x/calendar": "^3.7.3",
+		"@schedule-x/calendar-controls": "^3.7.3",
+		"@schedule-x/svelte": "^3.0.0",
+		"@schedule-x/theme-default": "^3.7.3",
+		"@splinetool/runtime": "^1.12.87",
+		"dompurify": "^3.4.2",
+		"preact": "^10.29.1",
+		"temporal-polyfill": "0.3.0"
+	}
 }

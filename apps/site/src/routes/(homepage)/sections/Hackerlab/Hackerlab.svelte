@@ -27,7 +27,6 @@
 			</p>
 		</div>
 		<div class="lg:col-start-4 lg:row-start-2 lg:col-end-15">
-			<!-- <enhanced:img class="w-full h-auto rounded-sm" src="./hivestorm-2.jpeg" alt="" /> -->
 			{#each section.images as image (image._key)}
 				<img
 					class="h-auto w-full rounded-sm"
