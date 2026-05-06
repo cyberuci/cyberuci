@@ -12,7 +12,8 @@ import {
 	UserIcon,
 	UsersIcon,
 	HomeIcon,
-	DashboardIcon
+	DashboardIcon,
+	DocumentIcon
 } from '@sanity/icons';
 import groq from 'groq';
 
@@ -140,6 +141,10 @@ export default defineConfig({
 							.title('Contact Page')
 							.icon(EnvelopeIcon)
 							.child(S.document().schemaType('contactPage').documentId('contactPage')),
+						S.listItem()
+							.title('Corporate Page')
+							.icon(DocumentIcon)
+							.child(S.document().schemaType('corporatePage').documentId('corporatePage')),
 						S.divider(),
 						S.listItem()
 							.title('News')

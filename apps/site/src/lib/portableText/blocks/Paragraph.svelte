@@ -7,4 +7,4 @@
 	let { children }: Props = $props();
 </script>
 
-<p class="max-w-prose type-body-2">{@render children?.()}</p>
+<p class="type-body-2">{@render children?.()}</p>
