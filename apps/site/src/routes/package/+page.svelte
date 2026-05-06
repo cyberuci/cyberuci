@@ -106,7 +106,7 @@
 				<div class="mb-10 mt-2 text-gray-11 dark:text-graydark-11">
 					<PortableText value={data.corporatePage.clubEvents.description} />
 				</div>
-				<div class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+				<div class="block gap-x-10 gap-y-8 lg:grid sm:grid-cols-2">
 					{#each data.corporatePage.clubEvents.events as { _key, title, description, image }, i (_key)}
 						<img
 							class="block h-auto w-full rounded-sm lg:hidden"
