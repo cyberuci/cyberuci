@@ -2,6 +2,8 @@
 	import { NavigationMenu } from 'bits-ui';
 	import {
 		BookMarked,
+		Building2,
+		FileText,
 		Group,
 		type Icon,
 		LucideBrush,
@@ -105,10 +107,18 @@
 			href: '/news',
 			label: 'News'
 		})}
-		{@render ItemLink({
-			href: '/sponsors',
-			label: 'Sponsors'
-		})}
+		<ListGroup name="Sponsors">
+			{@render ListItem({
+				href: '/sponsors',
+				title: 'Sponsors',
+				Icon: Building2
+			})}
+			{@render ListItem({
+				href: '/package',
+				title: 'Package',
+				Icon: FileText
+			})}
+		</ListGroup>
 
 		<div class="absolute right-0 top-125%">
 			<NavigationMenu.Viewport
