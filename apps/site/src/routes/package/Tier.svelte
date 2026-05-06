@@ -2,11 +2,12 @@
 	interface Props {
 		name: string;
 		price: string;
+		inheritedPerks: string;
 		perks: string[];
 		color: string;
 	}
 
-	let { name, price, perks, color }: Props = $props();
+	let { name, price, inheritedPerks, perks, color }: Props = $props();
 </script>
 
 <div class="flex flex-col overflow-hidden rounded background-2">
@@ -17,6 +18,17 @@
 		</p>
 		<p class="mb-6 type-heading-1">{price}</p>
 		<ul class="flex flex-col list-none gap-2 pl-0">
+			{#if inheritedPerks}
+				<li
+					class="flex items-start gap-2 type-body-1 text-gray-11 line-height-relaxed dark:text-graydark-11"
+				>
+					<span
+						class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+						style="background-color: {color}; opacity: 0.7;"
+					></span>
+					<b><i> + Everything in {inheritedPerks}</i></b>
+				</li>
+			{/if}
 			{#each perks as perk (perk)}
 				<li
 					class="flex items-start gap-2 type-body-1 text-gray-11 line-height-relaxed dark:text-graydark-11"

@@ -32,7 +32,8 @@ const fetchCorporatePage = async () => {
 				events[] {
 					_key,
 					title,
-					description
+					description,
+					image
 				}
 			},
 			tiers[] {
@@ -40,6 +41,7 @@ const fetchCorporatePage = async () => {
 				name,
 				price,
 				color,
+				inheritedPerks,
 				perks
 			},
 			achievements[] {

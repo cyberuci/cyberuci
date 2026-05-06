@@ -183,6 +183,31 @@ export default defineType({
 									title: 'Description',
 									type: 'text',
 									validation: (Rule) => Rule.required()
+								}),
+								defineField({
+									name: 'image',
+									title: 'Image',
+									type: 'image',
+									fields: [
+										{
+											name: 'alt',
+											title: 'Alternative Text',
+											description:
+												'Refer to https://accessibility.huit.harvard.edu/describe-content-images for guidance on writing helpful alternative text for images.',
+											type: 'string',
+											validation: (Rule) => [
+												Rule.required().error('You must provide alternative text for the image.'),
+												Rule.regex(/^(image|photo) of/i, {
+													name: 'altTextImageOf',
+													invert: true
+												}).warning('Alternative text should not start with "Image/Photo of"')
+											]
+										}
+									],
+									options: {
+										hotspot: true
+									},
+									validation: (Rule) => Rule.required().assetRequired()
 								})
 							],
 							preview: {
@@ -224,6 +249,11 @@ export default defineType({
 							description: 'Hex color code, e.g. #cd7f32',
 							type: 'string',
 							validation: (Rule) => Rule.required().regex(/^#[0-9a-fA-F]{6}$/, { name: 'hex' })
+						}),
+						defineField({
+							name: 'inheritedPerks',
+							title: 'Inherited Perks',
+							type: 'string'
 						}),
 						defineField({
 							name: 'perks',

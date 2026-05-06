@@ -17,6 +17,11 @@
 	} from 'lucide-svelte';
 	import AchievementTimeline from './timeline/AchievementTimeline.svelte';
 
+	import { client } from '$lib/sanity/sanityClient';
+	import imageUrlBuilder from '@sanity/image-url';
+
+	const builder = imageUrlBuilder(client);
+
 	interface Props {
 		data: PageData;
 	}
@@ -34,7 +39,8 @@
 		<h1 class="type-display mt-0">
 			{data.corporatePage.hero.headline}
 		</h1>
-		<div class="mt-4 text-gray-11 dark:text-graydark-11">
+		<!-- <div class="mb-8 "></div> -->
+		<div class="mt-4 max-w-prose type-body-2 text-gray-11 dark:text-graydark-11">
 			<PortableText value={data.corporatePage.hero.description} />
 		</div>
 		<div class="mt-8 flex items-center justify-between gap-6">
@@ -101,8 +107,23 @@
 					<PortableText value={data.corporatePage.clubEvents.description} />
 				</div>
 				<div class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
-					{#each data.corporatePage.clubEvents.events as { _key, title, description } (_key)}
+					{#each data.corporatePage.clubEvents.events as { _key, title, description, image }, i (_key)}
+						<img
+							class="block h-auto w-full rounded-sm lg:hidden"
+							src={builder.image(image).auto('format').width(1024).height(600).url()}
+							alt={image.alt}
+						/>
+						<img
+							class={`h-auto w-full rounded-sm block hidden ${i % 2 == 0 ? 'lg:block' : ''}`}
+							src={builder.image(image).auto('format').width(1024).height(600).url()}
+							alt={image.alt}
+						/>
 						<Event {title} {description} background={false} />
+						<img
+							class={`h-auto w-full rounded-sm hidden ${i % 2 == 1 ? 'lg:block' : ''}`}
+							src={builder.image(image).auto('format').width(1024).height(600).url()}
+							alt={image.alt}
+						/>
 					{/each}
 				</div>
 			</div>
@@ -114,13 +135,14 @@
 			<h2 class="flex items-center gap-2 type-label font-550 lg:col-start-1 lg:col-end-5">
 				<Layers size={14} />Sponsorship Tiers
 			</h2>
-			<div class="text-gray-11 lg:col-start-5 lg:col-end-17 dark:text-graydark-11">
+			<!-- <div class="text-gray-11 lg:col-start-5 lg:col-end-17 dark:text-graydark-11"> -->
+			<div class="type-body-2 lg:col-start-5 lg:col-end-17 dark:text-graydark-11">
 				<PortableText value={data.corporatePage.tiersDescription} />
 			</div>
 		</div>
 		<div class="grid space-x gap-4 lg:grid-cols-4 sm:grid-cols-2">
-			{#each data.corporatePage.tiers as { _key, name, price, perks, color } (_key)}
-				<Tier {name} {price} {perks} {color} />
+			{#each data.corporatePage.tiers as { _key, name, price, inheritedPerks, perks, color } (_key)}
+				<Tier {name} {price} {inheritedPerks} {perks} {color} />
 			{/each}
 		</div>
 	</div>
