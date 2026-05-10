@@ -1,8 +1,20 @@
 <script lang="ts">
-	import hackerlab from './hackerlab.jpg';
-	import mapImg from './map.jpg';
+	import { client } from '$lib/sanity/sanityClient';
+	import imageUrlBuilder from '@sanity/image-url';
 
-	let isOpen = true;
+	interface Props {
+		isOpen: boolean;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		images: { asset: any; alt?: string }[] | null;
+	}
+
+	let { isOpen, images }: Props = $props();
+
+	const builder = imageUrlBuilder(client);
+	const mainSrc = $derived(images?.[0] ? builder.image(images[0]).auto('format').url() : null);
+	const mainAlt = $derived(images?.[0]?.alt ?? 'HackerLab');
+	const mapSrc = $derived(images?.[1] ? builder.image(images[1]).auto('format').url() : null);
+	const mapAlt = $derived(images?.[1]?.alt ?? 'HackerLab location map');
 
 	const now = new Date();
 	const timeStr = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
@@ -24,7 +36,9 @@
 			</h2>
 		</div>
 
-		<img class="h-auto w-full rounded-2xl object-cover" src={hackerlab} alt="HackerLab" />
+		{#if mainSrc}
+			<img class="h-auto w-full rounded-2xl object-cover" src={mainSrc} alt={mainAlt} />
+		{/if}
 
 		<div class="grid grid-cols-2 gap-4">
 			<div class="h-84 flex flex-col justify-between rounded-2xl bg-gray-4 p-6 dark:bg-graydark-3">
@@ -46,7 +60,9 @@
 					</div>
 				</div>
 			</div>
-			<img class="h-84 w-full rounded-2xl object-cover" src={mapImg} alt="HackerLab location map" />
+			{#if mapSrc}
+				<img class="h-84 w-full rounded-2xl object-cover" src={mapSrc} alt={mapAlt} />
+			{/if}
 		</div>
 	</div>
 </div>

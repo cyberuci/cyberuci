@@ -55,17 +55,14 @@ function formatEventDate(start: Date, end: Date): string {
 	return `${dayPart} · ${timePart}`;
 }
 
-async function fetchNextCalEvent(): Promise<{
-	title: string;
-	dateLabel: string;
-	location: string;
-	description: string;
-} | null> {
+async function fetchCalEvents(): Promise<
+	{ title: string; dateLabel: string; location: string; description: string }[]
+> {
 	try {
 		const res = await fetch(CALENDAR_URL);
 		if (!res.ok) {
 			console.error('[cal] fetch failed:', res.status);
-			return null;
+			return [];
 		}
 		// Normalize CRLF and unfold folded lines (RFC 5545 §3.1)
 		const text = (await res.text())
@@ -106,43 +103,36 @@ async function fetchNextCalEvent(): Promise<{
 		}
 
 		upcoming.sort((a, b) => a.start.getTime() - b.start.getTime());
-		const next = upcoming[0];
-		if (!next) {
+		if (!upcoming.length) {
 			console.error('[cal] no upcoming events found');
-			return null;
+			return [];
 		}
-		console.error('[cal] next event:', next.title, next.start.toISOString());
-		return {
-			title: next.title,
-			dateLabel: formatEventDate(next.start, next.end),
-			location: next.location,
-			description: next.description
-		};
+		console.error('[cal] next event:', upcoming[0].title, upcoming[0].start.toISOString());
+		return upcoming.slice(0, 4).map((ev) => ({
+			title: ev.title,
+			dateLabel: formatEventDate(ev.start, ev.end),
+			location: ev.location,
+			description: ev.description
+		}));
 	} catch (e) {
 		console.error('[cal] error:', e);
-		return null;
+		return [];
 	}
 }
 
 const fetchHome = async () => {
 	const homePageQuery = defineQuery(`
 		*[_type == 'homePage' && _id == "homePage"][0] {
-			highlightNews {
-				enable,
-				article -> {
-					title,
-					cover,
-					date,
-					slug,
-				},
-			},
+			Header { asset, alt },
 			competitions {
+				image { asset, alt },
 				subtitle,
 				description,
 			},
 			hackerlab {
+				isOpen,
+				images[] { asset, alt },
 				description,
-				images,
 			},
 		}
   `);
@@ -176,6 +166,6 @@ export const load: PageServerLoad = async () => {
 	return {
 		homepage: await fetchHome(),
 		socials: await fetchSocials(),
-		nextEvent: await fetchNextCalEvent()
+		events: await fetchCalEvents()
 	};
 };

@@ -1,13 +1,27 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import cover from './cover.jpg';
+	import { client } from '$lib/sanity/sanityClient';
+	import imageUrlBuilder from '@sanity/image-url';
+	import localCover from './cover.jpg';
 	import ListItem from './ListItem.svelte';
 	import { CalendarDays, Medal, FlaskConical, MessagesSquare } from 'lucide-svelte';
+
+	interface Props {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		cover: { asset: any; alt?: string } | null;
+	}
+
+	let { cover }: Props = $props();
+
+	const builder = imageUrlBuilder(client);
+	const coverSrc = $derived(
+		cover ? builder.image(cover).auto('format').url() : (localCover as string)
+	);
 </script>
 
 <div class="mb-6" style="margin-top: -68px">
 	<div class="relative overflow-hidden" style="height: 100svh;">
-		<img src={cover} class="absolute inset-0 h-full w-full object-cover" alt="" />
+		<img src={coverSrc} class="absolute inset-0 h-full w-full object-cover" alt="" />
 		<div class="absolute inset-0" style="background: rgba(0,0,0,0.72);"></div>
 		<div
 			class="absolute inset-0 z-10 flex flex-col justify-between pb-8"
