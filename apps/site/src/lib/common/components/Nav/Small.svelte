@@ -57,6 +57,7 @@
 						</div>
 						<div class="pb-4">
 							{@render link('/subteams', 'Subteams')}
+							{@render link('/events', 'Events')}
 							{@render link('/competition', 'Competition')}
 							{@render link('/resources', 'Resources')}
 							{@render link('/board', 'Board')}
@@ -64,6 +65,7 @@
 							{@render link('/contact', 'Contact')}
 							{@render link('/news', 'News')}
 							{@render link('/sponsors', 'Sponsors')}
+							{@render link('/package', 'Package')}
 						</div>
 					</div>
 				{/if}

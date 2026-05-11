@@ -3,6 +3,7 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
+import { colorInput } from '@sanity/color-input';
 import {
 	CogIcon,
 	ConfettiIcon,
@@ -11,7 +12,8 @@ import {
 	UserIcon,
 	UsersIcon,
 	HomeIcon,
-	DashboardIcon
+	DashboardIcon,
+	DocumentIcon
 } from '@sanity/icons';
 import groq from 'groq';
 
@@ -139,8 +141,21 @@ export default defineConfig({
 							.title('Contact Page')
 							.icon(EnvelopeIcon)
 							.child(S.document().schemaType('contactPage').documentId('contactPage')),
+						S.listItem()
+							.title('Corporate Page')
+							.icon(DocumentIcon)
+							.child(S.document().schemaType('corporatePage').documentId('corporatePage')),
 						S.divider(),
-						S.documentTypeListItem('news'),
+						S.listItem()
+							.title('News')
+							.icon(CogIcon)
+							.child(
+								S.documentList().title('News').filter('_type == "news" || _type == "newsLink"')
+							),
+						S.listItem()
+							.title('Calendar')
+							.icon(EnvelopeIcon)
+							.child(S.documentList().title('Calendar').filter('_type == "calendar"')),
 						S.documentTypeListItem('resource').title('Resources').icon(DashboardIcon),
 						S.documentTypeListItem('sponsor').title('Sponsors'),
 						S.divider(),
@@ -185,7 +200,8 @@ export default defineConfig({
 			//
 			//     ]),
 		}),
-		visionTool()
+		visionTool(),
+		colorInput()
 	],
 
 	schema: {

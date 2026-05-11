@@ -36,23 +36,15 @@ export default defineType({
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({
-			name: 'content',
-			type: 'array',
-			title: 'Content',
-			of: [
-				defineArrayMember({
-					type: 'block',
-					styles: [
-						{ title: 'Normal', value: 'normal' },
-						{ title: 'H2', value: 'h2' },
-						{ title: 'H3', value: 'h3' }
-					],
-					lists: [],
-					marks: {
-						decorators: []
-					}
-				})
-			],
+			name: 'source',
+			type: 'string',
+			title: 'Source',
+			validation: (Rule) => Rule.required()
+		}),
+		defineField({
+			name: 'link',
+			type: 'url',
+			title: 'Link',
 			validation: (Rule) => Rule.required()
 		})
 	]

@@ -2,12 +2,15 @@
 	import { NavigationMenu } from 'bits-ui';
 	import {
 		BookMarked,
+		Building2,
+		FileText,
 		Group,
 		type Icon,
 		LucideBrush,
 		LucideMail,
 		LucideUsers,
-		Trophy
+		Trophy,
+		Calendar
 	} from 'lucide-svelte';
 	import ListGroup from './ListGroup.svelte';
 
@@ -66,6 +69,11 @@
 				Icon: Group
 			})}
 			{@render ListItem({
+				href: '/events',
+				title: 'Events',
+				Icon: Calendar
+			})}
+			{@render ListItem({
 				href: '/competition',
 				title: 'Competition',
 				Icon: Trophy
@@ -99,10 +107,18 @@
 			href: '/news',
 			label: 'News'
 		})}
-		{@render ItemLink({
-			href: '/sponsors',
-			label: 'Sponsors'
-		})}
+		<ListGroup name="Sponsors">
+			{@render ListItem({
+				href: '/sponsors',
+				title: 'Sponsors',
+				Icon: Building2
+			})}
+			{@render ListItem({
+				href: '/package',
+				title: 'Package',
+				Icon: FileText
+			})}
+		</ListGroup>
 
 		<div class="absolute right-0 top-125%">
 			<NavigationMenu.Viewport

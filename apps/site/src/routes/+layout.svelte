@@ -2,6 +2,7 @@
 	import 'uno.css';
 	import type { Snippet } from 'svelte';
 	import Nav from '$lib/common/components/Nav/Nav.svelte';
+	import Footer from '$lib/common/components/Footer.svelte';
 
 	interface Props {
 		children?: Snippet;
@@ -21,7 +22,9 @@
 
 <Nav />
 {@render children?.()}
-<div class="gradient h-md w-full"></div>
+
+<Footer />
+<div class="gradient pointer-events-none h-md w-full -mt-70"></div>
 
 <style>
 	:global(*) {
