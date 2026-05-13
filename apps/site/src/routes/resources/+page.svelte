@@ -36,7 +36,7 @@
 
 		if (data.resources[i].category) {
 			resourceTypes.add(data.resources[i].category?.toLowerCase());
-			resourceSelected[data.resources[i].category?.toLowerCase()] = false;
+			resourceSelected[data.resources[i].category?.toLowerCase()] = true;
 		}
 	}
 
@@ -51,28 +51,32 @@
 <div class="my-40 space-x">
 	<Title title="Resources" />
 	<div class="flex">
-		<div class="w-[30%]">
-			<p class="mt-none text-lg type-label">Filter</p>
+		<!-- <div class="w-[30%]">
+		<p class="mt-none type-body-2"><b>FILTER</b></p>
 
-			<label class="type-body-2">
-				{#each resourceTypes as resourceType (resourceType)}
-					{#if resourceType}
-						{console.log(resourceType + '   ' + resourceSelected[resourceType])}
-						<input type="checkbox" bind:checked={resourceSelected[resourceType]} />
-						{resourceType}
-						<br />
-					{/if}
-				{/each}
-			</label>
-		</div>
-		<div class="w-[75%]" style="display:block">
-			<ResourceType title="Our Resources" allResources={internalResources} {resourceSelected} />
+		<label class="type-body-2">
+			{#each resourceTypes as resourceType (resourceType)}
+				{#if resourceType}
+					{console.log(resourceType + "   "+resourceSelected[resourceType])}
+					<input type="checkbox" bind:checked={resourceSelected[resourceType]} />
+					{resourceType}
+					<br>
+				{/if}
+			{/each}
+		</label>
 
-			<ResourceType
-				title="External Resources"
-				allResources={externalResources}
-				{resourceSelected}
-			/>
+	</div> -->
+		<div class="w-[100%]" style="display:block">
+			{#if internalResources.length > 0}
+				<ResourceType title="Our Resources" allResources={internalResources} {resourceSelected} />
+			{/if}
+			{#if externalResources.length > 0}
+				<ResourceType
+					title="External Resources"
+					allResources={externalResources}
+					{resourceSelected}
+				/>
+			{/if}
 		</div>
 	</div>
 </div>

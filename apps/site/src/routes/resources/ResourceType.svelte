@@ -4,6 +4,7 @@
 	import imageUrlBuilder from '@sanity/image-url';
 	import { client } from '$lib/sanity/sanityClient';
 	import { slide } from 'svelte/transition';
+	import { Triangle } from 'lucide-svelte';
 
 	const builder = imageUrlBuilder(client);
 
@@ -16,25 +17,32 @@
 	let { title, allResources, resourceSelected }: typeData = $props();
 
 	let toggle = $state(true);
+	//▼
 </script>
 
 {#if allResources}
 	<div>
-		<button
-			onclick={() => (toggle = !toggle)}
-			class="mb-[0.875rem] w-full flex flex-row border-none bg-transparent p-none text-left type-body-2 color-[#fff]"
-		>
-			<span class="mr-2 transition-transform duration-300 {toggle ? 'rotate-180' : 'rotate-0'}">
-				▼
-			</span>
-			{title}
-		</button>
+		{#if allResources.length > 0}
+			<button
+				onclick={() => (toggle = !toggle)}
+				class="mb-[0.875rem] w-full flex flex-row items-center border-none bg-transparent p-none text-left type-body-2 color-[#fff]"
+			>
+				<span
+					class="mr-2 transition-transform duration-500 {toggle
+						? 'mb-[0.05rem] rotate-180'
+						: 'mt-[0.3rem] rotate-0'} text-md"
+				>
+					<Triangle size={16} />
+				</span>
+				{title}
+			</button>
+		{/if}
 
 		{#if toggle}
-			<div class="flex" style="flex-wrap: wrap; justify-content: space-between" transition:slide>
+			<div class="grid grid-cols-[repeat(auto-fill,_minmax(300px,1fr))] gap-2" transition:slide>
 				{#each allResources as resource (resource._id)}
 					{#if resource.category == null || resourceSelected[resource.category.toLowerCase()]}
-						<div class="mb-[0.5rem] w-[49.5%] rounded-md background-2 px-4 py-4">
+						<div class="rounded-md background-2 px-4 py-4">
 							{#if resource.thumbnail}
 								<img
 									alt="The cover of the article."
