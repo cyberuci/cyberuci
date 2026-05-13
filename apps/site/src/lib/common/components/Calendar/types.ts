@@ -2,8 +2,7 @@ export interface CalendarEvent {
 	id: string;
 	title: string;
 	description: string;
-	eventType: string;
-	experience: string;
+	experienceLevel: string;
 	start: Temporal.ZonedDateTime;
 	end: Temporal.ZonedDateTime;
 	calendarId: string;

@@ -9,9 +9,7 @@ export const load: PageServerLoad = async () => {
       title,
       description,
       notes,
-      externalResource,
       category,
-      thumbnail,
       link,
       image {
         asset->{
