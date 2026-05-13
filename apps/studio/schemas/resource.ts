@@ -24,32 +24,18 @@ export default defineType({
 			description: 'Extra context like “this is good for reviewing X…”'
 		}),
 		defineField({
-			name: 'externalResource',
-			title: 'External Resource?',
-			type: 'boolean',
-			options: {
-				layout: 'checkbox' // This makes it appear as a checkbox instead of a switch
-			},
-			validation: (Rule) => Rule.required()
-		}),
-		defineField({
 			name: 'category',
 			title: 'Category',
-			type: 'string',
-			options: {
-				list: [
-					{ title: 'Tool', value: 'tool' },
-					{ title: 'Guide', value: 'guide' },
-					{ title: 'Certification', value: 'certification' },
-					{ title: 'Other', value: 'other' }
-				],
-				layout: 'dropdown'
-			}
-		}),
-		defineField({
-			name: 'thumbnail',
-			title: 'Resource Screenshot',
-			type: 'image'
+			type: 'string'
+			// options: {
+			// 	list: [
+			// 		{ title: 'Tool', value: 'tool' },
+			// 		{ title: 'Guide', value: 'guide' },
+			// 		{ title: 'Certification', value: 'certification' },
+			// 		{ title: 'Other', value: 'other' }
+			// 	],
+			// 	layout: 'dropdown'
+			// }
 		}),
 		defineField({
 			name: 'link',
