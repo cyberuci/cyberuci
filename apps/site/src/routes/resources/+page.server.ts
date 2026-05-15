@@ -4,18 +4,19 @@ import { defineQuery } from 'groq';
 
 export const load: PageServerLoad = async () => {
 	const resourcesQuery = defineQuery(`
-    *[_type == "resource"] {
+    *[_type == "resourcecopy"] {
       _id,
       title,
-      description,
-      notes,
+      content,
+      externalResource,
       category,
       link,
-      image {
+      thumbnail {
         asset->{
           url
         },
-        alt
+        alt,
+        isLogo
       },
       tags
     }

@@ -12,6 +12,7 @@ import news from './news';
 import sponsor from './sponsor';
 import info from './info';
 import calendar from './calendar';
+import resourcecopy from './resourcecopy';
 
 export const schemaTypes = [
 	home,
@@ -21,6 +22,7 @@ export const schemaTypes = [
 	contact,
 	corporate,
 	resource,
+	resourcecopy,
 	person,
 	board,
 	info,
