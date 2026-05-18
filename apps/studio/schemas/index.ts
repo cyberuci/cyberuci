@@ -1,5 +1,6 @@
 import home from './pages/home';
 import competition, { achievements } from './pages/competition';
+import achievementsPage from './pages/achievements';
 import subteams from './pages/subteams';
 import contact from './pages/contact';
 import corporate from './pages/corporate';
@@ -17,6 +18,7 @@ export const schemaTypes = [
 	home,
 	competition,
 	achievements,
+	achievementsPage,
 	subteams,
 	contact,
 	corporate,
