@@ -18,7 +18,7 @@ export const load: PageServerLoad = async () => {
         alt,
         isLogo
       },
-      tags
+      "tags": tags[]->{ title, type }
     }
   `);
 

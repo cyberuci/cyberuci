@@ -90,12 +90,15 @@ export default defineType({
 		}),
 		defineField({
 			name: 'tags',
-			title: 'Tags',
 			type: 'array',
-			of: [{ type: 'string' }],
-			options: {
-				layout: 'tags'
-			}
+			title: 'Tags',
+			of: [
+				defineArrayMember({
+					title: 'Tag',
+					type: 'reference',
+					to: [{ type: 'tag' }]
+				})
+			]
 		})
 	]
 });
