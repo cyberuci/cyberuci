@@ -1,14 +1,15 @@
 <script lang="ts">
-	import { CalendarDays, MapPin, CalendarPlus, Download } from 'lucide-svelte';
-
-	type CalEvent = { title: string; dateLabel: string; location: string; description: string };
+	import { resolve } from '$app/paths';
+	import { CalendarDays, MapPin, CalendarPlus, Download, ArrowRight } from 'lucide-svelte';
+	import type { HomepageCalEvent } from '../../+page.server';
 
 	interface Props {
-		events: CalEvent[];
+		events: HomepageCalEvent[];
 	}
 
 	let { events }: Props = $props();
 	const featured = $derived(events[0] ?? null);
+	const rest = $derived(events.slice(1, 3));
 </script>
 
 <div class="my-24 space-x">
@@ -62,11 +63,14 @@
 
 		<!-- Upcoming events card -->
 		<div class="secondary-card flex flex-col rounded-2xl p-6">
-			<!-- <p class="label mb-4 type-body-2 font-medium uppercase tracking-widest">Upcoming</p>
+			<p class="label mb-4 type-body-2 font-medium tracking-widest uppercase">Upcoming</p>
 			{#if rest.length > 0}
-				<ul class="m-0 list-none flex flex-col p-0">
-					{#each rest as ev, i}
-						<li class="flex flex-col gap-0.5 py-4 {i > 0 ? 'item-border' : ''}">
+				<ul class="m-0 flex flex-col list-none p-0">
+					{#each rest as ev, i (ev.calendarId + ev.dateLabel)}
+						<li
+							class="flex flex-col gap-0.5 py-4 pl-3 {i > 0 ? 'item-border' : ''}"
+							style="border-left: 3px solid {ev.colors.main}"
+						>
 							<p class="date type-body-2">{ev.dateLabel}</p>
 							<p class="event-title type-body-1 font-medium">{ev.title}</p>
 							{#if ev.location}
@@ -87,7 +91,7 @@
 			>
 				<span>View all events</span>
 				<ArrowRight size={16} />
-			</a> -->
+			</a>
 		</div>
 	</div>
 </div>

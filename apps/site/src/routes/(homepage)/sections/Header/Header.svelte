@@ -2,7 +2,6 @@
 	import { goto } from '$app/navigation';
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
-	import localCover from './cover.jpg';
 	import ListItem from './ListItem.svelte';
 	import { CalendarDays, Medal, FlaskConical, MessagesSquare } from 'lucide-svelte';
 
@@ -14,9 +13,7 @@
 	let { cover }: Props = $props();
 
 	const builder = imageUrlBuilder(client);
-	const coverSrc = $derived(
-		cover ? builder.image(cover).auto('format').url() : (localCover as string)
-	);
+	const coverSrc = $derived(cover ? builder.image(cover).auto('format').url() : null);
 </script>
 
 <div class="mb-6" style="margin-top: -68px">
@@ -45,7 +42,6 @@
 					Icon={CalendarDays}
 					title="Visit Events"
 					onClick={async () => {
-						// eslint-disable-next-line svelte/no-navigation-without-resolve
 						await goto('/events');
 					}}
 				/>
@@ -60,7 +56,6 @@
 					Icon={Medal}
 					title="Competition Team"
 					onClick={async () => {
-						// eslint-disable-next-line svelte/no-navigation-without-resolve
 						await goto('/competition');
 					}}
 				/>

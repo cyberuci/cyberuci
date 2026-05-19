@@ -2,17 +2,39 @@ import type { PageServerLoad } from './$types';
 import { client } from '$lib/sanity/sanityClient';
 import { defineQuery } from 'groq';
 
-const CALENDAR_URL =
-	'https://calendar.google.com/calendar/ical/c_emjqko59hf0ad1li3omuek40l0%40group.calendar.google.com/public/basic.ics';
+interface SanityCalendar {
+	title: string;
+	calendarLink: string;
+	backgroundColor: { hex: string };
+	supportingColor: { hex: string };
+	textColor: { hex: string };
+}
 
-type CalEvent = { title: string; start: Date; end: Date; location: string; description: string };
+export type HomepageCalEvent = {
+	title: string;
+	dateLabel: string;
+	location: string;
+	description: string;
+	calendarId: string;
+	colors: { main: string; container: string; onContainer: string };
+};
+
+type RawEvent = {
+	title: string;
+	start: Date;
+	end: Date;
+	location: string;
+	description: string;
+	calendarId: string;
+	colors: { main: string; container: string; onContainer: string };
+};
 
 function parseDT(val: string): Date {
 	const m = val.match(/^(\d{4})(\d{2})(\d{2})(T(\d{2})(\d{2})(\d{2})(Z)?)?$/);
 	if (!m) return new Date(NaN);
 	const [, Y, M, D, , h = '00', mn = '00', s = '00', utc] = m;
 	if (utc) return new Date(`${Y}-${M}-${D}T${h}:${mn}:${s}Z`);
-	return new Date(`${Y}-${M}-${D}T${h}:${mn}:${s}-07:00`); // Pacific time
+	return new Date(`${Y}-${M}-${D}T${h}:${mn}:${s}-07:00`);
 }
 
 function nextWeekly(
@@ -55,64 +77,85 @@ function formatEventDate(start: Date, end: Date): string {
 	return `${dayPart} · ${timePart}`;
 }
 
-async function fetchCalEvents(): Promise<
-	{ title: string; dateLabel: string; location: string; description: string }[]
-> {
+function parseICS(
+	text: string,
+	calendarId: string,
+	colors: { main: string; container: string; onContainer: string }
+): RawEvent[] {
+	const now = new Date();
+	const events: RawEvent[] = [];
+
+	for (const block of text.split('BEGIN:VEVENT').slice(1)) {
+		const get = (key: string) =>
+			block.match(new RegExp(`(?:^|\\n)${key}[^:]*:([^\\r\\n]+)`))?.[1]?.trim() ?? '';
+
+		const summary = get('SUMMARY');
+		const location = get('LOCATION');
+		const description = get('DESCRIPTION').replace(/\\n/g, ' ').replace(/\\,/g, ',');
+		const dtstart = get('DTSTART');
+		const dtend = get('DTEND');
+		const rrule = get('RRULE');
+
+		if (!summary || !dtstart) continue;
+		const start = parseDT(dtstart);
+		const end = parseDT(dtend || dtstart);
+		if (isNaN(start.getTime())) continue;
+		const duration = end.getTime() - start.getTime();
+
+		if (rrule.includes('FREQ=WEEKLY')) {
+			const untilM = rrule.match(/UNTIL=([^;]+)/);
+			const until = untilM ? parseDT(untilM[1]) : undefined;
+			const oneYearAgo = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
+			if (!until && start < oneYearAgo) continue;
+			const occ = nextWeekly(start, duration, now, until);
+			if (occ) events.push({ title: summary, location, description, calendarId, colors, ...occ });
+		} else if (start > now) {
+			events.push({ title: summary, start, end, location, description, calendarId, colors });
+		}
+	}
+
+	return events;
+}
+
+async function fetchCalEvents(): Promise<HomepageCalEvent[]> {
 	try {
-		const res = await fetch(CALENDAR_URL);
-		if (!res.ok) {
-			console.error('[cal] fetch failed:', res.status);
-			return [];
-		}
-		// Normalize CRLF and unfold folded lines (RFC 5545 §3.1)
-		const text = (await res.text())
-			.replace(/\r\n/g, '\n')
-			.replace(/\r/g, '\n')
-			.replace(/\n[ \t]/g, '');
-		const now = new Date();
-		const upcoming: CalEvent[] = [];
+		const calendarQuery = defineQuery(`*[_type == "calendar"] {
+			title, calendarLink,
+			backgroundColor, supportingColor, textColor
+		}`);
+		const calendars: SanityCalendar[] = (await client.fetch(calendarQuery)) ?? [];
 
-		for (const block of text.split('BEGIN:VEVENT').slice(1)) {
-			const get = (key: string) =>
-				block.match(new RegExp(`(?:^|\\n)${key}[^:]*:([^\\r\\n]+)`))?.[1]?.trim() ?? '';
+		if (!calendars.length) return [];
 
-			const summary = get('SUMMARY');
-			const location = get('LOCATION');
-			const description = get('DESCRIPTION').replace(/\\n/g, ' ').replace(/\\,/g, ',');
-			const dtstart = get('DTSTART');
-			const dtend = get('DTEND');
-			const rrule = get('RRULE');
+		const allEvents: RawEvent[] = (
+			await Promise.all(
+				calendars.map(async (cal) => {
+					const icsUrl = `https://calendar.google.com/calendar/ical/${encodeURIComponent(cal.calendarLink)}/public/basic.ics`;
+					const res = await fetch(icsUrl);
+					if (!res.ok) return [];
+					const text = (await res.text())
+						.replace(/\r\n/g, '\n')
+						.replace(/\r/g, '\n')
+						.replace(/\n[ \t]/g, '');
+					const colors = {
+						main: cal.backgroundColor.hex,
+						container: cal.supportingColor.hex,
+						onContainer: cal.textColor.hex
+					};
+					return parseICS(text, cal.title, colors);
+				})
+			)
+		).flat();
 
-			if (!summary || !dtstart) continue;
-			const start = parseDT(dtstart);
-			const end = parseDT(dtend || dtstart);
-			if (isNaN(start.getTime())) continue;
-			const duration = end.getTime() - start.getTime();
+		allEvents.sort((a, b) => a.start.getTime() - b.start.getTime());
 
-			if (rrule.includes('FREQ=WEEKLY')) {
-				const untilM = rrule.match(/UNTIL=([^;]+)/);
-				const until = untilM ? parseDT(untilM[1]) : undefined;
-				// Skip old open-ended recurring events superseded by newer ones
-				const oneYearAgo = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
-				if (!until && start < oneYearAgo) continue;
-				const occ = nextWeekly(start, duration, now, until);
-				if (occ) upcoming.push({ title: summary, location, description, ...occ });
-			} else if (start > now) {
-				upcoming.push({ title: summary, start, end, location, description });
-			}
-		}
-
-		upcoming.sort((a, b) => a.start.getTime() - b.start.getTime());
-		if (!upcoming.length) {
-			console.error('[cal] no upcoming events found');
-			return [];
-		}
-		console.error('[cal] next event:', upcoming[0].title, upcoming[0].start.toISOString());
-		return upcoming.slice(0, 4).map((ev) => ({
+		return allEvents.slice(0, 3).map((ev) => ({
 			title: ev.title,
 			dateLabel: formatEventDate(ev.start, ev.end),
 			location: ev.location,
-			description: ev.description
+			description: ev.description,
+			calendarId: ev.calendarId,
+			colors: ev.colors
 		}));
 	} catch (e) {
 		console.error('[cal] error:', e);
