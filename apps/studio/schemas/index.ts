@@ -3,7 +3,6 @@ import competition, { achievements } from './pages/competition';
 import subteams from './pages/subteams';
 import contact from './pages/contact';
 import corporate from './pages/corporate';
-import resource from './resource';
 import person from './person';
 import board from './board';
 import news from './news';
@@ -22,7 +21,6 @@ export const schemaTypes = [
 	subteams,
 	contact,
 	corporate,
-	resource,
 	resourcecopy,
 	tag,
 	person,
