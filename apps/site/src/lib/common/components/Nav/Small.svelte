@@ -63,6 +63,7 @@
 							{@render link('/board', 'Board')}
 							{@render link('/brand', 'Brand')}
 							{@render link('/contact', 'Contact')}
+							{@render link('/achievements', 'Achievements')}
 							{@render link('/news', 'News')}
 							{@render link('/sponsors', 'Sponsors')}
 							{@render link('/package', 'Package')}

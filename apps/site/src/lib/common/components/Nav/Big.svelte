@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { NavigationMenu } from 'bits-ui';
 	import {
+		Award,
 		BookMarked,
 		Building2,
 		FileText,
@@ -100,6 +101,11 @@
 				href: '/contact',
 				title: 'Contact',
 				Icon: LucideMail
+			})}
+			{@render ListItem({
+				href: '/achievements',
+				title: 'Achievements',
+				Icon: Award
 			})}
 		</ListGroup>
 
