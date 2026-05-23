@@ -134,14 +134,14 @@
 
 	<div class="alumni-grid mt-6">
 		{#each sorted as alumni (alumni.id)}
-			<div class="card rounded-2xl p-6">
+			<div class="card rounded p-6">
 				<!-- Avatar + name -->
-				<div class="flex items-center gap-3">
+				<div class="flex items-center gap-5">
 					<div class="avatar {avatarClasses[(alumni.id - 1) % avatarClasses.length]}">
 						{getInitials(alumni.personal.preferredName)}
 					</div>
 					<div>
-						<p class="type-heading-2">{alumni.personal.preferredName}</p>
+						<p class="name type-heading-2">{alumni.personal.preferredName}</p>
 						<p class="role type-body-2">
 							{alumni.currentRole.title}{alumni.currentRole.company
 								? ` · ${alumni.currentRole.company}`
@@ -281,22 +281,28 @@
 		}
 	}
 
+	.name {
+		font-size: 1rem;
+	}
+
 	.role {
 		color: #8d8d8d;
 	}
 
 	.chip {
 		background-color: #e8e8e8;
-		color: #505050;
+		color: #303030;
+		border: 1px solid #c8c8c8;
 		border-radius: 9999px;
-		padding: 0.15rem 0.65rem;
-		font-size: 0.75rem;
+		padding: 0.2rem 0.75rem;
+		font-size: 0.85rem;
 		font-family: 'TASAExplorer', sans-serif;
 	}
 	@media (prefers-color-scheme: dark) {
 		.chip {
-			background-color: #333333;
-			color: #aaaaaa;
+			background-color: #2a2a2a;
+			color: #d0d0d0;
+			border-color: #444444;
 		}
 	}
 
