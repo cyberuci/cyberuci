@@ -34,7 +34,7 @@ export default defineConfig({
 		navout:
 			'animate-keyframes-navout animate-duration-150 animate-ease transform-origin-top transform-3d',
 
-		'space-x': 'px-1 sm:px-2 md:px-3 max-w-7xl mx-auto'
+		'space-x': 'px-4 sm:px-6 md:px-8 max-w-7xl mx-auto'
 	},
 	extendTheme: (theme) => ({
 		...theme,

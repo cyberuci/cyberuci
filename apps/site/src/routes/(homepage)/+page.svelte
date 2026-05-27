@@ -18,17 +18,14 @@
 	<title>Cyber @ UCI</title>
 </svelte:head>
 
-<Header cover={data.homepage.Header ?? null} />
-<Events events={data.events} />
+<Header data={data.homepage.hero} />
+<Events event={data.nextEvent} />
 <Competitions
 	image={data.homepage.competitions.image}
 	subtitle={data.homepage.competitions.subtitle}
 	description={data.homepage.competitions.description}
 />
-<Hackerlab
-	isOpen={data.homepage.hackerlab?.isOpen ?? false}
-	images={data.homepage.hackerlab?.images ?? null}
-/>
+<Hackerlab hackerlab={data.homepage.hackerlab} />
 {#if data.socials.socials}
 	<Socials socials={data.socials.socials} />
 {/if}

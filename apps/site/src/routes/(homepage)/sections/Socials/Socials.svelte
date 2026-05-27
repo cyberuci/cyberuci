@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Heading from '../heading.svelte';
 	import type { PageData } from '../../$types';
 
 	import { siDiscord, siInstagram, siGithub } from 'simple-icons';
@@ -10,21 +11,9 @@
 	let { socials }: Props = $props();
 </script>
 
-<div class="my-24 space-x">
+<div class="my-12 space-x">
 	<div class="flex flex-col gap-4">
-		<div class="flex items-center gap-2">
-			<h2 class="type-label font-550">
-				<span aria-hidden="true"
-					><span style="color:#FF6B6B">/</span><span style="color:#FF9F43">/</span><span
-						style="color:#FECA57">/</span
-					><span style="color:#1DD1A1">/</span><span style="color:#48DBFB">/</span><span
-						style="color:#54A0FF">/</span
-					><span style="color:#5F27CD">/</span><span style="color:#C44FE3">/</span><span
-						style="color:#FF6B9D">/</span
-					></span
-				> Socials
-			</h2>
-		</div>
+		<Heading heading="Socials" />
 		<div class="w-full">
 			<div class="flex flex-row gap-3">
 				{#each socials as { _key, platform, link } (_key)}
@@ -67,12 +56,16 @@
 		color: #202020; /* gray-12 */
 		transition:
 			background-color 0.15s,
-			color 0.15s;
+			color 0.15s,
+			transform 0.15s,
+			box-shadow 0.15s;
 	}
 
 	.social-btn:hover {
 		background-color: black;
 		color: white;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgb(0 0 0 / 0.12);
 	}
 
 	@media (prefers-color-scheme: dark) {
@@ -84,6 +77,7 @@
 		.social-btn:hover {
 			background-color: white;
 			color: black;
+			box-shadow: 0 4px 12px rgb(0 0 0 / 0.35);
 		}
 	}
 </style>

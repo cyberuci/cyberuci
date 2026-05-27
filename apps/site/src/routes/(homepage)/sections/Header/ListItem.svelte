@@ -20,7 +20,7 @@
 		on:click={handleClick}
 	>
 		<div class="flex-shrink-0">
-			<Icon size="24" color={color ?? 'currentColor'} />
+			<Icon size={24} color={color ?? 'currentColor'} />
 		</div>
 		<div class="type-label" style={color ? `color: ${color};` : undefined}>
 			{title}
@@ -36,7 +36,12 @@
 		transition:
 			background-color 0.15s,
 			color 0.15s,
-			border-color 0.15s;
+			border-color 0.15s,
+			transform 0.15s;
+	}
+
+	.btn:active {
+		transform: scale(0.98);
 	}
 
 	.btn:hover {

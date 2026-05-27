@@ -4,7 +4,7 @@
 	import { showDescription } from '$lib/common/components/Calendar/calendarApp';
 	import DOMPurify from 'dompurify';
 
-	import Time from './Time.svelte';
+	import Time from '$lib/common/components/Calendar/Time.svelte';
 
 	import { MapPin, CalendarDays, CircleGauge } from 'lucide-svelte';
 

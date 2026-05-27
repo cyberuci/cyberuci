@@ -56,12 +56,10 @@
 {/snippet}
 
 <NavigationMenu.Root
-	class="relative z-10 max-w-max flex flex-1 items-center justify-center"
+	class="relative z-10 max-w-max flex items-center justify-end"
 	delayDuration={0}
 >
-	<NavigationMenu.List
-		class="group m-0 flex flex-1 list-none items-baseline justify-center gap-5 p-0"
-	>
+	<NavigationMenu.List class="group m-0 flex list-none items-baseline justify-end gap-5 p-0">
 		<ListGroup name="Engage">
 			{@render ListItem({
 				href: '/subteams',

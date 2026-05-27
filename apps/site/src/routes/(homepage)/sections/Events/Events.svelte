@@ -1,26 +1,30 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { CalendarDays, MapPin, CalendarPlus, Download, ArrowRight } from 'lucide-svelte';
-	import type { HomepageCalEvent } from '../../+page.server';
+	import { type CalendarEvent } from '$lib/common/components/Calendar/types';
+	import Time from '$lib/common/components/Calendar/Time.svelte';
+	import Heading from '../heading.svelte';
 
 	interface Props {
-		events: HomepageCalEvent[];
+		event: CalendarEvent;
 	}
 
-	let { events }: Props = $props();
-	const featured = $derived(events[0] ?? null);
-	const rest = $derived(events.slice(1, 3));
+	let { event }: Props = $props();
+	const featured = $derived(event ?? null);
 </script>
 
-<div class="my-24 space-x">
+<div class="my-12 space-x">
+	<Heading heading="Upcoming Events" />
 	<div class="grid grid-cols-1 gap-3 md:grid-cols-2">
 		<!-- Featured event card -->
-		<div class="featured-card flex flex-col gap-4 rounded-2xl p-6">
+		<div class="featured-card flex flex-col gap-4 rounded-2xl p-6 shadow-sm ring-1 ring-blue-9/10">
 			<CalendarDays size={20} />
 			{#if featured}
 				<div>
-					<p class="type-body-2 font-medium">{featured.dateLabel}</p>
-					<h2 class="title type-heading-1">{featured.title}</h2>
+					<!-- <p class="type-body-2 font-medium">{event.start.toString()}</p> -->
+					<!-- <Time {event.start} {event.end} /> -->
+					<Time start={event.start} end={event.end} />
+					<h2 class="title type-heading-1">{event.title}</h2>
 				</div>
 				{#if featured.description}
 					<p class="type-body-1 line-height-relaxed">{featured.description}</p>
@@ -61,38 +65,16 @@
 			{/if}
 		</div>
 
-		<!-- Upcoming events card -->
-		<div class="secondary-card flex flex-col rounded-2xl p-6">
-			<p class="label mb-4 type-body-2 font-medium tracking-widest uppercase">Upcoming</p>
-			{#if rest.length > 0}
-				<ul class="m-0 flex flex-col list-none p-0">
-					{#each rest as ev, i (ev.calendarId + ev.dateLabel)}
-						<li
-							class="flex flex-col gap-0.5 py-4 pl-3 {i > 0 ? 'item-border' : ''}"
-							style="border-left: 3px solid {ev.colors.main}"
-						>
-							<p class="date type-body-2">{ev.dateLabel}</p>
-							<p class="event-title type-body-1 font-medium">{ev.title}</p>
-							{#if ev.location}
-								<p class="location flex items-center gap-1 type-body-2">
-									<MapPin size={12} />
-									{ev.location}
-								</p>
-							{/if}
-						</li>
-					{/each}
-				</ul>
-			{:else}
-				<p class="date type-body-1">No more upcoming events</p>
-			{/if}
-			<a
-				href={resolve('/events')}
-				class="view-all mt-auto flex items-center gap-2 pt-6 type-body-1 decoration-none"
-			>
-				<span>View all events</span>
-				<ArrowRight size={16} />
-			</a>
-		</div>
+		<a
+			href={resolve('/events')}
+			class="secondary-card group flex flex-col items-center justify-center gap-3 rounded-2xl p-6 decoration-none transition-shadow hover:shadow-md"
+		>
+			<CalendarDays size={28} class="opacity-80 transition-transform group-hover:scale-110" />
+			<span class="flex items-center gap-1 type-label">
+				View full calendar
+				<ArrowRight size={14} class="transition-transform group-hover:translate-x-0.5" />
+			</span>
+		</a>
 	</div>
 </div>
 
@@ -115,40 +97,7 @@
 	}
 
 	.secondary-card {
-		background-color: #f4f4f4;
-		color: #202020;
-	}
-	.label,
-	.date,
-	.location {
-		color: #8d8d8d;
-	}
-	.event-title {
-		color: #202020;
-	}
-	.item-border {
-		border-top: 1px solid #e8e8e8;
-	}
-	.view-all {
-		color: #202020;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		.secondary-card {
-			background-color: #222222;
-			color: #eeeeee;
-		}
-		.label,
-		.date,
-		.location {
-			color: #8d8d8d;
-		}
-		.event-title,
-		.view-all {
-			color: #eeeeee;
-		}
-		.item-border {
-			border-top: 1px solid #2e2e2e;
-		}
+		background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+		color: #eeeeee;
 	}
 </style>

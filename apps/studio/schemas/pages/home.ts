@@ -7,11 +7,46 @@ export default defineType({
 	fields: [
 		// Section 1: Header (or News override)
 		defineField({
-			name: 'Header',
-			title: 'Header',
-			type: 'image'
+			name: 'highlightNews',
+			title: 'Highlight News',
+			type: 'object',
+			fields: [
+				defineField({
+					name: 'enable',
+					title: 'Enable',
+					type: 'boolean',
+					description: 'Showcase news article as homepage rather than default landing text.'
+				}),
+				defineField({
+					name: 'article',
+					title: 'News Article',
+					type: 'reference',
+					to: [{ type: 'news' }]
+				})
+			]
 		}),
-		// Section 3: Competitions (after Events, which is pulled from Google Calendar)
+		defineField({
+			name: 'hero',
+			title: 'Hero Background Image',
+			type: 'image',
+			fields: [
+				{
+					name: 'alt',
+					title: 'Alternative Text',
+					description:
+						'Refer to https://accessibility.huit.harvard.edu/describe-content-images for guidance on writing helpful alternative text for images.',
+					type: 'string',
+					validation: (Rule) => [
+						Rule.required().error('You must provide alternative text for the image.'),
+						Rule.regex(/^(image|photo) of/i, {
+							name: 'altTextImageOf',
+							invert: true
+						}).warning('Alternative text should not start with "Image/Photo of"')
+					]
+				}
+			],
+			validation: (Rule) => Rule.required()
+		}),
 		defineField({
 			name: 'competitions',
 			title: 'Competitions',
@@ -19,9 +54,24 @@ export default defineType({
 			fields: [
 				defineField({
 					name: 'image',
-					title: 'Competition Image',
+					title: 'Display Image',
 					type: 'image',
-					description: 'cover image for the competition section',
+					fields: [
+						{
+							name: 'alt',
+							title: 'Alternative Text',
+							description:
+								'Refer to https://accessibility.huit.harvard.edu/describe-content-images for guidance on writing helpful alternative text for images.',
+							type: 'string',
+							validation: (Rule) => [
+								Rule.required().error('You must provide alternative text for the image.'),
+								Rule.regex(/^(image|photo) of/i, {
+									name: 'altTextImageOf',
+									invert: true
+								}).warning('Alternative text should not start with "Image/Photo of"')
+							]
+						}
+					],
 					validation: (Rule) => Rule.required()
 				}),
 				defineField({
@@ -48,11 +98,26 @@ export default defineType({
 			type: 'object',
 			fields: [
 				defineField({
-					name: 'isOpen',
-					title: 'Is Open',
-					type: 'boolean',
-					description: 'Toggles the open/closed status badge shown on the homepage.',
-					initialValue: false
+					name: 'location',
+					title: 'Image',
+					type: 'image',
+					fields: [
+						{
+							name: 'alt',
+							title: 'Alternative Text',
+							description:
+								'Refer to https://accessibility.huit.harvard.edu/describe-content-images for guidance on writing helpful alternative text for images.',
+							type: 'string',
+							validation: (Rule) => [
+								Rule.required().error('You must provide alternative text for the image.'),
+								Rule.regex(/^(image|photo) of/i, {
+									name: 'altTextImageOf',
+									invert: true
+								}).warning('Alternative text should not start with "Image/Photo of"')
+							]
+						}
+					],
+					validation: (Rule) => Rule.required().assetRequired()
 				}),
 				defineField({
 					name: 'images',

@@ -3,30 +3,33 @@
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
 	import { Medal, Info } from 'lucide-svelte';
+	import Heading from '../heading.svelte';
+	import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+
+	const builder = imageUrlBuilder(client);
 
 	interface Props {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		image: { asset: any; alt?: string } | null;
+		image: SanityImageSource;
 		subtitle: string;
 		description: string;
 	}
 
 	let { image, subtitle, description }: Props = $props();
-
-	const builder = imageUrlBuilder(client);
-	const imageSrc = $derived(image ? builder.image(image).auto('format').url() : null);
-	const imageAlt = $derived(image?.alt ?? 'Competition team');
 </script>
 
-<div class="my-24 space-x">
-<<<<<<< HEAD
-	<div class="card flex flex-col overflow-hidden rounded-2xl md:flex-row">
-		{#if imageSrc}
-			<div class="w-full flex-shrink-0 p-3 md:w-1/2">
-				<img class="h-full w-full rounded-xl object-cover" src={imageSrc} alt={imageAlt} />
-			</div>
-		{/if}
-		<div class="flex flex-1 flex-col justify-between p-8">
+<div class="my-12 space-x">
+	<Heading heading="Competitions" />
+	<div
+		class="card ring-black/5 dark:ring-white/10 flex flex-col overflow-hidden rounded-2xl shadow-sm ring-1 transition-shadow duration-200 md:flex-row hover:shadow-md"
+	>
+		<div class="w-full flex-shrink-0 p-3 md:w-1/2">
+			<img
+				alt="Competition team"
+				class="h-full min-h-48 w-full rounded-xl object-cover"
+				src={builder.image(image).width(1200).auto('format').url()}
+			/>
+		</div>
+		<div class="flex flex-1 flex-col justify-between p-6 lg:p-8">
 			<div>
 				<div class="mb-6">
 					<Medal size={20} />
@@ -37,11 +40,10 @@
 			</div>
 			<a
 				href={resolve('/competition')}
-				class="mt-6 flex items-center gap-2 type-body-1 decoration-none"
-				style="color: white;"
+				class="mt-6 flex items-center gap-2 type-body-1 text-blue-11 decoration-none transition-colors dark:text-bluedark-11 hover:text-blue-12 dark:hover:text-bluedark-12"
 			>
 				<Info size={16} />
-				<span>Learn More</span>
+				<span>Learn more</span>
 			</a>
 		</div>
 	</div>

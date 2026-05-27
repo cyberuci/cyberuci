@@ -17,6 +17,6 @@
 <div class="my-40 space-x">
 	<Title title="Competition" />
 	<div class="mb-8 max-w-prose type-body-2">
-		<PortableText value={data.competitionPage.content} />
+		<PortableText value={data?.competitionPage?.content} />
 	</div>
 </div>
