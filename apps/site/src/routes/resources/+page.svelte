@@ -1,8 +1,69 @@
 <script lang="ts">
 	import Title from '$lib/common/components/Title.svelte';
-	import { ArrowUpRight } from 'lucide-svelte';
 	import type { PageData } from './$types';
+	import ResourceType from './ResourceType.svelte';
+
+	import type {
+		PortableTextBlock,
+		PortableTextMarkDefinition,
+		ArbitraryTypedObject,
+		PortableTextSpan
+	} from '@portabletext/types';
+
 	let { data }: { data: PageData } = $props();
+
+	let resourceSelected: Record<string, boolean> = $state({});
+
+	export interface Resources {
+		_id: string;
+		title: string;
+		content: PortableTextBlock<
+			PortableTextMarkDefinition,
+			ArbitraryTypedObject | PortableTextSpan,
+			string,
+			string
+		>[];
+		externalResource: boolean;
+		category: string;
+		link: string;
+		thumbnail: {
+			asset: {
+				url: string;
+			};
+			alt: string;
+			isLogo: boolean;
+		};
+		tags: {
+			title: string;
+			type: string;
+		}[];
+	}
+
+	for (const resource of data.resources) {
+		for (const tag of resource.tags) {
+			resourceSelected[tag.title.toLowerCase()] = true;
+		}
+	}
+
+	function findCanvas(resource: Resources): boolean {
+		return resource.title == 'Canvas';
+	}
+
+	function matchesFilter(resource: Resources): boolean {
+		if (!resource.tags?.length) return true;
+		return (
+			resource.title != 'Canvas' &&
+			resource.tags.some((tag) => resourceSelected[tag.title.toLowerCase()])
+		);
+	}
+
+	const ourResources = $derived(
+		data.resources.filter((r: Resources) => !r.externalResource && matchesFilter(r))
+	);
+	const externalResources = $derived(
+		data.resources.filter((r: Resources) => r.externalResource && matchesFilter(r))
+	);
+	const canvas = $derived(data.resources.filter((r: Resources) => findCanvas(r)));
 </script>
 
 <svelte:head>
@@ -11,39 +72,35 @@
 
 <div class="my-40 space-x">
 	<Title title="Resources" />
-	<div class="grid grid-cols-[repeat(auto-fill,_minmax(480px,1fr))] gap-1">
-		{#each data.resources as resource (resource._id)}
-			<div class="rounded-sm background-2 px-3 py-3">
-				<p class="my-2 type-label font-normal uppercase">{resource.category}</p>
-				{#if resource.image?.asset?.url}
-					<img
-						src={resource.image.asset.url}
-						alt={resource.image.alt}
-						class="my-2 mt-8 max-h-10 max-w-20 object-contain"
-					/>
-				{/if}
-				<h2 class="mb-6 mt-2 type-heading-1 font-semibold">{resource.title}</h2>
-				{#if resource.notes}
-					<p class="max-w-prose type-body-2">
-						{resource.notes}
-					</p>
-				{/if}
-				<p class="max-w-prose type-body-2 text-gray-11 dark:text-graydark-11">
-					{resource.description}
-				</p>
-				{#if resource.link}
-					<!-- eslint-disable svelte/no-navigation-without-resolve -->
-					<a
-						href={resource.link}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="my-2 block type-body-2 text-blue-12 decoration-underline dark:text-bluedark-12 hover:decoration-dashed"
-					>
-						<!-- eslint-enable svelte/no-navigation-without-resolve -->
-						Visit Resource <ArrowUpRight size={12} />
-					</a>
-				{/if}
+
+	{#if ourResources.length > 0}
+		<section class="mb-16">
+			<h2 class="mb-6 type-heading-2">Our Resources</h2>
+			<div class="grid grid-cols-[repeat(auto-fill,_minmax(330px,1fr))] gap-2">
+				{#each canvas as c (c._id)}
+					<ResourceType resource={c} pinned={true} />
+				{/each}
+				{#each ourResources as resource (resource._id)}
+					<ResourceType {resource} pinned={false} />
+				{/each}
 			</div>
-		{/each}
-	</div>
+		</section>
+	{/if}
+
+	{#if externalResources.length > 0}
+		<section>
+			<h2 class="mb-6 type-heading-2">External Resources</h2>
+			<div class="grid grid-cols-[repeat(auto-fill,_minmax(330px,1fr))] gap-2">
+				{#each externalResources as resource (resource._id)}
+					<ResourceType {resource} pinned={false} />
+				{/each}
+			</div>
+		</section>
+	{/if}
+
+	{#if ourResources.length === 0 && externalResources.length === 0}
+		<p class="type-body-2 text-gray-11 dark:text-graydark-11">
+			No resources match the selected filters.
+		</p>
+	{/if}
 </div>
