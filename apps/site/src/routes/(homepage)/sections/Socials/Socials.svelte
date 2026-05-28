@@ -15,7 +15,7 @@
 	<div class="flex flex-col gap-4">
 		<Heading heading="Socials" />
 		<div class="w-full">
-			<div class="flex flex-row gap-3">
+			<div class="flex flex-row gap-3 p-0">
 				{#each socials as { _key, platform, link } (_key)}
 					{#if ['Discord', 'Instagram', 'GitHub'].includes(platform)}
 						<!-- eslint-disable svelte/no-navigation-without-resolve -->

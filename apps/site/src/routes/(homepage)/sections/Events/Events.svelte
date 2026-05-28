@@ -26,7 +26,7 @@
 
 <div class="my-12 space-x">
 	<Heading heading="Upcoming Events" />
-	<div class="grid grid-cols-1 gap-3 md:grid-cols-2">
+	<div class="grid grid-cols-1 mt-4 gap-3 md:grid-cols-2">
 		<!-- Featured event card -->
 		<div class="featured-card flex flex-col gap-4 rounded-2xl p-6 shadow-sm ring-1 ring-blue-9/10">
 			<CalendarDays size={20} />

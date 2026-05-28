@@ -28,4 +28,5 @@
 <Hackerlab hackerlab={data.homepage.hackerlab} />
 {#if data.socials.socials}
 	<Socials socials={data.socials.socials} />
+	<br /><br />
 {/if}

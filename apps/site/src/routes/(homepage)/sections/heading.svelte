@@ -6,7 +6,7 @@
 	let { heading }: Props = $props();
 </script>
 
-<div class="flex items-center gap-2 pb-5">
+<div class="flex items-center gap-2 pb-0">
 	<h2 class="type-label font-550">
 		<span aria-hidden="true"
 			><span class="text-[#FF6B6B]">/</span><span class="text-[#FF9F43]">/</span><span
