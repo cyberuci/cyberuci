@@ -67,7 +67,9 @@
 				<ul class="m-0 mt-4 flex flex-col list-none gap-3 p-0 type-body-1">
 					<li class="flex items-start gap-2">
 						<MapPin size={16} class="meta-icon mt-0.5 shrink-0" />
-						<span>1550 Interdisciplinary Science & Engineering Building (ISEB), UC Irvine</span>
+						<span
+							><b>1550 Interdisciplinary Science & Engineering Building (ISEB), UC Irvine</b></span
+						>
 					</li>
 					<li class="flex items-start gap-2">
 						<Clock size={16} class="meta-icon mt-0.5 shrink-0" />

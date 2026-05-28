@@ -16,7 +16,7 @@
 	let { data }: Props = $props();
 </script>
 
-<div class="mb-6" style="margin-top: -68px">
+<div class="relative z-0 mb-6" style="margin-top: -68px">
 	<div class="relative overflow-hidden" style="height: 100svh;">
 		<img
 			alt="Cyber@UCI club members collaborating in the HackerLab."
@@ -30,7 +30,7 @@
 		></div>
 
 		<div
-			class="absolute inset-0 z-10 flex flex-col justify-between pb-8"
+			class="absolute inset-0 z-1 flex flex-col justify-between pb-8"
 			style="padding-top: calc(68px + 2rem);"
 		>
 			<div class="space-x w-full">

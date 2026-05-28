@@ -29,7 +29,7 @@
 				{#if open}
 					<div
 						{...props}
-						class="fixed inset-0 bg-graya-9"
+						class="fixed inset-0 z-60 bg-graya-9"
 						transition:fade={{
 							easing: cubicOut
 						}}
@@ -42,7 +42,7 @@
 				{#if open}
 					<div
 						{...props}
-						class="fixed left-0 top-0 w-full background-2"
+						class="fixed left-0 top-0 z-70 w-full background-2"
 						transition:fly={{
 							y: '-100%',
 							easing: cubicOut
