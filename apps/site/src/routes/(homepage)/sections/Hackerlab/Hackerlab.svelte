@@ -36,7 +36,7 @@
 <div class="my-12 space-x" id="hacker-lab">
 	<Heading heading="Hackerlab" />
 	<div
-		class="card ring-black/5 dark:ring-white/10 flex flex-col overflow-hidden rounded-2xl shadow-sm ring-1 transition-shadow duration-200 md:flex-row hover:shadow-md"
+		class="card ring-black/5 dark:ring-white/10 mt-4 flex flex-col overflow-hidden rounded-2xl shadow-sm ring-1 transition-shadow duration-200 md:flex-row hover:shadow-md"
 	>
 		{#if mapSrc}
 			<div class="block w-full flex-shrink-0 p-3 lg:hidden md:hidden md:w-1/2">
