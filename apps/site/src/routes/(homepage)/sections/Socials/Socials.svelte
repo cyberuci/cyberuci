@@ -1,7 +1,7 @@
 <script lang="ts">
+	import Heading from '../heading.svelte';
 	import type { PageData } from '../../$types';
 
-	import { MessageCircle } from 'lucide-svelte';
 	import { siDiscord, siInstagram, siGithub } from 'simple-icons';
 
 	interface Props {
@@ -11,44 +11,73 @@
 	let { socials }: Props = $props();
 </script>
 
-<div class="my-24 space-x">
-	<div class="grid items-start gap-y-15 lg:grid-cols-16">
-		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
-			<MessageCircle size={18} />
-			<h2 class="type-label font-550">Socials</h2>
-		</div>
-		<div class="lg:col-start-5 lg:col-end-14">
-			<div class="mb-6 mt-2 flex flex-col gap-6">
+<div class="my-12 space-x">
+	<div class="flex flex-col gap-4">
+		<Heading heading="Socials" />
+		<div class="w-full">
+			<div class="flex flex-row gap-3">
 				{#each socials as { _key, platform, link } (_key)}
 					{#if ['Discord', 'Instagram', 'GitHub'].includes(platform)}
-						<div>
-							<!-- eslint-disable svelte/no-navigation-without-resolve -->
-							<a
-								class="w-full flex items-center gap-4 text-blue-12 dark:text-bluedark-12 hover:decoration-dotted"
-								href={link}
+						<!-- eslint-disable svelte/no-navigation-without-resolve -->
+						<a
+							class="social-btn h-14 flex flex-1 items-center justify-center rounded-2xl"
+							href={link}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={platform}
+						>
+							<!-- eslint-enable svelte/no-navigation-without-resolve -->
+							<svg
+								class="size-6"
+								role="img"
+								viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="currentColor"
 							>
-								<!-- eslint-enable svelte/no-navigation-without-resolve -->
-								<svg
-									class="size-8"
-									role="img"
-									viewBox="0 0 24 24"
-									xmlns="http://www.w3.org/2000/svg"
-									fill="currentColor"
-								>
-									{#if platform === 'Discord'}
-										<path d={siDiscord.path} />
-									{:else if platform === 'Instagram'}
-										<path d={siInstagram.path} />
-									{:else if platform === 'GitHub'}
-										<path d={siGithub.path} />
-									{/if}
-								</svg>
-								<span class="type-heading-1">{platform}</span>
-							</a>
-						</div>
+								{#if platform === 'Discord'}
+									<path d={siDiscord.path} />
+								{:else if platform === 'Instagram'}
+									<path d={siInstagram.path} />
+								{:else if platform === 'GitHub'}
+									<path d={siGithub.path} />
+								{/if}
+							</svg>
+						</a>
 					{/if}
 				{/each}
 			</div>
 		</div>
 	</div>
 </div>
+
+<style>
+	.social-btn {
+		background-color: #e0e0e0; /* gray-5 */
+		color: #202020; /* gray-12 */
+		transition:
+			background-color 0.15s,
+			color 0.15s,
+			transform 0.15s,
+			box-shadow 0.15s;
+	}
+
+	.social-btn:hover {
+		background-color: black;
+		color: white;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgb(0 0 0 / 0.12);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.social-btn {
+			background-color: #222222; /* graydark-3 */
+			color: #eeeeee; /* graydark-12 */
+		}
+
+		.social-btn:hover {
+			background-color: white;
+			color: black;
+			box-shadow: 0 4px 12px rgb(0 0 0 / 0.35);
+		}
+	}
+</style>

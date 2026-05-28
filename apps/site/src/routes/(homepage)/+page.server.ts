@@ -1,10 +1,20 @@
 import type { PageServerLoad } from './$types';
 import { client } from '$lib/sanity/sanityClient';
 import { defineQuery } from 'groq';
+import { _formatCalendarData } from '$lib/common/components/Calendar/calendarData';
+
+import { loadAllCalendars } from '$lib/common/components/Calendar/transform';
+
+const fetchNextCalEvent = async () => {
+	const calendarEvent = await _formatCalendarData();
+	const allCalendars = loadAllCalendars(calendarEvent.events);
+	return allCalendars[allCalendars.length - 1];
+};
 
 const fetchHome = async () => {
 	const homePageQuery = defineQuery(`
 		*[_type == 'homePage' && _id == "homePage"][0] {
+			hero,
 			highlightNews {
 				enable,
 				article -> {
@@ -15,12 +25,13 @@ const fetchHome = async () => {
 				},
 			},
 			competitions {
+				image,
 				subtitle,
 				description,
 			},
 			hackerlab {
+				location,
 				description,
-				images,
 			},
 		}
   `);
@@ -53,6 +64,7 @@ const fetchSocials = async () => {
 export const load: PageServerLoad = async () => {
 	return {
 		homepage: await fetchHome(),
-		socials: await fetchSocials()
+		socials: await fetchSocials(),
+		nextEvent: await fetchNextCalEvent()
 	};
 };

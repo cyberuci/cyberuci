@@ -31,8 +31,14 @@
 		@apply box-border;
 	}
 
+	:global(html) {
+		scroll-behavior: smooth;
+	}
+
 	:global(body) {
 		@apply background text m-0;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 
 	.gradient {
