@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { CalendarDays, MapPin, CalendarPlus, Download, ArrowRight } from 'lucide-svelte';
 	import { type CalendarEvent } from '$lib/common/components/Calendar/types';
+	import { downloadIcs, openGoogleCalendar } from '$lib/common/components/Calendar/eventLinks';
 	import Time from '$lib/common/components/Calendar/Time.svelte';
 	import Heading from '../heading.svelte';
 
@@ -11,6 +12,16 @@
 
 	let { event }: Props = $props();
 	const featured = $derived(event ?? null);
+
+	function addToGoogleCalendar() {
+		if (!featured) return;
+		openGoogleCalendar(featured);
+	}
+
+	function downloadEventIcs() {
+		if (!featured) return;
+		downloadIcs(featured);
+	}
 </script>
 
 <div class="my-12 space-x">
@@ -21,10 +32,8 @@
 			<CalendarDays size={20} />
 			{#if featured}
 				<div>
-					<!-- <p class="type-body-2 font-medium">{event.start.toString()}</p> -->
-					<!-- <Time {event.start} {event.end} /> -->
-					<Time start={event.start} end={event.end} />
-					<h2 class="title type-heading-1">{event.title}</h2>
+					<Time start={featured.start} end={featured.end} />
+					<h2 class="title type-heading-1">{featured.title}</h2>
 				</div>
 				{#if featured.description}
 					<p class="type-body-1 line-height-relaxed">{featured.description}</p>
@@ -44,6 +53,7 @@
 						type="button"
 						class="flex cursor-pointer appearance-none items-center gap-2 border-none bg-transparent p-0 text-left type-body-1"
 						style="color: white;"
+						onclick={addToGoogleCalendar}
 					>
 						<CalendarPlus size={16} />
 						<span>Add to Google Calendar</span>
@@ -52,6 +62,7 @@
 						type="button"
 						class="flex cursor-pointer appearance-none items-center gap-2 border-none bg-transparent p-0 text-left type-body-1"
 						style="color: white;"
+						onclick={downloadEventIcs}
 					>
 						<Download size={16} />
 						<span>Download ICS</span>
