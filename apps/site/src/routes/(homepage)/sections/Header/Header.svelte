@@ -40,7 +40,7 @@
 				</h1>
 			</div>
 			<div class="space-x w-full">
-				<ul class="grid grid-cols-2 mx-auto w-fit list-none gap-0.5">
+				<ul class="grid grid-cols-2 mx-auto w-full list-none gap-0.5 p-0 lg:w-3/5">
 					<ListItem
 						Icon={FlaskConical}
 						title="Visit HackerLab"

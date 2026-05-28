@@ -38,8 +38,6 @@ const fetchHome = async () => {
 
 	const homeData = await client.fetch(homePageQuery);
 
-	console.log(homeData);
-
 	if (homeData === null) {
 		throw Error('Homepage document is null.');
 	}

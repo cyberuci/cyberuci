@@ -38,6 +38,24 @@
 	<div
 		class="card ring-black/5 dark:ring-white/10 flex flex-col overflow-hidden rounded-2xl shadow-sm ring-1 transition-shadow duration-200 md:flex-row hover:shadow-md"
 	>
+		{#if mapSrc}
+			<div class="block w-full flex-shrink-0 p-3 lg:hidden md:hidden md:w-1/2">
+				<a
+					class="map-link group relative block h-full min-h-48"
+					href={googleMapsUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Open HackerLab location in Google Maps"
+				>
+					<img
+						class="h-full min-h-48 w-full rounded-xl object-cover object-[50%_42%] transition-transform duration-300 group-hover:scale-[1.02]"
+						src={mapSrc}
+						alt={mapAlt}
+					/>
+				</a>
+			</div>
+		{/if}
+
 		<div class="flex flex-1 flex-col justify-between p-6">
 			<div>
 				<div class="mb-6">
@@ -70,7 +88,7 @@
 		</div>
 
 		{#if mapSrc}
-			<div class="w-full flex-shrink-0 p-3 md:w-1/2">
+			<div class="hidden w-full flex-shrink-0 p-3 lg:block md:block md:w-1/2">
 				<a
 					class="map-link group relative block h-full min-h-48"
 					href={googleMapsUrl}
@@ -83,7 +101,6 @@
 						src={mapSrc}
 						alt={mapAlt}
 					/>
-					<span class="map-hint type-label">Open in Google Maps</span>
 				</a>
 			</div>
 		{/if}
