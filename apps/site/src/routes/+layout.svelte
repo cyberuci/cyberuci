@@ -20,8 +20,12 @@
 	<meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
 </svelte:head>
 
-<Nav />
-{@render children?.()}
+<header class="relative z-50 w-full">
+	<Nav />
+</header>
+<main class="relative z-0">
+	{@render children?.()}
+</main>
 
 <Footer />
 <div class="gradient pointer-events-none h-md w-full -mt-70"></div>
@@ -31,8 +35,14 @@
 		@apply box-border;
 	}
 
+	:global(html) {
+		scroll-behavior: smooth;
+	}
+
 	:global(body) {
 		@apply background text m-0;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 
 	.gradient {

@@ -156,7 +156,7 @@ export default defineConfig({
 							.title('Calendar')
 							.icon(EnvelopeIcon)
 							.child(S.documentList().title('Calendar').filter('_type == "calendar"')),
-						S.documentTypeListItem('resource').title('Resources').icon(DashboardIcon),
+						S.documentTypeListItem('resourcecopy').title('Resource').icon(DashboardIcon),
 						S.documentTypeListItem('sponsor').title('Sponsors'),
 						S.divider(),
 						S.listItem()

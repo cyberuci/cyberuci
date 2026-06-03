@@ -5,7 +5,7 @@
 	import Competitions from './sections/Competitions/Competitions.svelte';
 	import Hackerlab from './sections/Hackerlab/Hackerlab.svelte';
 	import Socials from './sections/Socials/Socials.svelte';
-	import News from './sections/News/News.svelte';
+	import Events from './sections/Events/Events.svelte';
 
 	interface Props {
 		data: PageData;
@@ -18,13 +18,15 @@
 	<title>Cyber @ UCI</title>
 </svelte:head>
 
-{#if data.homepage.highlightNews?.enable && data.homepage.highlightNews.article}
-	<News article={data.homepage.highlightNews.article} />
-{:else}
-	<Header />
-{/if}
-<Competitions description={data.homepage.competitions.description} />
-<Hackerlab section={data.homepage.hackerlab} />
+<Header data={data.homepage.hero} />
+<Events event={data.nextEvent} />
+<Competitions
+	image={data.homepage.competitions.image}
+	subtitle={data.homepage.competitions.subtitle}
+	description={data.homepage.competitions.description}
+/>
+<Hackerlab hackerlab={data.homepage.hackerlab} />
 {#if data.socials.socials}
 	<Socials socials={data.socials.socials} />
+	<br /><br />
 {/if}
