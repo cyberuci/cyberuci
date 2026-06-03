@@ -225,11 +225,14 @@
 		align-items: start;
 		background-color: #f4f4f4;
 		color: #202020;
+		border: 1px solid;
+		border-color: var(--cyber-blue-4);
 	}
 	@media (prefers-color-scheme: dark) {
 		.card {
 			background-color: #222222;
 			color: #eeeeee;
+			border-color: #2975ba;
 		}
 	}
 
