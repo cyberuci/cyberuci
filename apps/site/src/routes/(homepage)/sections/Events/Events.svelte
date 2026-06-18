@@ -3,6 +3,7 @@
 	import { CalendarDays, MapPin, CalendarPlus, Download, ArrowRight } from 'lucide-svelte';
 	import { type CalendarEvent } from '$lib/common/components/Calendar/types';
 	import { downloadIcs, openGoogleCalendar } from '$lib/common/components/Calendar/eventLinks';
+	import { siDiscord } from 'simple-icons';
 	import Time from '$lib/common/components/Calendar/Time.svelte';
 	import Heading from '../heading.svelte';
 
@@ -22,6 +23,7 @@
 		if (!featured) return;
 		downloadIcs(featured);
 	}
+	const DISCORD_URL = 'https://discord.cyberuci.com/';
 </script>
 
 <div class="my-12 space-x">
@@ -71,21 +73,36 @@
 			{:else}
 				<div>
 					<p class="type-body-2 font-medium">Coming up</p>
-					<h2 class="title type-heading-1">Check our calendar for upcoming events</h2>
+					<h2 class="title type-heading-1">No events scheduled right now.</h2>
 				</div>
 			{/if}
 		</div>
 
-		<a
-			href={resolve('/events')}
-			class="secondary-card group flex flex-col items-center justify-center gap-3 rounded-2xl p-6 decoration-none transition-shadow hover:shadow-md"
-		>
-			<CalendarDays size={28} class="opacity-80 transition-transform group-hover:scale-110" />
-			<span class="flex items-center gap-1 type-label">
-				View full calendar
-				<ArrowRight size={14} class="transition-transform group-hover:translate-x-0.5" />
-			</span>
-		</a>
+		{#if featured}
+			<a
+				href={resolve('/events')}
+				class="secondary-card group flex flex-col items-center justify-center gap-3 rounded-2xl p-6 decoration-none transition-shadow hover:shadow-md"
+			>
+				<CalendarDays size={28} class="opacity-80 transition-transform group-hover:scale-110" />
+				<span class="flex items-center gap-1 type-label">
+					View full calendar
+					<ArrowRight size={14} class="transition-transform group-hover:translate-x-0.5" />
+				</span>
+			</a>
+		{:else}
+			<a
+				href={DISCORD_URL}
+				class="secondary-card group flex flex-col items-center justify-center gap-3 rounded-2xl p-6 decoration-none transition-shadow hover:shadow-md"
+			>
+				<svg class="mr-2 size-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d={siDiscord.path} />
+				</svg>
+				<span class="flex items-center gap-1 type-label">
+					Join our Discord to stay up to date!
+					<ArrowRight size={14} class="transition-transform group-hover:translate-x-0.5" />
+				</span>
+			</a>
+		{/if}
 	</div>
 </div>
 
