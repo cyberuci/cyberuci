@@ -91,14 +91,14 @@
 				Icon: LucideUsers
 			})}
 			{@render ListItem({
-				href: '/brand',
-				title: 'Brand',
-				Icon: LucideBrush
-			})}
-			{@render ListItem({
 				href: '/alumni',
 				title: 'Alumni',
 				Icon: GraduationCap
+			})}
+			{@render ListItem({
+				href: '/brand',
+				title: 'Brand',
+				Icon: LucideBrush
 			})}
 			{@render ListItem({
 				href: '/contact',
