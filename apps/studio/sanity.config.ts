@@ -187,7 +187,8 @@ export default defineConfig({
 									.filter('_type == "board"')
 									.menuItems([...S.documentTypeList('board').getMenuItems()!])
 									.defaultOrdering([{ field: 'year', direction: 'desc' }])
-							)
+							),
+						S.documentTypeListItem('alumni').title('Alumni').icon(DashboardIcon)
 					]);
 			}
 			// structure: (S) =>

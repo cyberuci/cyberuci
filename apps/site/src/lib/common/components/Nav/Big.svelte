@@ -10,7 +10,8 @@
 		LucideMail,
 		LucideUsers,
 		Trophy,
-		Calendar
+		Calendar,
+		GraduationCap
 	} from 'lucide-svelte';
 	import ListGroup from './ListGroup.svelte';
 
@@ -93,6 +94,11 @@
 				href: '/brand',
 				title: 'Brand',
 				Icon: LucideBrush
+			})}
+			{@render ListItem({
+				href: '/alumni',
+				title: 'Alumni',
+				Icon: GraduationCap
 			})}
 			{@render ListItem({
 				href: '/contact',

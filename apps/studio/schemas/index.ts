@@ -12,6 +12,7 @@ import sponsor from './sponsor';
 import info from './info';
 import calendar from './calendar';
 import resourcecopy from './resourcecopy';
+import alumni from './alumni';
 import tag from './tag';
 
 export const schemaTypes = [
@@ -22,6 +23,7 @@ export const schemaTypes = [
 	contact,
 	corporate,
 	resourcecopy,
+	alumni,
 	tag,
 	person,
 	board,

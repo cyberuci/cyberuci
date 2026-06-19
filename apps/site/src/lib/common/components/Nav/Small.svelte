@@ -60,6 +60,7 @@
 							{@render link('/events', 'Events')}
 							{@render link('/competition', 'Competition')}
 							{@render link('/resources', 'Resources')}
+							{@render link('/alumni', 'Alumni')}
 							{@render link('/board', 'Board')}
 							{@render link('/brand', 'Brand')}
 							{@render link('/contact', 'Contact')}
