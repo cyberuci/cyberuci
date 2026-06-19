@@ -1,71 +1,15 @@
 <script lang="ts">
 	import Title from '$lib/common/components/Title.svelte';
+	import type { PageData } from './$types';
 
-	const alumniProfiles = [
-		{
-			id: 1,
-			personal: {
-				preferredName: 'Michelle',
-				graduationTerm: 'Spring 2026',
-				major: 'Business Administration (Emphasis in Information Systems)'
-			},
-			currentRole: { title: 'Swing Trader & Content Creator', company: null },
-			cyberUCI: { role: 'Social Media Lead' },
-			quote:
-				"Don't pressure yourself to be great. All that does is hold you back because you are rewiring your brain to focus on what you lack and the negatives."
-		},
-		{
-			id: 2,
-			personal: {
-				preferredName: 'Eric',
-				graduationTerm: 'Spring 2026',
-				major: 'Computer Engineering, Mathematics'
-			},
-			currentRole: { title: 'Software Engineer', company: 'Formal' },
-			cyberUCI: { role: 'CCDC Linux Team, Co-Lead' },
-			quote:
-				'I wish I had participated in cybersecurity earlier — I only started going to Cyber@UCI meetings in fourth year!'
-		},
-		{
-			id: 3,
-			personal: {
-				preferredName: 'Zayn Lin',
-				graduationTerm: 'Fall 2023',
-				major: 'Computer Science'
-			},
-			currentRole: { title: 'Red Team', company: 'Moveworks (ServiceNow)' },
-			cyberUCI: { role: 'Captain/Lead (CCDC/CPTC)' },
-			quote: 'We do not rise to the occasion, we fall to the level of our training.'
-		},
-		{
-			id: 4,
-			personal: {
-				preferredName: 'Charles Wu',
-				graduationTerm: 'Spring 2024',
-				major: 'Computer Science'
-			},
-			currentRole: { title: 'Linux Systems Engineer', company: 'Cyberspatial' },
-			cyberUCI: { role: 'CCDC Team Captain, Workshop Lead' },
-			quote:
-				"Focus on developing skills, not aiming for a certain grade. Whatever rabbit hole you go down, as long as you really deeply learn it, it won't be wasted time."
-		}
-	];
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
+	let alumniProfiles = data.alumni;
 
 	const avatarClasses = ['avatar-blue', 'avatar-purple', 'avatar-teal', 'avatar-red'];
-
-	function splitMajors(major: string): string[] {
-		const parts: string[] = [];
-		for (const part of major.split(',').map((s) => s.trim())) {
-			const match = part.match(/^([^(]+?)\s*\(([^)]+)\)\s*$/);
-			if (match) {
-				parts.push(match[1].trim());
-				parts.push(match[2].replace(/^emphasis in\s+/i, '').trim());
-			} else {
-				parts.push(part);
-			}
-		}
-		return parts;
-	}
 
 	function getInitials(name: string): string {
 		return name
@@ -82,14 +26,14 @@
 	let sortKey = $state<SortKey>('year');
 	let sortDir = $state<SortDir>('desc');
 
-	function setSort(key: SortKey) {
-		if (sortKey === key) {
-			sortDir = sortDir === 'asc' ? 'desc' : 'asc';
-		} else {
-			sortKey = key;
-			sortDir = key === 'year' ? 'desc' : 'asc';
-		}
-	}
+	// function setSort(key: SortKey) {
+	// 	if (sortKey === key) {
+	// 		sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+	// 	} else {
+	// 		sortKey = key;
+	// 		sortDir = key === 'year' ? 'desc' : 'asc';
+	// 	}
+	// }
 
 	function termToNumber(term: string): number {
 		const [season, year] = term.split(' ');
@@ -97,7 +41,7 @@
 		return parseInt(year) * 10 + (seasonOrder[season] ?? 0);
 	}
 
-	const sorted = $derived(
+	const sortedAlumni = $derived(
 		[...alumniProfiles].sort((a, b) => {
 			let cmp = 0;
 			if (sortKey === 'year') {
@@ -117,7 +61,7 @@
 <main class="my-40 space-x">
 	<Title title="Alumni Highlights" />
 
-	<div class="mt-6 flex gap-2">
+	<!-- <div class="mt-6 flex gap-2">
 		<button
 			class="sort-btn {sortKey === 'year' ? 'sort-btn-active' : ''}"
 			onclick={() => setSort('year')}
@@ -130,19 +74,19 @@
 		>
 			Name {sortKey === 'name' ? (sortDir === 'asc' ? '↑' : '↓') : ''}
 		</button>
-	</div>
+	</div> -->
 
 	<div class="alumni-grid mt-6">
-		{#each sorted as alumni (alumni.id)}
+		{#each sortedAlumni as alumni, index (index)}
 			<div class="card rounded p-6">
 				<!-- Avatar + name -->
 				<div class="flex items-center gap-5">
-					<div class="avatar {avatarClasses[(alumni.id - 1) % avatarClasses.length]}">
+					<div class="avatar {avatarClasses[index % avatarClasses.length]}">
 						{getInitials(alumni.personal.preferredName)}
 					</div>
 					<div>
-						<p class="name type-heading-2">{alumni.personal.preferredName}</p>
-						<p class="role type-body-2">
+						<p class="name m-0 type-heading-2">{alumni.personal.preferredName}</p>
+						<p class="role m-0 type-body-2">
 							{alumni.currentRole.title}{alumni.currentRole.company
 								? ` · ${alumni.currentRole.company}`
 								: ''}
@@ -153,19 +97,19 @@
 				<!-- Graduation + major -->
 				<div class="flex flex-wrap content-start gap-2">
 					<span class="chip">{alumni.personal.graduationTerm}</span>
-					{#each splitMajors(alumni.personal.major) as major (major)}
+					{#each alumni.personal.majors as major (major)}
 						<span class="chip">{major}</span>
 					{/each}
 				</div>
 
 				<!-- Cyber role -->
-				<p class="cyber-role type-body-2">
+				<p class="cyber-role m-0 type-body-2">
 					<span class="cyber-label">{alumni.cyberUCI.role}</span>
 				</p>
 
 				<!-- Quote -->
 				{#if alumni.quote}
-					<p class="quote type-body-2">"{alumni.quote}"</p>
+					<p class="quote m-0 type-body-2">"{alumni.quote}"</p>
 				{:else}
 					<div></div>
 				{/if}
@@ -207,7 +151,7 @@
 		grid-template-columns: 1fr;
 		gap: 1rem;
 	}
-	@media (min-width: 640px) {
+	@media (min-width: 750px) {
 		.alumni-grid {
 			grid-template-columns: repeat(2, 1fr);
 		}
