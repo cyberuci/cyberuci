@@ -21,7 +21,7 @@
 		"@radix-ui/colors": "3.0.0",
 		"@sanity/client": "7.12.1",
 		"@sanity/image-url": "1.2.0",
-		"@sveltejs/adapter-cloudflare": "7.2.4",
+		"@sveltejs/adapter-cloudflare": "7.2.9",
 		"@sveltejs/enhanced-img": "0.8.5",
 		"@sveltejs/kit": "2.48.5",
 		"@sveltejs/vite-plugin-svelte": "6.2.1",
@@ -55,15 +55,15 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@preact/signals": "^2.9.0",
-		"@sanity/color-input": "^6.0.4",
+		"@preact/signals": "^2.9.2",
+		"@sanity/color-input": "^6.0.8",
 		"@schedule-x/calendar": "^3.7.3",
 		"@schedule-x/calendar-controls": "^3.7.3",
 		"@schedule-x/svelte": "^3.0.0",
 		"@schedule-x/theme-default": "^3.7.3",
-		"@splinetool/runtime": "^1.12.87",
-		"dompurify": "^3.4.2",
-		"preact": "^10.29.1",
+		"@splinetool/runtime": "^1.12.98",
+		"dompurify": "^3.4.11",
+		"preact": "^10.29.3",
 		"temporal-polyfill": "0.3.0"
 	}
 }
