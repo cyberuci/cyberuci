@@ -145,6 +145,21 @@ export default defineConfig({
 							.title('Corporate Page')
 							.icon(DocumentIcon)
 							.child(S.document().schemaType('corporatePage').documentId('corporatePage')),
+						S.listItem()
+							.title('Timeline')
+							.icon(ConfettiIcon)
+							.child(
+								S.list()
+									.title('Timeline')
+									.items([
+										S.listItem()
+											.title('Entries')
+											.child(
+												S.document().schemaType('achievementsPage').documentId('achievementsPage')
+											),
+										S.documentTypeListItem('timelineCategory').title('Categories')
+									])
+							),
 						S.divider(),
 						S.listItem()
 							.title('News')

@@ -73,8 +73,8 @@
 				Icon: Calendar
 			})}
 			{@render ListItem({
-				href: '/competition',
-				title: 'Competition',
+				href: '/timeline',
+				title: 'Timeline',
 				Icon: Trophy
 			})}
 			{@render ListItem({
