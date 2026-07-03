@@ -17,7 +17,12 @@
 		<div class="w-60">
 			<div class="h-30 w-60">
 				<img
-					class="size-full object-contain"
+					class="size-full object-contain dark:hidden"
+					src={builder.image(logo).width(1024).url()}
+					alt={name}
+				/>
+				<img
+					class="size-full object-contain light:hidden"
 					src={builder
 						.image(logoDark ? logoDark : logo)
 						.width(1024)

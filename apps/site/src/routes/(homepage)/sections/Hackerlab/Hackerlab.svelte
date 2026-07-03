@@ -111,21 +111,21 @@
 
 <style>
 	.card {
-		background-color: #0b2945; /* bluedark-3 */
-		color: #cae6ff; /* bluedark-12 */
+		background-color: #e1f1ff; /* blue-3 */
+		color: #1b3d5d; /* blue-12 */
 	}
 
 	.directions-btn {
-		color: #0b2945;
-		background-color: #75bbff;
+		color: #f7fbff;
+		background-color: #2975ba;
 
 		&:hover {
-			background-color: #cae6ff;
+			background-color: #1b3d5d;
 		}
 	}
 
 	.map-link {
-		background-color: #122a42; /* bluedark-4 */
+		background-color: #d2eaff; /* blue-4 */
 	}
 
 	.map-hint {
@@ -138,5 +138,25 @@
 		color: #3c4043;
 		background: rgb(255 255 255 / 0.94);
 		box-shadow: 0 1px 6px rgb(60 64 67 / 0.18);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.card {
+			background-color: #0b2945; /* bluedark-3 */
+			color: #cae6ff; /* bluedark-12 */
+		}
+
+		.directions-btn {
+			color: #0b2945;
+			background-color: #75bbff;
+
+			&:hover {
+				background-color: #cae6ff;
+			}
+		}
+
+		.map-link {
+			background-color: #122a42; /* bluedark-4 */
+		}
 	}
 </style>
