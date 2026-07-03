@@ -108,20 +108,11 @@
 
 <style>
 	.featured-card {
-		background-color: #e1f1ff;
-		color: #1b3d5d;
+		background-color: #0b2945;
+		color: #cae6ff;
 	}
 	.title {
-		color: #2975ba;
-	}
-	@media (prefers-color-scheme: dark) {
-		.featured-card {
-			background-color: #0b2945;
-			color: #cae6ff;
-		}
-		.title {
-			color: #75bbff;
-		}
+		color: #75bbff;
 	}
 
 	.secondary-card {
