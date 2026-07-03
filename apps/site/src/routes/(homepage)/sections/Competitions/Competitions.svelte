@@ -51,7 +51,14 @@
 
 <style>
 	.card {
-		background-color: #222222; /* graydark-3 */
-		color: #eeeeee; /* graydark-12 */
+		background-color: #e8e8e8; /* gray-4 */
+		color: #202020; /* gray-12 */
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.card {
+			background-color: #222222; /* graydark-3 */
+			color: #eeeeee; /* graydark-12 */
+		}
 	}
 </style>

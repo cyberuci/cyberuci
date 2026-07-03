@@ -52,8 +52,8 @@
 
 <style>
 	.social-btn {
-		background-color: #222222; /* graydark-3 */
-		color: #eeeeee; /* graydark-12 */
+		background-color: #e0e0e0; /* gray-5 */
+		color: #202020; /* gray-12 */
 		transition:
 			background-color 0.15s,
 			color 0.15s,
@@ -62,9 +62,22 @@
 	}
 
 	.social-btn:hover {
-		background-color: white;
-		color: black;
+		background-color: black;
+		color: white;
 		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgb(0 0 0 / 0.35);
+		box-shadow: 0 4px 12px rgb(0 0 0 / 0.12);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.social-btn {
+			background-color: #222222; /* graydark-3 */
+			color: #eeeeee; /* graydark-12 */
+		}
+
+		.social-btn:hover {
+			background-color: white;
+			color: black;
+			box-shadow: 0 4px 12px rgb(0 0 0 / 0.35);
+		}
 	}
 </style>
