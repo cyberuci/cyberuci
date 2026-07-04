@@ -4,7 +4,7 @@ import extractorSvelte from '@unocss/extractor-svelte';
 import { gray, grayA, grayDark } from '@radix-ui/colors';
 
 export default defineConfig({
-	presets: [presetUno({ dark: 'media' })],
+	presets: [presetUno({ dark: 'class' })],
 	extractors: [extractorSvelte()],
 	transformers: [transformerDirectives()],
 	rules: [['transform-3d', { 'transform-style': 'preserve-3d' }]],

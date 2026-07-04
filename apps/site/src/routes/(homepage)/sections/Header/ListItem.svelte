@@ -49,18 +49,4 @@
 		color: black;
 		border-color: white;
 	}
-
-	@media (prefers-color-scheme: dark) {
-		.btn {
-			background-color: rgba(255, 255, 255, 0.15);
-			color: white;
-			border-color: rgba(255, 255, 255, 0.3);
-		}
-
-		.btn:hover {
-			background-color: white;
-			color: black;
-			border-color: white;
-		}
-	}
 </style>
