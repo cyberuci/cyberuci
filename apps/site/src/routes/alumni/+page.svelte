@@ -122,28 +122,18 @@
 	.sort-btn {
 		padding: 0.35rem 0.9rem;
 		border-radius: 9999px;
-		border: 1px solid #d0d0d0;
+		border: 1px solid #444;
 		background: transparent;
-		color: #505050;
+		color: #aaaaaa;
 		font-family: 'Blinker', sans-serif;
 		font-size: 0.875rem;
 		cursor: pointer;
 	}
+
 	.sort-btn-active {
 		background-color: #2975ba;
 		border-color: #2975ba;
 		color: #fff;
-	}
-	@media (prefers-color-scheme: dark) {
-		.sort-btn {
-			border-color: #444;
-			color: #aaaaaa;
-		}
-		.sort-btn-active {
-			background-color: #2975ba;
-			border-color: #2975ba;
-			color: #fff;
-		}
 	}
 
 	.alumni-grid {
@@ -151,6 +141,7 @@
 		grid-template-columns: 1fr;
 		gap: 1rem;
 	}
+
 	@media (min-width: 750px) {
 		.alumni-grid {
 			grid-template-columns: repeat(2, 1fr);
@@ -167,17 +158,10 @@
 		grid-row: span 4;
 		grid-template-rows: subgrid;
 		align-items: start;
-		background-color: #f4f4f4;
-		color: #202020;
+		background-color: #222222;
+		color: #eeeeee;
 		border: 1px solid;
-		border-color: var(--cyber-blue-4);
-	}
-	@media (prefers-color-scheme: dark) {
-		.card {
-			background-color: #222222;
-			color: #eeeeee;
-			border-color: #2975ba;
-		}
+		border-color: #2975ba;
 	}
 
 	.avatar {
@@ -192,40 +176,22 @@
 		font-weight: 600;
 		flex-shrink: 0;
 	}
+
 	.avatar-blue {
-		background-color: #dbeafe;
-		color: #1e40af;
+		background-color: #1e3a5f;
+		color: #93c5fd;
 	}
 	.avatar-purple {
-		background-color: #ede9fe;
-		color: #6d28d9;
+		background-color: #2e1a5e;
+		color: #c4b5fd;
 	}
 	.avatar-teal {
-		background-color: #ccfbf1;
-		color: #0f766e;
+		background-color: #134e4a;
+		color: #5eead4;
 	}
 	.avatar-red {
-		background-color: #fce7f3;
-		color: #9d174d;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		.avatar-blue {
-			background-color: #1e3a5f;
-			color: #93c5fd;
-		}
-		.avatar-purple {
-			background-color: #2e1a5e;
-			color: #c4b5fd;
-		}
-		.avatar-teal {
-			background-color: #134e4a;
-			color: #5eead4;
-		}
-		.avatar-red {
-			background-color: #4c1d3a;
-			color: #f9a8d4;
-		}
+		background-color: #4c1d3a;
+		color: #f9a8d4;
 	}
 
 	.name {
@@ -237,53 +203,30 @@
 	}
 
 	.chip {
-		background-color: #e8e8e8;
-		color: #303030;
-		border: 1px solid #c8c8c8;
+		background-color: #2a2a2a;
+		color: #d0d0d0;
+		border: 1px solid #444444;
 		border-radius: 9999px;
 		padding: 0.2rem 0.75rem;
 		font-size: 0.85rem;
-		font-family: 'TASAExplorer', sans-serif;
-	}
-	@media (prefers-color-scheme: dark) {
-		.chip {
-			background-color: #2a2a2a;
-			color: #d0d0d0;
-			border-color: #444444;
-		}
+		font-family: 'TASA Explorer', sans-serif;
 	}
 
 	.cyber-label {
-		color: #2975ba;
+		color: #75bbff;
 		font-weight: 600;
 		margin-right: 0.35rem;
 	}
-	@media (prefers-color-scheme: dark) {
-		.cyber-label {
-			color: #75bbff;
-		}
-	}
 
 	.cyber-role {
-		color: #505050;
-	}
-	@media (prefers-color-scheme: dark) {
-		.cyber-role {
-			color: #aaaaaa;
-		}
+		color: #aaaaaa;
 	}
 
 	.quote {
-		color: #505050;
+		color: #aaaaaa;
 		font-style: italic;
 		line-height: 1.6;
-		border-left: 3px solid #2975ba;
+		border-left: 3px solid #75bbff;
 		padding-left: 0.75rem;
-	}
-	@media (prefers-color-scheme: dark) {
-		.quote {
-			color: #aaaaaa;
-			border-left-color: #75bbff;
-		}
 	}
 </style>
