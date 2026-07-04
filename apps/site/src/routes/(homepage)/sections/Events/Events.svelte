@@ -31,14 +31,13 @@
 	<div class="grid grid-cols-1 mt-4 gap-3 md:grid-cols-2">
 		<!-- Featured event card -->
 		<div class="featured-card flex flex-col gap-4 rounded-2xl p-6 shadow-sm ring-1 ring-blue-9/10">
-			<CalendarDays size={20} />
 			{#if featured}
 				<div>
 					<Time start={featured.start} end={featured.end} />
 					<h2 class="title type-heading-1">{featured.title}</h2>
 				</div>
 				{#if featured.description}
-					<p class="type-body-1 line-height-relaxed">{featured.description}</p>
+					<p class="line-height-relaxed type-body-1">{featured.description}</p>
 				{/if}
 				<div class="mt-auto flex flex-col gap-2 pt-4">
 					{#if featured.location}
@@ -108,20 +107,11 @@
 
 <style>
 	.featured-card {
-		background-color: #e1f1ff;
-		color: #1b3d5d;
+		background-color: #0b2945;
+		color: #cae6ff;
 	}
 	.title {
-		color: #2975ba;
-	}
-	@media (prefers-color-scheme: dark) {
-		.featured-card {
-			background-color: #0b2945;
-			color: #cae6ff;
-		}
-		.title {
-			color: #75bbff;
-		}
+		color: #75bbff;
 	}
 
 	.secondary-card {

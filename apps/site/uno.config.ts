@@ -1,22 +1,21 @@
-import { presetUno, transformerDirectives } from 'unocss';
-import { defineConfig } from 'unocss';
+import { defineConfig, presetUno, transformerDirectives } from 'unocss';
 import extractorSvelte from '@unocss/extractor-svelte';
 import { gray, grayA, grayDark } from '@radix-ui/colors';
 
 export default defineConfig({
-	presets: [presetUno({ dark: 'media' })],
+	presets: [presetUno({ dark: 'class' })],
 	extractors: [extractorSvelte()],
 	transformers: [transformerDirectives()],
 	rules: [['transform-3d', { 'transform-style': 'preserve-3d' }]],
 	shortcuts: {
 		// Typograhy
 		'type-display':
-			"font-strobo [font-feature-settings:'dlig'] text-3xl md:text-4xl lg:text-5xl font-normal my-8 line-height-snug",
-		'type-label': 'font-mono text-sm',
+			"font-pixelify [font-feature-settings:'dlig'] text-4xl md:text-5xl lg:text-6xl font-normal my-8 line-height-snug",
+		'type-label': 'font-sans text-sm',
 		'type-heading-1': 'font-explorer font-medium text-xl md:text-2xl',
 		'type-heading-2': 'font-explorer font-medium text-6 md:text-8',
-		'type-body-1': 'font-sans text-sm line-height-snug',
-		'type-body-2': 'font-sans text-lg line-height-relaxed',
+		'type-body-1': 'font-explorer text-md line-height-snug',
+		'type-body-2': 'font-explorer text-lg line-height-relaxed',
 
 		'terminal-before': "before:content-['~_$_'] before:text-gray-11 dark:before:text-graydark-11",
 
@@ -39,10 +38,13 @@ export default defineConfig({
 	extendTheme: (theme) => ({
 		...theme,
 		fontFamily: {
-			mono: 'CommitMono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-			sans: 'Blinker, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-			strobo: '"BBB Strobo", sans-serif',
-			explorer: 'TASAExplorer, sans-serif'
+			// mono: 'CommitMono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+			// sans: 'Blinker, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+			// strobo: '"BBB Strobo", sans-serif',
+			explorer: 'TASA Explorer, sans-serif',
+			pixelify: 'Pixelify Sans, sans-serif',
+			sans: 'Google Sans Code, sans-serif'
+			// readex: 'Readex Pro, sans-serif',
 		},
 		colors: {
 			transparent: 'transparent',

@@ -22,7 +22,7 @@
 					alt={name}
 				/>
 				<img
-					class="size-full object-contain light:hidden"
+					class="size-full object-contain"
 					src={builder
 						.image(logoDark ? logoDark : logo)
 						.width(1024)

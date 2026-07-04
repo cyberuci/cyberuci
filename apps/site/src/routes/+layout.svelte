@@ -12,12 +12,30 @@
 </script>
 
 <svelte:head>
-	<link href="/fonts/strobo/strobo.css" rel="stylesheet" />
+	<!-- <link href="/fonts/strobo/strobo.css" rel="stylesheet" />
 	<link href="/fonts/commit-mono/commit-mono.css" rel="stylesheet" />
 	<link href="/fonts/tasa-explorer/tasa-explorer.css" rel="stylesheet" />
-	<link href="/fonts/blinker/blinker.css" rel="stylesheet" />
-	<meta name="theme-color" content="#FCFCFC" media="(prefers-color-scheme: light)" />
-	<meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
+	<link href="/fonts/blinker/blinker.css" rel="stylesheet" /> -->
+	<!-- <link href="/fonts/tasa-explorer/tasa-explorer.css" rel="stylesheet" /> -->
+	<link
+		href="https://fonts.googleapis.com/css2?family=TASA+Explorer:wght@400..800&display=swap"
+		rel="stylesheet"
+	/>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+		rel="stylesheet"
+	/>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap"
+		rel="stylesheet"
+	/>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&display=swap"
+		rel="stylesheet"
+	/>
+
+	<!-- <meta name="theme-color" content="#FCFCFC" media="(prefers-color-scheme: light)" /> -->
+	<meta name="theme-color" content="#111111" />
 </svelte:head>
 
 <header class="relative z-50 w-full">
