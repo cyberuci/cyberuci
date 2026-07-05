@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { Temporal } from 'temporal-polyfill';
 	import { type CalendarType } from '@schedule-x/calendar';
 	import { showDescription } from '$lib/common/components/Calendar/calendarApp';
@@ -27,7 +28,10 @@
 	let { id, title, description, eventType, experience, start, end, location, colors }: Props =
 		$props();
 
-	const cleanedDescription = DOMPurify.sanitize(description);
+	// DOMPurify needs a DOM and throws during SSR on Cloudflare Workers.
+	const cleanedDescription = $derived(
+		browser && description ? DOMPurify.sanitize(description) : ''
+	);
 </script>
 
 {#if Temporal.PlainDateTime.compare(currentTime, start) == -1}
