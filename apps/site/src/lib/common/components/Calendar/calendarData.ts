@@ -4,6 +4,7 @@ import { defineQuery } from 'groq';
 import { GOOGLE_CALENDAR_API_KEY } from '$env/static/private';
 import { type GoogleCalendarEvent } from '$lib/common/components/Calendar/types';
 import { Temporal } from 'temporal-polyfill';
+import 'temporal-polyfill/global';
 import { type CalendarType } from '@schedule-x/calendar';
 
 const BASE_URL = 'https://www.googleapis.com/calendar/v3/calendars/';

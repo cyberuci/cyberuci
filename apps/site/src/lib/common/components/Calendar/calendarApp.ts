@@ -1,4 +1,5 @@
 import { type CalendarEvent } from '$lib/common/components/Calendar/types';
+import { parseZoned } from '$lib/common/components/Calendar/transform';
 import {
 	createCalendar,
 	createViewMonthGrid,
@@ -7,6 +8,7 @@ import {
 } from '@schedule-x/calendar';
 import { createCalendarControlsPlugin } from '@schedule-x/calendar-controls';
 import { type CalendarType } from '@schedule-x/calendar';
+import 'temporal-polyfill/global';
 
 const LARGE_SCREEN_SIZE = 1024;
 const SCROLL_OFFSET = 10;
@@ -115,7 +117,11 @@ export function createApp(
 		{
 			views: [createViewMonthGrid()],
 			calendars: colors,
-			events: events,
+			events: events.map((event) => ({
+				...event,
+				start: parseZoned(event.start),
+				end: parseZoned(event.end)
+			})),
 			callbacks: {
 				onEventClick(event) {
 					scrollToEvent(event);

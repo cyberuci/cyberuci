@@ -1,5 +1,6 @@
 <script lang="ts">
 	import 'uno.css';
+	import 'temporal-polyfill/global';
 	import type { Snippet } from 'svelte';
 	import Nav from '$lib/common/components/Nav/Nav.svelte';
 	import Footer from '$lib/common/components/Footer.svelte';
