@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { NavigationMenu } from 'bits-ui';
 	import {
 		BookMarked,
 		Building2,
@@ -14,35 +13,47 @@
 		GraduationCap
 	} from 'lucide-svelte';
 	import ListGroup from './ListGroup.svelte';
-
-	interface ItemLinkProps {
-		label: string;
-		href: string;
-	}
+	import { onMount } from 'svelte';
 
 	interface ListItemProps {
 		Icon: typeof Icon;
 		title: string;
 		href: string;
 	}
-</script>
 
-{#snippet ItemLink({ label, href }: ItemLinkProps)}
-	<NavigationMenu.Item>
-		<NavigationMenu.Link
-			class="py-2 type-label text decoration-none transition-colors before:text-gray-11 hover:text-blue-11 before:content-['~_$_'] dark:before:text-graydark-11 dark:hover:text-bluedark-11"
-			{href}
-		>
-			{label}
-		</NavigationMenu.Link>
-	</NavigationMenu.Item>
-{/snippet}
+	let openGroup = $state<string | null>(null);
+	let rootEl = $state<HTMLElement | null>(null);
+
+	function open(name: string) {
+		openGroup = name;
+	}
+
+	function close() {
+		openGroup = null;
+	}
+
+	function canHover() {
+		return typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches;
+	}
+
+	onMount(() => {
+		function onPointerDown(e: PointerEvent) {
+			if (!rootEl || openGroup === null) return;
+			if (!rootEl.contains(e.target as Node)) close();
+		}
+
+		document.addEventListener('pointerdown', onPointerDown);
+		return () => document.removeEventListener('pointerdown', onPointerDown);
+	});
+</script>
 
 {#snippet ListItem({ title, Icon, href }: ListItemProps)}
 	<li class="h-35 w-38">
-		<NavigationMenu.Link
+		<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+		<a
 			class="group/list block h-full flex flex-col select-none border border-gray-4 rounded-sm border-solid p-3 decoration-none transition-colors dark:border-graydark-4 hover:border-gray-5 hover:background-3 dark:hover:border-graydark-5"
 			{href}
+			onclick={close}
 		>
 			<div
 				class="flex-grow-1 text transition-colors group-hover/list:text-blue-11 dark:group-hover/list:text-blue-11"
@@ -52,82 +63,104 @@
 			<div class="type-label terminal-before text">
 				{title}
 			</div>
-		</NavigationMenu.Link>
+		</a>
 	</li>
 {/snippet}
 
-<NavigationMenu.Root
+{#snippet EngageItems()}
+	{@render ListItem({ href: '/subteams', title: 'Subteams', Icon: Group })}
+	{@render ListItem({ href: '/events', title: 'Events', Icon: Calendar })}
+	{@render ListItem({ href: '/competition', title: 'Competition', Icon: Trophy })}
+	{@render ListItem({ href: '/resources', title: 'Resources', Icon: BookMarked })}
+{/snippet}
+
+{#snippet AboutItems()}
+	{@render ListItem({ href: '/board', title: 'Board', Icon: LucideUsers })}
+	{@render ListItem({ href: '/alumni', title: 'Alumni', Icon: GraduationCap })}
+	{@render ListItem({ href: '/brand', title: 'Brand', Icon: LucideBrush })}
+	{@render ListItem({ href: '/contact', title: 'Contact', Icon: LucideMail })}
+{/snippet}
+
+{#snippet SponsorsItems()}
+	{@render ListItem({ href: '/sponsors', title: 'Sponsors', Icon: Building2 })}
+	{@render ListItem({ href: '/package', title: 'Package', Icon: FileText })}
+{/snippet}
+
+<nav
+	bind:this={rootEl}
 	class="relative z-10 max-w-max flex items-center justify-end"
-	delayDuration={0}
+	aria-label="Main"
+	onpointerleave={() => {
+		if (canHover()) close();
+	}}
 >
-	<NavigationMenu.List class="group m-0 flex list-none items-baseline justify-end gap-5 p-0">
-		<ListGroup name="Engage">
-			{@render ListItem({
-				href: '/subteams',
-				title: 'Subteams',
-				Icon: Group
-			})}
-			{@render ListItem({
-				href: '/events',
-				title: 'Events',
-				Icon: Calendar
-			})}
-			{@render ListItem({
-				href: '/competition',
-				title: 'Competition',
-				Icon: Trophy
-			})}
-			{@render ListItem({
-				href: '/resources',
-				title: 'Resources',
-				Icon: BookMarked
-			})}
-		</ListGroup>
+	<ul class="m-0 flex list-none items-baseline justify-end gap-5 p-0">
+		<ListGroup
+			name="Engage"
+			open={openGroup === 'Engage'}
+			onOpen={() => open('Engage')}
+			onClose={close}
+		/>
 
-		<ListGroup name="About">
-			{@render ListItem({
-				href: '/board',
-				title: 'Board',
-				Icon: LucideUsers
-			})}
-			{@render ListItem({
-				href: '/alumni',
-				title: 'Alumni',
-				Icon: GraduationCap
-			})}
-			{@render ListItem({
-				href: '/brand',
-				title: 'Brand',
-				Icon: LucideBrush
-			})}
-			{@render ListItem({
-				href: '/contact',
-				title: 'Contact',
-				Icon: LucideMail
-			})}
-		</ListGroup>
+		<ListGroup
+			name="About"
+			open={openGroup === 'About'}
+			onOpen={() => open('About')}
+			onClose={close}
+		/>
 
-		{@render ItemLink({
-			href: '/news',
-			label: 'News'
-		})}
-		<ListGroup name="Sponsors">
-			{@render ListItem({
-				href: '/sponsors',
-				title: 'Sponsors',
-				Icon: Building2
-			})}
-			{@render ListItem({
-				href: '/package',
-				title: 'Package',
-				Icon: FileText
-			})}
-		</ListGroup>
+		<li class="list-none">
+			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+			<a
+				class="py-2 type-label text decoration-none transition-colors before:text-gray-11 hover:text-blue-11 before:content-['~_$_'] dark:before:text-graydark-11 dark:hover:text-bluedark-11"
+				href="/news"
+			>
+				News
+			</a>
+		</li>
 
-		<div class="absolute right-0 top-125%">
-			<NavigationMenu.Viewport
-				class="h-[var(--bits-navigation-menu-viewport-height)] w-[var(--bits-navigation-menu-viewport-width)] overflow-hidden border border-gray-4 rounded-md border-solid background-2 data-[state=closed]:navout data-[state=open]:navin dark:border-graydark-4"
-			/>
+		<ListGroup
+			name="Sponsors"
+			open={openGroup === 'Sponsors'}
+			onOpen={() => open('Sponsors')}
+			onClose={close}
+		/>
+	</ul>
+
+	{#if openGroup}
+		<!-- pt-2 keeps visual spacing while remaining a continuous hover target -->
+		<div class="absolute right-0 top-full z-50 pt-2">
+			<div
+				class="nav-viewport overflow-hidden border border-gray-4 rounded-md border-solid background-2 dark:border-graydark-4"
+				role="menu"
+			>
+				<ul class="m-0 flex list-none gap-2 p-2">
+					{#if openGroup === 'Engage'}
+						{@render EngageItems()}
+					{:else if openGroup === 'About'}
+						{@render AboutItems()}
+					{:else if openGroup === 'Sponsors'}
+						{@render SponsorsItems()}
+					{/if}
+				</ul>
+			</div>
 		</div>
-	</NavigationMenu.List>
-</NavigationMenu.Root>
+	{/if}
+</nav>
+
+<style>
+	.nav-viewport {
+		animation: navin 0.2s ease-out;
+	}
+
+	@keyframes navin {
+		from {
+			opacity: 0;
+			transform: translateY(-4px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>
