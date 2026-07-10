@@ -2,15 +2,19 @@ import type { PageServerLoad } from './$types';
 import { client } from '$lib/sanity/sanityClient';
 import { defineQuery } from 'groq';
 import { _formatCalendarData } from '$lib/common/components/Calendar/calendarData';
+import { Temporal } from 'temporal-polyfill';
+import 'temporal-polyfill/global';
 
-import { loadAllCalendars } from '$lib/common/components/Calendar/transform';
+import { loadAllCalendars, parseZoned } from '$lib/common/components/Calendar/transform';
 
 const fetchNextCalEvent = async () => {
 	const calendarEvent = await _formatCalendarData();
 	const allCalendars = loadAllCalendars(calendarEvent.events);
 
 	const upcomingEvents = allCalendars.filter(
-		(event) => Temporal.PlainDateTime.compare(Temporal.Now.zonedDateTimeISO(), event.start) === -1
+		(event) =>
+			Temporal.PlainDateTime.compare(Temporal.Now.zonedDateTimeISO(), parseZoned(event.start)) ===
+			-1
 	);
 
 	if (upcomingEvents.length == 0) return null;

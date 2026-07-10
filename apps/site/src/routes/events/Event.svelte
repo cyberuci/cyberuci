@@ -3,6 +3,7 @@
 	import { Temporal } from 'temporal-polyfill';
 	import { type CalendarType } from '@schedule-x/calendar';
 	import { showDescription } from '$lib/common/components/Calendar/calendarApp';
+	import { parseZoned } from '$lib/common/components/Calendar/transform';
 	import DOMPurify from 'dompurify';
 
 	import Time from '$lib/common/components/Calendar/Time.svelte';
@@ -17,8 +18,8 @@
 		description: string;
 		eventType: string;
 		experience: string;
-		start: Temporal.ZonedDateTime;
-		end: Temporal.ZonedDateTime;
+		start: string;
+		end: string;
 		location: string;
 		colors: CalendarType;
 	}
@@ -28,13 +29,15 @@
 	let { id, title, description, eventType, experience, start, end, location, colors }: Props =
 		$props();
 
+	const startZdt = $derived(parseZoned(start));
+
 	// DOMPurify needs a DOM and throws during SSR on Cloudflare Workers.
 	const cleanedDescription = $derived(
 		browser && description ? DOMPurify.sanitize(description) : ''
 	);
 </script>
 
-{#if Temporal.PlainDateTime.compare(currentTime, start) == -1}
+{#if Temporal.PlainDateTime.compare(currentTime, startZdt) == -1}
 	<button
 		class="mb-[0.5rem] w-full flex flex-row rounded-md border-none bg-[#333333] p-none text-left color-[#fff]"
 		id="{id}_side_view"

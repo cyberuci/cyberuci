@@ -1,4 +1,7 @@
+import { Temporal } from 'temporal-polyfill';
+import 'temporal-polyfill/global';
 import type { CalendarEvent } from './types';
+import { parseZoned } from './transform';
 
 function formatInstantUtc(instant: Temporal.Instant): string {
 	return instant
@@ -39,7 +42,7 @@ export function buildGoogleCalendarUrl(event: CalendarEvent): string {
 	const params = new URLSearchParams({
 		action: 'TEMPLATE',
 		text: event.title,
-		dates: `${toIcsUtc(event.start)}/${toIcsUtc(event.end)}`
+		dates: `${toIcsUtc(parseZoned(event.start))}/${toIcsUtc(parseZoned(event.end))}`
 	});
 
 	const details = plainText(event.description);
@@ -60,8 +63,8 @@ export function buildIcsContent(event: CalendarEvent): string {
 		'BEGIN:VEVENT',
 		`UID:${escapeIcsText(event.id)}@cyberuci.com`,
 		`DTSTAMP:${formatInstantUtc(Temporal.Now.instant())}`,
-		`DTSTART:${toIcsUtc(event.start)}`,
-		`DTEND:${toIcsUtc(event.end)}`,
+		`DTSTART:${toIcsUtc(parseZoned(event.start))}`,
+		`DTEND:${toIcsUtc(parseZoned(event.end))}`,
 		`SUMMARY:${escapeIcsText(event.title)}`
 	];
 
