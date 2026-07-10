@@ -4,7 +4,7 @@
 	import { type CalendarApp } from '@schedule-x/calendar';
 	import type { PageProps } from './$types';
 
-	import { loadAllCalendars } from '$lib/common/components/Calendar/transform';
+	import { loadAllCalendars, parseZoned } from '$lib/common/components/Calendar/transform';
 	import { createApp } from '$lib/common/components/Calendar/calendarApp';
 
 	import Title from '$lib/common/components/Title.svelte';
@@ -28,7 +28,9 @@
 
 	let upcomingEvents = $derived(
 		calendarEvents.filter(
-			(event) => Temporal.PlainDateTime.compare(Temporal.Now.zonedDateTimeISO(), event.start) === -1
+			(event) =>
+				Temporal.PlainDateTime.compare(Temporal.Now.zonedDateTimeISO(), parseZoned(event.start)) ===
+				-1
 		)
 	);
 

@@ -2,9 +2,10 @@ export interface CalendarEvent {
 	id: string;
 	title: string;
 	description: string;
-	experienceLevel: string;
-	start: Temporal.ZonedDateTime;
-	end: Temporal.ZonedDateTime;
+	experience: string;
+	/** Zoned ISO string, e.g. `2026-07-20T08:00:00-07:00[America/Los_Angeles]` */
+	start: string;
+	end: string;
 	calendarId: string;
 	location: string;
 }

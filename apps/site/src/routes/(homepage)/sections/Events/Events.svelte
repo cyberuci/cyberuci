@@ -8,7 +8,7 @@
 	import Heading from '../heading.svelte';
 
 	interface Props {
-		event: CalendarEvent;
+		event: CalendarEvent | null;
 	}
 
 	let { event }: Props = $props();

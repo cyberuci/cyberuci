@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { Temporal } from 'temporal-polyfill';
-
-	import { Clock } from 'lucide-svelte';
-
 	import 'temporal-polyfill/global';
+	import { Clock } from 'lucide-svelte';
+	import { parseZoned } from './transform';
 
 	interface Props {
-		start: Temporal.ZonedDateTime;
-		end: Temporal.ZonedDateTime;
+		start: string;
+		end: string;
 	}
 
 	let { start, end }: Props = $props();
+
+	const startZdt = $derived(parseZoned(start));
+	const endZdt = $derived(parseZoned(end));
 
 	let weekDayFormat: Intl.DateTimeFormatOptions = {
 		weekday: 'long'
@@ -35,10 +37,10 @@
 <div class="mt-none flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 	<Clock size={18} />
 	<p class="m-none type-label">
-		{new Intl.DateTimeFormat('en-US', weekDayFormat).format(new Date(start.toLocaleString()))}
-		({new Intl.DateTimeFormat('en-US', dateFormat).format(new Date(start.toLocaleString()))})
-		{formatPlainTime(start.toPlainTime())} -
-		{formatPlainTime(end.toPlainTime())}
+		{new Intl.DateTimeFormat('en-US', weekDayFormat).format(new Date(startZdt.toLocaleString()))}
+		({new Intl.DateTimeFormat('en-US', dateFormat).format(new Date(startZdt.toLocaleString()))})
+		{formatPlainTime(startZdt.toPlainTime())} -
+		{formatPlainTime(endZdt.toPlainTime())}
 		<br />
 	</p>
 </div>
