@@ -45,7 +45,7 @@
 <div class="my-40 space-x">
 	<Title title="Timeline" />
 
-	<div class="mb-8 w-3/4 type-body-1 text-gray-11 dark:text-graydark-11">
+	<div class="mb-8 w-full type-body-1 text-gray-11 md:w-3/4 dark:text-graydark-11">
 		<PortableText value={data.achievementsPage.description} />
 	</div>
 
@@ -72,14 +72,11 @@
 		{/each}
 	</div>
 
-	<div class="relative">
-		<div
-			class="absolute bottom-0 left-1/2 top-0 w-px bg-gray-4 -translate-x-1/2 dark:bg-graydark-4"
-		></div>
+	<div class="timeline relative">
+		<div class="timeline-spine absolute bottom-0 top-0 w-px bg-gray-4 dark:bg-graydark-4"></div>
 
-		<!-- Top arrowhead (pointing up) -->
 		<svg
-			class="absolute left-1/2 top-0 text-gray-4 -translate-x-1/2 -translate-y-full dark:text-graydark-4"
+			class="timeline-arrow absolute top-0 text-gray-4 -translate-y-full dark:text-graydark-4"
 			width="8"
 			height="6"
 			viewBox="0 0 8 6"
@@ -87,9 +84,8 @@
 			<polygon points="4,0 8,6 0,6" fill="currentColor" />
 		</svg>
 
-		<!-- Bottom arrowhead (pointing down) -->
 		<svg
-			class="absolute bottom-0 left-1/2 translate-y-full text-gray-4 -translate-x-1/2 dark:text-graydark-4"
+			class="timeline-arrow absolute bottom-0 translate-y-full text-gray-4 dark:text-graydark-4"
 			width="8"
 			height="6"
 			viewBox="0 0 8 6"
@@ -98,21 +94,21 @@
 		</svg>
 
 		{#each achievementsByYear as { year, items } (year)}
-			<div class="relative z-10 grid mb-12" style="grid-template-columns: 1fr 1fr; row-gap: 1rem;">
-				<div style="grid-column: 1; grid-row: 1;" class="pb-2">
+			<div class="timeline-group relative z-10 mb-12">
+				<div class="timeline-year pb-2">
 					<p class="type-display select-none text-gray-6 leading-none dark:text-graydark-8">
 						{year}
 					</p>
 				</div>
-				<div style="grid-column: 2; grid-row: 1;"></div>
+				<div class="timeline-year-spacer"></div>
 
-				<!-- Achievement rows, alternating sides -->
 				{#each items as a, i (a._key)}
 					{#if i % 2 === 0}
-						<div style="grid-column: 1; grid-row: {i + 2};"></div>
-						<div style="grid-column: 2; grid-row: {i + 2};" class="flex items-center">
-							<div class="h-px w-8 shrink-0 bg-gray-4 dark:bg-graydark-4"></div>
-							<div class="pl-3">
+						<!-- RIGHT card -->
+						<div class="timeline-spacer-left" style="grid-row: {i + 2};"></div>
+						<div class="timeline-card timeline-card-right" style="grid-row: {i + 2};">
+							<div class="timeline-connector h-px shrink-0 bg-gray-4 dark:bg-graydark-4"></div>
+							<div class="timeline-card-body">
 								<AchievementCard
 									title={a.title ?? ''}
 									description={a.description ?? ''}
@@ -123,9 +119,9 @@
 							</div>
 						</div>
 					{:else}
-						<!-- Odd: card on LEFT -->
-						<div style="grid-column: 1; grid-row: {i + 2};" class="flex items-center justify-end">
-							<div class="pr-3">
+						<!-- LEFT card -->
+						<div class="timeline-card timeline-card-left" style="grid-row: {i + 2};">
+							<div class="timeline-card-body">
 								<AchievementCard
 									title={a.title ?? ''}
 									description={a.description ?? ''}
@@ -134,12 +130,135 @@
 									image={a.image}
 								/>
 							</div>
-							<div class="h-px w-8 shrink-0 bg-gray-4 dark:bg-graydark-4"></div>
+							<div class="timeline-connector h-px shrink-0 bg-gray-4 dark:bg-graydark-4"></div>
 						</div>
-						<div style="grid-column: 2; grid-row: {i + 2};"></div>
+						<div class="timeline-spacer-right" style="grid-row: {i + 2};"></div>
 					{/if}
 				{/each}
 			</div>
 		{/each}
 	</div>
 </div>
+
+<style>
+	.timeline-spine {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.timeline-arrow {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.timeline-arrow.top-0 {
+		transform: translateX(-50%) translateY(-100%);
+	}
+
+	.timeline-arrow.bottom-0 {
+		transform: translateX(-50%) translateY(100%);
+	}
+
+	.timeline-group {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		row-gap: 1rem;
+	}
+
+	.timeline-year {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.timeline-year-spacer {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	.timeline-spacer-left {
+		grid-column: 1;
+	}
+
+	.timeline-spacer-right {
+		grid-column: 2;
+	}
+
+	.timeline-card {
+		display: flex;
+		align-items: center;
+	}
+
+	.timeline-card-right {
+		grid-column: 2;
+	}
+
+	.timeline-card-left {
+		grid-column: 1;
+		justify-content: flex-end;
+	}
+
+	.timeline-connector {
+		width: 2rem;
+	}
+
+	.timeline-card-left .timeline-card-body {
+		padding-right: 0.75rem;
+	}
+
+	.timeline-card-right .timeline-card-body {
+		padding-left: 0.75rem;
+	}
+
+	@media (max-width: 767px) {
+		.timeline-spine {
+			left: 0.75rem;
+		}
+
+		.timeline-arrow {
+			left: 0.75rem;
+		}
+
+		.timeline-group {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.timeline-year {
+			padding-left: 2rem;
+		}
+
+		.timeline-year-spacer,
+		.timeline-spacer-left,
+		.timeline-spacer-right {
+			display: none;
+		}
+
+		.timeline-card {
+			justify-content: flex-start;
+			padding-left: 0.75rem;
+		}
+
+		/* Flip left cards so connector is on the left (toward the spine) */
+		.timeline-card-left {
+			flex-direction: row-reverse;
+			justify-content: flex-end;
+		}
+
+		.timeline-card-left .timeline-card-body {
+			padding-right: 0;
+			padding-left: 0.75rem;
+			flex: 1;
+			min-width: 0;
+		}
+
+		.timeline-card-right .timeline-card-body {
+			flex: 1;
+			min-width: 0;
+		}
+
+		.timeline-connector {
+			width: 1.25rem;
+		}
+	}
+</style>
