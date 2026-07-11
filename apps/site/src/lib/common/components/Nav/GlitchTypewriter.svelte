@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 
-	const TEXT = 'CyberUCI';
+	const TEXT = 'Cyber@UCI';
 	const TYPE_DELAY_MS = 95;
 	const ERASE_DELAY_MS = 55;
 	const PAUSE_AFTER_TYPE_MS = 8000;
