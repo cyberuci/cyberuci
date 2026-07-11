@@ -13,25 +13,12 @@
 </script>
 
 <svelte:head>
-	<!-- <link href="/fonts/strobo/strobo.css" rel="stylesheet" />
-	<link href="/fonts/commit-mono/commit-mono.css" rel="stylesheet" />
-	<link href="/fonts/tasa-explorer/tasa-explorer.css" rel="stylesheet" />
-	<link href="/fonts/blinker/blinker.css" rel="stylesheet" /> -->
-	<!-- <link href="/fonts/tasa-explorer/tasa-explorer.css" rel="stylesheet" /> -->
 	<link
-		href="https://fonts.googleapis.com/css2?family=TASA+Explorer:wght@400..800&display=swap"
-		rel="stylesheet"
-	/>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
-		rel="stylesheet"
-	/>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap"
-		rel="stylesheet"
-	/>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&display=swap"
+		href="https://fonts.googleapis.com/css2?family=TASA+Explorer:wght@400..800&
+		family=Pixelify+Sans:wght@400..700&
+		family=Readex+Pro:wght@160..700&
+		family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&
+		display=swap"
 		rel="stylesheet"
 	/>
 
