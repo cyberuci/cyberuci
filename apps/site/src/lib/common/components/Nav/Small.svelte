@@ -59,7 +59,7 @@
 		<div class="pb-4">
 			{@render link('/subteams', 'Subteams')}
 			{@render link('/events', 'Events')}
-			{@render link('/competition', 'Competition')}
+			{@render link('/timeline', 'Timeline')}
 			{@render link('/resources', 'Resources')}
 			{@render link('/board', 'Board')}
 			{@render link('/alumni', 'Alumni')}

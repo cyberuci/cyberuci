@@ -17,6 +17,5 @@ const fetchBoard = async () => {
 };
 
 export const load: PageServerLoad = async () => {
-	console.log(await fetchBoard());
 	return { alumni: await fetchBoard() };
 };
