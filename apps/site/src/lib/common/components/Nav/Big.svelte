@@ -70,7 +70,7 @@
 {#snippet EngageItems()}
 	{@render ListItem({ href: '/subteams', title: 'Subteams', Icon: Group })}
 	{@render ListItem({ href: '/events', title: 'Events', Icon: Calendar })}
-	{@render ListItem({ href: '/competition', title: 'Competition', Icon: Trophy })}
+	{@render ListItem({ href: '/timeline', title: 'Timeline', Icon: Trophy })}
 	{@render ListItem({ href: '/resources', title: 'Resources', Icon: BookMarked })}
 {/snippet}
 
