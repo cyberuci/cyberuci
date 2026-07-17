@@ -1,10 +1,14 @@
 <script lang="ts">
 	import Title from '$lib/common/components/Title.svelte';
+	import imageUrlBuilder from '@sanity/image-url';
+	import { client } from '$lib/sanity/sanityClient';
 	import type { PageData } from './$types';
 
 	interface Props {
 		data: PageData;
 	}
+
+	const builder = imageUrlBuilder(client);
 
 	let { data }: Props = $props();
 	let alumniProfiles = data.alumni;
@@ -25,15 +29,6 @@
 
 	let sortKey = $state<SortKey>('year');
 	let sortDir = $state<SortDir>('desc');
-
-	// function setSort(key: SortKey) {
-	// 	if (sortKey === key) {
-	// 		sortDir = sortDir === 'asc' ? 'desc' : 'asc';
-	// 	} else {
-	// 		sortKey = key;
-	// 		sortDir = key === 'year' ? 'desc' : 'asc';
-	// 	}
-	// }
 
 	function termToNumber(term: string): number {
 		const [season, year] = term.split(' ');
@@ -61,29 +56,22 @@
 <main class="my-40 space-x">
 	<Title title="Alumni Highlights" />
 
-	<!-- <div class="mt-6 flex gap-2">
-		<button
-			class="sort-btn {sortKey === 'year' ? 'sort-btn-active' : ''}"
-			onclick={() => setSort('year')}
-		>
-			Year {sortKey === 'year' ? (sortDir === 'asc' ? '↑' : '↓') : ''}
-		</button>
-		<button
-			class="sort-btn {sortKey === 'name' ? 'sort-btn-active' : ''}"
-			onclick={() => setSort('name')}
-		>
-			Name {sortKey === 'name' ? (sortDir === 'asc' ? '↑' : '↓') : ''}
-		</button>
-	</div> -->
-
 	<div class="alumni-grid mt-6">
 		{#each sortedAlumni as alumni, index (index)}
 			<div class="card rounded p-6">
 				<!-- Avatar + name -->
 				<div class="flex items-center gap-5">
-					<div class="avatar {avatarClasses[index % avatarClasses.length]}">
-						{getInitials(alumni.personal.preferredName)}
-					</div>
+					{#if alumni.personal.image}
+						<img
+							class="h-[4.5rem] w-[4.5rem] rounded-full object-cover"
+							src={builder.image(alumni.personal.image).size(512, 512).url()}
+							alt={alumni.personal.preferredName}
+						/>
+					{:else}
+						<div class="avatar {avatarClasses[index % avatarClasses.length]}">
+							{getInitials(alumni.personal.preferredName)}
+						</div>
+					{/if}
 					<div>
 						<p class="name m-0 type-heading-2">{alumni.personal.preferredName}</p>
 						<p class="role m-0 type-body-2">
