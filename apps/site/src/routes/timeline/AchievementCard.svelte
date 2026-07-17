@@ -44,7 +44,7 @@
 			{:else if placing}
 				<span
 					class="inline-block shrink-0 rounded bg-blue-3 px-2 py-0.5 type-label text-blue-11 dark:bg-bluedark-3 dark:text-bluedark-11"
-					>{placing}</span
+					>🏅 {placing}</span
 				>
 			{:else if !placing}
 				<span
