@@ -11,30 +11,26 @@
 
 	let activeCategory = $state<string | null>(null);
 
-	const allAchievements = $derived(data.achievementsPage.achievements ?? []);
+	const years = $derived(data.achievementsPage.years ?? []);
 
 	const categories = $derived(
-		allAchievements
+		years
+			.flatMap((y) => y.achievements ?? [])
 			.map((a) => a.category)
 			.filter((c): c is NonNullable<typeof c> => c != null)
 			.filter((c, i, arr) => arr.findIndex((x) => x.name === c.name) === i)
 	);
 
-	const filtered = $derived(
-		activeCategory === null
-			? allAchievements
-			: allAchievements.filter((a) => a.category?.name === activeCategory)
-	);
-
-	const years = $derived(
-		[...new Set(filtered.map((a) => a.year))].sort((a, b) => (b ?? 0) - (a ?? 0))
-	);
-
 	const achievementsByYear = $derived(
-		years.map((year) => ({
-			year,
-			items: filtered.filter((a) => a.year === year)
-		}))
+		years
+			.map((y) => ({
+				year: y.year,
+				items:
+					activeCategory === null
+						? (y.achievements ?? [])
+						: (y.achievements ?? []).filter((a) => a.category?.name === activeCategory)
+			}))
+			.filter((y) => y.items.length > 0)
 	);
 </script>
 
@@ -45,7 +41,7 @@
 <div class="my-40 space-x">
 	<Title title="Timeline" />
 
-	<div class="mb-8 w-full type-body-1 text-gray-11 md:w-3/4 dark:text-graydark-11">
+	<div class="mb-8 w-full text-gray-11 type-body-1 md:w-3/4 dark:text-graydark-11">
 		<PortableText value={data.achievementsPage.description} />
 	</div>
 
