@@ -25,6 +25,7 @@ export default defineConfig({
 		'background-3': 'bg-gray-3 dark:bg-graydark-3',
 		'background-4': 'bg-gray-4 dark:bg-graydark-4',
 		'background-5': 'bg-gray-5 dark:bg-graydark-5',
+
 		text: 'text-gray-12 dark:text-graydark-12',
 		'text-2': 'text-gray-11 dark:text-graydark-11',
 
@@ -38,13 +39,9 @@ export default defineConfig({
 	extendTheme: (theme) => ({
 		...theme,
 		fontFamily: {
-			// mono: 'CommitMono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-			// sans: 'Blinker, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-			// strobo: '"BBB Strobo", sans-serif',
 			explorer: 'TASA Explorer, sans-serif',
 			pixelify: 'Pixelify Sans, sans-serif',
 			sans: 'Google Sans Code, sans-serif'
-			// readex: 'Readex Pro, sans-serif',
 		},
 		colors: {
 			transparent: 'transparent',
