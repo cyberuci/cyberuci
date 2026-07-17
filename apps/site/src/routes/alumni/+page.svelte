@@ -56,14 +56,16 @@
 <main class="my-40 space-x">
 	<Title title="Alumni Highlights" />
 
-	<div class="alumni-grid mt-6">
+	<div class="grid grid-cols-1 mt-6 gap-4 lg:grid-cols-3 md:grid-cols-2">
 		{#each sortedAlumni as alumni, index (index)}
-			<div class="card rounded p-6">
+			<div
+				class="grid row-span-4 grid-rows-subgrid items-start border-1 border-blue-10 rounded border-solid background-3 p-6"
+			>
 				<!-- Avatar + name -->
 				<div class="flex items-center gap-5">
 					{#if alumni.personal.image}
 						<img
-							class="h-[4.5rem] w-[4.5rem] rounded-full object-cover"
+							class="h-[4rem] w-[4rem] rounded-full object-cover"
 							src={builder.image(alumni.personal.image).size(512, 512).url()}
 							alt={alumni.personal.preferredName}
 						/>
@@ -73,8 +75,8 @@
 						</div>
 					{/if}
 					<div>
-						<p class="name m-0 type-heading-2">{alumni.personal.preferredName}</p>
-						<p class="role m-0 type-body-2">
+						<p class="m-0 text-base type-heading-2">{alumni.personal.preferredName}</p>
+						<p class="m-0 type-body-2 text-gray8">
 							{alumni.currentRole.title}{alumni.currentRole.company
 								? ` · ${alumni.currentRole.company}`
 								: ''}
@@ -84,20 +86,30 @@
 
 				<!-- Graduation + major -->
 				<div class="flex flex-wrap content-start gap-2">
-					<span class="chip">{alumni.personal.graduationTerm}</span>
+					<span
+						class="border-1 border-gray11 rounded-full border-solid background-4 px-3 py-1 text-sm type-body-2 text-gray7"
+						>{alumni.personal.graduationTerm}</span
+					>
 					{#each alumni.personal.majors as major (major)}
-						<span class="chip">{major}</span>
+						<span
+							class="border-1 border-gray11 rounded-full border-solid background-4 px-3 py-1 text-sm type-body-2 text-gray7"
+							>{major}</span
+						>
 					{/each}
 				</div>
 
 				<!-- Cyber role -->
-				<p class="cyber-role m-0 type-body-2">
-					<span class="cyber-label">{alumni.cyberUCI.role}</span>
+				<p class="m-0 type-body-2">
+					<span class="text-bluedark-11 font-semibold">{alumni.cyberUCI.role}</span>
 				</p>
 
 				<!-- Quote -->
 				{#if alumni.quote}
-					<p class="quote m-0 type-body-2">"{alumni.quote}"</p>
+					<p
+						class="m-0 border-l-3 border-bluedark-11 border-l-solid pl-3 type-body-2 text-gray8 leading-[1.6] italic"
+					>
+						"{alumni.quote}"
+					</p>
 				{:else}
 					<div></div>
 				{/if}
@@ -107,51 +119,6 @@
 </main>
 
 <style>
-	.sort-btn {
-		padding: 0.35rem 0.9rem;
-		border-radius: 9999px;
-		border: 1px solid #444;
-		background: transparent;
-		color: #aaaaaa;
-		font-family: 'Blinker', sans-serif;
-		font-size: 0.875rem;
-		cursor: pointer;
-	}
-
-	.sort-btn-active {
-		background-color: #2975ba;
-		border-color: #2975ba;
-		color: #fff;
-	}
-
-	.alumni-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 1rem;
-	}
-
-	@media (min-width: 750px) {
-		.alumni-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-	@media (min-width: 1024px) {
-		.alumni-grid {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	.card {
-		display: grid;
-		grid-row: span 4;
-		grid-template-rows: subgrid;
-		align-items: start;
-		background-color: #222222;
-		color: #eeeeee;
-		border: 1px solid;
-		border-color: #2975ba;
-	}
-
 	.avatar {
 		width: 4rem;
 		height: 4rem;
@@ -180,41 +147,5 @@
 	.avatar-red {
 		background-color: #4c1d3a;
 		color: #f9a8d4;
-	}
-
-	.name {
-		font-size: 1rem;
-	}
-
-	.role {
-		color: #8d8d8d;
-	}
-
-	.chip {
-		background-color: #2a2a2a;
-		color: #d0d0d0;
-		border: 1px solid #444444;
-		border-radius: 9999px;
-		padding: 0.2rem 0.75rem;
-		font-size: 0.85rem;
-		font-family: 'TASA Explorer', sans-serif;
-	}
-
-	.cyber-label {
-		color: #75bbff;
-		font-weight: 600;
-		margin-right: 0.35rem;
-	}
-
-	.cyber-role {
-		color: #aaaaaa;
-	}
-
-	.quote {
-		color: #aaaaaa;
-		font-style: italic;
-		line-height: 1.6;
-		border-left: 3px solid #75bbff;
-		padding-left: 0.75rem;
 	}
 </style>

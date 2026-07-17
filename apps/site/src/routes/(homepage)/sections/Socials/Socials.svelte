@@ -1,8 +1,10 @@
 <script lang="ts">
-	import Heading from '../heading.svelte';
+	// Libraries
 	import type { PageData } from '../../$types';
-
 	import { siDiscord, siInstagram, siGithub } from 'simple-icons';
+
+	// Internal Components and Scripts
+	import SectionHeading from '$lib/common/components/SectionHeading.svelte';
 
 	interface Props {
 		socials: NonNullable<PageData['socials']['socials']>;
@@ -13,7 +15,7 @@
 
 <div class="my-12 space-x">
 	<div class="flex flex-col gap-4">
-		<Heading heading="Socials" />
+		<SectionHeading heading="Socials" />
 		<div class="w-full">
 			<div class="flex flex-row gap-3 p-0">
 				{#each socials as { _key, platform, link } (_key)}
