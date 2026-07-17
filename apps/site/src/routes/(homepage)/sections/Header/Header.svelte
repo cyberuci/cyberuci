@@ -1,11 +1,13 @@
 <script lang="ts">
+	// Libraries
 	import { goto } from '$app/navigation';
-	import ListItem from './ListItem.svelte';
 	import { CalendarDays, Medal, FlaskConical, MessagesSquare } from 'lucide-svelte';
-
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
 	import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+
+	// Internal Components and Scripts
+	import ListItem from './ListItem.svelte';
 
 	const builder = imageUrlBuilder(client);
 

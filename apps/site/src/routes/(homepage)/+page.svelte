@@ -19,7 +19,11 @@
 </svelte:head>
 
 <Header data={data.homepage.hero} />
-<Events event={data.nextEvent} />
+
+{#if data.nextEvent}
+	<Events event={data.nextEvent} />
+{/if}
+
 <Competitions
 	image={data.homepage.competitions.image}
 	subtitle={data.homepage.competitions.subtitle}

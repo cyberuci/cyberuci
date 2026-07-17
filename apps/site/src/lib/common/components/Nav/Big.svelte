@@ -6,7 +6,6 @@
 		Group,
 		type Icon,
 		LucideBrush,
-		LucideMail,
 		LucideUsers,
 		Trophy,
 		Calendar,
@@ -70,15 +69,14 @@
 {#snippet EngageItems()}
 	{@render ListItem({ href: '/subteams', title: 'Subteams', Icon: Group })}
 	{@render ListItem({ href: '/events', title: 'Events', Icon: Calendar })}
-	{@render ListItem({ href: '/timeline', title: 'Timeline', Icon: Trophy })}
 	{@render ListItem({ href: '/resources', title: 'Resources', Icon: BookMarked })}
 {/snippet}
 
 {#snippet AboutItems()}
 	{@render ListItem({ href: '/board', title: 'Board', Icon: LucideUsers })}
 	{@render ListItem({ href: '/alumni', title: 'Alumni', Icon: GraduationCap })}
+	{@render ListItem({ href: '/timeline', title: 'Timeline', Icon: Trophy })}
 	{@render ListItem({ href: '/brand', title: 'Brand', Icon: LucideBrush })}
-	{@render ListItem({ href: '/contact', title: 'Contact', Icon: LucideMail })}
 {/snippet}
 
 {#snippet SponsorsItems()}
@@ -96,16 +94,16 @@
 >
 	<ul class="m-0 flex list-none items-baseline justify-end gap-5 p-0">
 		<ListGroup
-			name="Engage"
-			open={openGroup === 'Engage'}
-			onOpen={() => open('Engage')}
+			name="About"
+			open={openGroup === 'About'}
+			onOpen={() => open('About')}
 			onClose={close}
 		/>
 
 		<ListGroup
-			name="About"
-			open={openGroup === 'About'}
-			onOpen={() => open('About')}
+			name="Engage"
+			open={openGroup === 'Engage'}
+			onOpen={() => open('Engage')}
 			onClose={close}
 		/>
 
@@ -125,6 +123,16 @@
 			onOpen={() => open('Sponsors')}
 			onClose={close}
 		/>
+
+		<li class="list-none">
+			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+			<a
+				class="py-2 type-label text decoration-none transition-colors before:text-gray-11 hover:text-blue-11 before:content-['~_$_'] dark:before:text-graydark-11 dark:hover:text-bluedark-11"
+				href="/contact"
+			>
+				Contact
+			</a>
+		</li>
 	</ul>
 
 	{#if openGroup}
