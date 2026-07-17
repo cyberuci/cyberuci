@@ -4,16 +4,19 @@ import { defineQuery } from 'groq';
 
 export const load: PageServerLoad = async () => {
 	const achievementsPageQuery = defineQuery(`
-		*[_type == "achievementsPage"][0] {
+		*[_type == "achievementsPage" && _id == "achievementsPage"][0] {
 			description,
-			achievements[] {
-				_key,
+			years[] | order(year desc) {
 				year,
-				category->{ name, color },
-				title,
-				description,
-				placing,
-				image
+				achievements[] | order(month desc) {
+					_key,
+					title,
+					month,
+					category->{ name, color },
+					description,
+					placing,
+					image
+				}
 			}
 		}
 	`);
