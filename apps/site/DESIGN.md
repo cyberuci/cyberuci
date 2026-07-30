@@ -39,12 +39,6 @@ import Title from '$lib/common/components/Title.svelte';
 <!-- just the uppercase label -->
 ```
 
-Or roll your own with the same pieces:
-
-```svelte
-<p class="type-label">[EVENTS]</p><h1 class="type-display">Events</h1>
-```
-
 ### Subheadings
 
 ```svelte
