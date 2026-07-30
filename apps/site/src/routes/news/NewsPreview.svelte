@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
+	import { client } from '$lib/sanity/sanityClient';
 	import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 	interface Props {

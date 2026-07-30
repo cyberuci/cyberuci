@@ -10,6 +10,7 @@
 	let { text, year, animationSpeed, eventVisible, timelineVisible }: Props = $props();
 </script>
 
+<!-- animationSpeed staggers each card so they don't all pop in at once -->
 <div
 	class="flex flex-1 justify-center px-2"
 	style="opacity: {timelineVisible ? 1 : 0}; transform: translateY({timelineVisible
@@ -19,10 +20,10 @@
 >
 	{#if eventVisible}
 		<div
-			class="w-full border-l-2 border-blue-7 rounded border-solid background-2 p-4 dark:border-bluedark-7"
+			class="w-full border-2 border-blue-7 rounded-lg border-solid background-2 p-4 dark:border-bluedark-7"
 		>
 			<p class="mb-1 type-label text-blue-9 dark:text-bluedark-11">{year}</p>
-			<p class="type-body-1 text-gray-11 line-height-snug dark:text-graydark-11">
+			<p class="text-gray-11 line-height-snug type-body-1 dark:text-graydark-11">
 				{text}
 			</p>
 		</div>

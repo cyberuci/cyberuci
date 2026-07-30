@@ -8,8 +8,8 @@
 </script>
 
 <li
-	class="flex items-center gap-4 border-l-2 border-blue-7 rounded border-solid background-2 p-4 dark:border-bluedark-7"
+	class="flex items-center gap-4 border-2 border-blue-7 rounded-lg border-solid background-2 p-4 dark:border-bluedark-7"
 >
 	<span class="w-10 shrink-0 type-label text-blue-9 dark:text-bluedark-11">{year}</span>
-	<span class="type-body-1 text-gray-11 dark:text-graydark-11">{text}</span>
+	<span class="text-gray-11 type-body-1 dark:text-graydark-11">{text}</span>
 </li>

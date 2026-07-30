@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { Trophy } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 
-	import Achievements from './Achievement.svelte';
+	import AchievementBig from './AchievementBig.svelte';
+	import AchievementSmall from './AchievementSmall.svelte';
 	import TimelineDots from './TimelineDots.svelte';
-	import AchievementItem from './AchievementItem.svelte';
 
 	interface EachAchievement {
 		_key: string;
 		text: string;
 		year: string;
 	}
+
 	interface Props {
 		achievements: EachAchievement[];
 	}
@@ -20,6 +20,7 @@
 	let timelineEl: HTMLElement | undefined;
 	let timelineVisible = $state(false);
 
+	// kick off the fade/slide once the timeline scrolls into view
 	onMount(() => {
 		if (!timelineEl) return;
 		const observer = new IntersectionObserver(
@@ -36,14 +37,17 @@
 	});
 </script>
 
-<div class="space-x mb-10">
-	<h2 class="flex items-center gap-2 type-label font-550"><Trophy size={14} />Achievements</h2>
-</div>
-
-<div class="space-x hidden sm:block" bind:this={timelineEl}>
+<!-- Desktop: zigzag layout (even years above the line, odd below) -->
+<div class="hidden sm:block" bind:this={timelineEl}>
 	<div class="flex items-end">
 		{#each achievements as { _key, text, year }, i (_key)}
-			<Achievements {text} {year} animationSpeed={i} eventVisible={i % 2 == 0} {timelineVisible} />
+			<AchievementBig
+				{text}
+				{year}
+				animationSpeed={i}
+				eventVisible={i % 2 == 0}
+				{timelineVisible}
+			/>
 		{/each}
 	</div>
 
@@ -59,13 +63,20 @@
 
 	<div class="flex items-start">
 		{#each achievements as { _key, text, year }, i (_key)}
-			<Achievements {text} {year} animationSpeed={i} eventVisible={i % 2 != 0} {timelineVisible} />
+			<AchievementBig
+				{text}
+				{year}
+				animationSpeed={i}
+				eventVisible={i % 2 != 0}
+				{timelineVisible}
+			/>
 		{/each}
 	</div>
 </div>
 
-<ul class="space-x flex flex-col gap-3 sm:hidden">
+<!-- Mobile: just a stacked list -->
+<ul class="flex flex-col gap-3 sm:hidden">
 	{#each achievements as { _key, text, year } (_key)}
-		<AchievementItem {text} {year} />
+		<AchievementSmall {text} {year} />
 	{/each}
 </ul>
