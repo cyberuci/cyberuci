@@ -8,6 +8,8 @@ This monorepo uses [turborepo](https://turbo.build/repo) with [pnpm](https://pnp
 
 This app contains the [SvelteKit](https://kit.svelte.dev/) app for the [Cyber @ UCI site](https://cyberuci.com/).
 
+For fonts, type styles, and color tokens, see the [design system guide](./apps/site/DESIGN.md).
+
 ## `studio`
 
 This app contains a [Sanity Studio](https://www.sanity.io/docs/sanity-studio) project. The Cyber @ UCI site uses [Sanity](https://www.sanity.io/) as a CMS. Sanity Studio is the customizable interface that board members use to edit content. It's currently deployed at <https://content.cyberuci.com/>.
