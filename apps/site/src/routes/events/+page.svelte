@@ -1,22 +1,20 @@
 <script lang="ts">
-	import '../../app.css';
-	import { type CalendarEvent } from '$lib/common/components/Calendar/types';
-	import { type CalendarApp } from '@schedule-x/calendar';
-	import type { PageProps } from './$types';
-
-	import { loadAllCalendars, parseZoned } from '$lib/common/components/Calendar/transform';
-	import { createApp } from '$lib/common/components/Calendar/calendarApp';
-
-	import Title from '$lib/common/components/Title.svelte';
-	import Event from './Event.svelte';
-
 	import { onMount } from 'svelte';
 	import { Temporal } from 'temporal-polyfill';
 	import { siDiscord } from 'simple-icons';
-
-	import '@schedule-x/theme-default/dist/index.css';
 	import { ScheduleXCalendar } from '@schedule-x/svelte';
+	import { type CalendarApp } from '@schedule-x/calendar';
 
+	import type { PageProps } from './$types';
+	import { type CalendarEvent } from '$lib/common/components/Calendar/types';
+	import { loadAllCalendars, parseZoned } from '$lib/common/components/Calendar/transform';
+	import { createApp } from '$lib/common/components/Calendar/calendarApp';
+	import Title from '$lib/common/components/Title.svelte';
+	import Event from './Event.svelte';
+
+	// calendar styles live next to this page so they don't pollute app.css
+	import './calendar.css';
+	import '@schedule-x/theme-default/dist/index.css';
 	import 'temporal-polyfill/global';
 
 	const DISCORD_URL = 'https://discord.cyberuci.com/';
@@ -25,7 +23,6 @@
 
 	let calendarApp = $state<CalendarApp>();
 	let calendarEvents = $state<CalendarEvent[]>(loadAllCalendars(data.events));
-
 	let upcomingEvents = $derived(
 		calendarEvents.filter(
 			(event) =>
