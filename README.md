@@ -57,9 +57,9 @@ To develop an individual app or package, first navigate to the corresponding dir
 
 ### Fonts
 
-- Inter (OFL-1.1): <https://rsms.me/inter/> (<https://github.com/rsms/inter>)
-- TINY (OFL-1.1): <http://velvetyne.fr/fonts/tiny> (<https://github.com/jckfa/tinyfonts>)
-- BBB Strobo (OFL-1.1)
+- TASA Explorer (OFL-1.1): <https://fonts.google.com/specimen/TASA+Explorer>
+- Pixelify Sans (OFL-1.1): <https://fonts.google.com/specimen/Pixelify+Sans>
+- Google Sans Code (OFL-1.1): <https://fonts.google.com/specimen/Google+Sans+Code> (<https://github.com/googlefonts/googlesans-code>)
 
 ## License
 
