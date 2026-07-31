@@ -32,11 +32,11 @@
 	{#if cover}
 		<img
 			alt="The cover of the article."
-			class="my-5 size-full flex-shrink-0 rounded-sm lg:my-0 lg:w-3/3"
+			class="my-5 size-full flex-shrink-0 rounded-md lg:my-0 lg:w-3/3"
 			src={builder.image(cover).width(1024).height(600).url()}
 		/>
 	{:else}
-		<div class="bg-gray-200 dark:bg-slate-800 my-5 h-40 w-full rounded-sm"></div>
+		<div class="bg-gray-200 dark:bg-slate-800 my-5 h-40 w-full rounded-md"></div>
 	{/if}
 </a>
 

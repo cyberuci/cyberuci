@@ -14,7 +14,7 @@
 	}
 
 	const { person, titles, expanded }: Props = $props();
-	const { name, pronouns, image, majors, graduation, website, linkedin, instagram } =
+	const { name, pronouns, email, image, majors, graduation, website, linkedin, instagram } =
 		$derived(person);
 </script>
 
@@ -98,6 +98,13 @@
 		{#if pronouns}
 			<span>
 				{pronouns.join(', ')}
+			</span>
+		{/if}
+		{#if email}
+			<span>
+				<a class="text-blue-12 dark:text-bluedark-12 hover:decoration-dashed" href="mailto:{email}"
+					>{email}</a
+				>
 			</span>
 		{/if}
 	</div>
