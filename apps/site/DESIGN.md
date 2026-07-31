@@ -2,6 +2,8 @@
 
 Quick reference for fonts, type styles, and colors on the Cyber @ UCI site. All of these live in [`uno.config.ts`](./uno.config.ts) as UnoCSS shortcuts / theme tokens — prefer the class names below instead of inventing one-offs.
 
+For repo layout and Sanity / GROQ, see [`ARCHITECTURE.md`](./ARCHITECTURE.md).
+
 ## Fonts
 
 Three families, loaded via Google Fonts in `+layout.svelte`:
