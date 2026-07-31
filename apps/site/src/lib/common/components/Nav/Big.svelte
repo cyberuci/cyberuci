@@ -123,16 +123,6 @@
 			onOpen={() => open('Sponsors')}
 			onClose={close}
 		/>
-
-		<li class="list-none">
-			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-			<a
-				class="py-2 type-label text decoration-none transition-colors before:text-gray-11 hover:text-blue-11 before:content-['~_$_'] dark:before:text-graydark-11 dark:hover:text-bluedark-11"
-				href="/contact"
-			>
-				Contact
-			</a>
-		</li>
 	</ul>
 
 	{#if openGroup}

@@ -13,7 +13,7 @@
 	<a class="mx-5 my-5 block decoration-none" {href} onclick={() => (isOpen = false)}>
 		<p class="m-0 type-heading-2 text">{text}</p>
 		{#if description}
-			<p class="m-0 mt-2.5 text-gray-11 type-body-1 dark:text-graydark-11">{description}</p>
+			<p class="m-0 mt-2.5 type-body-1 text-gray-11 dark:text-graydark-11">{description}</p>
 		{/if}
 	</a>
 {/snippet}
@@ -64,7 +64,6 @@
 			{@render link('/board', 'Board')}
 			{@render link('/alumni', 'Alumni')}
 			{@render link('/brand', 'Brand')}
-			{@render link('/contact', 'Contact')}
 			{@render link('/news', 'News')}
 			{@render link('/sponsors', 'Sponsors')}
 			{@render link('/package', 'Package')}

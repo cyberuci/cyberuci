@@ -9,8 +9,6 @@ import corporate from './pages/corporate';
 import person from './person';
 import board from './board';
 import news from './news';
-// import newsLink from './newsLink';
-// import event from './event';
 import sponsor from './sponsor';
 import info from './info';
 import calendar from './calendar';
