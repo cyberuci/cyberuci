@@ -2,14 +2,16 @@
 	import 'uno.css';
 	import 'temporal-polyfill/global';
 	import type { Snippet } from 'svelte';
+	import type { LayoutData } from './$types';
 	import Nav from '$lib/common/components/Nav/Nav.svelte';
 	import Footer from '$lib/common/components/Footer.svelte';
 
 	interface Props {
+		data: LayoutData;
 		children?: Snippet;
 	}
 
-	let { children }: Props = $props();
+	let { data, children }: Props = $props();
 </script>
 
 <svelte:head>
@@ -33,7 +35,7 @@
 	{@render children?.()}
 </main>
 
-<Footer />
+<Footer email={data.email} />
 <div class="gradient pointer-events-none h-md w-full -mt-70"></div>
 
 <style>
