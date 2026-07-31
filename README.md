@@ -10,6 +10,8 @@ This app contains the [SvelteKit](https://kit.svelte.dev/) app for the [Cyber @ 
 
 For fonts, type styles, and color tokens, see the [design system guide](./apps/site/DESIGN.md).
 
+For project layout, where things live, and GROQ / Sanity queries, see the [architecture guide](./apps/site/ARCHITECTURE.md).
+
 ## `studio`
 
 This app contains a [Sanity Studio](https://www.sanity.io/docs/sanity-studio) project. The Cyber @ UCI site uses [Sanity](https://www.sanity.io/) as a CMS. Sanity Studio is the customizable interface that board members use to edit content. It's currently deployed at <https://content.cyberuci.com/>.
