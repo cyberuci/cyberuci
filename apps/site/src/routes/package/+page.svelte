@@ -75,16 +75,16 @@
 	<div class="space-x py-24">
 		<!-- About -->
 		<div class="mb-20">
-			<h2 class="mb-8 flex items-center gap-2 text-[1rem] type-label font-550">
+			<p class="type-body-1">
 				<Info size={18} /> About
-			</h2>
+			</p>
 			<div class="grid gap-6 sm:grid-cols-2">
 				{#each data.corporatePage.about as { _key, title, description } (_key)}
 					<Event
 						{title}
 						{description}
-						padding
-						border
+						padding={true}
+						border={true}
 						titleColor="text-blue-7"
 						backgroundColor="background-3"
 					/>
@@ -94,9 +94,7 @@
 
 		<!-- Why Sponsor -->
 		<div class="grid mb-20 items-start gap-y-10 lg:grid-cols-16">
-			<h2
-				class="flex items-center gap-2 text-[1rem] type-label font-550 lg:col-start-1 lg:col-end-5"
-			>
+			<h2 class="text-md flex items-center gap-2 type-label font-550 lg:col-start-1 lg:col-end-5">
 				<Handshake size={18} /> Why Sponsor
 			</h2>
 			<div class="grid gap-6 lg:col-start-5 lg:col-end-17 sm:grid-cols-2">
@@ -104,7 +102,8 @@
 					<Event
 						{title}
 						{description}
-						padding
+						padding={true}
+						border={false}
 						titleColor="text-blue-7"
 						backgroundColor="bg-bluedark-3"
 					/>
@@ -135,18 +134,18 @@
 					{#each data.corporatePage.clubEvents.events as { _key, title, description, image }, i (_key)}
 						<!-- always show image above text on mobile -->
 						<img
-							class="block h-auto w-full rounded-sm lg:hidden"
+							class="block h-auto w-full rounded-md lg:hidden"
 							src={builder.image(image).auto('format').width(1024).height(600).url()}
 							alt={image.alt}
 						/>
 						<img
-							class={`h-auto w-full rounded-sm block hidden ${i % 2 == 0 ? 'lg:block' : ''}`}
+							class={`h-auto w-full rounded-md block hidden ${i % 2 == 0 ? 'lg:block' : ''}`}
 							src={builder.image(image).auto('format').width(1024).height(600).url()}
 							alt={image.alt}
 						/>
 						<Event {title} {description} />
 						<img
-							class={`h-auto w-full rounded-sm hidden ${i % 2 == 1 ? 'lg:block' : ''}`}
+							class={`h-auto w-full rounded-md hidden ${i % 2 == 1 ? 'lg:block' : ''}`}
 							src={builder.image(image).auto('format').width(1024).height(600).url()}
 							alt={image.alt}
 						/>
@@ -186,7 +185,7 @@
 				</div>
 				<div class="grid gap-4 sm:grid-cols-2">
 					{#each data.corporatePage.additionalOpportunities as { _key, title, description } (_key)}
-						<Event {title} {description} titleColor="text-blue-7" />
+						<Event {title} {description} padding={false} border={false} titleColor="text-blue-7" />
 					{/each}
 				</div>
 			</div>
