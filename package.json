@@ -24,7 +24,7 @@
     "turbo": "2.6.1"
   },
   "engines": {
-    "node": "22.x"
+    "node": "24.x"
   },
   "overrides": {
     "temporal-polyfill": "0.3.0"
