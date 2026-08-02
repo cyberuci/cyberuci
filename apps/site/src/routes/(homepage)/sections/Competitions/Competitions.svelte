@@ -36,11 +36,11 @@
 				</div>
 				<p class="mb-2 type-heading-2">Competitions</p>
 				<h2 class="mb-4 type-heading-2 text-blue-11 dark:text-bluedark-11">{subtitle}</h2>
-				<p class="type-body-1 line-height-relaxed">{description}</p>
+				<p class="line-height-relaxed type-body-1">{description}</p>
 			</div>
 			<a
-				href={resolve('/competition')}
-				class="mt-6 flex items-center gap-2 type-body-1 text-blue-11 decoration-none transition-colors dark:text-bluedark-11 hover:text-blue-12 dark:hover:text-bluedark-12"
+				href={resolve('/timeline')}
+				class="mt-6 flex items-center gap-2 text-blue-11 type-body-1 decoration-none transition-colors dark:text-bluedark-11 hover:text-blue-12 dark:hover:text-bluedark-12"
 			>
 				<Info size={16} />
 				<span>Learn more</span>
