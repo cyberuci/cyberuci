@@ -7,15 +7,23 @@
 
 	type LayerId = 'text' | 'logo' | 'patch' | 'secure' | 'laptop';
 
+	type Coords = {
+		x: number;
+		y: number;
+	};
+
+	type Dimensions = {
+		w: number;
+		h: number;
+	};
+
 	type Layer = {
 		id: LayerId;
 		name: string;
 		locked?: boolean;
 		visible: boolean;
-		x: number;
-		y: number;
-		w: number;
-		h: number;
+		coords: Coords;
+		dimensions: Dimensions;
 		fill: string;
 		stroke: string;
 		fontSize: number;
@@ -24,7 +32,7 @@
 	};
 
 	const ACCENT = '#00b2ff';
-	const STROKE = '#858585';
+	const STROKE = '#f90404';
 
 	let layers = $state<Layer[]>([
 		{
@@ -32,10 +40,8 @@
 			name: 'Cyber@UCI',
 			locked: true,
 			visible: true,
-			x: 300,
-			y: 28,
-			w: 280,
-			h: 40,
+			coords: { x: 300, y: 28 },
+			dimensions: { w: 280, h: 40 },
 			fill: ACCENT,
 			stroke: STROKE,
 			fontSize: 28,
@@ -45,10 +51,8 @@
 			id: 'logo',
 			name: 'Cyber@UCI Logo',
 			visible: true,
-			x: 320,
-			y: 210,
-			w: 140,
-			h: 130,
+			coords: { x: 320, y: 210 },
+			dimensions: { w: 140, h: 130 },
 			fill: ACCENT,
 			stroke: STROKE,
 			fontSize: 16,
@@ -59,10 +63,8 @@
 			id: 'patch',
 			name: 'Secure Anteater',
 			visible: true,
-			x: 24,
-			y: 100,
-			w: 140,
-			h: 190,
+			coords: { x: 24, y: 100 },
+			dimensions: { w: 140, h: 190 },
 			fill: ACCENT,
 			stroke: STROKE,
 			fontSize: 16,
@@ -73,10 +75,8 @@
 			id: 'secure',
 			name: 'Shield Anteater',
 			visible: true,
-			x: 270,
-			y: 55,
-			w: 220,
-			h: 195,
+			coords: { x: 270, y: 55 },
+			dimensions: { w: 220, h: 195 },
 			fill: ACCENT,
 			stroke: STROKE,
 			fontSize: 16,
@@ -87,10 +87,8 @@
 			id: 'laptop',
 			name: 'Laptop Anteater',
 			visible: true,
-			x: 540,
-			y: 95,
-			w: 190,
-			h: 145,
+			coords: { x: 540, y: 95 },
+			dimensions: { w: 190, h: 145 },
 			fill: ACCENT,
 			stroke: STROKE,
 			fontSize: 16,
@@ -99,7 +97,7 @@
 		}
 	]);
 
-	let selectedId = $state<LayerId>('logo');
+	let selectedId = $state<LayerId | null>(null);
 	let dragging = $state(false);
 	let dragOffset = $state({ x: 0, y: 0 });
 	let canvasEl = $state<HTMLDivElement | null>(null);
@@ -134,8 +132,8 @@
 		const scaleX = 780 / rect.width;
 		const scaleY = 420 / rect.height;
 		dragOffset = {
-			x: (event.clientX - rect.left) * scaleX - layer.x,
-			y: (event.clientY - rect.top) * scaleY - layer.y
+			x: (event.clientX - rect.left) * scaleX - layer.coords.x,
+			y: (event.clientY - rect.top) * scaleY - layer.coords.y
 		};
 		(event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
 	}
@@ -149,9 +147,9 @@
 		const scaleY = 420 / rect.height;
 		const x = Math.round((event.clientX - rect.left) * scaleX - dragOffset.x);
 		const y = Math.round((event.clientY - rect.top) * scaleY - dragOffset.y);
+
 		updateSelected({
-			x: Math.max(-40, Math.min(700, x)),
-			y: Math.max(-20, Math.min(360, y))
+			coords: { x: Math.max(-40, Math.min(700, x)), y: Math.max(-20, Math.min(360, y)) }
 		});
 	}
 
@@ -168,28 +166,28 @@
 	}
 </script>
 
-<div class="overflow-hidden border border-[#858585] rounded-[11px] border-solid bg-[#000]">
-	<p class="px-4 py-3 type-label text-2 sm:px-6">graphics@cyberuci</p>
+<div class="overflow-hidden border border-[#858585] rounded-lg border-solid bg-[#000]">
+	<p class="type-label text-2 sm:px-4">graphics@cyberuci</p>
 	<hr class="m-0 border-0 border-t border-[#3d3d3d] border-solid" />
 
 	<div class="grid lg:grid-cols-[210px_1fr_210px]">
 		<!-- Layers -->
-		<aside class="border-b border-[#3d3d3d] border-solid p-4 lg:border-b-0 lg:border-r sm:p-5">
-			<p class="mb-3 type-label text-[#00b2ff]">[LAYERS]</p>
+		<aside class="border border-[#3d3d3d] border-solid p-3">
+			<p class="mb-2 mt-1 type-label text-[#00b2ff]">[LAYERS]</p>
 			<ul class="m-0 flex flex-col list-none gap-1 p-0">
 				{#each layers as layer (layer.id)}
 					<li
-						class="w-full flex items-center gap-1 rounded-sm px-1 py-0.5 transition-colors {selectedId ===
+						class="w-full flex items-center gap-1 rounded-md py-0.5 transition-colors hover:bg-[#00b2ff]/20 {selectedId ===
 						layer.id
 							? 'bg-[#00b2ff]/20 text-[#00b2ff]'
 							: 'hover:bg-white/5 text-2'}"
 					>
 						{#if layer.locked}
-							<span class="flex shrink-0 p-1.5" aria-hidden="true"><Lock size={14} /></span>
+							<span class="flex shrink-0 px-1.5" aria-hidden="true"><Lock size={14} /></span>
 						{:else}
 							<button
 								type="button"
-								class="flex shrink-0 border-0 bg-transparent p-1.5 text-inherit"
+								class="flex shrink-0 border-0 bg-transparent px-1.5 text-inherit"
 								aria-label={layer.visible ? `Hide ${layer.name}` : `Show ${layer.name}`}
 								onclick={(e) => toggleVisible(layer.id, e)}
 							>
@@ -202,7 +200,7 @@
 						{/if}
 						<button
 							type="button"
-							class="min-w-0 flex-1 truncate border-0 bg-transparent px-1 py-1.5 text-left type-label text-inherit"
+							class="min-w-0 flex-1 truncate border-0 bg-transparent py-0.3 text-left type-label text-inherit"
 							onclick={() => selectLayer(layer.id)}
 						>
 							<span class={layer.visible ? '' : 'line-through opacity-40'}>{layer.name}</span>
@@ -215,7 +213,7 @@
 		<!-- Canvas -->
 		<div
 			bind:this={canvasEl}
-			class="canvas relative h-[280px] touch-none overflow-hidden lg:h-[420px] sm:h-[360px]"
+			class="canvas relative h-[280px] touch-none overflow-hidden lg:h-[500px] sm:h-[360px]"
 			role="application"
 			aria-label="Graphics canvas"
 			onpointermove={onPointerMove}
@@ -230,8 +228,8 @@
 							layer.id
 								? 'selected'
 								: ''}"
-							style:left="{layer.x / 7.8}%"
-							style:top="{layer.y / 4.2}%"
+							style:left="{layer.coords.x / 7.8}%"
+							style:top="{layer.coords.y / 4.2}%"
 							style:color={layer.fill}
 							style:font-size="{Math.max(16, layer.fontSize * 0.9)}px"
 							style:cursor={layer.locked ? 'default' : 'grab'}
@@ -250,9 +248,9 @@
 							class="absolute border-0 bg-transparent p-0 {selectedId === layer.id
 								? 'selected'
 								: ''}"
-							style:left="{layer.x / 7.8}%"
-							style:top="{layer.y / 4.2}%"
-							style:width="{layer.w / 7.8}%"
+							style:left="{layer.coords.x / 7.8}%"
+							style:top="{layer.coords.y / 4.2}%"
+							style:width="{layer.dimensions.w / 7.8}%"
 							style:z-index={selectedId === layer.id ? 20 : 2}
 							style:cursor={layer.locked
 								? 'default'
@@ -282,24 +280,30 @@
 				<div>
 					<p class="m-0 mb-1.5 opacity-70">Position</p>
 					<div class="grid grid-cols-2 gap-2">
-						<label class="flex items-center gap-1 rounded-sm background-3 px-2 py-1.5">
+						<label class="flex items-center gap-1 rounded-md background-3 px-2 py-1.5">
 							<span>X</span>
 							<input
 								class="field"
 								type="number"
-								value={selected.x}
+								value={selected.coords.x}
 								disabled={selected.locked}
-								oninput={(e) => updateSelected({ x: Number(e.currentTarget.value) })}
+								oninput={(e) =>
+									updateSelected({
+										coords: { x: Number(e.currentTarget.value), y: selected.coords.y }
+									})}
 							/>
 						</label>
-						<label class="flex items-center gap-1 rounded-sm background-3 px-2 py-1.5">
+						<label class="flex items-center gap-1 rounded-md background-3 px-2 py-1.5">
 							<span>Y</span>
 							<input
 								class="field"
 								type="number"
-								value={selected.y}
+								value={selected.coords.y}
 								disabled={selected.locked}
-								oninput={(e) => updateSelected({ y: Number(e.currentTarget.value) })}
+								oninput={(e) =>
+									updateSelected({
+										coords: { x: selected.coords.x, y: Number(e.currentTarget.value) }
+									})}
 							/>
 						</label>
 					</div>
@@ -308,24 +312,30 @@
 				<div>
 					<p class="m-0 mb-1.5 opacity-70">Dimensions</p>
 					<div class="grid grid-cols-2 gap-2">
-						<label class="flex items-center gap-1 rounded-sm background-3 px-2 py-1.5">
+						<label class="flex items-center gap-1 rounded-md background-3 px-2 py-1.5">
 							<span>W</span>
 							<input
 								class="field"
 								type="number"
-								value={selected.w}
+								value={selected.dimensions.w}
 								disabled={selected.locked || selected.kind === 'text'}
-								oninput={(e) => updateSelected({ w: Number(e.currentTarget.value) })}
+								oninput={(e) =>
+									updateSelected({
+										dimensions: { w: Number(e.currentTarget.value), h: selected.dimensions.h }
+									})}
 							/>
 						</label>
-						<label class="flex items-center gap-1 rounded-sm background-3 px-2 py-1.5">
+						<label class="flex items-center gap-1 rounded-md background-3 px-2 py-1.5">
 							<span>H</span>
 							<input
 								class="field"
 								type="number"
-								value={selected.h}
+								value={selected.dimensions.h}
 								disabled={selected.locked || selected.kind === 'text'}
-								oninput={(e) => updateSelected({ h: Number(e.currentTarget.value) })}
+								oninput={(e) =>
+									updateSelected({
+										dimensions: { w: selected.dimensions.h, h: Number(e.currentTarget.value) }
+									})}
 							/>
 						</label>
 					</div>
@@ -333,7 +343,7 @@
 
 				<div>
 					<p class="m-0 mb-1.5 opacity-70">Fill</p>
-					<label class="flex items-center gap-2 rounded-sm background-3 px-2 py-1.5">
+					<label class="flex items-center gap-2 rounded-md background-3 px-2 py-1.5">
 						<input
 							class="h-4 w-4 cursor-pointer border-0 bg-transparent p-0"
 							type="color"
@@ -352,10 +362,10 @@
 				<div>
 					<p class="m-0 mb-1.5 opacity-70">Typography</p>
 					<div class="flex flex-col gap-2">
-						<div class="rounded-sm background-3 px-2 py-1.5">Google Sans Code</div>
+						<div class="rounded-md background-3 px-2 py-1.5">Google Sans Code</div>
 						<div class="grid grid-cols-2 gap-2">
-							<div class="rounded-sm background-3 px-2 py-1.5">Regular</div>
-							<label class="flex items-center gap-1 rounded-sm background-3 px-2 py-1.5">
+							<div class="rounded-md background-3 px-2 py-1.5">Regular</div>
+							<label class="flex items-center gap-1 rounded-md background-3 px-2 py-1.5">
 								<input
 									class="field"
 									type="number"
@@ -370,9 +380,9 @@
 
 				<div>
 					<p class="m-0 mb-1.5 opacity-70">Stroke</p>
-					<label class="flex items-center gap-2 rounded-sm background-3 px-2 py-1.5">
+					<label class="flex items-center gap-2 rounded-md background-3 px-2 py-1.5">
 						<span
-							class="h-4 w-4 shrink-0 border border-[#3d3d3d] rounded-sm border-solid"
+							class="h-4 w-4 shrink-0 border border-[#3d3d3d] rounded-md border-solid"
 							style:background={selected.stroke}
 						></span>
 						<input
