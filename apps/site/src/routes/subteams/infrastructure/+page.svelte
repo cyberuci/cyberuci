@@ -11,7 +11,7 @@
 </svelte:head>
 
 <div class="my-40 space-x">
-	<Title title="Subteams" />
+	<Title title="Infrastructure" />
 
 	<div class="spline-container">
 		{#if browser}
