@@ -57,12 +57,12 @@
 			<CircleDashed size={18} />
 			<h2 class="type-label font-550">Focus Areas</h2>
 		</div>
-		<ul
-			class="m-0 list-none p-0 lg:col-start-5 lg:col-end-15 divide-y divide-gray-4 dark:divide-graydark-4"
-		>
+		<ul class="m-0 list-none p-0 lg:col-start-5 lg:col-end-15">
 			{#each focusAreas as { tag, title, description } (title)}
-				<li class="grid grid-cols-[minmax(0,140px)_1fr] gap-6 py-6 first:pt-0 last:pb-0">
-					<span class="type-label text-[#00b2ff]">{tag}</span>
+				<li
+					class="grid grid-cols-[minmax(0,140px)_1fr] gap-6 border-0 border-b border-gray-7 border-solid py-6 last:border-b-0 dark:border-graydark-7 first:pt-0"
+				>
+					<span class="type-label text-blue-11 dark:text-bluedark-11">{tag}</span>
 					<div>
 						<p class="m-0 font-600 type-body-1">{title}</p>
 						<p class="mb-0 mt-1 text-2 type-body-1">{description}</p>
