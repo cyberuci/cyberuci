@@ -47,11 +47,7 @@
 
 	{#if open}
 		<!-- pt-2 keeps visual spacing while remaining a continuous hover target -->
-		<div
-			class="absolute top-full z-50 pt-2 {align === 'end'
-				? 'right-0'
-				: 'left-1/2 -translate-x-1/2'}"
-		>
+		<div class="absolute top-full z-50 pt-2 {align === 'end' ? 'right-0' : 'left-0'}">
 			<div
 				class="nav-viewport overflow-hidden border border-gray-4 rounded-md border-solid background-2 dark:border-graydark-4"
 				role="menu"
