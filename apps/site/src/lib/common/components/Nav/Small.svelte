@@ -57,7 +57,7 @@
 			</button>
 		</div>
 		<div class="pb-4">
-			{@render link('/subteams', 'Subteams')}
+			{@render link('/subteams/graphics', 'Graphics Subteam')}
 			{@render link('/events', 'Events')}
 			{@render link('/timeline', 'Timeline')}
 			{@render link('/resources', 'Resources')}

@@ -3,10 +3,10 @@
 		BookMarked,
 		Building2,
 		FileText,
-		Group,
 		type Icon,
 		LucideBrush,
 		LucideUsers,
+		Palette,
 		Trophy,
 		Calendar,
 		GraduationCap
@@ -66,8 +66,7 @@
 	</li>
 {/snippet}
 
-{#snippet EngageItems()}
-	{@render ListItem({ href: '/subteams', title: 'Subteams', Icon: Group })}
+{#snippet JoinItems()}
 	{@render ListItem({ href: '/events', title: 'Events', Icon: Calendar })}
 	{@render ListItem({ href: '/resources', title: 'Resources', Icon: BookMarked })}
 {/snippet}
@@ -77,6 +76,10 @@
 	{@render ListItem({ href: '/alumni', title: 'Alumni', Icon: GraduationCap })}
 	{@render ListItem({ href: '/timeline', title: 'Timeline', Icon: Trophy })}
 	{@render ListItem({ href: '/brand', title: 'Brand', Icon: LucideBrush })}
+{/snippet}
+
+{#snippet SubteamsItems()}
+	{@render ListItem({ href: '/subteams/graphics', title: 'Graphics', Icon: Palette })}
 {/snippet}
 
 {#snippet SponsorsItems()}
@@ -92,20 +95,28 @@
 		if (canHover()) close();
 	}}
 >
-	<ul class="m-0 flex list-none items-baseline justify-end gap-5 p-0">
+	<ul class="m-0 flex list-none items-center justify-end gap-4 whitespace-nowrap p-0 lg:gap-5">
 		<ListGroup
 			name="About"
 			open={openGroup === 'About'}
 			onOpen={() => open('About')}
 			onClose={close}
-		/>
+		>
+			{@render AboutItems()}
+		</ListGroup>
+
+		<ListGroup name="Join" open={openGroup === 'Join'} onOpen={() => open('Join')} onClose={close}>
+			{@render JoinItems()}
+		</ListGroup>
 
 		<ListGroup
-			name="Engage"
-			open={openGroup === 'Engage'}
-			onOpen={() => open('Engage')}
+			name="Subteams"
+			open={openGroup === 'Subteams'}
+			onOpen={() => open('Subteams')}
 			onClose={close}
-		/>
+		>
+			{@render SubteamsItems()}
+		</ListGroup>
 
 		<li class="list-none">
 			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
@@ -122,43 +133,9 @@
 			open={openGroup === 'Sponsors'}
 			onOpen={() => open('Sponsors')}
 			onClose={close}
-		/>
+			align="end"
+		>
+			{@render SponsorsItems()}
+		</ListGroup>
 	</ul>
-
-	{#if openGroup}
-		<!-- pt-2 keeps visual spacing while remaining a continuous hover target -->
-		<div class="absolute right-0 top-full z-50 pt-2">
-			<div
-				class="nav-viewport overflow-hidden border border-gray-4 rounded-md border-solid background-2 dark:border-graydark-4"
-				role="menu"
-			>
-				<ul class="m-0 flex list-none gap-2 p-2">
-					{#if openGroup === 'Engage'}
-						{@render EngageItems()}
-					{:else if openGroup === 'About'}
-						{@render AboutItems()}
-					{:else if openGroup === 'Sponsors'}
-						{@render SponsorsItems()}
-					{/if}
-				</ul>
-			</div>
-		</div>
-	{/if}
 </nav>
-
-<style>
-	.nav-viewport {
-		animation: navin 0.2s ease-out;
-	}
-
-	@keyframes navin {
-		from {
-			opacity: 0;
-			transform: translateY(-4px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-</style>
