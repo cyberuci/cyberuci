@@ -138,6 +138,10 @@ export default defineConfig({
 							.icon(UsersIcon)
 							.child(S.document().schemaType('subteamsPage').documentId('subteamsPage')),
 						S.listItem()
+							.title('Outreach Page')
+							.icon(EarthAmericasIcon)
+							.child(S.document().schemaType('outreachPage').documentId('outreachPage')),
+						S.listItem()
 							.title('Contact Page')
 							.icon(EnvelopeIcon)
 							.child(S.document().schemaType('contactPage').documentId('contactPage')),
