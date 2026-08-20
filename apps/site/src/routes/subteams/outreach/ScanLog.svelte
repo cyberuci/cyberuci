@@ -1,46 +1,42 @@
 <script lang="ts">
-	type Entry = { time: string; target: string; status: string; note: string };
+	type LogEntry = { _key: string; time: string; target: string; status: string; note: string };
 
 	interface Props {
 		header: string;
 		command: string;
-		entries: Entry[];
+		entries: LogEntry[];
 	}
 
-	const { header, command, entries }: Props = $props();
-
-	const LINE_WIDTH = 24;
-
-	// fill to EOL
-	const rows = $derived(
-		entries.map(({ time, target, status, note }) => {
-			const dots = '.'.repeat(Math.max(3, LINE_WIDTH - target.length));
-			return {
-				prefix: `[ ${time}]  probing  ${target} ${dots} `,
-				status,
-				note: ` — ${note}`
-			};
-		})
-	);
+	let { header, command, entries }: Props = $props();
 </script>
 
 <div
-	class="bg-black overflow-x-auto border border-graydark-8 rounded-[11px] border-solid px-6 py-4 sm:px-8 sm:py-5"
+	class="overflow-x-auto border border-[#858585] rounded-[11px] border-solid bg-[#000] p-4 sm:p-8"
 >
 	<p class="type-label text-2">{header}</p>
-	<hr class="my-4 border-0 border-t border-graydark-6 border-solid" />
-	<div class="whitespace-pre text-sm line-height-relaxed font-sans sm:text-base">
-		<p class="m-0"><span class="text-bluedark-11">$</span> {command}</p>
-		<p class="m-0">&nbsp;</p>
-		{#each rows as { prefix, status, note } (prefix)}
-			<p class="m-0">
-				<span class="text-2">{prefix}</span><span class="text-bluedark-11">{status}</span><span
-					class="text-2">{note}</span
-				>
-			</p>
+	<hr class="my-4 border-0 border-t border-[#3d3d3d] border-solid" />
+	<div class="flex flex-col gap-3 text-sm font-sans sm:gap-1.5 sm:text-base">
+		<p class="m-0"><span class="text-[#00b2ff]">$</span> {command}</p>
+
+		{#each entries as { _key, time, target, status, note } (_key)}
+			<div class="flex flex-col gap-x-2 gap-y-0.5 sm:flex-row sm:flex-wrap sm:items-baseline">
+				<div class="flex flex-wrap items-baseline gap-x-2 sm:contents">
+					<span class="shrink-0 text-2">[{time}]</span>
+					<span class="text-2">probing {target}</span>
+				</div>
+				<span
+					class="hidden min-w-6 flex-1 border-b border-[#3d3d3d] border-dotted sm:mb-1 sm:block"
+					aria-hidden="true"
+				></span>
+				<span class="shrink-0">
+					<span class="text-[#00b2ff]">{status}</span>
+					<span class="text-2">— {note}</span>
+				</span>
+			</div>
 		{/each}
+
 		<p class="m-0 text-2">scan complete: {entries.length}/{entries.length} reachable</p>
-		<p class="m-0 text-bluedark-11">$ <span aria-hidden="true" class="blink">▊</span></p>
+		<p class="m-0 text-[#00b2ff]">$ <span aria-hidden="true" class="blink">▊</span></p>
 	</div>
 </div>
 

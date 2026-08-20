@@ -134,13 +134,22 @@ export default defineConfig({
 							.icon(ConfettiIcon)
 							.child(S.document().schemaType('competitionPage').documentId('competitionPage')),
 						S.listItem()
-							.title('Subteams Page')
+							.title('Subteams')
 							.icon(UsersIcon)
-							.child(S.document().schemaType('subteamsPage').documentId('subteamsPage')),
-						S.listItem()
-							.title('Outreach Page')
-							.icon(EarthAmericasIcon)
-							.child(S.document().schemaType('outreachPage').documentId('outreachPage')),
+							.child(
+								S.list()
+									.title('Subteams')
+									.items([
+										S.listItem()
+											.title('Subteams Page')
+											.icon(UsersIcon)
+											.child(S.document().schemaType('subteamsPage').documentId('subteamsPage')),
+										S.listItem()
+											.title('Outreach Page')
+											.icon(EarthAmericasIcon)
+											.child(S.document().schemaType('outreachPage').documentId('outreachPage'))
+									])
+							),
 						S.listItem()
 							.title('Contact Page')
 							.icon(EnvelopeIcon)

@@ -2,9 +2,10 @@ import type { PageServerLoad } from './$types';
 import { client } from '$lib/sanity/sanityClient';
 import { defineQuery } from 'groq';
 
-const fetchOutreachPage = async () => {
+export const load: PageServerLoad = async () => {
 	const outreachPageQuery = defineQuery(`
-		*[_type == "outreachPage" && _id == "outreachPage"][0] {
+		*[_type == "outreachPage"][0] {
+			_id,
 			title,
 			intro,
 			scanLog {
@@ -20,16 +21,14 @@ const fetchOutreachPage = async () => {
 			},
 			whatWeDo {
 				heading,
-				symbol,
 				body,
 				image {
-					asset-> { url },
+					...,
 					alt
 				}
 			},
 			focusAreas {
 				heading,
-				symbol,
 				areas[] {
 					_key,
 					tag,
@@ -38,17 +37,10 @@ const fetchOutreachPage = async () => {
 				}
 			}
 		}
-	`);
+  `);
+	const outreach = await client.fetch(outreachPageQuery);
 
-	const outreachPage = await client.fetch(outreachPageQuery);
+	if (outreach === null) throw Error('Failed to load outreach page.');
 
-	if (outreachPage === null) {
-		throw Error('Outreach page document is null.');
-	}
-
-	return outreachPage;
-};
-
-export const load: PageServerLoad = async () => {
-	return { outreachPage: await fetchOutreachPage() };
+	return { outreach };
 };
