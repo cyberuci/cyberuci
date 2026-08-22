@@ -26,6 +26,10 @@ export const load: PageServerLoad = async () => {
 				image {
 					...,
 					alt
+				},
+				imageSecondary {
+					...,
+					alt
 				}
 			},
 			focusAreas {

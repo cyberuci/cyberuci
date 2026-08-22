@@ -182,6 +182,27 @@ export default defineType({
 								})
 						})
 					]
+				}),
+				defineField({
+					name: 'imageSecondary',
+					title: 'Second Image',
+					type: 'image',
+					options: { hotspot: true },
+					fields: [
+						defineField({
+							name: 'alt',
+							title: 'Alternative Text',
+							type: 'string',
+							validation: (Rule) =>
+								Rule.custom((alt, context) => {
+									const parent = context.parent as { asset?: { _ref?: string } } | undefined;
+									if (parent?.asset?._ref && !alt) {
+										return 'You must provide alternative text for the image.';
+									}
+									return true;
+								})
+						})
+					]
 				})
 			],
 			validation: (Rule) => Rule.required()

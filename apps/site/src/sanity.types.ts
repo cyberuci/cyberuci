@@ -462,6 +462,19 @@ export type OutreachPage = {
 			alt?: string;
 			_type: 'image';
 		};
+		imageSecondary?: {
+			asset?: {
+				_ref: string;
+				_type: 'reference';
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+			};
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: 'image';
+		};
 	};
 	focusAreas: {
 		heading: string;
@@ -1352,6 +1365,19 @@ export type OutreachPageQueryResult = {
 				url: string | null;
 			} | null;
 			alt: string | null;
+		} | null;
+		imageSecondary?: {
+			asset?: {
+				_ref: string;
+				_type: 'reference';
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+			};
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: 'image';
 		} | null;
 	};
 	focusAreas: {

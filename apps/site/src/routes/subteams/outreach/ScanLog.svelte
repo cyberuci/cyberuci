@@ -28,6 +28,7 @@
 		{/each}
 
 		<p class="m-0 text-2">scan complete: {entries.length}/{entries.length} reachable</p>
+		<p></p>
 		<p class="m-0 text-bluedark-11">$ <span aria-hidden="true" class="blink">▊</span></p>
 	</div>
 </div>
