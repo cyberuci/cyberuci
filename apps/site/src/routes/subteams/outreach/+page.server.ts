@@ -21,6 +21,7 @@ export const load: PageServerLoad = async () => {
 			},
 			whatWeDo {
 				heading,
+				symbol,
 				body,
 				image {
 					...,
@@ -29,6 +30,7 @@ export const load: PageServerLoad = async () => {
 			},
 			focusAreas {
 				heading,
+				symbol,
 				areas[] {
 					_key,
 					tag,

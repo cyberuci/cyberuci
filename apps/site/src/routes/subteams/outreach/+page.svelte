@@ -2,7 +2,6 @@
 	import type { PageData } from './$types';
 	import Title from '$lib/common/components/Title.svelte';
 	import ScanLog from './ScanLog.svelte';
-	import { CircleDashed } from 'lucide-svelte';
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
 	import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
@@ -44,10 +43,10 @@
 	<ScanLog header={scanLog.header} command={scanLog.command} entries={scanLog.entries} />
 
 	<div class="grid mt-24 items-start gap-y-6 lg:grid-cols-16">
-		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
-			<CircleDashed size={18} />
-			<h2 class="type-label font-550">{whatWeDo.heading}</h2>
-		</div>
+		<h2 class="m-0 flex items-baseline gap-2 type-body-2 font-550 lg:col-start-1 lg:col-end-5">
+			<span class="text-blue-11 dark:text-bluedark-11">[{whatWeDo.symbol ?? '?'}]</span>
+			{whatWeDo.heading}
+		</h2>
 		<div class="flex flex-col gap-6 lg:col-start-5 lg:col-end-17 md:flex-row md:items-stretch">
 			<div class="flex-1 type-body-2 text-2 space-y-4">
 				{#each whatWeDo.body as paragraph (paragraph)}
@@ -65,21 +64,21 @@
 	</div>
 
 	<div class="grid mt-24 items-start gap-y-6 lg:grid-cols-16">
-		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
-			<CircleDashed size={18} />
-			<h2 class="type-label font-550">{focusAreas.heading}</h2>
-		</div>
+		<h2 class="m-0 flex items-baseline gap-2 type-body-2 font-550 lg:col-start-1 lg:col-end-5">
+			<span class="text-blue-11 dark:text-bluedark-11">[{focusAreas.symbol ?? '?'}]</span>
+			{focusAreas.heading}
+		</h2>
 		<ul
 			class="m-0 list-none p-0 lg:col-start-5 lg:col-end-15 divide-y divide-gray-4 dark:divide-graydark-4"
 		>
 			{#each focusAreas.areas as { _key, tag, title: areaTitle, description } (_key)}
 				<li
-					class="grid grid-cols-1 gap-2 py-6 sm:grid-cols-[minmax(0,140px)_1fr] sm:gap-6 first:pt-0 last:pb-0"
+					class="grid grid-cols-1 items-baseline gap-2 py-6 sm:grid-cols-[minmax(0,10rem)_1fr] sm:gap-6 first:pt-0 last:pb-0"
 				>
-					<span class="type-label text-[#00b2ff]">[{tag}]</span>
+					<span class="type-body-2 text-blue-11 dark:text-bluedark-11">[{tag}]</span>
 					<div>
-						<p class="m-0 font-600 type-body-1">{areaTitle}</p>
-						<p class="mb-0 mt-1 text-2 type-body-1">{description}</p>
+						<p class="m-0 type-body-2 font-600">{areaTitle}</p>
+						<p class="mb-0 mt-1 type-body-2 text-2">{description}</p>
 					</div>
 				</li>
 			{/each}
