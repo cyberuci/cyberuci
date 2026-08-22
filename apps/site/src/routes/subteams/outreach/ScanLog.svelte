@@ -10,7 +10,7 @@
 	let { header, command, entries }: Props = $props();
 </script>
 
-<div class="overflow-x-auto border border-gray-11 rounded-lg border-solid bg-[#000] p-4 sm:p-7">
+<div class="overflow-x-auto border border-gray-11 rounded-lg border-solid bg-[#000] p-2 sm:p-6">
 	<p class="mt-0 text-base type-label">{header}</p>
 	<hr class="my-4 border-0 border-t border-[#3d3d3d] border-solid" />
 	<div class="flex flex-col gap-3 text-base font-sans lg:gap-1.5">
@@ -35,33 +35,37 @@
 <style>
 	.log-row {
 		display: flex;
-		flex-direction: column;
-		gap: 0.125rem;
+		flex-wrap: wrap;
+		align-items: baseline;
+		column-gap: 0.5rem;
+		row-gap: 0.125rem;
 	}
 
 	.log-left,
 	.log-right {
+		flex-shrink: 0;
 		white-space: nowrap;
 	}
 
 	.log-dots {
-		display: none;
+		display: block;
+		flex: 1 1 auto;
+		min-width: 1.5rem;
+		margin-bottom: 0.25rem;
+		border-bottom: 2.5px dotted #3d3d3d;
+	}
+
+	.log-right {
+		flex: 1 0 100%;
 	}
 
 	@media (min-width: 1024px) {
 		.log-row {
-			flex-direction: row;
 			flex-wrap: nowrap;
-			align-items: baseline;
-			gap: 0.5rem;
 		}
 
-		.log-dots {
-			display: block;
-			flex: 1 1 auto;
-			min-width: 1.5rem;
-			margin-bottom: 0.25rem;
-			border-bottom: 1px dotted #3d3d3d;
+		.log-right {
+			flex: 0 0 auto;
 		}
 	}
 
