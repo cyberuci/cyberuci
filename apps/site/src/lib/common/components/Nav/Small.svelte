@@ -144,7 +144,10 @@
 			})}
 			{@render Group({
 				name: 'Subteams',
-				items: [{ href: '/subteams/graphics', title: 'Graphics', Icon: Palette }]
+				items: [
+					{ href: '/subteams/graphics', title: 'Graphics', Icon: Palette },
+					{ href: '/subteams/outreach', title: 'Outreach', Icon: Palette }
+				]
 			})}
 			<li class="list-none">
 				<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->

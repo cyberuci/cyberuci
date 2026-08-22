@@ -80,6 +80,7 @@
 
 {#snippet SubteamsItems()}
 	{@render ListItem({ href: '/subteams/graphics', title: 'Graphics', Icon: Palette })}
+	{@render ListItem({ href: '/subteams/outreach', title: 'Outreach', Icon: Palette })}
 {/snippet}
 
 {#snippet SponsorsItems()}
