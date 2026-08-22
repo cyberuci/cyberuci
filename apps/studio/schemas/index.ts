@@ -3,6 +3,7 @@ import competition, { achievements } from './pages/competition';
 import achievementsPage from './pages/achievements';
 import timelineCategory from './timelineCategory';
 import subteams from './pages/subteams';
+import outreach from './pages/outreach';
 import contact from './pages/contact';
 import corporate from './pages/corporate';
 import person from './person';
@@ -24,6 +25,7 @@ export const schemaTypes = [
 	achievementsPage,
 	timelineCategory,
 	subteams,
+	outreach,
 	contact,
 	corporate,
 	resourcecopy,

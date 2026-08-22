@@ -50,6 +50,44 @@ export type Sponsor = {
 	note?: string;
 };
 
+export type SanityImageCrop = {
+	_type: 'sanity.imageCrop';
+	top: number;
+	bottom: number;
+	left: number;
+	right: number;
+};
+
+export type SanityImageHotspot = {
+	_type: 'sanity.imageHotspot';
+	x: number;
+	y: number;
+	height: number;
+	width: number;
+};
+
+export type Calendar = {
+	_id: string;
+	_type: 'calendar';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	title: string;
+	calendarLink: string;
+	backgroundColor: Color;
+	supportingColor: Color;
+	textColor: Color;
+};
+
+export type Color = {
+	_type: 'color';
+	hex?: string;
+	alpha?: number;
+	hsl?: HslaColor;
+	hsv?: HsvaColor;
+	rgb?: RgbaColor;
+};
+
 export type Info = {
 	_id: string;
 	_type: 'info';
@@ -120,18 +158,73 @@ export type Person = {
 	graduation: number;
 };
 
-export type Resource = {
+export type Slug = {
+	_type: 'slug';
+	current: string;
+	source?: string;
+};
+
+export type Tag = {
 	_id: string;
-	_type: 'resource';
+	_type: 'tag';
 	_createdAt: string;
 	_updatedAt: string;
 	_rev: string;
 	title: string;
-	description: string;
-	notes?: string;
-	category?: 'tool' | 'guide' | 'certification' | 'other';
+	type?: 'competition' | 'skills' | 'experience';
+};
+
+export type Alumni = {
+	_id: string;
+	_type: 'alumni';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	personal?: {
+		preferredName: string;
+		graduationTerm: string;
+		majors?: Array<string>;
+	};
+	currentRole?: {
+		title: string;
+		company?: string;
+	};
+	cyberUCI?: {
+		role: string;
+	};
+	quote: string;
+};
+
+export type Resourcecopy = {
+	_id: string;
+	_type: 'resourcecopy';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	title: string;
+	content?: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal';
+		listItem?: never;
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
+	externalResource: boolean;
+	category?: 'CCDC' | 'CPTC' | 'CTF' | 'General';
+	resource_type?: 'tool' | 'guide' | 'certification' | 'other';
 	link?: string;
-	image?: {
+	thumbnail?: {
 		asset?: {
 			_ref: string;
 			_type: 'reference';
@@ -142,9 +235,173 @@ export type Resource = {
 		hotspot?: SanityImageHotspot;
 		crop?: SanityImageCrop;
 		alt: string;
+		isLogo: boolean;
 		_type: 'image';
 	};
-	tags?: Array<string>;
+	tags?: Array<{
+		_ref: string;
+		_type: 'reference';
+		_weak?: boolean;
+		_key: string;
+		[internalGroqTypeReferenceTo]?: 'tag';
+	}>;
+};
+
+export type CorporatePage = {
+	_id: string;
+	_type: 'corporatePage';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	sponsorshipPackage: {
+		file: {
+			asset?: {
+				_ref: string;
+				_type: 'reference';
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: 'sanity.fileAsset';
+			};
+			media?: unknown;
+			_type: 'file';
+		};
+	};
+	hero: {
+		label: string;
+		headline: string;
+		description: Array<{
+			children?: Array<{
+				marks?: Array<string>;
+				text?: string;
+				_type: 'span';
+				_key: string;
+			}>;
+			style?: 'normal';
+			listItem?: never;
+			markDefs?: Array<{
+				href?: string;
+				_type: 'link';
+				_key: string;
+			}>;
+			level?: number;
+			_type: 'block';
+			_key: string;
+		}>;
+	};
+	tiersDescription: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal';
+		listItem?: never;
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
+	additionalOpportunitiesDescription: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal';
+		listItem?: never;
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
+	about: Array<{
+		title: string;
+		description: string;
+		_type: 'card';
+		_key: string;
+	}>;
+	whySponsor: Array<{
+		title: string;
+		description: string;
+		_type: 'reason';
+		_key: string;
+	}>;
+	clubEvents: {
+		description: Array<{
+			children?: Array<{
+				marks?: Array<string>;
+				text?: string;
+				_type: 'span';
+				_key: string;
+			}>;
+			style?: 'normal';
+			listItem?: never;
+			markDefs?: Array<{
+				href?: string;
+				_type: 'link';
+				_key: string;
+			}>;
+			level?: number;
+			_type: 'block';
+			_key: string;
+		}>;
+		events: Array<{
+			title: string;
+			description: string;
+			image: {
+				asset: {
+					_ref: string;
+					_type: 'reference';
+					_weak?: boolean;
+					[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+				};
+				media?: unknown;
+				hotspot?: SanityImageHotspot;
+				crop?: SanityImageCrop;
+				alt: string;
+				_type: 'image';
+			};
+			_type: 'event';
+			_key: string;
+		}>;
+	};
+	tiers: Array<{
+		name: string;
+		price: string;
+		color: string;
+		inheritedPerks?: string;
+		perks: Array<string>;
+		_type: 'tier';
+		_key: string;
+	}>;
+	achievements: Array<{
+		year: string;
+		text: string;
+		_type: 'achievement';
+		_key: string;
+	}>;
+	contacts: Array<{
+		label: string;
+		value: string;
+		href: string;
+		_type: 'contact';
+		_key: string;
+	}>;
+	additionalOpportunities: Array<{
+		title: string;
+		description: string;
+		_type: 'opportunity';
+		_key: string;
+	}>;
 };
 
 export type ContactPage = {
@@ -168,6 +425,70 @@ export type ContactPage = {
 	}>;
 };
 
+export type OutreachPage = {
+	_id: string;
+	_type: 'outreachPage';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	title: string;
+	intro: string;
+	scanLog: {
+		header: string;
+		command: string;
+		entries: Array<{
+			time: string;
+			target: string;
+			status: string;
+			note: string;
+			_type: 'entry';
+			_key: string;
+		}>;
+	};
+	whatWeDo: {
+		heading: string;
+		symbol?: string;
+		body: Array<string>;
+		image?: {
+			asset?: {
+				_ref: string;
+				_type: 'reference';
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+			};
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: 'image';
+		};
+		imageSecondary?: {
+			asset?: {
+				_ref: string;
+				_type: 'reference';
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+			};
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: 'image';
+		};
+	};
+	focusAreas: {
+		heading: string;
+		symbol?: string;
+		areas: Array<{
+			tag: string;
+			title: string;
+			description: string;
+			_type: 'area';
+			_key: string;
+		}>;
+	};
+};
+
 export type SubteamsPage = {
 	_id: string;
 	_type: 'subteamsPage';
@@ -180,6 +501,73 @@ export type SubteamsPage = {
 		_type: 'subteam';
 		_key: string;
 	}>;
+};
+
+export type AchievementsPage = {
+	_id: string;
+	_type: 'achievementsPage';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	description: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal';
+		listItem?: never;
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
+	years?: Array<{
+		year?: number;
+		achievements: Array<{
+			title: string;
+			month: string;
+			category: {
+				_ref: string;
+				_type: 'reference';
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: 'timelineCategory';
+			};
+			placing?: string;
+			description?: string;
+			image?: {
+				asset?: {
+					_ref: string;
+					_type: 'reference';
+					_weak?: boolean;
+					[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+				};
+				media?: unknown;
+				hotspot?: SanityImageHotspot;
+				crop?: SanityImageCrop;
+				_type: 'image';
+			};
+			_type: 'achievement';
+			_key: string;
+		}>;
+		_type: 'year';
+		_key: string;
+	}>;
+};
+
+export type TimelineCategory = {
+	_id: string;
+	_type: 'timelineCategory';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	name: string;
+	color?: Color;
 };
 
 export type Achievements = {
@@ -243,12 +631,51 @@ export type HomePage = {
 			[internalGroqTypeReferenceTo]?: 'news';
 		};
 	};
+	hero: {
+		asset?: {
+			_ref: string;
+			_type: 'reference';
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+		};
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt: string;
+		_type: 'image';
+	};
 	competitions: {
+		image: {
+			asset?: {
+				_ref: string;
+				_type: 'reference';
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+			};
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt: string;
+			_type: 'image';
+		};
 		subtitle: string;
 		description: string;
 	};
 	hackerlab: {
-		images: Array<{
+		location: {
+			asset: {
+				_ref: string;
+				_type: 'reference';
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+			};
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt: string;
+			_type: 'image';
+		};
+		images?: Array<{
 			asset?: {
 				_ref: string;
 				_type: 'reference';
@@ -262,7 +689,7 @@ export type HomePage = {
 			_type: 'image';
 			_key: string;
 		}>;
-		description: string;
+		description?: string;
 	};
 };
 
@@ -287,24 +714,32 @@ export type News = {
 		crop?: SanityImageCrop;
 		_type: 'image';
 	};
-	content: Array<{
-		children?: Array<{
-			marks?: Array<string>;
-			text?: string;
-			_type: 'span';
-			_key: string;
-		}>;
-		style?: 'normal' | 'h2' | 'h3';
-		listItem?: never;
-		markDefs?: Array<{
-			href?: string;
-			_type: 'link';
-			_key: string;
-		}>;
-		level?: number;
-		_type: 'block';
-		_key: string;
-	}>;
+	source: string;
+	link: string;
+};
+
+export type RgbaColor = {
+	_type: 'rgbaColor';
+	r?: number;
+	g?: number;
+	b?: number;
+	a?: number;
+};
+
+export type HsvaColor = {
+	_type: 'hsvaColor';
+	h?: number;
+	s?: number;
+	v?: number;
+	a?: number;
+};
+
+export type HslaColor = {
+	_type: 'hslaColor';
+	h?: number;
+	s?: number;
+	l?: number;
+	a?: number;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -328,25 +763,20 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
 	_type: 'sanity.imageDimensions';
-	height?: number;
-	width?: number;
-	aspectRatio?: number;
+	height: number;
+	width: number;
+	aspectRatio: number;
 };
 
-export type SanityImageHotspot = {
-	_type: 'sanity.imageHotspot';
-	x?: number;
-	y?: number;
-	height?: number;
-	width?: number;
-};
-
-export type SanityImageCrop = {
-	_type: 'sanity.imageCrop';
-	top?: number;
-	bottom?: number;
-	left?: number;
-	right?: number;
+export type SanityImageMetadata = {
+	_type: 'sanity.imageMetadata';
+	location?: Geopoint;
+	dimensions?: SanityImageDimensions;
+	palette?: SanityImagePalette;
+	lqip?: string;
+	blurHash?: string;
+	hasAlpha?: boolean;
+	isOpaque?: boolean;
 };
 
 export type SanityFileAsset = {
@@ -369,6 +799,13 @@ export type SanityFileAsset = {
 	path?: string;
 	url?: string;
 	source?: SanityAssetSourceData;
+};
+
+export type SanityAssetSourceData = {
+	_type: 'sanity.assetSourceData';
+	name?: string;
+	id?: string;
+	url?: string;
 };
 
 export type SanityImageAsset = {
@@ -394,17 +831,6 @@ export type SanityImageAsset = {
 	source?: SanityAssetSourceData;
 };
 
-export type SanityImageMetadata = {
-	_type: 'sanity.imageMetadata';
-	location?: Geopoint;
-	dimensions?: SanityImageDimensions;
-	palette?: SanityImagePalette;
-	lqip?: string;
-	blurHash?: string;
-	hasAlpha?: boolean;
-	isOpaque?: boolean;
-};
-
 export type Geopoint = {
 	_type: 'geopoint';
 	lat?: number;
@@ -412,47 +838,69 @@ export type Geopoint = {
 	alt?: number;
 };
 
-export type Slug = {
-	_type: 'slug';
-	current: string;
-	source?: string;
-};
-
-export type SanityAssetSourceData = {
-	_type: 'sanity.assetSourceData';
-	name?: string;
-	id?: string;
-	url?: string;
-};
-
 export type AllSanitySchemaTypes =
 	| Sponsor
+	| SanityImageCrop
+	| SanityImageHotspot
+	| Calendar
+	| Color
 	| Info
 	| Board
 	| Person
-	| Resource
+	| Slug
+	| Tag
+	| Alumni
+	| Resourcecopy
+	| CorporatePage
 	| ContactPage
+	| OutreachPage
 	| SubteamsPage
+	| AchievementsPage
+	| TimelineCategory
 	| Achievements
 	| CompetitionPage
 	| HomePage
 	| News
+	| RgbaColor
+	| HsvaColor
+	| HslaColor
 	| SanityImagePaletteSwatch
 	| SanityImagePalette
 	| SanityImageDimensions
-	| SanityImageHotspot
-	| SanityImageCrop
-	| SanityFileAsset
-	| SanityImageAsset
 	| SanityImageMetadata
-	| Geopoint
-	| Slug
-	| SanityAssetSourceData;
+	| SanityFileAsset
+	| SanityAssetSourceData
+	| SanityImageAsset
+	| Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./src/lib/common/components/Calendar/calendarData.ts
+// Variable: calendarDataQuery
+// Query: *[_type == "calendar"] {			title,			calendarLink,			backgroundColor,			supportingColor,			textColor		}
+export type CalendarDataQueryResult = Array<{
+	title: string;
+	calendarLink: string;
+	backgroundColor: Color;
+	supportingColor: Color;
+	textColor: Color;
+}>;
+
 // Source: ./src/routes/(homepage)/+page.server.ts
 // Variable: homePageQuery
-// Query: *[_type == 'homePage' && _id == "homePage"][0] {			highlightNews {				enable,				article -> {					title,					cover,					date,					slug,				},			},			competitions {				subtitle,				description,			},			hackerlab {				description,				images,			},		}
+// Query: *[_type == 'homePage' && _id == "homePage"][0] {			hero,			highlightNews {				enable,				article -> {					title,					cover,					date,					slug,				},			},			competitions {				image,				subtitle,				description,			},			hackerlab {				location,				description,			},		}
 export type HomePageQueryResult = {
+	hero: {
+		asset?: {
+			_ref: string;
+			_type: 'reference';
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+		};
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt: string;
+		_type: 'image';
+	};
 	highlightNews: {
 		enable: boolean | null;
 		article: {
@@ -474,12 +922,7 @@ export type HomePageQueryResult = {
 		} | null;
 	} | null;
 	competitions: {
-		subtitle: string;
-		description: string;
-	};
-	hackerlab: {
-		description: string;
-		images: Array<{
+		image: {
 			asset?: {
 				_ref: string;
 				_type: 'reference';
@@ -491,8 +934,25 @@ export type HomePageQueryResult = {
 			crop?: SanityImageCrop;
 			alt: string;
 			_type: 'image';
-			_key: string;
-		}>;
+		};
+		subtitle: string;
+		description: string;
+	};
+	hackerlab: {
+		location: {
+			asset: {
+				_ref: string;
+				_type: 'reference';
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+			};
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt: string;
+			_type: 'image';
+		};
+		description: string | null;
 	};
 } | null;
 // Variable: socialsQuery
@@ -515,6 +975,26 @@ export type AifSocialsQueryResult = {
 		_key: string;
 	}> | null;
 } | null;
+
+// Source: ./src/routes/alumni/+page.server.ts
+// Variable: alumniPageQuery
+// Query: *[_type == "alumni"] {            _id,            personal,            currentRole,            cyberUCI,            quote        }
+export type AlumniPageQueryResult = Array<{
+	_id: string;
+	personal: {
+		preferredName: string;
+		graduationTerm: string;
+		majors?: Array<string>;
+	} | null;
+	currentRole: {
+		title: string;
+		company?: string;
+	} | null;
+	cyberUCI: {
+		role: string;
+	} | null;
+	quote: string;
+}>;
 
 // Source: ./src/routes/board/+page.server.ts
 // Variable: boardPageQuery
@@ -621,11 +1101,10 @@ export type ContactPageQueryResult = {
 
 // Source: ./src/routes/news/+page.server.ts
 // Variable: newsPageQuery
-// Query: *[_type == "news"] | order(date desc) {			_id,			title,			slug,			date,			cover,		}
+// Query: *[_type == "news"] | order(date desc) {			_id,			title,			date,			cover,			source,			link,		}
 export type NewsPageQueryResult = Array<{
 	_id: string;
 	title: string;
-	slug: Slug;
 	date: string;
 	cover: {
 		asset?: {
@@ -639,20 +1118,51 @@ export type NewsPageQueryResult = Array<{
 		crop?: SanityImageCrop;
 		_type: 'image';
 	};
+	source: string;
+	link: string;
 }>;
 
-// Source: ./src/routes/news/[slug]/+page.server.ts
-// Variable: newsStoryPageQuery
-// Query: *[_type == "news" && slug.current == $slug][0] {			content,			title		}
-export type NewsStoryPageQueryResult = {
-	content: Array<{
+// Source: ./src/routes/package/+page.server.ts
+// Variable: corporatePageQuery
+// Query: *[_type == "corporatePage" && _id == "corporatePage"][0] {			sponsorshipPackage {				file {					asset-> { url }				}			},			hero {				label,				headline,				description			},			tiersDescription,			additionalOpportunitiesDescription,			about[] {				_key,				title,				description			},			whySponsor[] {				_key,				title,				description			},			clubEvents {				description,				events[] {					_key,					title,					description,					image				}			},			tiers[] {				_key,				name,				price,				color,				inheritedPerks,				perks			},			achievements[] {				_key,				year,				text			},			contacts[] {				_key,				label,				value,				href			},			additionalOpportunities[] {				_key,				title,				description			}		}
+export type CorporatePageQueryResult = {
+	sponsorshipPackage: {
+		file: {
+			asset: {
+				url: string | null;
+			} | null;
+		};
+	};
+	hero: {
+		label: string;
+		headline: string;
+		description: Array<{
+			children?: Array<{
+				marks?: Array<string>;
+				text?: string;
+				_type: 'span';
+				_key: string;
+			}>;
+			style?: 'normal';
+			listItem?: never;
+			markDefs?: Array<{
+				href?: string;
+				_type: 'link';
+				_key: string;
+			}>;
+			level?: number;
+			_type: 'block';
+			_key: string;
+		}>;
+	};
+	tiersDescription: Array<{
 		children?: Array<{
 			marks?: Array<string>;
 			text?: string;
 			_type: 'span';
 			_key: string;
 		}>;
-		style?: 'h2' | 'h3' | 'normal';
+		style?: 'normal';
 		listItem?: never;
 		markDefs?: Array<{
 			href?: string;
@@ -663,46 +1173,136 @@ export type NewsStoryPageQueryResult = {
 		_type: 'block';
 		_key: string;
 	}>;
-	title: string;
-} | null;
-// Variable: newsPageRecentQuery
-// Query: *[_type == "news"] | order(date desc) [0...3] {			_id,			title,			slug,			date,			cover,		}
-export type NewsPageRecentQueryResult = Array<{
-	_id: string;
-	title: string;
-	slug: Slug;
-	date: string;
-	cover: {
-		asset?: {
-			_ref: string;
-			_type: 'reference';
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-		};
-		media?: unknown;
-		hotspot?: SanityImageHotspot;
-		crop?: SanityImageCrop;
-		_type: 'image';
+	additionalOpportunitiesDescription: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal';
+		listItem?: never;
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
+	about: Array<{
+		_key: string;
+		title: string;
+		description: string;
+	}>;
+	whySponsor: Array<{
+		_key: string;
+		title: string;
+		description: string;
+	}>;
+	clubEvents: {
+		description: Array<{
+			children?: Array<{
+				marks?: Array<string>;
+				text?: string;
+				_type: 'span';
+				_key: string;
+			}>;
+			style?: 'normal';
+			listItem?: never;
+			markDefs?: Array<{
+				href?: string;
+				_type: 'link';
+				_key: string;
+			}>;
+			level?: number;
+			_type: 'block';
+			_key: string;
+		}>;
+		events: Array<{
+			_key: string;
+			title: string;
+			description: string;
+			image: {
+				asset: {
+					_ref: string;
+					_type: 'reference';
+					_weak?: boolean;
+					[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+				};
+				media?: unknown;
+				hotspot?: SanityImageHotspot;
+				crop?: SanityImageCrop;
+				alt: string;
+				_type: 'image';
+			};
+		}>;
 	};
-}>;
+	tiers: Array<{
+		_key: string;
+		name: string;
+		price: string;
+		color: string;
+		inheritedPerks: string | null;
+		perks: Array<string>;
+	}>;
+	achievements: Array<{
+		_key: string;
+		year: string;
+		text: string;
+	}>;
+	contacts: Array<{
+		_key: string;
+		label: string;
+		value: string;
+		href: string;
+	}>;
+	additionalOpportunities: Array<{
+		_key: string;
+		title: string;
+		description: string;
+	}>;
+} | null;
 
 // Source: ./src/routes/resources/+page.server.ts
 // Variable: resourcesQuery
-// Query: *[_type == "resource"] {      _id,      title,      description,      notes,      category,      link,      image {        asset->{          url        },        alt      },      tags    }
+// Query: *[_type == "resourcecopy"] {      _id,      title,      content,      externalResource,      category,      link,      thumbnail {        asset->{          url        },        alt,        isLogo      },      "tags": tags[]->{ title, type }    }
 export type ResourcesQueryResult = Array<{
 	_id: string;
 	title: string;
-	description: string;
-	notes: string | null;
-	category: 'certification' | 'guide' | 'other' | 'tool' | null;
+	content: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal';
+		listItem?: never;
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}> | null;
+	externalResource: boolean;
+	category: 'CCDC' | 'CPTC' | 'CTF' | 'General' | null;
 	link: string | null;
-	image: {
+	thumbnail: {
 		asset: {
 			url: string | null;
 		} | null;
 		alt: string;
+		isLogo: boolean;
 	} | null;
-	tags: Array<string> | null;
+	tags: Array<{
+		title: string;
+		type: 'competition' | 'experience' | 'skills' | null;
+	}> | null;
 }>;
 
 // Source: ./src/routes/sponsors/+page.server.ts
@@ -739,22 +1339,128 @@ export type SubteamPageQueryResult = {
 	}> | null;
 } | null;
 
+// Source: ./src/routes/subteams/outreach/+page.server.ts
+// Variable: outreachPageQuery
+// Query: *[_type == "outreachPage" && _id == "outreachPage"][0] {			title,			intro,			scanLog {				header,				command,				entries[] {					_key,					time,					target,					status,					note				}			},			whatWeDo {				heading,				symbol,				body,				image {					asset-> { url },					alt				}			},			focusAreas {				heading,				symbol,				areas[] {					_key,					tag,					title,					description				}			}		}
+export type OutreachPageQueryResult = {
+	title: string;
+	intro: string;
+	scanLog: {
+		header: string;
+		command: string;
+		entries: Array<{
+			_key: string;
+			time: string;
+			target: string;
+			status: string;
+			note: string;
+		}>;
+	};
+	whatWeDo: {
+		heading: string;
+		symbol: string | null;
+		body: Array<string>;
+		image: {
+			asset: {
+				url: string | null;
+			} | null;
+			alt: string | null;
+		} | null;
+		imageSecondary?: {
+			asset?: {
+				_ref: string;
+				_type: 'reference';
+				_weak?: boolean;
+				[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+			};
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: 'image';
+		} | null;
+	};
+	focusAreas: {
+		heading: string;
+		symbol: string | null;
+		areas: Array<{
+			_key: string;
+			tag: string;
+			title: string;
+			description: string;
+		}>;
+	};
+} | null;
+
+// Source: ./src/routes/timeline/+page.server.ts
+// Variable: achievementsPageQuery
+// Query: *[_type == "achievementsPage" && _id == "achievementsPage"][0] {			description,			years[] | order(year desc) {				year,				achievements[] | order(month desc) {					_key,					title,					month,					category->{ name, color },					description,					placing,					image				}			}		}
+export type AchievementsPageQueryResult = {
+	description: Array<{
+		children?: Array<{
+			marks?: Array<string>;
+			text?: string;
+			_type: 'span';
+			_key: string;
+		}>;
+		style?: 'normal';
+		listItem?: never;
+		markDefs?: Array<{
+			href?: string;
+			_type: 'link';
+			_key: string;
+		}>;
+		level?: number;
+		_type: 'block';
+		_key: string;
+	}>;
+	years: Array<{
+		year: number | null;
+		achievements: Array<{
+			_key: string;
+			title: string;
+			month: string;
+			category: {
+				name: string;
+				color: Color | null;
+			};
+			description: string | null;
+			placing: string | null;
+			image: {
+				asset?: {
+					_ref: string;
+					_type: 'reference';
+					_weak?: boolean;
+					[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+				};
+				media?: unknown;
+				hotspot?: SanityImageHotspot;
+				crop?: SanityImageCrop;
+				_type: 'image';
+			} | null;
+		}>;
+	}> | null;
+} | null;
+
 // Query TypeMap
 import '@sanity/client';
 declare module '@sanity/client' {
 	interface SanityQueries {
-		'\n\t\t*[_type == \'homePage\' && _id == "homePage"][0] {\n\t\t\thighlightNews {\n\t\t\t\tenable,\n\t\t\t\tarticle -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tcover,\n\t\t\t\t\tdate,\n\t\t\t\t\tslug,\n\t\t\t\t},\n\t\t\t},\n\t\t\tcompetitions {\n\t\t\t\tsubtitle,\n\t\t\t\tdescription,\n\t\t\t},\n\t\t\thackerlab {\n\t\t\t\tdescription,\n\t\t\t\timages,\n\t\t\t},\n\t\t}\n  ': HomePageQueryResult;
+		'\n    \t*[_type == "calendar"] {\n\t\t\ttitle,\n\t\t\tcalendarLink,\n\t\t\tbackgroundColor,\n\t\t\tsupportingColor,\n\t\t\ttextColor\n\t\t}\n  ': CalendarDataQueryResult;
+		'\n\t\t*[_type == \'homePage\' && _id == "homePage"][0] {\n\t\t\thero,\n\t\t\thighlightNews {\n\t\t\t\tenable,\n\t\t\t\tarticle -> {\n\t\t\t\t\ttitle,\n\t\t\t\t\tcover,\n\t\t\t\t\tdate,\n\t\t\t\t\tslug,\n\t\t\t\t},\n\t\t\t},\n\t\t\tcompetitions {\n\t\t\t\timage,\n\t\t\t\tsubtitle,\n\t\t\t\tdescription,\n\t\t\t},\n\t\t\thackerlab {\n\t\t\t\tlocation,\n\t\t\t\tdescription,\n\t\t\t},\n\t\t}\n  ': HomePageQueryResult;
 		'\n\t\t*[_type == \'info\' && _id == "info"][0] {\n\t\t\tsocials\n\t\t}\n\t':
 			| SocialsQueryResult
 			| AifSocialsQueryResult;
+		'\n        *[_type == "alumni"] {\n            _id,\n            personal,\n            currentRole,\n            cyberUCI,\n            quote\n        }\n  ': AlumniPageQueryResult;
 		'\n\t\t*[_type == "board"] | order(year desc) {\n\t\t\t_id,\n\t\t\tyear,\n\t\t\tsections[] {\n\t\t\t\t_key,\n\t\t\t\tlabel,\n\t\t\t\t"members": members[].person-> {\n\t\t\t\t\t"person": @,\n\t\t\t\t\t"titles": ^.members[person._ref match ^._id].title\n\t\t\t\t} \n\t\t\t}\n\t\t}\n  ': BoardPageQueryResult;
 		'\n    *[_type == "competitionPage"][0] {\n\t\t\tcontent\n\t\t}\n  ': CompetitionPageQueryResult;
 		'\n    *[_type == "contactPage"][0] {\n\t\t\tsections[] {\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\tcontacts[]-> {\n\t\t\t\t\t_id,\n\t\t\t\t\timage,\n\t\t\t\t\tname,\n\t\t\t\t\tpronouns,\n\t\t\t\t\temail,\n\t\t\t\t\t"titles": *[_type == "board"] | order(year desc)[0].sections[].members[person._ref match ^._id].title\n\t\t\t\t}\n\t\t\t}\n\t\t}\n  ': ContactPageQueryResult;
-		'\n\t\t*[_type == "news"] | order(date desc) {\n\t\t\t_id,\n\t\t\ttitle,\n\t\t\tslug,\n\t\t\tdate,\n\t\t\tcover,\n\t\t}\n  ': NewsPageQueryResult;
-		'\n   \t*[_type == "news" && slug.current == $slug][0] {\n\t\t\tcontent,\n\t\t\ttitle\n\t\t}\n  ': NewsStoryPageQueryResult;
-		'\n\t\t*[_type == "news"] | order(date desc) [0...3] {\n\t\t\t_id,\n\t\t\ttitle,\n\t\t\tslug,\n\t\t\tdate,\n\t\t\tcover,\n\t\t}\n  ': NewsPageRecentQueryResult;
-		'\n    *[_type == "resource"] {\n      _id,\n      title,\n      description,\n      notes,\n      category,\n      link,\n      image {\n        asset->{\n          url\n        },\n        alt\n      },\n      tags\n    }\n  ': ResourcesQueryResult;
+		'\n\t\t*[_type == "news"] | order(date desc) {\n\t\t\t_id,\n\t\t\ttitle,\n\t\t\tdate,\n\t\t\tcover,\n\t\t\tsource,\n\t\t\tlink,\n\t\t}\n  \t': NewsPageQueryResult;
+		'\n\t\t*[_type == "corporatePage" && _id == "corporatePage"][0] {\n\t\t\tsponsorshipPackage {\n\t\t\t\tfile {\n\t\t\t\t\tasset-> { url }\n\t\t\t\t}\n\t\t\t},\n\t\t\thero {\n\t\t\t\tlabel,\n\t\t\t\theadline,\n\t\t\t\tdescription\n\t\t\t},\n\t\t\ttiersDescription,\n\t\t\tadditionalOpportunitiesDescription,\n\t\t\tabout[] {\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription\n\t\t\t},\n\t\t\twhySponsor[] {\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription\n\t\t\t},\n\t\t\tclubEvents {\n\t\t\t\tdescription,\n\t\t\t\tevents[] {\n\t\t\t\t\t_key,\n\t\t\t\t\ttitle,\n\t\t\t\t\tdescription,\n\t\t\t\t\timage\n\t\t\t\t}\n\t\t\t},\n\t\t\ttiers[] {\n\t\t\t\t_key,\n\t\t\t\tname,\n\t\t\t\tprice,\n\t\t\t\tcolor,\n\t\t\t\tinheritedPerks,\n\t\t\t\tperks\n\t\t\t},\n\t\t\tachievements[] {\n\t\t\t\t_key,\n\t\t\t\tyear,\n\t\t\t\ttext\n\t\t\t},\n\t\t\tcontacts[] {\n\t\t\t\t_key,\n\t\t\t\tlabel,\n\t\t\t\tvalue,\n\t\t\t\thref\n\t\t\t},\n\t\t\tadditionalOpportunities[] {\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription\n\t\t\t}\n\t\t}\n\t': CorporatePageQueryResult;
+		'\n    *[_type == "resourcecopy"] {\n      _id,\n      title,\n      content,\n      externalResource,\n      category,\n      link,\n      thumbnail {\n        asset->{\n          url\n        },\n        alt,\n        isLogo\n      },\n      "tags": tags[]->{ title, type }\n    }\n  ': ResourcesQueryResult;
 		'\n\t\t*[_type == "sponsor"] {\n\t\t\t_id,\n\t\t\tsince,\n\t\t\ttier,\n\t\t\tname,\n\t\t\tlogo {\n\t\t\t\tasset->{\n\t\t\t\t\turl\n\t\t\t\t},\n\t\t\t\talt\n\t\t\t},\n\t\t\tlogoDark {\n\t\t\t\tasset->{\n\t\t\t\t\turl\n\t\t\t\t}\n\t\t\t},\n\t\t\tnote\n\t\t}\n  ': SponsorQueryResult;
 		'\n\t\t*[_type == "subteamsPage"][0] {\n\t\t\t_id,\n\t\t\tsubteams[] {\n\t\t\t\t_key,\n\t\t\t\tname,\n\t\t\t\tdescription\n\t\t\t}\n\t\t}\n  ': SubteamPageQueryResult;
+		'\n\t\t*[_type == "outreachPage" && _id == "outreachPage"][0] {\n\t\t\ttitle,\n\t\t\tintro,\n\t\t\tscanLog {\n\t\t\t\theader,\n\t\t\t\tcommand,\n\t\t\t\tentries[] {\n\t\t\t\t\t_key,\n\t\t\t\t\ttime,\n\t\t\t\t\ttarget,\n\t\t\t\t\tstatus,\n\t\t\t\t\tnote\n\t\t\t\t}\n\t\t\t},\n\t\t\twhatWeDo {\n\t\t\t\theading,\n\t\t\t\tsymbol,\n\t\t\t\tbody,\n\t\t\t\timage {\n\t\t\t\t\tasset-> { url },\n\t\t\t\t\talt\n\t\t\t\t}\n\t\t\t},\n\t\t\tfocusAreas {\n\t\t\t\theading,\n\t\t\t\tsymbol,\n\t\t\t\tareas[] {\n\t\t\t\t\t_key,\n\t\t\t\t\ttag,\n\t\t\t\t\ttitle,\n\t\t\t\t\tdescription\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t': OutreachPageQueryResult;
+		'\n\t\t*[_type == "achievementsPage" && _id == "achievementsPage"][0] {\n\t\t\tdescription,\n\t\t\tyears[] | order(year desc) {\n\t\t\t\tyear,\n\t\t\t\tachievements[] | order(month desc) {\n\t\t\t\t\t_key,\n\t\t\t\t\ttitle,\n\t\t\t\t\tmonth,\n\t\t\t\t\tcategory->{ name, color },\n\t\t\t\t\tdescription,\n\t\t\t\t\tplacing,\n\t\t\t\t\timage\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t': AchievementsPageQueryResult;
 	}
 }
