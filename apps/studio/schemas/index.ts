@@ -4,7 +4,6 @@ import achievementsPage from './pages/achievements';
 import timelineCategory from './timelineCategory';
 import subteams from './pages/subteams';
 import outreach from './pages/outreach';
-import contact from './pages/contact';
 import corporate from './pages/corporate';
 import person from './person';
 import board from './board';
