@@ -60,7 +60,7 @@
 				{/each}
 			</div>
 			{#if imageUrl || imageSecondaryUrl}
-				<div class="relative mx-auto w-56 flex-shrink-0 md:mx-0 lg:w-80 md:w-72">
+				<div class="relative mx-auto w-[88%] flex-shrink-0 md:mx-0 lg:w-100 md:w-72">
 					{#if imageUrl}
 						<img
 							class="relative z-10 h-auto w-[88%] rotate-[-3deg] rounded-md object-contain shadow-md transition duration-300 ease-out hover:z-40 hover:scale-105 hover:shadow-lg"

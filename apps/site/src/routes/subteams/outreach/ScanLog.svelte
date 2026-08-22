@@ -10,10 +10,10 @@
 	let { header, command, entries }: Props = $props();
 </script>
 
-<div class="overflow-x-auto border border-gray-11 rounded-lg border-solid bg-[#000] p-2 sm:p-6">
-	<p class="mt-0 text-base type-label">{header}</p>
+<div class="overflow-x-auto border border-gray-11 rounded-lg border-solid bg-[#000] p-5 sm:p-6">
+	<p class="mt-0 text-sm type-label sm:text-base">{header}</p>
 	<hr class="my-4 border-0 border-t border-[#3d3d3d] border-solid" />
-	<div class="flex flex-col gap-3 text-base font-sans lg:gap-1.5">
+	<div class="flex flex-col gap-3 text-base text-sm font-sans lg:gap-1.5 sm:text-base">
 		<p class="m-0 pt-0"><span class="text-bluedark-11">$</span> {command}</p>
 
 		{#each entries as { _key, time, target, status, note } (_key)}
