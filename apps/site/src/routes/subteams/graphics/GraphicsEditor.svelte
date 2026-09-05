@@ -408,7 +408,7 @@
 							/>
 							{#if selectedId === layer.id && !layer.locked}
 								{#each RESIZE_HANDLES as handle (handle)}
-									// eslint-disable-next-line no-console
+									<!-- eslint-disable-next-line -->
 									<span
 										class="resize-handle handle- {handle}"
 										style:cursor={HANDLE_CURSOR[handle]}
@@ -532,18 +532,15 @@
 								{/each}
 							</select>
 						</label>
-						<div class="grid grid-cols-2 gap-2">
-							<div class="rounded-md background-3 px-2 py-1.5">Regular</div>
-							<label class="flex items-center gap-1 rounded-md background-3 px-2 py-1.5">
-								<input
-									class="field"
-									type="number"
-									value={selected.fontSize}
-									disabled={selected.kind !== 'text'}
-									oninput={(e) => updateSelected({ fontSize: Number(e.currentTarget.value) })}
-								/>
-							</label>
-						</div>
+						<label class="flex items-center gap-1 rounded-md background-3 px-2 py-1.5">
+							<input
+								class="field"
+								type="number"
+								value={selected.fontSize}
+								disabled={selected.kind !== 'text'}
+								oninput={(e) => updateSelected({ fontSize: Number(e.currentTarget.value) })}
+							/>
+						</label>
 					</div>
 				</div>
 			</div>

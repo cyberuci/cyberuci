@@ -36,7 +36,7 @@
 				<span class="text-[#00b2ff]">[?]</span> What We Do
 			</h2>
 		</div>
-		<div class="flex flex-col gap-6 lg:col-start-5 lg:col-end-15 md:flex-row">
+		<div class="flex flex-col gap-6 lg:col-start-5 lg:col-end-20 md:flex-row">
 			<div class="flex-1 type-body-2 text-2 space-y-4">
 				<p class="m-0">
 					Graphics shapes how Cyber@UCI shows up everywhere people meet us — flyers, stickers,
@@ -49,7 +49,7 @@
 				</p>
 			</div>
 			<div
-				class="aspect-[3/4] w-full flex shrink-0 items-center justify-center rounded-md background-2 px-4 text-center type-label text-2 md:w-48"
+				class="w-full flex shrink-0 items-center justify-center rounded-md background-2 px-4 text-center type-label text-2 lg:w-70 md:w-70"
 			>
 				T-shirt design / team photo
 			</div>
@@ -59,10 +59,10 @@
 	<div class="grid mt-24 items-start gap-y-6 lg:grid-cols-16">
 		<div class="lg:col-start-1 lg:col-end-5">
 			<h2 class="type-label font-550">
-				<span class="text-[#00b2ff]">[system]</span> Assets
+				<span class="text-[#00b2ff]">[?]</span> Assets
 			</h2>
 		</div>
-		<div class="grid gap-3 lg:col-start-5 lg:col-end-15 sm:grid-cols-2">
+		<div class="grid gap-3 lg:col-start-5 lg:col-end-20 sm:grid-cols-2">
 			{#each assets as asset (asset.file)}
 				<a
 					class="group overflow-hidden rounded-md background-2 decoration-none transition-colors hover:background-3"
