@@ -63,11 +63,11 @@
 			id: 'text',
 			name: 'Cyber@UCI',
 			visible: true,
-			coords: { x: 300, y: 28 },
+			coords: { x: 208, y: 24 },
 			dimensions: { w: 280, h: 40 },
 			fill: ACCENT,
 			stroke: STROKE,
-			fontSize: 28,
+			fontSize: 70,
 			fontFamily: 'pixelify',
 			kind: 'text'
 		},
@@ -75,8 +75,8 @@
 			id: 'logo',
 			name: 'Cyber@UCI Logo',
 			visible: true,
-			coords: { x: 320, y: 210 },
-			dimensions: { w: 140, h: 130 },
+			coords: { x: 265, y: 196 },
+			dimensions: { w: 215, h: 199 },
 			fill: ACCENT,
 			stroke: STROKE,
 			fontSize: 16,
@@ -99,8 +99,8 @@
 			id: 'secure',
 			name: 'Shield Anteater',
 			visible: true,
-			coords: { x: 270, y: 55 },
-			dimensions: { w: 220, h: 195 },
+			coords: { x: 515, y: 70 },
+			dimensions: { w: 133, h: 117 },
 			fill: ACCENT,
 			stroke: STROKE,
 			fontSize: 16,
@@ -111,7 +111,7 @@
 			id: 'laptop',
 			name: 'Laptop Anteater',
 			visible: true,
-			coords: { x: 540, y: 95 },
+			coords: { x: 263, y: 92 },
 			dimensions: { w: 190, h: 145 },
 			fill: ACCENT,
 			stroke: STROKE,
@@ -375,7 +375,7 @@
 							style:left="{layer.coords.x / 7.8}%"
 							style:top="{layer.coords.y / 4.2}%"
 							style:width="{layer.dimensions.w / 7.8}%"
-							style:height="{layer.dimensions.h / 4.2}%"
+							style:height="auto"
 							style:z-index={selectedId === layer.id ? 20 : 2}
 							style:cursor={layer.locked
 								? 'default'
@@ -396,6 +396,7 @@
 								alt=""
 								draggable="false"
 								class="sticker pointer-events-none h-full w-full object-contain"
+								style="border: solid 1px"
 							/>
 							{#if selectedId === layer.id && !layer.locked}
 								{#each RESIZE_HANDLES as handle (handle)}
