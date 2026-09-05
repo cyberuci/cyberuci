@@ -410,7 +410,7 @@
 								{#each RESIZE_HANDLES as handle (handle)}
 									<!-- eslint-disable-next-line -->
 									<span
-										class="resize-handle handle- {handle}"
+										class={`resize-handle handle-${handle}`}
 										style:cursor={HANDLE_CURSOR[handle]}
 										role="slider"
 										aria-label="Resize {layer.name} from {handle}"
