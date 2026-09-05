@@ -41,6 +41,7 @@
 		visible: boolean;
 		coords: Coords;
 		dimensions: Dimensions;
+		rotate: number;
 		fill: string;
 		stroke: string;
 		fontSize: number;
@@ -57,17 +58,19 @@
 
 	const ACCENT = '#00b2ff';
 	const STROKE = '#f90404';
+	const ROTATE = 0;
 
 	let layers = $state<Layer[]>([
 		{
 			id: 'text',
 			name: 'Cyber@UCI',
 			visible: true,
-			coords: { x: 208, y: 24 },
+			coords: { x: 174, y: 30 },
 			dimensions: { w: 280, h: 40 },
+			rotate: ROTATE,
 			fill: ACCENT,
 			stroke: STROKE,
-			fontSize: 70,
+			fontSize: 90,
 			fontFamily: 'pixelify',
 			kind: 'text'
 		},
@@ -75,8 +78,9 @@
 			id: 'logo',
 			name: 'Cyber@UCI Logo',
 			visible: true,
-			coords: { x: 265, y: 196 },
-			dimensions: { w: 215, h: 199 },
+			coords: { x: 281, y: 211 },
+			dimensions: { w: 217, h: 217 },
+			rotate: ROTATE,
 			fill: ACCENT,
 			stroke: STROKE,
 			fontSize: 16,
@@ -87,8 +91,9 @@
 			id: 'patch',
 			name: 'Secure Anteater',
 			visible: true,
-			coords: { x: 24, y: 100 },
+			coords: { x: 50, y: 62 },
 			dimensions: { w: 140, h: 190 },
+			rotate: -20,
 			fill: ACCENT,
 			stroke: STROKE,
 			fontSize: 16,
@@ -99,8 +104,9 @@
 			id: 'secure',
 			name: 'Shield Anteater',
 			visible: true,
-			coords: { x: 515, y: 70 },
+			coords: { x: 580, y: 85 },
 			dimensions: { w: 133, h: 117 },
+			rotate: ROTATE,
 			fill: ACCENT,
 			stroke: STROKE,
 			fontSize: 16,
@@ -111,8 +117,9 @@
 			id: 'laptop',
 			name: 'Laptop Anteater',
 			visible: true,
-			coords: { x: 263, y: 92 },
+			coords: { x: 282, y: 108 },
 			dimensions: { w: 190, h: 145 },
+			rotate: ROTATE,
 			fill: ACCENT,
 			stroke: STROKE,
 			fontSize: 16,
@@ -230,7 +237,8 @@
 			if (handle.includes('w')) nextW = right - pt.x;
 			if (handle.includes('s')) nextH = pt.y - sy;
 			if (handle.includes('n')) nextH = bottom - pt.y;
-			const scale = Math.abs(nextW / sw - 1) >= Math.abs(nextH / sh - 1) ? nextW / sw : nextH / sh;
+			// Project onto the aspect diagonal so scale stays continuous.
+			const scale = (nextW * sw + nextH * sh) / Math.max(1, sw * sw + sh * sh);
 			w = Math.max(MIN_SIZE, sw * scale);
 			h = w / aspect;
 			if (handle.includes('w')) x = right - w;
@@ -377,6 +385,7 @@
 							style:width="{layer.dimensions.w / 7.8}%"
 							style:height="auto"
 							style:z-index={selectedId === layer.id ? 20 : 2}
+							style:transform="rotate({layer.rotate}deg)"
 							style:cursor={layer.locked
 								? 'default'
 								: resizing && selectedId === layer.id
@@ -396,7 +405,6 @@
 								alt=""
 								draggable="false"
 								class="sticker pointer-events-none h-full w-full object-contain"
-								style="border: solid 1px"
 							/>
 							{#if selectedId === layer.id && !layer.locked}
 								{#each RESIZE_HANDLES as handle (handle)}
@@ -536,22 +544,6 @@
 							</label>
 						</div>
 					</div>
-				</div>
-
-				<div>
-					<p class="m-0 mb-1.5 opacity-70">Stroke</p>
-					<label class="flex items-center gap-2 rounded-md background-3 px-2 py-1.5">
-						<span
-							class="h-4 w-4 shrink-0 border border-[#3d3d3d] rounded-md border-solid"
-							style:background={selected.stroke}
-						></span>
-						<input
-							class="field grow"
-							type="text"
-							value={selected.stroke}
-							oninput={(e) => updateSelected({ stroke: e.currentTarget.value })}
-						/>
-					</label>
 				</div>
 			</div>
 		</aside>
