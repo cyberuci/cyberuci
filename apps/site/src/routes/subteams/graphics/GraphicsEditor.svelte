@@ -408,6 +408,7 @@
 							/>
 							{#if selectedId === layer.id && !layer.locked}
 								{#each RESIZE_HANDLES as handle (handle)}
+									// eslint-disable-next-line no-console
 									<span
 										class="resize-handle handle- {handle}"
 										style:cursor={HANDLE_CURSOR[handle]}
