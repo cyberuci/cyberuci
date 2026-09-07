@@ -6,6 +6,9 @@
 	import stickerSecure from './general_design3.png';
 	import stickerLaptop from './anteater_computer_fixed.png';
 
+	import { Palette, Frame, FileBox, BadgeQuestionMark } from 'lucide-svelte';
+	import Steps from './Steps.svelte';
+
 	const assets = [
 		{ name: 'Cyber@UCI Logo', src: logoImg, file: 'logo.png' },
 		{ name: 'Secure Anteater', src: stickerSecure, file: 'general_design3.png' },
@@ -25,18 +28,17 @@
 
 	<p class="mb-16 max-w-prose type-body-2 text-2">
 		Our visual identity in motion. The Graphics team designs stickers, merch, social assets, and
-		brand systems that make Cyber@UCI unmistakable — on campus and online.
+		brand systems that make Cyber@UCI unmistakable, on campus and online.
 	</p>
 
 	<GraphicsEditor />
 
-	<div class="grid mt-24 items-start gap-y-6 lg:grid-cols-16">
-		<div class="lg:col-start-1 lg:col-end-5">
-			<h2 class="type-label font-550">
-				<span class="text-[#00b2ff]">[?]</span> What We Do
-			</h2>
+	<div class="grid mb-15 mt-24 items-start gap-y-6 lg:grid-cols-16">
+		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+			<BadgeQuestionMark size={18} />
+			<h2 class="type-label font-550">WHAT WE DO</h2>
 		</div>
-		<div class="flex flex-col gap-6 lg:col-start-5 lg:col-end-20 md:flex-row">
+		<div class="flex flex-col gap-6 lg:col-start-5 lg:col-end-17 md:flex-row">
 			<div class="flex-1 type-body-2 text-2 space-y-4">
 				<p class="m-0">
 					Graphics shapes how Cyber@UCI shows up everywhere people meet us — flyers, stickers,
@@ -56,13 +58,57 @@
 		</div>
 	</div>
 
-	<div class="grid mt-24 items-start gap-y-6 lg:grid-cols-16">
-		<div class="lg:col-start-1 lg:col-end-5">
-			<h2 class="type-label font-550">
-				<span class="text-[#00b2ff]">[?]</span> Assets
-			</h2>
+	<div class="grid items-start gap-y-15 lg:grid-cols-16">
+		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+			<Frame size={18} />
+			<h2 class="type-label font-550">LOGO</h2>
 		</div>
-		<div class="grid gap-3 lg:col-start-5 lg:col-end-20 sm:grid-cols-2">
+		<div
+			class="aspect-square h-48 w-full flex flex-col gap-2 type-label lg:col-start-5 lg:col-end-17 sm:flex-row"
+		>
+			<div class="mb-16 w-full text">
+				<Steps />
+			</div>
+		</div>
+	</div>
+
+	<div class="grid my-24 items-start gap-y-15 pt-15 lg:grid-cols-16">
+		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+			<Palette size={18} />
+			<h2 class="type-label font-550">COLORS</h2>
+		</div>
+		<div
+			class="aspect-square h-48 w-full flex flex-col gap-2 type-label lg:col-start-5 lg:col-end-17 sm:flex-row"
+		>
+			<div
+				class="h-full w-full flex flex-col justify-end rounded-md bg-[#33488e] p-3 text-graydark-12"
+			>
+				<span>Deep Blue</span>
+				<span>#33488e</span>
+			</div>
+			<div
+				class="h-full w-full flex flex-col justify-end rounded-md bg-blue-9 p-3 text-graydark-12"
+			>
+				<span>Blue</span>
+				<span>#2975ba</span>
+			</div>
+			<div class="h-full w-full flex flex-col justify-end rounded-md bg-[#31b7fb] p-3 text-gray-12">
+				<span>Light Blue</span>
+				<span>#31b7fb</span>
+			</div>
+			<div class="h-full w-full flex flex-col justify-end rounded-md bg-[#f3f3f3] p-3 text-gray-12">
+				<span>Gray</span>
+				<span>#f3f3f3</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="grid mt-24 items-start gap-y-6 lg:grid-cols-16">
+		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+			<FileBox size={18} />
+			<h2 class="type-label font-550">ASSETS</h2>
+		</div>
+		<div class="grid gap-3 lg:col-start-5 lg:col-end-17 sm:grid-cols-2">
 			{#each assets as asset (asset.file)}
 				<a
 					class="group overflow-hidden rounded-md background-2 decoration-none transition-colors hover:background-3"
