@@ -20,7 +20,7 @@
 	};
 
 	const CANVAS_W = 780;
-	const CANVAS_H = 420;
+	const CANVAS_H = 500;
 	const MIN_SIZE = 32;
 	const RESIZE_HANDLES: ResizeHandle[] = ['n', 's', 'e', 'w', 'ne', 'nw', 'se', 'sw'];
 	const HANDLE_CURSOR: Record<ResizeHandle, string> = {
@@ -65,8 +65,8 @@
 			id: 'text',
 			name: 'Cyber@UCI',
 			visible: true,
-			coords: { x: 174, y: 30 },
-			dimensions: { w: 280, h: 40 },
+			coords: { x: 136, y: 26 },
+			dimensions: { w: 0, h: 0 },
 			rotate: ROTATE,
 			fill: ACCENT,
 			stroke: STROKE,
@@ -78,7 +78,7 @@
 			id: 'logo',
 			name: 'Cyber@UCI Logo',
 			visible: true,
-			coords: { x: 281, y: 211 },
+			coords: { x: 281, y: 230 },
 			dimensions: { w: 217, h: 217 },
 			rotate: ROTATE,
 			fill: ACCENT,
@@ -91,7 +91,7 @@
 			id: 'patch',
 			name: 'Secure Anteater',
 			visible: true,
-			coords: { x: 50, y: 62 },
+			coords: { x: 36, y: 85 },
 			dimensions: { w: 140, h: 190 },
 			rotate: -20,
 			fill: ACCENT,
@@ -104,8 +104,8 @@
 			id: 'secure',
 			name: 'Shield Anteater',
 			visible: true,
-			coords: { x: 580, y: 85 },
-			dimensions: { w: 133, h: 117 },
+			coords: { x: 580, y: 108 },
+			dimensions: { w: 152, h: 135 },
 			rotate: ROTATE,
 			fill: ACCENT,
 			stroke: STROKE,
@@ -117,7 +117,7 @@
 			id: 'laptop',
 			name: 'Laptop Anteater',
 			visible: true,
-			coords: { x: 282, y: 108 },
+			coords: { x: 283, y: 116 },
 			dimensions: { w: 190, h: 145 },
 			rotate: ROTATE,
 			fill: ACCENT,
@@ -135,8 +135,18 @@
 	let dragOffset = $state({ x: 0, y: 0 });
 	let resizeStart = $state({ x: 0, y: 0, w: 0, h: 0 });
 	let canvasEl = $state<HTMLDivElement | null>(null);
+	let canvasWidth = $state(CANVAS_W);
 
 	let selected = $derived(layers.find((l) => l.id === selectedId) ?? layers[1]);
+	let canvasScale = $derived(canvasWidth / CANVAS_W);
+
+	function pctX(x: number) {
+		return (x / CANVAS_W) * 100;
+	}
+
+	function pctY(y: number) {
+		return (y / CANVAS_H) * 100;
+	}
 
 	function pointerToCanvas(event: PointerEvent) {
 		if (!canvasEl) return { x: 0, y: 0 };
@@ -306,7 +316,7 @@
 </script>
 
 <div class="overflow-hidden border border-[#858585] rounded-lg border-solid bg-[#000]">
-	<p class="type-label text-2 sm:px-4">graphics@cyberuci</p>
+	<p class="px-4 type-label text-2">graphics@cyberuci</p>
 	<hr class="m-0 border-0 border-t border-[#3d3d3d] border-solid" />
 
 	<div class="grid lg:grid-cols-[210px_1fr_210px]">
@@ -348,7 +358,9 @@
 		<!-- Canvas -->
 		<div
 			bind:this={canvasEl}
-			class="canvas relative h-[280px] touch-none overflow-hidden lg:h-[500px] sm:h-[360px]"
+			bind:clientWidth={canvasWidth}
+			class="canvas relative w-full touch-none overflow-hidden"
+			style:aspect-ratio="{CANVAS_W} / {CANVAS_H}"
 			role="application"
 			aria-label="Graphics canvas"
 			onpointermove={onPointerMove}
@@ -358,15 +370,15 @@
 				{#if layer.visible}
 					{#if layer.kind === 'text'}
 						<div
-							class="absolute select-none font-medium tracking-wide {selectedId === layer.id
-								? 'selected'
-								: ''}"
-							style:left="{layer.coords.x / 7.8}%"
-							style:top="{layer.coords.y / 4.2}%"
+							class={`absolute select-none font-medium tracking-wide ${
+								selectedId === layer.id ? 'selected' : ''
+							}`}
+							style:left="{pctX(layer.coords.x)}%"
+							style:top="{pctY(layer.coords.y)}%"
 							style:color={layer.fill}
 							style:font-family={FONTS.find((f) => f.id === (layer.fontFamily ?? 'pixelify'))
 								?.stack}
-							style:font-size="{Math.max(16, layer.fontSize * 0.9)}px"
+							style:font-size="{layer.fontSize * canvasScale}px"
 							style:cursor={layer.locked ? 'default' : 'grab'}
 							style:z-index={selectedId === layer.id ? 20 : 1}
 							onpointerdown={(e) => onPointerDown(layer.id, e)}
@@ -380,10 +392,10 @@
 					{:else}
 						<div
 							class="absolute {selectedId === layer.id ? 'selected' : ''}"
-							style:left="{layer.coords.x / 7.8}%"
-							style:top="{layer.coords.y / 4.2}%"
-							style:width="{layer.dimensions.w / 7.8}%"
-							style:height="auto"
+							style:left="{pctX(layer.coords.x)}%"
+							style:top="{pctY(layer.coords.y)}%"
+							style:width="{pctX(layer.dimensions.w)}%"
+							style:height="{pctY(layer.dimensions.h)}%"
 							style:z-index={selectedId === layer.id ? 20 : 2}
 							style:transform="rotate({layer.rotate}deg)"
 							style:cursor={layer.locked
