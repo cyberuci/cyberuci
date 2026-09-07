@@ -58,7 +58,7 @@
 		</div>
 	</div>
 
-	<div class="grid items-start gap-y-15 lg:grid-cols-16">
+	<div class="grid items-start gap-y-8 lg:grid-cols-16">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<Frame size={18} />
 			<h2 class="type-label font-550">LOGO</h2>
@@ -72,7 +72,7 @@
 		</div>
 	</div>
 
-	<div class="grid my-24 items-start gap-y-15 pt-15 lg:grid-cols-16">
+	<div class="grid my-24 items-start gap-y-8 pt-15 lg:grid-cols-16">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<Palette size={18} />
 			<h2 class="type-label font-550">COLORS</h2>
@@ -103,7 +103,7 @@
 		</div>
 	</div>
 
-	<div class="grid mt-24 items-start gap-y-6 lg:grid-cols-16">
+	<div class="grid mt-24 items-start gap-y-8 lg:grid-cols-16">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<FileBox size={18} />
 			<h2 class="type-label font-550">ASSETS</h2>
