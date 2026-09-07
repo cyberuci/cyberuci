@@ -5,6 +5,7 @@
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
 	import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+	import { ScanSearch, BadgeQuestionMark } from 'lucide-svelte';
 
 	interface Props {
 		data: PageData;
@@ -47,10 +48,10 @@
 	<ScanLog header={scanLog.header} command={scanLog.command} entries={scanLog.entries} />
 
 	<div class="grid mt-24 items-start gap-y-6 lg:grid-cols-16">
-		<h2 class="m-0 flex items-baseline gap-2 type-body-2 font-550 lg:col-start-1 lg:col-end-5">
-			<span class="text-blue-11 dark:text-bluedark-11">[{whatWeDo.symbol ?? '?'}]</span>
-			{whatWeDo.heading}
-		</h2>
+		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+			<BadgeQuestionMark size={18} />
+			<h2 class="m-0 type-label font-550">WHAT WE DO</h2>
+		</div>
 		<div
 			class="flex flex-col gap-6 lg:col-start-5 lg:col-end-17 md:flex-row md:items-stretch md:gap-10"
 		>
@@ -83,16 +84,16 @@
 	</div>
 
 	<div class="grid mt-24 items-start gap-y-6 lg:grid-cols-16">
-		<h2 class="m-0 flex items-baseline gap-2 type-body-2 font-550 lg:col-start-1 lg:col-end-5">
-			<span class="text-blue-11 dark:text-bluedark-11">[{focusAreas.symbol ?? '?'}]</span>
-			{focusAreas.heading}
-		</h2>
+		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+			<ScanSearch size={18} />
+			<h2 class="m-0 type-label font-550 uppercase">{focusAreas.heading}</h2>
+		</div>
 		<ul class="m-0 list-none p-0 lg:col-start-5 lg:col-end-17">
 			{#each focusAreas.areas as { _key, tag, title: areaTitle, description } (_key)}
 				<li
 					class="grid grid-cols-1 items-baseline gap-2 border-0 border-b border-gray-7 border-solid py-6 sm:grid-cols-[minmax(0,10rem)_1fr] sm:gap-6 last:border-b-0 dark:border-graydark-7 first:pt-0 last:pb-0"
 				>
-					<span class="type-body-2 text-blue-11 dark:text-bluedark-11">[{tag}]</span>
+					<span class="m-0 text-base type-label text-blue-11 dark:text-bluedark-11">[{tag}]</span>
 					<div>
 						<p class="m-0 type-body-2 font-600">{areaTitle}</p>
 						<p class="mb-0 mt-1 type-body-2 text-2">{description}</p>
