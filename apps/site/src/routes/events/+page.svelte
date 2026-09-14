@@ -80,7 +80,9 @@
 		>
 			{#if eventGroups.length > 0}
 				{#each eventGroups as group, i (group.title)}
-					<p class="mb-[0.875rem] text-base type-label {i > 0 ? 'mt-6' : 'mt-0'}">{group.title}</p>
+					<p class="mb-[0.875rem] type-label {i > 0 ? 'mt-6' : 'mt-0'} uppercase">
+						[{group.title}]
+					</p>
 
 					{#each group.events as event (event.id)}
 						<Event

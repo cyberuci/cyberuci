@@ -13,7 +13,7 @@ export default defineConfig({
 			"font-pixelify [font-feature-settings:'dlig'] text-4xl md:text-5xl lg:text-6xl font-normal my-8 line-height-snug",
 		'type-label': 'font-sans text-sm',
 		'type-heading-1': 'font-explorer font-medium text-xl md:text-2xl',
-		'type-heading-2': 'font-explorer font-medium text-6 md:text-8',
+		'type-heading-2': 'font-explorer font-medium text-6 md:text-xl',
 		'type-body-1': 'font-explorer text-base line-height-relaxed',
 		'type-body-2': 'font-explorer text-lg line-height-relaxed',
 

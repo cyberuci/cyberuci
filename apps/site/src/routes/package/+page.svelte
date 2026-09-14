@@ -20,6 +20,7 @@
 
 	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
+	import Title from '$lib/common/components/Title.svelte';
 
 	const builder = imageUrlBuilder(client);
 
@@ -37,10 +38,8 @@
 <main>
 	<!-- Hero -->
 	<section class="relative space-x min-h-[calc(100svh-52px)] flex flex-col justify-center py-16">
-		<p class="mb-4 type-label">{data.corporatePage.hero.label}</p>
-		<h1 class="type-display mt-0">
-			{data.corporatePage.hero.headline}
-		</h1>
+		<Title title={data.corporatePage.hero.headline} />
+
 		<div class="mt-4 max-w-prose type-body-2 text-gray-11 dark:text-graydark-11">
 			<PortableText value={data.corporatePage.hero.description} />
 		</div>
@@ -75,9 +74,10 @@
 	<div class="space-x py-24">
 		<!-- About -->
 		<div class="mb-20">
-			<p class="type-body-1">
-				<Info size={18} /> About
-			</p>
+			<div class="mb-8 flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+				<Info size={18} />
+				<h2 class="m-0 type-label font-550 uppercase">About</h2>
+			</div>
 			<div class="grid gap-6 sm:grid-cols-2">
 				{#each data.corporatePage.about as { _key, title, description } (_key)}
 					<Event
@@ -94,9 +94,10 @@
 
 		<!-- Why Sponsor -->
 		<div class="grid mb-20 items-start gap-y-10 lg:grid-cols-16">
-			<h2 class="text-md flex items-center gap-2 type-label font-550 lg:col-start-1 lg:col-end-5">
-				<Handshake size={18} /> Why Sponsor
-			</h2>
+			<div class="mb-8 flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+				<Handshake size={18} />
+				<h2 class="m-0 type-label font-550 uppercase">Why sponsor</h2>
+			</div>
 			<div class="grid gap-6 lg:col-start-5 lg:col-end-17 sm:grid-cols-2">
 				{#each data.corporatePage.whySponsor as { _key, title, description } (_key)}
 					<Event
@@ -113,19 +114,20 @@
 
 		<!-- Achievements -->
 		<div class="mb-20">
-			<h2 class="mb-8 flex items-center gap-2 text-[1rem] type-label font-550">
-				<Trophy size={18} /> Achievements
-			</h2>
+			<div class="mb-8 flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+				<Trophy size={18} />
+				<h2 class="m-0 type-label font-550 uppercase">Achievements</h2>
+			</div>
+
 			<AchievementTimeline achievements={data.corporatePage.achievements} />
 		</div>
 
 		<!-- Club Events — images flip sides on desktop so it doesn't feel too samey -->
 		<div class="grid mb-20 items-start gap-y-10 lg:grid-cols-16">
-			<h2
-				class="flex items-center gap-2 text-[1rem] type-label font-550 lg:col-start-1 lg:col-end-5"
-			>
-				<CalendarDays size={20} /> Club Events
-			</h2>
+			<div class="mb-8 flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+				<CalendarDays size={18} />
+				<h2 class="m-0 type-label font-550 uppercase">Club Events</h2>
+			</div>
 			<div class="lg:col-start-5 lg:col-end-17">
 				<div class="mb-10 mt-2 text-gray-11 dark:text-graydark-11">
 					<PortableText value={data.corporatePage.clubEvents.description} />
@@ -155,14 +157,13 @@
 		</div>
 
 		<!-- Sponsorship Tiers -->
-		<div id="tiers" class="mb-[200px]">
+		<div id="tiers" class="mb-20">
 			<div class="grid space-x items-start gap-y-4 lg:grid-cols-16">
-				<h2
-					class="flex items-center gap-2 text-[1rem] type-label font-550 lg:col-start-1 lg:col-end-5"
-				>
-					<Layers size={18} /> Sponsorship Tiers
-				</h2>
-				<div class="type-body-2 lg:col-start-5 lg:col-end-17 dark:text-graydark-11">
+				<div class="mb-8 flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+					<Layers size={18} />
+					<h2 class="m-0 type-label font-550 uppercase">Sponsorship Tiers</h2>
+				</div>
+				<div class="mb-7 type-body-2 lg:col-start-5 lg:col-end-17 dark:text-graydark-11">
 					<PortableText value={data.corporatePage.tiersDescription} />
 				</div>
 			</div>
@@ -177,9 +178,10 @@
 		<!-- Additional Opportunities + Contact -->
 		<div id="contact" class="grid space-x gap-20 lg:grid-cols-2">
 			<div>
-				<h2 class="mb-10 flex items-center gap-2 type-label font-550">
-					<Sparkles size={20} /> Additional Opportunities
-				</h2>
+				<div class="mb-8 flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+					<Sparkles size={18} />
+					<h2 class="m-0 type-label font-550 uppercase">Additional Opportunities</h2>
+				</div>
 				<div class="mb-8 text-gray-11 dark:text-graydark-11">
 					<PortableText value={data.corporatePage.additionalOpportunitiesDescription} />
 				</div>
@@ -191,16 +193,17 @@
 			</div>
 
 			<div>
-				<h2 class="mb-10 flex items-center gap-2 type-label font-550">
-					<Mail size={20} /> Contact Us
-				</h2>
+				<div class="mb-8 flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+					<Mail size={18} />
+					<h2 class="m-0 type-label font-550 uppercase">Contact Us</h2>
+				</div>
 				<div class="grid gap-8 sm:grid-cols-2">
 					{#each data.corporatePage.contacts as contact (contact._key)}
 						<div>
-							<p class="mb-2 type-label">{contact.label}</p>
+							<p class="mb-2 type-body-1"><b>{contact.label}</b></p>
 							<a
 								href={contact.href}
-								class="type-body-2 text-blue-12 decoration-none dark:text-bluedark-12 hover:decoration-underline"
+								class="type-body-1 text-blue-12 decoration-none dark:text-bluedark-12 hover:decoration-underline"
 							>
 								{contact.value}
 							</a>

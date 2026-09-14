@@ -33,7 +33,7 @@
 		</div>
 	{/if}
 	<div class="mb-2 flex items-baseline justify-between">
-		<h1 class="m-0 type-heading-1">
+		<h1 class="m-0 type-heading-2">
 			{name}
 		</h1>
 		{#if expanded}
@@ -90,7 +90,7 @@
 			</div>
 		{/if}
 	</div>
-	<div class="flex flex-col gap-.5 type-body-2 text-gray-11 dark:text-graydark-11">
+	<div class="flex flex-col gap-.5 type-body-1 text-gray-11 dark:text-graydark-11">
 		<span>{titles.join(', ')}</span>
 		{#if majors}
 			<span>{majors.join(', ')} {graduation}</span>

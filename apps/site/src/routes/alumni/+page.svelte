@@ -75,7 +75,7 @@
 						</div>
 					{/if}
 					<div>
-						<p class="m-0 text-base type-heading-2">{alumni.personal.preferredName}</p>
+						<h1 class="m-0 type-body-2">{alumni.personal.preferredName}</h1>
 						<p class="m-0 type-body-2 text-gray8">
 							{alumni.currentRole.title}{alumni.currentRole.company
 								? ` · ${alumni.currentRole.company}`
@@ -87,26 +87,26 @@
 				<!-- Graduation + major -->
 				<div class="flex flex-wrap content-start gap-2">
 					<span
-						class="border-1 border-gray11 rounded-full border-solid background-4 px-3 py-1 text-sm type-body-2 text-gray7"
+						class="border-1 border-gray11 rounded-full border-solid background-4 px-3 py-1 text-sm type-body-1 text-gray7"
 						>{alumni.personal.graduationTerm}</span
 					>
 					{#each alumni.personal.majors as major (major)}
 						<span
-							class="border-1 border-gray11 rounded-full border-solid background-4 px-3 py-1 text-sm type-body-2 text-gray7"
+							class="border-1 border-gray11 rounded-full border-solid background-4 px-3 py-1 text-sm type-body-1 text-gray7"
 							>{major}</span
 						>
 					{/each}
 				</div>
 
 				<!-- Cyber role -->
-				<p class="m-0 type-body-2">
+				<p class="m-0 type-body-1">
 					<span class="text-bluedark-11 font-semibold">{alumni.cyberUCI.role}</span>
 				</p>
 
 				<!-- Quote -->
 				{#if alumni.quote}
 					<p
-						class="m-0 border-l-3 border-bluedark-11 border-l-solid pl-3 type-body-2 text-gray8 leading-[1.6] italic"
+						class="m-0 border-l-3 border-bluedark-11 border-l-solid pl-3 type-body-1 text-gray8 leading-[1.6] italic"
 					>
 						"{alumni.quote}"
 					</p>

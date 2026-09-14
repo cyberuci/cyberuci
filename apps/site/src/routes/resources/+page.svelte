@@ -76,7 +76,7 @@
 	{#if ourResources.length > 0}
 		<section class="mb-16">
 			<h2 class="mb-6 type-heading-2">Our Resources</h2>
-			<div class="grid grid-cols-[repeat(auto-fill,_minmax(330px,1fr))] gap-2">
+			<div class="grid grid-cols-[repeat(auto-fill,_minmax(330px,1fr))] gap-3">
 				{#each canvas as c (c._id)}
 					<ResourceType resource={c} pinned={true} />
 				{/each}
@@ -90,7 +90,7 @@
 	{#if externalResources.length > 0}
 		<section>
 			<h2 class="mb-6 type-heading-2">External Resources</h2>
-			<div class="grid grid-cols-[repeat(auto-fill,_minmax(330px,1fr))] gap-2">
+			<div class="grid grid-cols-[repeat(auto-fill,_minmax(330px,1fr))] gap-3">
 				{#each externalResources as resource (resource._id)}
 					<ResourceType {resource} pinned={false} />
 				{/each}

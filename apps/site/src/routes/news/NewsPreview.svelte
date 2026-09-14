@@ -49,7 +49,7 @@
 	>
 		<div class="line-clamp-3 mb-3">
 			<span
-				class={`block max-w-40ch type-heading-2 group-hover:decoration-underline ${relativeSize === 's' ? 'text-2xl' : ''}`}
+				class={`block max-w-45ch type-heading-1 group-hover:decoration-underline ${relativeSize === 's' ? 'text-2xl' : ''}`}
 				>{title}</span
 			>
 		</div>
