@@ -41,7 +41,7 @@
 <div class="my-40 space-x">
 	<Title {title} />
 
-	<p class="mb-16 max-w-prose type-body-2 text-2">
+	<p class="mb-16 max-w-prose type-body-1 text-2">
 		{intro}
 	</p>
 
@@ -55,7 +55,7 @@
 		<div
 			class="flex flex-col gap-6 lg:col-start-5 lg:col-end-17 md:flex-row md:items-stretch md:gap-10"
 		>
-			<div class="flex-1 type-body-2 text-2 lg:mr-8 md:mr-4 space-y-4">
+			<div class="flex-1 type-body-1 text-2 lg:mr-8 md:mr-4 space-y-4">
 				{#each whatWeDo.body as paragraph (paragraph)}
 					<p class="m-0">{paragraph}</p>
 				{/each}
@@ -93,10 +93,10 @@
 				<li
 					class="grid grid-cols-1 items-baseline gap-2 border-0 border-b border-gray-7 border-solid py-6 sm:grid-cols-[minmax(0,10rem)_1fr] sm:gap-6 last:border-b-0 dark:border-graydark-7 first:pt-0 last:pb-0"
 				>
-					<span class="m-0 text-base type-label text-blue-11 dark:text-bluedark-11">[{tag}]</span>
+					<span class="m-0 type-label text-blue-11 dark:text-bluedark-11">[{tag}]</span>
 					<div>
-						<p class="m-0 type-body-2 font-600">{areaTitle}</p>
-						<p class="mb-0 mt-1 type-body-2 text-2">{description}</p>
+						<p class="m-0 type-body-1 font-600">{areaTitle}</p>
+						<p class="mb-0 mt-1 type-body-1 text-2">{description}</p>
 					</div>
 				</li>
 			{/each}

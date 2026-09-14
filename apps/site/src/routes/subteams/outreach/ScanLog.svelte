@@ -10,24 +10,26 @@
 	let { header, command, entries }: Props = $props();
 </script>
 
-<div class="overflow-x-auto border border-gray-11 rounded-lg border-solid bg-[#000] p-5 sm:p-6">
-	<p class="mt-0 text-sm type-label sm:text-base">{header}</p>
+<div
+	class="overflow-x-auto border border-gray-11 rounded-lg border-solid bg-[#000] p-5 text-base type-label sm:p-6"
+>
+	<p class="mt-0 font-sans">{header}</p>
 	<hr class="my-4 border-0 border-t border-[#3d3d3d] border-solid" />
-	<div class="flex flex-col gap-3 text-base text-sm font-sans lg:gap-1.5 sm:text-base">
+	<div class="flex flex-col gap-3 font-sans lg:gap-1.5">
 		<p class="m-0 pt-0"><span class="text-bluedark-11">$</span> {command}</p>
 
 		{#each entries as { _key, time, target, status, note } (_key)}
 			<div class="log-row">
-				<span class="log-left text-2">[{time}] probing {target}</span>
+				<span class="log-left">[{time}] probing {target}</span>
 				<span class="log-dots" aria-hidden="true"></span>
 				<span class="log-right">
 					<span class="text-bluedark-11">{status}</span>
-					<span class="text-2">— {note}</span>
+					<span>— {note}</span>
 				</span>
 			</div>
 		{/each}
 
-		<p class="m-0 text-2">scan complete: {entries.length}/{entries.length} reachable</p>
+		<p class="m-0">scan complete: {entries.length}/{entries.length} reachable</p>
 		<p></p>
 		<p class="m-0 text-bluedark-11">$ <span aria-hidden="true" class="blink">▊</span></p>
 	</div>
