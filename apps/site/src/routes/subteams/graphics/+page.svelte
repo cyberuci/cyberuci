@@ -5,6 +5,7 @@
 	import stickerPatch from './sticker2.png';
 	import stickerSecure from './general_design3.png';
 	import stickerLaptop from './anteater_computer_fixed.png';
+	import hoodieDesign from './CyberHoodie.jpg';
 
 	import { Palette, Frame, FileBox, BadgeQuestionMark } from 'lucide-svelte';
 	import Steps from './Steps.svelte';
@@ -41,19 +42,21 @@
 		<div class="flex flex-col gap-6 lg:col-start-5 lg:col-end-17 md:flex-row">
 			<div class="flex-1 type-body-2 text-2 space-y-4">
 				<p class="m-0">
-					Graphics shapes how Cyber@UCI shows up everywhere people meet us — flyers, stickers,
-					social posts, merch, and event visuals. We keep the brand consistent while giving each
-					campaign its own personality.
-				</p>
-				<p class="m-0">
-					From concept sketches to final assets, the team iterates with outreach and other subteams
-					so every design actually gets used — and looks like it belongs here.
+					The Graphics Subteam is responsible for designing engaging posts for the club's Instagram,
+					creating merchandise for members, including T-shirts, hoodies, keychains, and stickers.
+					They also collaborate with other teams on various design projects. This includes
+					developing 3D asset splines, designing flyers for AIF, and supporting other creative
+					initiatives across the club.
 				</p>
 			</div>
 			<div
 				class="w-full flex shrink-0 items-center justify-center rounded-md background-2 px-4 text-center type-label text-2 lg:w-70 md:w-70"
 			>
-				T-shirt design / team photo
+				<img
+					src={hoodieDesign}
+					alt="hello"
+					class="asset-thumb max-h-full max-w-full object-contain"
+				/>
 			</div>
 		</div>
 	</div>
