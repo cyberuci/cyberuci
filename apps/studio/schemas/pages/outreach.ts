@@ -22,6 +22,90 @@ export default defineType({
 				'The team responsible for every relationship Cyber@UCI has outside its own walls: sponsors, partner clubs, campus departments, and the wider community.'
 		}),
 		defineField({
+			name: 'whatWeDo',
+			title: 'What We Do',
+			type: 'object',
+			fields: [
+				defineField({
+					name: 'heading',
+					title: 'Heading',
+					type: 'string',
+					validation: (Rule) => Rule.required(),
+					initialValue: 'What We Do'
+				}),
+				defineField({
+					name: 'body',
+					title: 'Body',
+					type: 'text',
+					rows: 3,
+					validation: (Rule) => Rule.required()
+				}),
+				defineField({
+					name: 'images',
+					title: 'Image Slideshow',
+					type: 'object',
+					fields: [
+						defineField({
+							name: 'first',
+							title: 'First',
+							type: 'image',
+							options: { hotspot: true },
+							fields: [
+								defineField({
+									name: 'alt',
+									title: 'Alternative Text',
+									type: 'string',
+									validation: (Rule) => Rule.required()
+								})
+							]
+						}),
+						defineField({
+							name: 'second',
+							title: 'Second',
+							type: 'image',
+							options: { hotspot: true },
+							fields: [
+								defineField({
+									name: 'alt',
+									title: 'Alternative Text',
+									type: 'string',
+									validation: (Rule) => Rule.required()
+								})
+							]
+						}),
+						defineField({
+							name: 'third',
+							title: 'Third',
+							type: 'image',
+							options: { hotspot: true },
+							fields: [
+								defineField({
+									name: 'alt',
+									title: 'Alternative Text',
+									type: 'string',
+									validation: (Rule) => Rule.required()
+								})
+							]
+						}),
+						defineField({
+							name: 'fourth',
+							title: 'Fourth',
+							type: 'image',
+							options: { hotspot: true },
+							fields: [
+								defineField({
+									name: 'alt',
+									title: 'Alternative Text',
+									type: 'string',
+									validation: (Rule) => Rule.required()
+								})
+							]
+						})
+					]
+				})
+			]
+		}),
+		defineField({
 			name: 'scanLog',
 			title: 'Scan Log',
 			type: 'object',
@@ -132,82 +216,6 @@ export default defineType({
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({
-			name: 'whatWeDo',
-			title: 'What We Do',
-			type: 'object',
-			fields: [
-				defineField({
-					name: 'heading',
-					title: 'Heading',
-					type: 'string',
-					validation: (Rule) => Rule.required(),
-					initialValue: 'What We Do'
-				}),
-				defineField({
-					name: 'symbol',
-					title: 'Symbol',
-					description:
-						'Short glyph shown in brackets before the heading, e.g. "?". Defaults to "?".',
-					type: 'string',
-					initialValue: '?'
-				}),
-				defineField({
-					name: 'body',
-					title: 'Body',
-					type: 'array',
-					of: [defineArrayMember({ type: 'string' })],
-					validation: (Rule) => Rule.required().min(1),
-					initialValue: [
-						"Our outreach subteam supports and facilitates the club's external relationships, whether if its with other clubs, campus organizations & staff, clubs from other colleges and universities, or companies. They work closely with our marketing subteams to support our club's branding and visibility, alongside developing sponsorship material for our outreach efforts.",
-						'Every "host" in the log above is a relationship someone on the team is actively maintaining, not a one-time email, but an ongoing line of contact.'
-					]
-				}),
-				defineField({
-					name: 'image',
-					title: 'Image',
-					type: 'image',
-					options: { hotspot: true },
-					fields: [
-						defineField({
-							name: 'alt',
-							title: 'Alternative Text',
-							type: 'string',
-							validation: (Rule) =>
-								Rule.custom((alt, context) => {
-									const parent = context.parent as { asset?: { _ref?: string } } | undefined;
-									if (parent?.asset?._ref && !alt) {
-										return 'You must provide alternative text for the image.';
-									}
-									return true;
-								})
-						})
-					]
-				}),
-				defineField({
-					name: 'imageSecondary',
-					title: 'Second Image',
-					type: 'image',
-					options: { hotspot: true },
-					fields: [
-						defineField({
-							name: 'alt',
-							title: 'Alternative Text',
-							type: 'string',
-							validation: (Rule) =>
-								Rule.custom((alt, context) => {
-									const parent = context.parent as { asset?: { _ref?: string } } | undefined;
-									if (parent?.asset?._ref && !alt) {
-										return 'You must provide alternative text for the image.';
-									}
-									return true;
-								})
-						})
-					]
-				})
-			],
-			validation: (Rule) => Rule.required()
-		}),
-		defineField({
 			name: 'focusAreas',
 			title: 'Focus Areas',
 			type: 'object',
@@ -218,14 +226,6 @@ export default defineType({
 					type: 'string',
 					validation: (Rule) => Rule.required(),
 					initialValue: 'Focus Areas'
-				}),
-				defineField({
-					name: 'symbol',
-					title: 'Symbol',
-					description:
-						'Short glyph shown in brackets before the heading, e.g. "?". Defaults to "?".',
-					type: 'string',
-					initialValue: '?'
 				}),
 				defineField({
 					name: 'areas',

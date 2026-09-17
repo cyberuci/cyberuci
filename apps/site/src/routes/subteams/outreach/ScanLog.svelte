@@ -11,7 +11,7 @@
 </script>
 
 <div
-	class="overflow-x-auto border border-gray-11 rounded-lg border-solid bg-[#000] p-5 text-base type-label sm:p-6"
+	class="overflow-x-auto border border-gray-11 rounded-lg border-solid bg-[#000] p-5 type-label sm:p-6"
 >
 	<p class="mt-0 font-sans">{header}</p>
 	<hr class="my-4 border-0 border-t border-[#3d3d3d] border-solid" />

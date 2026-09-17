@@ -23,7 +23,6 @@ export const schemaTypes = [
 	timelineCategory,
 	subteams,
 	outreach,
-	contact,
 	corporate,
 	resourcecopy,
 	alumni,

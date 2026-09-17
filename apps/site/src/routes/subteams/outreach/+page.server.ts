@@ -8,6 +8,11 @@ export const load: PageServerLoad = async () => {
 			_id,
 			title,
 			intro,
+			whatWeDo {
+				heading,
+				body,
+				images,
+			},
 			scanLog {
 				header,
 				command,
@@ -19,22 +24,8 @@ export const load: PageServerLoad = async () => {
 					note
 				}
 			},
-			whatWeDo {
-				heading,
-				symbol,
-				body,
-				image {
-					...,
-					alt
-				},
-				imageSecondary {
-					...,
-					alt
-				}
-			},
 			focusAreas {
 				heading,
-				symbol,
 				areas[] {
 					_key,
 					tag,
