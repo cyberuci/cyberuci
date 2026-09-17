@@ -47,7 +47,7 @@
 		}
 
 		return [
-			{ title: 'Coming Soon', events: comingSoon },
+			{ title: 'Happening Soon', events: comingSoon },
 			{ title: 'Next Week', events: nextWeek },
 			{ title: 'Later', events: later }
 		].filter((group) => group.events.length > 0);

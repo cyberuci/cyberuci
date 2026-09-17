@@ -4,12 +4,13 @@
 		Building2,
 		FileText,
 		type Icon,
-		LucideBrush,
+		Newspaper,
 		LucideUsers,
 		Palette,
 		Trophy,
 		Calendar,
-		GraduationCap
+		GraduationCap,
+		Users
 	} from 'lucide-svelte';
 	import ListGroup from './ListGroup.svelte';
 	import { onMount } from 'svelte';
@@ -74,13 +75,16 @@
 {#snippet AboutItems()}
 	{@render ListItem({ href: '/board', title: 'Board', Icon: LucideUsers })}
 	{@render ListItem({ href: '/alumni', title: 'Alumni', Icon: GraduationCap })}
+{/snippet}
+
+{#snippet AchievementsItems()}
+	{@render ListItem({ href: '/news', title: 'News', Icon: Newspaper })}
 	{@render ListItem({ href: '/timeline', title: 'Timeline', Icon: Trophy })}
-	{@render ListItem({ href: '/brand', title: 'Brand', Icon: LucideBrush })}
 {/snippet}
 
 {#snippet SubteamsItems()}
 	{@render ListItem({ href: '/subteams/graphics', title: 'Graphics', Icon: Palette })}
-	{@render ListItem({ href: '/subteams/outreach', title: 'Outreach', Icon: Palette })}
+	{@render ListItem({ href: '/subteams/outreach', title: 'Outreach', Icon: Users })}
 {/snippet}
 
 {#snippet SponsorsItems()}
@@ -119,15 +123,14 @@
 			{@render SubteamsItems()}
 		</ListGroup>
 
-		<li class="list-none">
-			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-			<a
-				class="py-2 type-label text decoration-none transition-colors before:text-gray-11 hover:text-blue-11 before:content-['~_$_'] dark:before:text-graydark-11 dark:hover:text-bluedark-11"
-				href="/news"
-			>
-				News
-			</a>
-		</li>
+		<ListGroup
+			name="Achievements"
+			open={openGroup === 'Achievements'}
+			onOpen={() => open('Achievements')}
+			onClose={close}
+		>
+			{@render AchievementsItems()}
+		</ListGroup>
 
 		<ListGroup
 			name="Sponsors"

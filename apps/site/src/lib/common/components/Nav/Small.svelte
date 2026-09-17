@@ -1,19 +1,20 @@
 <script lang="ts">
 	import Logo from '$lib/common/components/Logo.svelte';
 	import {
+		ChevronDown,
+		Menu,
+		X,
 		BookMarked,
 		Building2,
-		Calendar,
-		ChevronDown,
 		FileText,
-		GraduationCap,
 		type Icon,
-		LucideBrush,
+		Newspaper,
 		LucideUsers,
-		Menu,
 		Palette,
 		Trophy,
-		X
+		Calendar,
+		GraduationCap,
+		Users
 	} from 'lucide-svelte';
 	import { cubicOut } from 'svelte/easing';
 	import { fade, fly, slide } from 'svelte/transition';
@@ -130,9 +131,7 @@
 				name: 'About',
 				items: [
 					{ href: '/board', title: 'Board', Icon: LucideUsers },
-					{ href: '/alumni', title: 'Alumni', Icon: GraduationCap },
-					{ href: '/timeline', title: 'Timeline', Icon: Trophy },
-					{ href: '/brand', title: 'Brand', Icon: LucideBrush }
+					{ href: '/alumni', title: 'Alumni', Icon: GraduationCap }
 				]
 			})}
 			{@render Group({
@@ -143,22 +142,19 @@
 				]
 			})}
 			{@render Group({
+				name: 'Achievements',
+				items: [
+					{ href: '/news', title: 'News', Icon: Newspaper },
+					{ href: '/timeline', title: 'Timeline', Icon: Trophy }
+				]
+			})}
+			{@render Group({
 				name: 'Subteams',
 				items: [
 					{ href: '/subteams/graphics', title: 'Graphics', Icon: Palette },
-					{ href: '/subteams/outreach', title: 'Outreach', Icon: Palette }
+					{ href: '/subteams/outreach', title: 'Outreach', Icon: Users }
 				]
 			})}
-			<li class="list-none">
-				<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-				<a
-					class="nav-touch block px-5 py-3 text-left type-label terminal-before text decoration-none"
-					href="/news"
-					onclick={closeMenu}
-				>
-					News
-				</a>
-			</li>
 			{@render Group({
 				name: 'Sponsors',
 				items: [
