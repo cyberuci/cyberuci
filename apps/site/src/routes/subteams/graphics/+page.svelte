@@ -42,12 +42,20 @@
 		<div class="flex flex-col gap-6 lg:col-start-5 lg:col-end-17 md:flex-row">
 			<div class="flex-1 type-body-2 text-2 space-y-4">
 				<p class="m-0">
-					The Graphics Subteam is responsible for designing engaging posts for the club's Instagram,
-					creating merchandise for members, including T-shirts, hoodies, keychains, and stickers.
-					They also collaborate with other teams on various design projects. This includes
-					developing 3D asset splines, designing flyers for AIF, and supporting other creative
-					initiatives across the club.
+					Graphics is the face of Cyber@UCI! We bring the club's ideas and events to life through
+					creative design. Our team is responsible for:
 				</p>
+				<ul>
+					<li>Designing engaging content for the club's Instagram and social media</li>
+					<li>
+						Creating custom merchandise for members, including T-shirts, hoodies, keychains, and
+						stickers
+					</li>
+					<li>
+						Collaborating with other teams on creative projects, from developing 3D assets and
+						splines to designing event flyers and supporting club-wide initiatives
+					</li>
+				</ul>
 			</div>
 			<div
 				class="w-full flex shrink-0 items-center justify-center rounded-md background-2 px-4 text-center type-label text-2 lg:w-70 md:w-70"
