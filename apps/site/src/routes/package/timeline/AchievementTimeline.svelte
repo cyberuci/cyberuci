@@ -38,7 +38,7 @@
 </script>
 
 <!-- Desktop: zigzag layout (even years above the line, odd below) -->
-<div class="hidden sm:block" bind:this={timelineEl}>
+<div class="hidden md:block" bind:this={timelineEl}>
 	<div class="flex items-end">
 		{#each achievements as { _key, text, year }, i (_key)}
 			<AchievementBig
@@ -75,7 +75,7 @@
 </div>
 
 <!-- Mobile: just a stacked list -->
-<ul class="flex flex-col gap-3 sm:hidden">
+<ul class="flex flex-col gap-3 p-0 md:hidden">
 	{#each achievements as { _key, text, year } (_key)}
 		<AchievementSmall {text} {year} />
 	{/each}

@@ -19,9 +19,9 @@
 </script>
 
 <div
-	class="{backgroundColor} flex items-center rounded-md border-solid{padding ? 'p-8' : ''} {border
-		? 'border-1 border-blue-10'
-		: 'border-0'}"
+	class={`${backgroundColor} flex items-center rounded-md border-solid ${padding ? 'p-8' : ''} ${
+		border ? 'border-1 border-blue-10' : 'border-0'
+	}`}
 >
 	<div class="pb-[1rem] lg:pb-0">
 		<p class="mb-3 type-body-1 {titleColor}"><b>{title}</b></p>

@@ -158,7 +158,7 @@
 
 		<!-- Sponsorship Tiers -->
 		<div id="tiers" class="mb-20">
-			<div class="grid space-x items-start gap-y-4 lg:grid-cols-16">
+			<div class="grid space-x items-start gap-y-4 p-0 lg:grid-cols-16">
 				<div class="mb-8 flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 					<Layers size={18} />
 					<h2 class="m-0 type-label font-550 uppercase">Sponsorship Tiers</h2>
@@ -168,7 +168,7 @@
 				</div>
 			</div>
 
-			<div class="grid space-x gap-4 lg:grid-cols-4 sm:grid-cols-2">
+			<div class="grid space-x gap-4 p-0 lg:grid-cols-4 sm:grid-cols-2">
 				{#each data.corporatePage.tiers as { _key, name, price, inheritedPerks, perks, color } (_key)}
 					<Tier {name} {price} {inheritedPerks} {perks} {color} />
 				{/each}
@@ -176,7 +176,7 @@
 		</div>
 
 		<!-- Additional Opportunities + Contact -->
-		<div id="contact" class="grid space-x gap-20 lg:grid-cols-2">
+		<div id="contact" class="grid space-x gap-20 p-0 lg:grid-cols-2">
 			<div>
 				<div class="mb-8 flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 					<Sparkles size={18} />
