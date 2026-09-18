@@ -13,7 +13,7 @@
 <div class="flex flex-col overflow-hidden rounded background-2">
 	<div style="height: 3px; background-color: {color};"></div>
 	<div class="flex flex-col p-6">
-		<p class="mb-1 type-label text-gray-11 dark:text-graydark-11">
+		<p class="mb-1 type-label text-gray-11 uppercase dark:text-graydark-11">
 			{name}
 		</p>
 		<p class="mb-6 type-heading-1">{price}</p>

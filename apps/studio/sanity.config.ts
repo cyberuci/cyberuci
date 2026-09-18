@@ -151,10 +151,6 @@ export default defineConfig({
 									])
 							),
 						S.listItem()
-							.title('Contact Page')
-							.icon(EnvelopeIcon)
-							.child(S.document().schemaType('contactPage').documentId('contactPage')),
-						S.listItem()
 							.title('Corporate Page')
 							.icon(DocumentIcon)
 							.child(S.document().schemaType('corporatePage').documentId('corporatePage')),

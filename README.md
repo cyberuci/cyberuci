@@ -8,6 +8,10 @@ This monorepo uses [turborepo](https://turbo.build/repo) with [pnpm](https://pnp
 
 This app contains the [SvelteKit](https://kit.svelte.dev/) app for the [Cyber @ UCI site](https://cyberuci.com/).
 
+For fonts, type styles, and color tokens, see the [design system guide](./apps/site/DESIGN.md).
+
+For project layout, where things live, and GROQ / Sanity queries, see the [architecture guide](./apps/site/ARCHITECTURE.md).
+
 ## `studio`
 
 This app contains a [Sanity Studio](https://www.sanity.io/docs/sanity-studio) project. The Cyber @ UCI site uses [Sanity](https://www.sanity.io/) as a CMS. Sanity Studio is the customizable interface that board members use to edit content. It's currently deployed at <https://content.cyberuci.com/>.
@@ -57,9 +61,9 @@ To develop an individual app or package, first navigate to the corresponding dir
 
 ### Fonts
 
-- Inter (OFL-1.1): <https://rsms.me/inter/> (<https://github.com/rsms/inter>)
-- TINY (OFL-1.1): <http://velvetyne.fr/fonts/tiny> (<https://github.com/jckfa/tinyfonts>)
-- BBB Strobo (OFL-1.1)
+- TASA Explorer (OFL-1.1): <https://fonts.google.com/specimen/TASA+Explorer>
+- Pixelify Sans (OFL-1.1): <https://fonts.google.com/specimen/Pixelify+Sans>
+- Google Sans Code (OFL-1.1): <https://fonts.google.com/specimen/Google+Sans+Code> (<https://github.com/googlefonts/googlesans-code>)
 
 ## License
 

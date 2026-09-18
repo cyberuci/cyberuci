@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { client } from '$lib/sanity/sanityClient';
 	import imageUrlBuilder from '@sanity/image-url';
+	import { client } from '$lib/sanity/sanityClient';
 	import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 	interface Props {
@@ -32,11 +32,11 @@
 	{#if cover}
 		<img
 			alt="The cover of the article."
-			class="my-5 size-full flex-shrink-0 rounded-sm lg:my-0 lg:w-3/3"
+			class="my-5 size-full flex-shrink-0 rounded-md lg:my-0 lg:w-3/3"
 			src={builder.image(cover).width(1024).height(600).url()}
 		/>
 	{:else}
-		<div class="bg-gray-200 dark:bg-slate-800 my-5 h-40 w-full rounded-sm"></div>
+		<div class="bg-gray-200 dark:bg-slate-800 my-5 h-40 w-full rounded-md"></div>
 	{/if}
 </a>
 
@@ -49,7 +49,7 @@
 	>
 		<div class="line-clamp-3 mb-3">
 			<span
-				class={`block max-w-40ch type-heading-2 group-hover:decoration-underline ${relativeSize === 's' ? 'text-2xl' : ''}`}
+				class={`block max-w-45ch type-heading-1 group-hover:decoration-underline ${relativeSize === 's' ? 'text-2xl' : ''}`}
 				>{title}</span
 			>
 		</div>

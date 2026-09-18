@@ -52,7 +52,7 @@
 					style="background: rgba(156,163,175,0.15); color: {categoryColor};">{category?.name}</span
 				>
 			{/if}
-			<p class="type-body-2 text font-bold">{placing ? category?.name : ''} {title}</p>
+			<p class="type-body-1 text font-bold">{placing ? category?.name : ''} {title}</p>
 		</div>
 		{#if description}
 			<div
@@ -77,7 +77,7 @@
 				{/if}
 				{#if description}
 					<p
-						class="text-wrap type-body-2 text-gray-11 line-height-snug dark:border-graydark-4 dark:text-graydark-11"
+						class="text-wrap type-body-1 text-gray-11 line-height-snug dark:border-graydark-4 dark:text-graydark-11"
 					>
 						{description}
 					</p>

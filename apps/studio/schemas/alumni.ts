@@ -17,6 +17,14 @@ export default defineType({
 					type: 'string',
 					validation: (rule) => rule.required()
 				},
+				defineField({
+					name: 'image',
+					title: 'Image',
+					type: 'image',
+					options: {
+						hotspot: true
+					}
+				}),
 				{
 					title: 'Graduation Term',
 					name: 'graduationTerm',

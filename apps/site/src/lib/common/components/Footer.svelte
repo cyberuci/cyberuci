@@ -1,7 +1,14 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import { Mail } from 'lucide-svelte';
 	import Logo from './Logo.svelte';
 	import { siDiscord, siInstagram, siGithub } from 'simple-icons';
+
+	interface Props {
+		email: string;
+	}
+
+	let { email }: Props = $props();
 
 	interface FooterItem {
 		text: string;
@@ -13,13 +20,14 @@
 		items: FooterItem[];
 	}
 
-	const columns: FooterColumn[] = [
+	const columns: FooterColumn[] = $derived([
 		{
 			title: 'Connect',
 			items: [
 				{ text: 'Discord', href: 'https://discord.cyberuci.com/' },
 				{ text: 'Instagram', href: 'https://www.instagram.com/cyberuci/' },
-				{ text: 'GitHub', href: 'https://github.com/cyberuci' }
+				{ text: 'GitHub', href: 'https://github.com/cyberuci' },
+				{ text: 'Email', href: `mailto:${email}` }
 			]
 		},
 		{
@@ -36,11 +44,10 @@
 				{ text: 'News', href: '/news' },
 				{ text: 'Sponsors', href: '/sponsors' },
 				{ text: 'Board', href: '/board' },
-				{ text: 'Brand', href: '/brand' },
-				{ text: 'Contact', href: '/contact' }
+				{ text: 'Brand', href: '/brand' }
 			]
 		}
-	];
+	]);
 </script>
 
 {#snippet Item({ item }: { item: FooterItem })}
@@ -63,6 +70,11 @@
 				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 					<path d={siGithub.path} />
 				</svg>
+			{:else if item.href.startsWith('mailto:')}
+				<Mail class="mr-2 size-4" aria-hidden="true" />
+				<!-- <svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d={siGithub.path} />
+				</svg> -->
 			{/if}
 			{item.text}
 		</a>

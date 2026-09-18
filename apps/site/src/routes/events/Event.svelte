@@ -52,20 +52,20 @@
 		<div class="w-98/100 pb-[0.875rem] pl-[1rem] pr-[1rem] pt-[0.875rem]">
 			<div class="m-none mb-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 				<CalendarDays size={18} class="min-w-[18px]" />
-				<b><p class="m-none type-label">{title}</p></b>
+				<b><p class="m-none type-body-1">{title}</p></b>
 			</div>
 
 			<Time {start} {end} />
 
 			<div class="mt-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 				<CircleGauge size={18} class="min-w-[18px]" />
-				<p class="m-none type-label">{experience}</p>
+				<p class="m-none type-body-1">{experience}</p>
 			</div>
 
 			{#if location != ''}
 				<div class="mt-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 					<MapPin size={18} class="min-w-[18px]" />
-					<p class="m-none type-label">{location}</p>
+					<p class="m-none type-body-1">{location}</p>
 				</div>
 			{/if}
 
