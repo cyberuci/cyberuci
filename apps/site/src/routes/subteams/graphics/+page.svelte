@@ -120,7 +120,7 @@
 		</div>
 	</div>
 
-	<div class="grid mt-24 items-start gap-y-8 lg:grid-cols-16">
+	<div class="grid mt-48 items-start gap-y-8 lg:grid-cols-16">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<FileBox size={18} />
 			<h2 class="m-0 type-label font-550">ASSETS</h2>
