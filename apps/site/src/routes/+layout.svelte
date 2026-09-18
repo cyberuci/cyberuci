@@ -5,6 +5,7 @@
 	import type { LayoutData } from './$types';
 	import Nav from '$lib/common/components/Nav/Nav.svelte';
 	import Footer from '$lib/common/components/Footer.svelte';
+	import ApplicationBanner from '$lib/common/components/ApplicationBanner.svelte';
 
 	interface Props {
 		data: LayoutData;
@@ -28,6 +29,7 @@
 	<meta name="theme-color" content="#111111" />
 </svelte:head>
 
+<ApplicationBanner announcement={data.applicationAnnouncement} />
 <header class="relative z-50 w-full">
 	<Nav />
 </header>
