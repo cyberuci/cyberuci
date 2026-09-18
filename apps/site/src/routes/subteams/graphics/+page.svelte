@@ -27,11 +27,6 @@
 <div class="my-40 space-x">
 	<Title title="Graphics" />
 
-	<p class="mb-16 max-w-prose type-body-2 text-2">
-		Our visual identity in motion. The Graphics team designs stickers, merch, social assets, and
-		brand systems that make Cyber@UCI unmistakable, on campus and online.
-	</p>
-
 	<GraphicsEditor />
 
 	<div class="grid mb-24 mt-24 items-start gap-y-6 lg:grid-cols-16 lg:mb-15 md:mb-15">
