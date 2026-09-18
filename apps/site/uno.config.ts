@@ -14,7 +14,7 @@ export default defineConfig({
 		'type-label': 'font-sans text-sm',
 		'type-heading-1': 'font-explorer font-medium text-xl md:text-2xl',
 		'type-heading-2': 'font-explorer font-medium text-6 md:text-8',
-		'type-body-1': 'font-explorer text-md line-height-snug',
+		'type-body-1': 'font-explorer text-base line-height-snug',
 		'type-body-2': 'font-explorer text-lg line-height-relaxed',
 
 		'terminal-before': "before:content-['~_$_'] before:text-gray-11 dark:before:text-graydark-11",
