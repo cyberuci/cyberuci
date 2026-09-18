@@ -5,7 +5,7 @@
 	import stickerPatch from './sticker2.png';
 	import stickerSecure from './general_design3.png';
 	import stickerLaptop from './anteater_computer_fixed.png';
-	import hoodieDesign from './CyberHoodie1.jpg';
+	import hoodieDesign from './CyberHoodie.jpg';
 
 	import { Palette, Frame, FileBox, BadgeQuestionMark } from 'lucide-svelte';
 	import Steps from './Steps.svelte';
