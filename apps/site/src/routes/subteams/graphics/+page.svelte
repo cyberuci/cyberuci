@@ -5,7 +5,7 @@
 	import stickerPatch from './sticker2.png';
 	import stickerSecure from './general_design3.png';
 	import stickerLaptop from './anteater_computer_fixed.png';
-	import hoodieDesign from './CyberHoodie.jpg';
+	import hoodieDesign from './CyberHoodie1.jpg';
 
 	import { Palette, Frame, FileBox, BadgeQuestionMark } from 'lucide-svelte';
 	import Steps from './Steps.svelte';
@@ -34,10 +34,10 @@
 
 	<GraphicsEditor />
 
-	<div class="grid mb-15 mt-24 items-start gap-y-6 lg:grid-cols-16">
+	<div class="grid mb-24 mt-24 items-start gap-y-6 lg:grid-cols-16 lg:mb-15 md:mb-15">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<BadgeQuestionMark size={18} />
-			<h2 class="type-label font-550">WHAT WE DO</h2>
+			<h2 class="m-0 type-label font-550">WHAT WE DO</h2>
 		</div>
 		<div class="flex flex-col gap-6 lg:col-start-5 lg:col-end-17 md:flex-row">
 			<div class="flex-1 type-body-2 text-2 space-y-4">
@@ -58,13 +58,24 @@
 				</ul>
 			</div>
 			<div
-				class="w-full flex shrink-0 items-center justify-center rounded-md background-2 px-4 text-center type-label text-2 lg:w-70 md:w-70"
+				class="w-full flex shrink-0 items-center justify-center rounded-lg bg-[#111111] px-4 text-center type-label text-2 lg:w-70 md:w-70"
 			>
-				<img
-					src={hoodieDesign}
-					alt="hello"
-					class="asset-thumb max-h-full max-w-full object-contain"
-				/>
+				<a
+					class="group overflow-hidden rounded-lg background-2 decoration-none transition-colors hover:background-3"
+					href={hoodieDesign}
+					download={hoodieDesign}
+				>
+					<div class="flex items-center justify-center bg-[#0a0a0a] p-4">
+						<img
+							src={hoodieDesign}
+							alt={hoodieDesign}
+							class="asset-thumb max-h-full max-w-full object-contain"
+						/>
+					</div>
+					<div class="flex items-center justify-between gap-2 px-3 py-2 type-label text">
+						<span>2026 Board Member Hoodie Design</span>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -72,7 +83,7 @@
 	<div class="grid items-start gap-y-8 lg:grid-cols-16">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<Frame size={18} />
-			<h2 class="type-label font-550">LOGO</h2>
+			<h2 class="m-0 type-label font-550">LOGO</h2>
 		</div>
 		<div
 			class="aspect-square h-48 w-full flex flex-col gap-2 type-label lg:col-start-5 lg:col-end-17 sm:flex-row"
@@ -83,31 +94,31 @@
 		</div>
 	</div>
 
-	<div class="grid my-24 items-start gap-y-8 pt-15 lg:grid-cols-16">
+	<div class="grid my-9 items-start gap-y-8 pt-15 lg:grid-cols-16 lg:my-24 md:my-24">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<Palette size={18} />
-			<h2 class="type-label font-550">COLORS</h2>
+			<h2 class="m-0 type-label font-550">COLORS</h2>
 		</div>
 		<div
 			class="aspect-square h-48 w-full flex flex-col gap-2 type-label lg:col-start-5 lg:col-end-17 sm:flex-row"
 		>
 			<div
-				class="h-full w-full flex flex-col justify-end rounded-md bg-[#33488e] p-3 text-graydark-12"
+				class="h-full w-full flex flex-col justify-end rounded-lg bg-[#33488e] p-3 text-graydark-12"
 			>
 				<span>Deep Blue</span>
 				<span>#33488e</span>
 			</div>
 			<div
-				class="h-full w-full flex flex-col justify-end rounded-md bg-blue-9 p-3 text-graydark-12"
+				class="h-full w-full flex flex-col justify-end rounded-lg bg-blue-9 p-3 text-graydark-12"
 			>
 				<span>Blue</span>
 				<span>#2975ba</span>
 			</div>
-			<div class="h-full w-full flex flex-col justify-end rounded-md bg-[#31b7fb] p-3 text-gray-12">
+			<div class="h-full w-full flex flex-col justify-end rounded-lg bg-[#31b7fb] p-3 text-gray-12">
 				<span>Light Blue</span>
 				<span>#31b7fb</span>
 			</div>
-			<div class="h-full w-full flex flex-col justify-end rounded-md bg-[#f3f3f3] p-3 text-gray-12">
+			<div class="h-full w-full flex flex-col justify-end rounded-lg bg-[#f3f3f3] p-3 text-gray-12">
 				<span>Gray</span>
 				<span>#f3f3f3</span>
 			</div>
@@ -117,12 +128,12 @@
 	<div class="grid mt-24 items-start gap-y-8 lg:grid-cols-16">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<FileBox size={18} />
-			<h2 class="type-label font-550">ASSETS</h2>
+			<h2 class="m-0 type-label font-550">ASSETS</h2>
 		</div>
 		<div class="grid gap-3 lg:col-start-5 lg:col-end-17 sm:grid-cols-2">
 			{#each assets as asset (asset.file)}
 				<a
-					class="group overflow-hidden rounded-md background-2 decoration-none transition-colors hover:background-3"
+					class="group overflow-hidden rounded-lg background-2 decoration-none transition-colors hover:background-3"
 					href={asset.src}
 					download={asset.file}
 				>
@@ -135,7 +146,6 @@
 					</div>
 					<div class="flex items-center justify-between gap-2 px-3 py-2 type-label text">
 						<span>{asset.name}</span>
-						<span class="text-2 group-hover:text-[#00b2ff]">PNG</span>
 					</div>
 				</a>
 			{/each}
