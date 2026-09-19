@@ -43,7 +43,7 @@
 		rel="noreferrer"
 		class="application-banner group focus-visible:outline-white min-h-11 w-full flex items-center justify-center gap-2 px-4 py-2.5 text-center decoration-none transition-colors focus-visible:outline-2 focus-visible:outline-offset--2"
 	>
-		<span class="text-sm font-600 leading-snug font-explorer sm:text-base">
+		<span class="type-body-1 font-500">
 			{#if isOpen}
 				Subteam applications are open until {formatDate(announcement.closesAt)}. Apply now
 			{:else}
