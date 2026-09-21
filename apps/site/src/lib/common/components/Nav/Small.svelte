@@ -4,6 +4,7 @@
 		ChevronDown,
 		Menu,
 		X,
+		ArrowRight,
 		BookMarked,
 		Building2,
 		FileText,
@@ -57,7 +58,15 @@
 	</li>
 {/snippet}
 
-{#snippet Group({ name, items }: { name: string; items: ListItemProps[] })}
+{#snippet Group({
+	name,
+	items,
+	footer
+}: {
+	name: string;
+	items: ListItemProps[];
+	footer?: { href: string; title: string; subtitle: string };
+})}
 	<li class="list-none">
 		<button
 			type="button"
@@ -74,16 +83,34 @@
 			/>
 		</button>
 		{#if openGroup === name}
-			<ul
-				class="grid m-0 list-none gap-2 px-5 pb-3 {items.length === 1
-					? 'grid-cols-1'
-					: 'grid-cols-2'}"
-				transition:slide={{ duration: 180, easing: cubicOut }}
-			>
-				{#each items as item (item.href)}
-					{@render ListItem(item)}
-				{/each}
-			</ul>
+			<div transition:slide={{ duration: 180, easing: cubicOut }}>
+				<ul
+					class="grid m-0 list-none gap-2 px-5 {footer ? 'pb-2' : 'pb-3'} {items.length === 1
+						? 'grid-cols-1'
+						: 'grid-cols-2'}"
+				>
+					{#each items as item (item.href)}
+						{@render ListItem(item)}
+					{/each}
+				</ul>
+				{#if footer}
+					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+					<a
+						class="nav-touch mx-5 mb-3 flex items-center justify-between gap-3 border border-gray-4 rounded-sm border-solid px-3 py-2.5 type-label text decoration-none dark:border-graydark-4"
+						href={footer.href}
+						onclick={closeMenu}
+					>
+						<span>
+							{footer.title}
+							{#if footer.subtitle}
+								<br />
+								<span class="text-gray-9">[{footer.subtitle}]</span>
+							{/if}
+						</span>
+						<ArrowRight size={14} />
+					</a>
+				{/if}
+			</div>
 		{/if}
 	</li>
 {/snippet}
@@ -153,7 +180,8 @@
 				items: [
 					{ href: '/subteams/graphics', title: 'Graphics', Icon: Palette },
 					{ href: '/subteams/outreach', title: 'Outreach', Icon: Users }
-				]
+				],
+				footer: { href: '/subteams', title: 'All subteams', subtitle: 'More pages coming soon' }
 			})}
 			{@render Group({
 				name: 'Sponsors',

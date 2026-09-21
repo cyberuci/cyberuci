@@ -9,9 +9,10 @@
 		onClose: () => void;
 		align?: 'center' | 'end';
 		children: Snippet;
+		footer?: Snippet;
 	}
 
-	const { name, open, onOpen, onClose, align = 'center', children }: Props = $props();
+	const { name, open, onOpen, onClose, align = 'center', children, footer }: Props = $props();
 
 	function canHover() {
 		return typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches;
@@ -59,6 +60,11 @@
 				<ul class="m-0 flex list-none gap-2 p-2">
 					{@render children()}
 				</ul>
+				{#if footer}
+					<div class="mx-2 mb-2 border border-gray-4 border-solid dark:border-graydark-4">
+						{@render footer()}
+					</div>
+				{/if}
 			</div>
 		</div>
 	{/if}
