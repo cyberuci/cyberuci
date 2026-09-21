@@ -13,7 +13,8 @@ import {
 	UsersIcon,
 	HomeIcon,
 	DashboardIcon,
-	DocumentIcon
+	BinaryDocumentIcon,
+	AddUserIcon
 } from '@sanity/icons';
 import groq from 'groq';
 
@@ -146,13 +147,13 @@ export default defineConfig({
 											.child(S.document().schemaType('subteamsPage').documentId('subteamsPage')),
 										S.listItem()
 											.title('Outreach Page')
-											.icon(EarthAmericasIcon)
+											.icon(AddUserIcon)
 											.child(S.document().schemaType('outreachPage').documentId('outreachPage'))
 									])
 							),
 						S.listItem()
 							.title('Corporate Page')
-							.icon(DocumentIcon)
+							.icon(BinaryDocumentIcon)
 							.child(S.document().schemaType('corporatePage').documentId('corporatePage')),
 						S.listItem()
 							.title('Timeline')

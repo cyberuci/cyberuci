@@ -48,6 +48,15 @@
 		<h2 class="m-0 type-heading-2">{name}</h2>
 	{/if}
 </div>
+{#if href}
+	<p class="my-2 type-label">
+		[Learn more: <a
+			class="m-0 text-inherit no-underline hover:underline hover:decoration-dashed"
+			{href}>{href}</a
+		>]
+	</p>
+{/if}
+
 {#if description}
 	<p class="mb-8 max-w-prose type-body-2 text-gray-11 dark:text-graydark-11">{description}</p>
 {/if}
