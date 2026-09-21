@@ -9,6 +9,7 @@ export const load: PageServerLoad = async () => {
 			subteams[] {
 				_key,
 				name,
+				link,
 				description
 			}
 		}
