@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { resolve } from '$app/paths';
 	import Title from '$lib/common/components/Title.svelte';
 	import Section from './Section.svelte';
 
@@ -9,10 +8,6 @@
 	}
 
 	let { data }: Props = $props();
-
-	const subteamHrefs: Record<string, string> = {
-		Outreach: resolve('/subteams/outreach')
-	};
 </script>
 
 <svelte:head>
@@ -22,9 +17,9 @@
 <div class="my-40 space-x">
 	<Title title="Subteams" />
 	<main>
-		{#each data.subteams.subteams as { _key, name, description } (_key)}
+		{#each data.subteams.subteams as { _key, name, link, description } (_key)}
 			<div class="mb-24">
-				<Section {name} {description} href={subteamHrefs[name]} />
+				<Section {name} {description} href={link} />
 			</div>
 		{/each}
 	</main>
