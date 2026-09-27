@@ -68,9 +68,9 @@
 					/>
 					<ListItem
 						Icon={Medal}
-						title="Competition Team"
+						title="Achievements"
 						onClick={async () => {
-							await goto('/competition');
+							await goto('/timeline');
 						}}
 					/>
 				</ul>
