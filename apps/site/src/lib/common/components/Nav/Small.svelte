@@ -4,7 +4,6 @@
 		ChevronDown,
 		Menu,
 		X,
-		ArrowRight,
 		BookMarked,
 		Building2,
 		FileText,
@@ -15,7 +14,11 @@
 		Trophy,
 		Calendar,
 		GraduationCap,
-		Users
+		Users,
+		Globe,
+		Heart,
+		HardDrive,
+		SquareTerminal
 	} from 'lucide-svelte';
 	import { cubicOut } from 'svelte/easing';
 	import { fade, fly, slide } from 'svelte/transition';
@@ -58,15 +61,7 @@
 	</li>
 {/snippet}
 
-{#snippet Group({
-	name,
-	items,
-	footer
-}: {
-	name: string;
-	items: ListItemProps[];
-	footer?: { href: string; title: string; subtitle: string };
-})}
+{#snippet Group({ name, items }: { name: string; items: ListItemProps[] })}
 	<li class="list-none">
 		<button
 			type="button"
@@ -85,31 +80,12 @@
 		{#if openGroup === name}
 			<div transition:slide={{ duration: 180, easing: cubicOut }}>
 				<ul
-					class="grid m-0 list-none gap-2 px-5 {footer ? 'pb-2' : 'pb-3'} {items.length === 1
-						? 'grid-cols-1'
-						: 'grid-cols-2'}"
+					class="grid m-0 list-none gap-2 px-5 {items.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}"
 				>
 					{#each items as item (item.href)}
 						{@render ListItem(item)}
 					{/each}
 				</ul>
-				{#if footer}
-					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-					<a
-						class="nav-touch mx-5 mb-3 flex items-center justify-between gap-3 border border-gray-4 rounded-sm border-solid px-3 py-2.5 type-label text decoration-none dark:border-graydark-4"
-						href={footer.href}
-						onclick={closeMenu}
-					>
-						<span>
-							{footer.title}
-							{#if footer.subtitle}
-								<br />
-								<span class="text-gray-9">[{footer.subtitle}]</span>
-							{/if}
-						</span>
-						<ArrowRight size={14} />
-					</a>
-				{/if}
 			</div>
 		{/if}
 	</li>
@@ -179,9 +155,12 @@
 				name: 'Subteams',
 				items: [
 					{ href: '/subteams/graphics', title: 'Graphics', Icon: Palette },
-					{ href: '/subteams/outreach', title: 'Outreach', Icon: Users }
-				],
-				footer: { href: '/subteams', title: 'All subteams', subtitle: 'More pages coming soon' }
+					{ href: '/subteams/outreach', title: 'Outreach', Icon: Users },
+					{ href: '/subteams/web', title: 'Web', Icon: Globe },
+					{ href: '/subteams/social-media', title: 'Social Media', Icon: Heart },
+					{ href: '/subteams/infrastructure', title: 'Infrastructure', Icon: HardDrive },
+					{ href: '/subteams/competition', title: 'Competition Teams', Icon: SquareTerminal }
+				]
 			})}
 			{@render Group({
 				name: 'Sponsors',
