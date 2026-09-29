@@ -4,6 +4,7 @@
 		ChevronDown,
 		Menu,
 		X,
+		ArrowRight,
 		BookMarked,
 		Building2,
 		FileText,
@@ -61,7 +62,15 @@
 	</li>
 {/snippet}
 
-{#snippet Group({ name, items }: { name: string; items: ListItemProps[] })}
+{#snippet Group({
+	name,
+	items,
+	footer
+}: {
+	name: string;
+	items: ListItemProps[];
+	footer?: { href: string; title: string; subtitle: string };
+})}
 	<li class="list-none">
 		<button
 			type="button"

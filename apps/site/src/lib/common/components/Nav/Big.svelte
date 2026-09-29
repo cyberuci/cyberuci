@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {
+		ArrowRight,
 		BookMarked,
 		Building2,
 		FileText,
@@ -105,6 +106,21 @@
 	</div>
 {/snippet}
 
+{#snippet SubteamsFooter()}
+	<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+	<a
+		class="group/all flex items-center justify-between gap-3 px-3 py-2.5 type-label text decoration-none transition-colors hover:background-3 hover:text-blue-11 dark:hover:text-blue-11"
+		href="/subteams"
+		onclick={close}
+	>
+		<span class="block">
+			All subteams<br />
+			<span class="text-gray-9">[More pages coming soon]</span></span
+		>
+		<ArrowRight size={14} class="transition-transform group-hover/all:translate-x-0.5" />
+	</a>
+{/snippet}
+
 {#snippet SponsorsItems()}
 	{@render ListItem({ href: '/sponsors', title: 'Sponsors', Icon: Building2 })}
 	{@render ListItem({ href: '/package', title: 'Package', Icon: FileText })}
@@ -139,6 +155,9 @@
 			onClose={close}
 		>
 			{@render SubteamsItems()}
+			{#snippet footer()}
+				{@render SubteamsFooter()}
+			{/snippet}
 		</ListGroup>
 
 		<ListGroup
