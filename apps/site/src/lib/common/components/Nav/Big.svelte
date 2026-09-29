@@ -1,6 +1,5 @@
 <script lang="ts">
 	import {
-		ArrowRight,
 		BookMarked,
 		Building2,
 		FileText,
@@ -9,9 +8,13 @@
 		LucideUsers,
 		Palette,
 		Trophy,
+		Globe,
+		Heart,
+		HardDrive,
 		Calendar,
 		GraduationCap,
-		Users
+		Users,
+		SquareTerminal
 	} from 'lucide-svelte';
 	import ListGroup from './ListGroup.svelte';
 	import { onMount } from 'svelte';
@@ -61,7 +64,7 @@
 			>
 				<Icon size="24" />
 			</div>
-			<div class="type-label terminal-before text">
+			<div class="truncate type-label terminal-before text" {title}>
 				{title}
 			</div>
 		</a>
@@ -84,23 +87,22 @@
 {/snippet}
 
 {#snippet SubteamsItems()}
-	{@render ListItem({ href: '/subteams/graphics', title: 'Graphics', Icon: Palette })}
-	{@render ListItem({ href: '/subteams/outreach', title: 'Outreach', Icon: Users })}
-{/snippet}
-
-{#snippet SubteamsFooter()}
-	<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-	<a
-		class="group/all flex items-center justify-between gap-3 px-3 py-2.5 type-label text decoration-none transition-colors hover:background-3 hover:text-blue-11 dark:hover:text-blue-11"
-		href="/subteams"
-		onclick={close}
-	>
-		<span class="block">
-			All subteams<br />
-			<span class="text-gray-9">[More pages coming soon]</span></span
-		>
-		<ArrowRight size={14} class="transition-transform group-hover/all:translate-x-0.5" />
-	</a>
+	<div class="grid grid-cols-[1fr_1fr_1fr] gap-2">
+		{@render ListItem({ href: '/subteams/graphics', title: 'Graphics', Icon: Palette })}
+		{@render ListItem({ href: '/subteams/outreach', title: 'Outreach', Icon: Users })}
+		{@render ListItem({ href: '/subteams/web', title: 'Web', Icon: Globe })}
+		{@render ListItem({ href: '/subteams/social-media', title: 'Social Media', Icon: Heart })}
+		{@render ListItem({
+			href: '/subteams/infrastructure',
+			title: 'Infrastructure',
+			Icon: HardDrive
+		})}
+		{@render ListItem({
+			href: '/subteams/competition',
+			title: 'Competition Teams',
+			Icon: SquareTerminal
+		})}
+	</div>
 {/snippet}
 
 {#snippet SponsorsItems()}
@@ -137,9 +139,6 @@
 			onClose={close}
 		>
 			{@render SubteamsItems()}
-			{#snippet footer()}
-				{@render SubteamsFooter()}
-			{/snippet}
 		</ListGroup>
 
 		<ListGroup

@@ -4,6 +4,8 @@ import achievementsPage from './pages/achievements';
 import timelineCategory from './timelineCategory';
 import subteams from './pages/subteams';
 import outreach from './pages/outreach';
+import { webPage, socialMediaPage, infrastructurePage } from './pages/subteamComingSoon';
+import competitionTeamsPage from './pages/competitionTeams';
 import corporate from './pages/corporate';
 import person from './person';
 import board from './board';
@@ -23,6 +25,10 @@ export const schemaTypes = [
 	timelineCategory,
 	subteams,
 	outreach,
+	webPage,
+	socialMediaPage,
+	infrastructurePage,
+	competitionTeamsPage,
 	corporate,
 	resourcecopy,
 	alumni,

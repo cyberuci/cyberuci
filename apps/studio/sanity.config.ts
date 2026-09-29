@@ -14,7 +14,11 @@ import {
 	HomeIcon,
 	DashboardIcon,
 	BinaryDocumentIcon,
-	AddUserIcon
+	AddUserIcon,
+	EarthGlobeIcon,
+	HeartIcon,
+	DatabaseIcon,
+	TerminalIcon
 } from '@sanity/icons';
 import groq from 'groq';
 
@@ -148,7 +152,33 @@ export default defineConfig({
 										S.listItem()
 											.title('Outreach Page')
 											.icon(AddUserIcon)
-											.child(S.document().schemaType('outreachPage').documentId('outreachPage'))
+											.child(S.document().schemaType('outreachPage').documentId('outreachPage')),
+										S.listItem()
+											.title('Web Page')
+											.icon(EarthGlobeIcon)
+											.child(S.document().schemaType('webPage').documentId('webPage')),
+										S.listItem()
+											.title('Social Media Page')
+											.icon(HeartIcon)
+											.child(
+												S.document().schemaType('socialMediaPage').documentId('socialMediaPage')
+											),
+										S.listItem()
+											.title('Infrastructure Page')
+											.icon(DatabaseIcon)
+											.child(
+												S.document()
+													.schemaType('infrastructurePage')
+													.documentId('infrastructurePage')
+											),
+										S.listItem()
+											.title('Competition Teams Page')
+											.icon(TerminalIcon)
+											.child(
+												S.document()
+													.schemaType('competitionTeamsPage')
+													.documentId('competitionTeamsPage')
+											)
 									])
 							),
 						S.listItem()
