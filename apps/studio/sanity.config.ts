@@ -17,6 +17,7 @@ import {
 	AddUserIcon,
 	EarthGlobeIcon,
 	HeartIcon,
+	BillIcon,
 	DatabaseIcon,
 	TerminalIcon
 } from '@sanity/icons';
@@ -185,6 +186,10 @@ export default defineConfig({
 							.title('Corporate Page')
 							.icon(BinaryDocumentIcon)
 							.child(S.document().schemaType('corporatePage').documentId('corporatePage')),
+						S.listItem()
+							.title('Fundraiser Page')
+							.icon(BillIcon)
+							.child(S.document().schemaType('fundraiserPage').documentId('fundraiserPage')),
 						S.listItem()
 							.title('Timeline')
 							.icon(ConfettiIcon)

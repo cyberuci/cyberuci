@@ -7,6 +7,7 @@ import outreach from './pages/outreach';
 import { webPage, socialMediaPage, infrastructurePage } from './pages/subteamComingSoon';
 import competitionTeamsPage from './pages/competitionTeams';
 import corporate from './pages/corporate';
+import fundraiser from './pages/fundraiser';
 import person from './person';
 import board from './board';
 import news from './news';
@@ -30,6 +31,7 @@ export const schemaTypes = [
 	infrastructurePage,
 	competitionTeamsPage,
 	corporate,
+	fundraiser,
 	resourcecopy,
 	alumni,
 	tag,

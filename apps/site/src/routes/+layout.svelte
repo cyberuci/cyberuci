@@ -6,6 +6,7 @@
 	import Nav from '$lib/common/components/Nav/Nav.svelte';
 	import Footer from '$lib/common/components/Footer.svelte';
 	import ApplicationBanner from '$lib/common/components/ApplicationBanner.svelte';
+	import FundraiserButton from '$lib/common/components/FundraiserButton.svelte';
 
 	interface Props {
 		data: LayoutData;
@@ -39,6 +40,10 @@
 
 <Footer email={data.email} />
 <div class="gradient pointer-events-none h-md w-full -mt-70"></div>
+
+{#if data.fundraiserTitle}
+	<FundraiserButton title={data.fundraiserTitle} />
+{/if}
 
 <style>
 	:global(*) {

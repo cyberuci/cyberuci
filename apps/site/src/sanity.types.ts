@@ -247,6 +247,30 @@ export type Resourcecopy = {
 	}>;
 };
 
+export type FundraiserPage = {
+	_id: string;
+	_type: 'fundraiserPage';
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	title?: string;
+	startDate?: string;
+	endDate?: string;
+	poster?: {
+		asset?: {
+			_ref: string;
+			_type: 'reference';
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+		};
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt: string;
+		_type: 'image';
+	};
+};
+
 export type CorporatePage = {
 	_id: string;
 	_type: 'corporatePage';
@@ -851,6 +875,7 @@ export type AllSanitySchemaTypes =
 	| Tag
 	| Alumni
 	| Resourcecopy
+	| FundraiserPage
 	| CorporatePage
 	| ContactPage
 	| OutreachPage
@@ -1442,6 +1467,21 @@ export type AchievementsPageQueryResult = {
 	}> | null;
 } | null;
 
+// Source: ./src/routes/fundraiser/+page.server.ts
+// Variable: fundraiserQuery
+// Query: *[_type == "fundraiserPage" && _id == "fundraiserPage"][0] {		poster {			asset,			alt		}	}
+export type FundraiserQueryResult = {
+	poster: {
+		asset: {
+			_ref: string;
+			_type: 'reference';
+			_weak?: boolean;
+			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+		} | null;
+		alt: string;
+	} | null;
+} | null;
+
 // Query TypeMap
 import '@sanity/client';
 declare module '@sanity/client' {
@@ -1453,6 +1493,7 @@ declare module '@sanity/client' {
 			| AifSocialsQueryResult;
 		'\n        *[_type == "alumni"] {\n            _id,\n            personal,\n            currentRole,\n            cyberUCI,\n            quote\n        }\n  ': AlumniPageQueryResult;
 		'\n\t\t*[_type == "board"] | order(year desc) {\n\t\t\t_id,\n\t\t\tyear,\n\t\t\tsections[] {\n\t\t\t\t_key,\n\t\t\t\tlabel,\n\t\t\t\t"members": members[].person-> {\n\t\t\t\t\t"person": @,\n\t\t\t\t\t"titles": ^.members[person._ref match ^._id].title\n\t\t\t\t} \n\t\t\t}\n\t\t}\n  ': BoardPageQueryResult;
+		'\n\t*[_type == "fundraiserPage" && _id == "fundraiserPage"][0] {\n\t\tposter {\n\t\t\tasset,\n\t\t\talt\n\t\t}\n\t}\n': FundraiserQueryResult;
 		'\n    *[_type == "competitionPage"][0] {\n\t\t\tcontent\n\t\t}\n  ': CompetitionPageQueryResult;
 		'\n    *[_type == "contactPage"][0] {\n\t\t\tsections[] {\n\t\t\t\t_key,\n\t\t\t\ttitle,\n\t\t\t\tdescription,\n\t\t\t\tcontacts[]-> {\n\t\t\t\t\t_id,\n\t\t\t\t\timage,\n\t\t\t\t\tname,\n\t\t\t\t\tpronouns,\n\t\t\t\t\temail,\n\t\t\t\t\t"titles": *[_type == "board"] | order(year desc)[0].sections[].members[person._ref match ^._id].title\n\t\t\t\t}\n\t\t\t}\n\t\t}\n  ': ContactPageQueryResult;
 		'\n\t\t*[_type == "news"] | order(date desc) {\n\t\t\t_id,\n\t\t\ttitle,\n\t\t\tdate,\n\t\t\tcover,\n\t\t\tsource,\n\t\t\tlink,\n\t\t}\n  \t': NewsPageQueryResult;
