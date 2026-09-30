@@ -89,7 +89,9 @@
 		</div>
 	</div>
 
-	<div class="grid my-9 items-start gap-y-8 pt-15 lg:grid-cols-16 lg:my-24 md:my-24">
+	<div
+		class="grid my-0 items-start gap-y-8 pt-10 lg:grid-cols-16 lg:my-24 md:my-24 lg:pt-15 md:pt-15 sm:pt-15"
+	>
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<Palette size={18} />
 			<h2 class="m-0 type-label font-550">COLORS</h2>

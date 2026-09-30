@@ -55,7 +55,7 @@
 			<div class="flex-grow-1 text">
 				<Icon size="24" />
 			</div>
-			<div class="text-left type-label terminal-before text">
+			<div class="truncate text-left type-label terminal-before text">
 				{title}
 			</div>
 		</a>
