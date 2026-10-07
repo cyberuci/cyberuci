@@ -24,7 +24,7 @@
 			class="flex items-center gap-2 py-3 pl-4 pr-3 type-label decoration-none"
 		>
 			<span class="icon-dot"><HandCoins size={18} /></span>
-			{title} Fundraiser!
+			{title}
 		</a>
 		<button
 			type="button"

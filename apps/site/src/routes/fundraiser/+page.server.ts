@@ -5,6 +5,7 @@ import { defineQuery } from 'groq';
 const fundraiserQuery = defineQuery(`
 	*[_type == "fundraiserPage" && _id == "fundraiserPage"][0] {
 		description,
+		otherDesc,
 		poster {
 			asset,
 			alt
@@ -16,5 +17,5 @@ export const load: PageServerLoad = async () => {
 	const page = await client.fetch(fundraiserQuery);
 	const poster = page?.poster?.asset ? page.poster : null;
 
-	return { poster, description: page?.description ?? null };
+	return { poster, description: page?.description ?? null, otherDesc: page?.otherDesc ?? null };
 };

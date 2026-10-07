@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 import { altTextField } from '../helpers';
 
 export default defineType({
@@ -11,6 +11,20 @@ export default defineType({
 			title: 'Fundraiser title',
 			description: '"[title] fundraiser!"',
 			type: 'string'
+		}),
+		defineField({
+			name: 'otherDesc',
+			title: 'Description',
+			type: 'array',
+			of: [
+				defineArrayMember({
+					type: 'block',
+					styles: [{ title: 'Normal', value: 'normal' }],
+					lists: [],
+					marks: { decorators: [] }
+				})
+			],
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'description',

@@ -4,6 +4,7 @@
 	import imageUrlBuilder from '@sanity/image-url';
 	import Logo from '$lib/common/components/Logo.svelte';
 	import Title from '$lib/common/components/Title.svelte';
+	import PortableText from '$lib/portableText/PortableText.svelte';
 
 	const builder = imageUrlBuilder(client);
 
@@ -26,8 +27,9 @@
 	<div class="flex justify-center">
 		{#if posterUrl}
 			<div class="w-full flex flex-col md:w-8/10">
-				{#if data.description}
-					<p class="type-body-1">{data.description}</p>
+				{#if data.otherDesc}
+					<!-- <p class="type-body-1">{data.description}</p> -->
+					<PortableText value={data.otherDesc} />
 				{/if}
 				<img
 					src={posterUrl}
