@@ -11,6 +11,7 @@
 	import { createApp } from '$lib/common/components/Calendar/calendarApp';
 	import Title from '$lib/common/components/Title.svelte';
 	import Event from './Event.svelte';
+	import { ChevronDown, ChevronUp } from 'lucide-svelte';
 
 	// calendar styles live next to this page so they don't pollute app.css
 	import './calendar.css';
@@ -24,6 +25,10 @@
 
 	let calendarApp = $state<CalendarApp>();
 	let calendarEvents = $state<CalendarEvent[]>(loadAllCalendars(data.events));
+	// only the next two weeks are shown up front; later events are revealed in batches
+	const LATER_BATCH_SIZE = 5;
+	let laterShown = $state(0);
+
 	let eventGroups = $derived.by(() => {
 		const now = Temporal.Now.zonedDateTimeISO(TIME_ZONE);
 		const comingSoonUntil = now.add({ days: 7 });
@@ -33,10 +38,12 @@
 		const nextWeek: CalendarEvent[] = [];
 		const later: CalendarEvent[] = [];
 
-		for (const event of calendarEvents) {
-			const start = parseZoned(event.start);
-			if (Temporal.ZonedDateTime.compare(start, now) <= 0) continue;
+		const upcoming = calendarEvents
+			.map((event) => ({ event, start: parseZoned(event.start) }))
+			.filter(({ start }) => Temporal.ZonedDateTime.compare(start, now) > 0)
+			.sort((a, b) => Temporal.ZonedDateTime.compare(a.start, b.start));
 
+		for (const { event, start } of upcoming) {
 			if (Temporal.ZonedDateTime.compare(start, comingSoonUntil) <= 0) {
 				comingSoon.push(event);
 			} else if (Temporal.ZonedDateTime.compare(start, nextWeekUntil) <= 0) {
@@ -46,12 +53,20 @@
 			}
 		}
 
-		return [
-			{ title: 'Happening Soon', events: comingSoon },
-			{ title: 'Next Week', events: nextWeek },
-			{ title: 'Later', events: later }
-		].filter((group) => group.events.length > 0);
+		return { comingSoon, nextWeek, later };
 	});
+
+	let visibleGroups = $derived(
+		[
+			{ title: 'Happening Soon', events: eventGroups.comingSoon },
+			{ title: 'Next Week', events: eventGroups.nextWeek },
+			{ title: 'Later', events: eventGroups.later.slice(0, laterShown) }
+		].filter((group) => group.events.length > 0)
+	);
+	let laterRemaining = $derived(Math.max(eventGroups.later.length - laterShown, 0));
+	let hasUpcoming = $derived(
+		eventGroups.comingSoon.length + eventGroups.nextWeek.length + eventGroups.later.length > 0
+	);
 
 	onMount(() => {
 		calendarApp = createApp(calendarEvents, data.colors);
@@ -76,10 +91,16 @@
 
 		<div
 			id="eventDetails"
-			class="mt-[1.2rem] w-20/20 pl-none lg:mt-0 lg:h-80vh lg:w-7/20 lg:overflow-scroll lg:pl-[1.7rem]"
+			class="mt-[1.2rem] w-20/20 pl-none lg:mt-0 lg:max-h-80vh lg:w-7/20 lg:overflow-y-auto lg:pl-[1.7rem]"
 		>
-			{#if eventGroups.length > 0}
-				{#each eventGroups as group, i (group.title)}
+			{#if hasUpcoming}
+				{#if eventGroups.comingSoon.length + eventGroups.nextWeek.length === 0}
+					<p class="mb-[0.875rem] mt-0 type-body-1 text-gray-11 dark:text-graydark-11">
+						No events in the next two weeks.
+					</p>
+				{/if}
+
+				{#each visibleGroups as group, i (group.title)}
 					<p class="mb-[0.875rem] type-label {i > 0 ? 'mt-6' : 'mt-0'} uppercase">
 						[{group.title}]
 					</p>
@@ -98,6 +119,31 @@
 						/>
 					{/each}
 				{/each}
+
+				{#if laterRemaining > 0 || laterShown > 0}
+					<div class="mt-4 flex flex-wrap gap-2">
+						{#if laterRemaining > 0}
+							<button
+								type="button"
+								class="flex cursor-pointer items-center gap-1 border border-gray-4 rounded-full border-solid bg-transparent px-3 py-1 type-label text-gray-11 transition-colors dark:border-graydark-4 hover:border-gray-5 hover:background-3 dark:text-graydark-11 dark:hover:border-graydark-5"
+								onclick={() => (laterShown += LATER_BATCH_SIZE)}
+							>
+								<ChevronDown size={14} />
+								View more ({laterRemaining})
+							</button>
+						{/if}
+						{#if laterShown > 0}
+							<button
+								type="button"
+								class="flex cursor-pointer items-center gap-1 border border-gray-4 rounded-full border-solid bg-transparent px-3 py-1 type-label text-gray-11 transition-colors dark:border-graydark-4 hover:border-gray-5 hover:background-3 dark:text-graydark-11 dark:hover:border-graydark-5"
+								onclick={() => (laterShown = 0)}
+							>
+								<ChevronUp size={14} />
+								Show less
+							</button>
+						{/if}
+					</div>
+				{/if}
 			{:else}
 				<div class="flex flex-col gap-6">
 					<!-- eslint-disable svelte/no-navigation-without-resolve -->
