@@ -13,7 +13,7 @@ export default defineType({
 			type: 'string'
 		}),
 		defineField({
-			name: 'otherDesc',
+			name: 'description',
 			title: 'Description',
 			type: 'array',
 			of: [
@@ -27,9 +27,13 @@ export default defineType({
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({
-			name: 'description',
-			title: 'Short Message',
-			type: 'string'
+			name: 'isMerch',
+			title: 'Is this for merch purchase (for the pop-up symbol)?',
+			type: 'boolean',
+			options: {
+				layout: 'checkbox' // This makes it appear as a checkbox instead of a switch
+			},
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'startDate',

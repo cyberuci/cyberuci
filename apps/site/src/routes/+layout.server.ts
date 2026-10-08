@@ -17,6 +17,7 @@ interface SiteInfo {
 
 interface FundraiserPromo {
 	title: string | null;
+	isMerch: boolean;
 	startDate: string | null;
 	endDate: string | null;
 }
@@ -66,6 +67,7 @@ export const load: LayoutServerLoad = async () => {
 	const fundraiserPromoQuery = defineQuery(`
 		*[_type == "fundraiserPage" && _id == "fundraiserPage"][0] {
 			title,
+			isMerch,
 			startDate,
 			endDate
 		}
@@ -77,10 +79,12 @@ export const load: LayoutServerLoad = async () => {
 	]);
 
 	const fundraiserTitle = activeFundraiserTitle(fundraiser);
+	const isMerch = fundraiser?.isMerch || null;
 
 	return {
 		email: info?.email || FALLBACK_EMAIL,
 		applicationAnnouncement: info?.applicationAnnouncement ?? null,
-		fundraiserTitle
+		fundraiserTitle,
+		isMerch
 	};
 };

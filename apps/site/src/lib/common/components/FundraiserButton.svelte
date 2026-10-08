@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import { HandCoins, X } from 'lucide-svelte';
+	import { HandCoins, X, Shirt } from 'lucide-svelte';
 
 	interface Props {
 		title: string;
+		isMerch: boolean | null;
 	}
 
-	let { title }: Props = $props();
+	let { title, isMerch }: Props = $props();
 
 	const onFundraiserPage = $derived(page.url.pathname === '/fundraiser');
 	let dismissed = $state(false);
@@ -23,7 +24,11 @@
 			href={resolve('/fundraiser')}
 			class="flex items-center gap-2 py-3 pl-4 pr-3 type-label decoration-none"
 		>
-			<span class="icon-dot"><HandCoins size={18} /></span>
+			{#if isMerch}
+				<span class="icon-dot"><Shirt size={18} /></span>
+			{:else}
+				<span class="icon-dot"><HandCoins size={18} /></span>
+			{/if}
 			{title}
 		</a>
 		<button

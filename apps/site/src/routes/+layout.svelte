@@ -42,7 +42,7 @@
 <div class="gradient pointer-events-none h-md w-full -mt-70"></div>
 
 {#if data.fundraiserTitle}
-	<FundraiserButton title={data.fundraiserTitle} />
+	<FundraiserButton title={data.fundraiserTitle} isMerch={data.isMerch} />
 {/if}
 
 <style>

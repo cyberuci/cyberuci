@@ -27,9 +27,9 @@
 	<div class="flex justify-center">
 		{#if posterUrl}
 			<div class="w-full flex flex-col md:w-8/10">
-				{#if data.otherDesc}
+				{#if data.description}
 					<!-- <p class="type-body-1">{data.description}</p> -->
-					<PortableText value={data.otherDesc} />
+					<PortableText value={data.description} />
 				{/if}
 				<img
 					src={posterUrl}
