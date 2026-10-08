@@ -11,7 +11,7 @@
 	import { parseZoned, TIME_ZONE } from '$lib/common/components/Calendar/transform';
 	import Title from '$lib/common/components/Title.svelte';
 	import SectionHeading from '$lib/common/components/SectionHeading.svelte';
-	import AddToCalendar from './AddToCalendar.svelte';
+	import AddToCalendar from '$lib/common/components/Calendar/AddToCalendar.svelte';
 	import Event from './Event.svelte';
 	import MiniCalendar from './MiniCalendar.svelte';
 

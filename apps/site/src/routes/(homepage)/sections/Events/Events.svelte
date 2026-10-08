@@ -10,7 +10,7 @@
 	// Internal Components and Scripts
 	import Time from '$lib/common/components/Calendar/Time.svelte';
 	import SectionHeading from '$lib/common/components/SectionHeading.svelte';
-	import DownloadCalendar from './DownloadCalendar.svelte';
+	import AddToCalendar from '$lib/common/components/Calendar/AddToCalendar.svelte';
 
 	interface Props {
 		event: CalendarEvent | null;
@@ -49,7 +49,11 @@
 						</button>
 					{/if}
 
-					<DownloadCalendar {event} />
+					<AddToCalendar
+						event={featured}
+						align="left"
+						class="p-0 type-body-1 text-blue-1 hover:text-blue-7"
+					/>
 				</div>
 			{:else}
 				<div>

@@ -5,7 +5,7 @@
 	import { parseZoned } from '$lib/common/components/Calendar/transform';
 	import DOMPurify from 'dompurify';
 
-	import AddToCalendar from './AddToCalendar.svelte';
+	import AddToCalendar from '$lib/common/components/Calendar/AddToCalendar.svelte';
 
 	import 'temporal-polyfill/global';
 
