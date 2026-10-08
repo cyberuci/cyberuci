@@ -8,11 +8,7 @@
 
 	import type { PageProps } from './$types';
 	import { type CalendarEvent } from '$lib/common/components/Calendar/types';
-	import {
-		loadAllCalendars,
-		parseZoned,
-		TIME_ZONE
-	} from '$lib/common/components/Calendar/transform';
+	import { parseZoned, TIME_ZONE } from '$lib/common/components/Calendar/transform';
 	import Title from '$lib/common/components/Title.svelte';
 	import SectionHeading from '$lib/common/components/SectionHeading.svelte';
 	import AddToCalendar from './AddToCalendar.svelte';
@@ -33,7 +29,7 @@
 
 	let { data }: PageProps = $props();
 
-	const calendarEvents = loadAllCalendars(data.events);
+	const calendarEvents = data.events;
 	const calendarTypes = Object.keys(data.colors);
 	const now = Temporal.Now.zonedDateTimeISO(TIME_ZONE);
 	const today = now.toPlainDate();

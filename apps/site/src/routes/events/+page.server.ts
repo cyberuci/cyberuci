@@ -4,6 +4,7 @@ import { defineQuery } from 'groq';
 
 import { GOOGLE_CALENDAR_API_KEY } from '$env/static/private';
 import { type GoogleCalendarEvent } from '$lib/common/components/Calendar/types';
+import { loadAllCalendars } from '$lib/common/components/Calendar/transform';
 import { Temporal } from 'temporal-polyfill';
 import { type CalendarType } from '@schedule-x/calendar';
 
@@ -53,20 +54,28 @@ export const load = async () => {
 		orderBy: 'startTime'
 	};
 
+	const calendars = CALENDAR_INFO['calendarData'];
+
+	const items = await Promise.all(
+		calendars.map(async (calendar) => {
+			let url = BASE_URL + `${calendar.calendarLink}/events?`;
+
+			for (const [name, value] of Object.entries(parameters)) url += `${name}=${value}&`;
+
+			url = url.substring(0, url.length - 1);
+
+			const response = await fetch(url);
+			const data = await response.json();
+
+			return (data.items || []) as GoogleCalendarEvent[];
+		})
+	);
+
 	const calendarInfo: Record<string, GoogleCalendarEvent[]> = {};
 	const calendarColors: Record<string, CalendarType> = {};
 
-	for (const [_, calendar] of Object.entries(CALENDAR_INFO['calendarData'])) {
-		let url = BASE_URL + `${calendar.calendarLink}/events?`;
-
-		for (const [name, value] of Object.entries(parameters)) url += `${name}=${value}&`;
-
-		url = url.substring(0, url.length - 1);
-
-		const response = await fetch(url);
-		const data = await response.json();
-
-		calendarInfo[calendar.title] = data.items || [];
+	calendars.forEach((calendar, i) => {
+		calendarInfo[calendar.title] = items[i];
 		calendarColors[calendar.title] = {
 			colorName: calendar.title,
 			lightColors: {
@@ -75,12 +84,10 @@ export const load = async () => {
 				onContainer: calendar.textColor.hex
 			}
 		};
-
-		console.log(_);
-	}
+	});
 
 	return {
-		events: calendarInfo,
+		events: loadAllCalendars(calendarInfo),
 		colors: calendarColors || [],
 		eventIdeasFormUrl: env.PUBLIC_EVENT_IDEAS_FORM_URL ?? null
 	};
