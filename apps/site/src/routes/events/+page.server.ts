@@ -41,7 +41,10 @@ const getCalendarInfo = async () => {
 	return { calendarData };
 };
 
-export const load = async () => {
+export const load = async ({ setHeaders }) => {
+	// browser caches for 1 minute, server caches for 5 minutes
+	setHeaders({ 'cache-control': 'public, max-age=60, s-maxage=300' });
+
 	const CALENDAR_INFO: Record<string, CalendarInfo[]> = await getCalendarInfo();
 
 	const now = Temporal.Now.plainDateISO();
