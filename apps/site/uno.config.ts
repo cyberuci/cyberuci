@@ -29,6 +29,9 @@ export default defineConfig({
 		text: 'text-gray-12 dark:text-graydark-12',
 		'text-2': 'text-gray-11 dark:text-graydark-11',
 
+		// dark gradient card surface (home page "View full calendar" card, events sidebar)
+		'secondary-card': 'bg-[linear-gradient(145deg,#2a2a2a_0%,#1a1a1a_100%)]',
+
 		navin:
 			'animate-keyframes-navin animate-duration-750 animate-ease-out transform-origin-top transform-3d',
 		navout:

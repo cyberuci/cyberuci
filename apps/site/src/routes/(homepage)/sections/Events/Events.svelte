@@ -34,7 +34,7 @@
 				</div>
 
 				{#if featured.description}
-					<p class="line-height-relaxed type-body-1">{featured.description}</p>
+					<p class="type-body-1 line-height-relaxed">{featured.description}</p>
 				{/if}
 
 				<div class="mt-auto flex flex-col gap-2 pt-4">
@@ -64,7 +64,7 @@
 		{#if featured}
 			<a
 				href={resolve('/events')}
-				class="secondary-card group flex flex-col items-center justify-center gap-3 rounded-2xl p-6 decoration-none transition-shadow hover:shadow-md"
+				class="group flex flex-col items-center justify-center gap-3 rounded-2xl secondary-card p-6 decoration-none transition-shadow hover:shadow-md"
 			>
 				<CalendarDays
 					size={28}
@@ -78,7 +78,7 @@
 		{:else}
 			<a
 				href={DISCORD_URL}
-				class="secondary-card group flex flex-col items-center justify-center gap-3 rounded-2xl p-6 text-blue-1 decoration-none transition-shadow hover:shadow-md"
+				class="group flex flex-col items-center justify-center gap-3 rounded-2xl secondary-card p-6 text-blue-1 decoration-none transition-shadow hover:shadow-md"
 			>
 				<svg class="mr-2 size-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 					<path d={siDiscord.path} />
@@ -91,9 +91,3 @@
 		{/if}
 	</div>
 </div>
-
-<style>
-	.secondary-card {
-		background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
-	}
-</style>
