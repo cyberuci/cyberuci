@@ -35,10 +35,7 @@ For full page titles, use the shared `Title` component:
 import Title from '$lib/common/components/Title.svelte';
 
 <Title title="Events" />
-<!-- large (default): [EVENTS] label + type-display h1 -->
-
-<Title title="Events" size="small" />
-<!-- just the uppercase label -->
+<!-- large (default): type-display h1 -->
 ```
 
 ### Subheadings
