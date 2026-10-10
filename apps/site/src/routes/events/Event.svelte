@@ -1,84 +1,76 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { Temporal } from 'temporal-polyfill';
 	import { type CalendarType } from '@schedule-x/calendar';
-	import { showDescription } from '$lib/common/components/Calendar/calendarApp';
+	import { type CalendarEvent } from '$lib/common/components/Calendar/types';
 	import { parseZoned } from '$lib/common/components/Calendar/transform';
 	import DOMPurify from 'dompurify';
 
-	import Time from '$lib/common/components/Calendar/Time.svelte';
-
-	import { MapPin, CalendarDays, CircleGauge } from 'lucide-svelte';
+	import AddToCalendar from '$lib/common/components/Calendar/AddToCalendar.svelte';
 
 	import 'temporal-polyfill/global';
 
 	interface Props {
-		id: string;
-		title: string;
-		description: string;
-		eventType: string;
-		experience: string;
-		start: string;
-		end: string;
-		location: string;
+		event: CalendarEvent;
 		colors: CalendarType;
+		spotlight?: boolean;
 	}
 
-	let currentTime = Temporal.Now.zonedDateTimeISO().subtract({ weeks: 0 });
+	let { event, colors, spotlight = false }: Props = $props();
 
-	let { id, title, description, eventType, experience, start, end, location, colors }: Props =
-		$props();
+	const startZdt = $derived(parseZoned(event.start));
+	const endZdt = $derived(parseZoned(event.end));
 
-	const startZdt = $derived(parseZoned(start));
+	const time = (zdt: typeof startZdt) =>
+		zdt.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit' });
+
+	const month = $derived(startZdt.toLocaleString('en-US', { month: 'short' }));
+	const weekday = $derived(startZdt.toLocaleString('en-US', { weekday: 'short' }));
+	const sameDay = $derived(startZdt.toPlainDate().equals(endZdt.toPlainDate()));
+	const timeRange = $derived(
+		sameDay
+			? `${time(startZdt)} – ${time(endZdt)}`
+			: `${time(startZdt)} – ${endZdt.toLocaleString('en-US', { month: 'numeric', day: 'numeric' })} ${time(endZdt)}`
+	);
 
 	// DOMPurify needs a DOM and throws during SSR on Cloudflare Workers.
 	const cleanedDescription = $derived(
-		browser && description ? DOMPurify.sanitize(description) : ''
+		browser && event.description ? DOMPurify.sanitize(event.description) : ''
 	);
 </script>
 
-{#if Temporal.PlainDateTime.compare(currentTime, startZdt) == -1}
-	<button
-		class="mb-[0.5rem] w-full flex flex-row rounded-md border-none bg-[#333333] p-none text-left color-[#fff]"
-		id="{id}_side_view"
-		onclick={() => showDescription(id + '_description', true)}
+<div
+	id="event-{event.id}"
+	class="flex scroll-mt-28 items-center gap-3 border-0 border-b border-solid px-1 py-3 transition-colors duration-500 {spotlight
+		? 'border-transparent rounded-xl bg-bluedark-3'
+		: 'border-gray-4 dark:border-graydark-4'}"
+>
+	<div
+		class="w-[3rem] flex shrink-0 flex-col items-center self-start border-0 border-l-3 border-solid py-0.5"
+		style:border-color={colors?.lightColors?.container}
+		title={event.calendarId}
 	>
-		<div
-			class="w-2/100 rounded-l-md"
-			style:background-color={colors?.lightColors?.main}
-			title={eventType}
-		></div>
+		<span class="type-label uppercase {spotlight ? 'text-bluedark-11' : 'text-2'}">{month}</span>
+		<span class="text-xl leading-none font-sans {spotlight ? 'text-blue-7' : ''}">
+			{startZdt.day}
+		</span>
+	</div>
 
-		<div class="w-98/100 pb-[0.875rem] pl-[1rem] pr-[1rem] pt-[0.875rem]">
-			<div class="m-none mb-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
-				<CalendarDays size={18} class="min-w-[18px]" />
-				<b><p class="m-none type-body-1">{title}</p></b>
+	<div class="min-w-0 flex-1">
+		<p class="m-none type-body-1 font-medium {spotlight ? 'text-blue-7' : ''}">{event.title}</p>
+		<p class="m-none mt-1 type-label text-2">
+			{weekday}
+			{timeRange}
+		</p>
+		{#if event.location}
+			<p class="m-none mt-0.5 type-label text-2">{event.location}</p>
+		{/if}
+		{#if cleanedDescription}
+			<div class="line-clamp-3 mt-2 type-label">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+				{@html cleanedDescription}
 			</div>
+		{/if}
+	</div>
 
-			<Time {start} {end} />
-
-			<div class="mt-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
-				<CircleGauge size={18} class="min-w-[18px]" />
-				<p class="m-none type-body-1">{experience}</p>
-			</div>
-
-			{#if location != ''}
-				<div class="mt-[0.5rem] flex items-center gap-2 lg:col-start-1 lg:col-end-5">
-					<MapPin size={18} class="min-w-[18px]" />
-					<p class="m-none type-body-1">{location}</p>
-				</div>
-			{/if}
-
-			{#if description != ''}
-				<div id="{id}_description" class="h-[0px] overflow-hidden">
-					<hr class="mb-[0.5rem] mt-[0.5rem]" />
-
-					<p class="m-none mt-[0.5rem] type-label">
-						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-						{@html cleanedDescription}
-					</p>
-				</div>
-			{/if}
-		</div>
-	</button>
-{/if}
+	<AddToCalendar {event} compact />
+</div>

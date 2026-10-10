@@ -30,7 +30,7 @@ function plainText(value: string): string {
 		.trim();
 }
 
-function safeFilename(title: string): string {
+export function safeFilename(title: string): string {
 	const cleaned = title
 		.replace(/[^\w\s-]/g, '')
 		.trim()
@@ -78,14 +78,4 @@ export function buildIcsContent(event: CalendarEvent): string {
 
 export function openGoogleCalendar(event: CalendarEvent): void {
 	window.open(buildGoogleCalendarUrl(event), '_blank', 'noopener,noreferrer');
-}
-
-export function downloadIcs(event: CalendarEvent): void {
-	const blob = new Blob([buildIcsContent(event)], { type: 'text/calendar;charset=utf-8' });
-	const url = URL.createObjectURL(blob);
-	const anchor = document.createElement('a');
-	anchor.href = url;
-	anchor.download = `${safeFilename(event.title)}.ics`;
-	anchor.click();
-	URL.revokeObjectURL(url);
 }

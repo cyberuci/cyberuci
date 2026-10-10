@@ -107,7 +107,7 @@ Singleton pages (one document in Studio) usually use a fixed `_id`, e.g. `homePa
 | `lib/common/components/SectionHeading.svelte` | Rainbow `////////` section label           |
 | `lib/common/components/Nav/`                  | Desktop + mobile nav                       |
 | `lib/common/components/Footer.svelte`         | Footer (email from layout load)            |
-| `lib/common/components/Calendar/`             | Schedule-X calendar helpers                |
+| `lib/common/components/Calendar/`             | Google Calendar → event data, links        |
 | `lib/portableText/`                           | Maps Sanity blocks → Svelte components     |
 
 ### Data loading pattern
