@@ -1,60 +1,147 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { tick } from 'svelte';
+	import { browser } from '$app/environment';
 	import { Temporal } from 'temporal-polyfill';
 	import { siDiscord } from 'simple-icons';
-	import { ScheduleXCalendar } from '@schedule-x/svelte';
-	import { type CalendarApp } from '@schedule-x/calendar';
+	import DOMPurify from 'dompurify';
+	import { ArrowRight, ChevronDown, ChevronUp, X } from 'lucide-svelte';
 
 	import type { PageProps } from './$types';
 	import { type CalendarEvent } from '$lib/common/components/Calendar/types';
-	import { loadAllCalendars, parseZoned } from '$lib/common/components/Calendar/transform';
-	import { createApp } from '$lib/common/components/Calendar/calendarApp';
+	import { parseZoned, TIME_ZONE } from '$lib/common/components/Calendar/transform';
 	import Title from '$lib/common/components/Title.svelte';
+	import SectionHeading from '$lib/common/components/SectionHeading.svelte';
+	import AddToCalendar from '$lib/common/components/Calendar/AddToCalendar.svelte';
 	import Event from './Event.svelte';
+	import MiniCalendar from './MiniCalendar.svelte';
 
-	// calendar styles live next to this page so they don't pollute app.css
-	import './calendar.css';
-	import '@schedule-x/theme-default/dist/index.css';
 	import 'temporal-polyfill/global';
 
 	const DISCORD_URL = 'https://discord.cyberuci.com/';
-	const TIME_ZONE = 'America/Los_Angeles';
+	const SPOTLIGHT_MS = 2500;
+
+	interface Group {
+		id: string;
+		title: string;
+		events: CalendarEvent[];
+		later: boolean;
+	}
 
 	let { data }: PageProps = $props();
 
-	let calendarApp = $state<CalendarApp>();
-	let calendarEvents = $state<CalendarEvent[]>(loadAllCalendars(data.events));
-	let eventGroups = $derived.by(() => {
-		const now = Temporal.Now.zonedDateTimeISO(TIME_ZONE);
-		const comingSoonUntil = now.add({ days: 7 });
-		const nextWeekUntil = now.add({ days: 14 });
+	const calendarEvents = data.events;
+	const calendarTypes = Object.keys(data.colors);
+	const now = Temporal.Now.zonedDateTimeISO(TIME_ZONE);
+	const today = now.toPlainDate();
 
-		const comingSoon: CalendarEvent[] = [];
-		const nextWeek: CalendarEvent[] = [];
-		const later: CalendarEvent[] = [];
+	// calendar types picked in the sidebar; none picked means show everything
+	let selectedTypes = $state<string[]>([]);
+	let showLater = $state(false);
+	// ids of the events highlighted after a day is clicked in the mini calendar
+	let spotlight = $state<string[]>([]);
+	let spotlightTimer: ReturnType<typeof setTimeout> | undefined;
 
-		for (const event of calendarEvents) {
-			const start = parseZoned(event.start);
-			if (Temporal.ZonedDateTime.compare(start, now) <= 0) continue;
+	let visibleEvents = $derived(
+		calendarEvents.filter(
+			(event) => selectedTypes.length === 0 || selectedTypes.includes(event.calendarId)
+		)
+	);
 
-			if (Temporal.ZonedDateTime.compare(start, comingSoonUntil) <= 0) {
-				comingSoon.push(event);
-			} else if (Temporal.ZonedDateTime.compare(start, nextWeekUntil) <= 0) {
-				nextWeek.push(event);
+	let upcoming = $derived(
+		visibleEvents
+			.map((event) => ({ event, start: parseZoned(event.start) }))
+			.filter(({ start }) => Temporal.ZonedDateTime.compare(start, now) > 0)
+			.sort((a, b) => Temporal.ZonedDateTime.compare(a.start, b.start))
+	);
+
+	let featured = $derived(upcoming[0]?.event ?? null);
+	let upcomingDays = $derived([
+		...new Set(upcoming.map(({ start }) => start.toPlainDate().toString()))
+	]);
+
+	let groups = $derived.by(() => {
+		const nextWeekStart = today.subtract({ days: today.dayOfWeek % 7 }).add({ weeks: 1 });
+		const laterStart = nextWeekStart.add({ weeks: 1 });
+
+		const result: Group[] = [];
+		for (const { event, start } of upcoming) {
+			const day = start.toPlainDate();
+			let id: string, title: string;
+
+			if (Temporal.PlainDate.compare(day, nextWeekStart) < 0) {
+				[id, title] = ['this-week', 'This week'];
+			} else if (Temporal.PlainDate.compare(day, laterStart) < 0) {
+				[id, title] = ['next-week', 'Next week'];
 			} else {
-				later.push(event);
+				const month = day.toPlainYearMonth();
+				id = `month-${month.toString()}`;
+				title = month.equals(today.toPlainYearMonth())
+					? 'Later this month'
+					: day.toLocaleString('en-US', {
+							month: 'long',
+							year: month.year === today.year ? undefined : 'numeric'
+						});
 			}
-		}
 
-		return [
-			{ title: 'Happening Soon', events: comingSoon },
-			{ title: 'Next Week', events: nextWeek },
-			{ title: 'Later', events: later }
-		].filter((group) => group.events.length > 0);
+			if (result.at(-1)?.id !== id) {
+				result.push({ id, title, events: [], later: id.startsWith('month-') });
+			}
+			result.at(-1)!.events.push(event);
+		}
+		return result;
 	});
 
-	onMount(() => {
-		calendarApp = createApp(calendarEvents, data.colors);
+	let laterCount = $derived(
+		groups.filter((group) => group.later).reduce((n, group) => n + group.events.length, 0)
+	);
+	let shownGroups = $derived(groups.filter((group) => showLater || !group.later));
+
+	async function selectDay(day: Temporal.PlainDate) {
+		const dayEvents = upcoming
+			.filter(({ start }) => start.toPlainDate().equals(day))
+			.map(({ event }) => event);
+		if (dayEvents.length === 0) return;
+
+		if (groups.some((group) => group.later && group.events.includes(dayEvents[0]))) {
+			showLater = true;
+			await tick();
+		}
+
+		document
+			.getElementById(`event-${dayEvents[0].id}`)
+			?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+		spotlight = dayEvents.map((event) => event.id);
+		clearTimeout(spotlightTimer);
+		spotlightTimer = setTimeout(() => (spotlight = []), SPOTLIGHT_MS);
+	}
+
+	function toggleType(type: string) {
+		selectedTypes = selectedTypes.includes(type)
+			? selectedTypes.filter((t) => t !== type)
+			: [...selectedTypes, type];
+	}
+
+	function relativeDay(date: Temporal.PlainDate) {
+		const days = date.since(today).days;
+		if (days === 0) return 'Today';
+		if (days === 1) return 'Tomorrow';
+		return date.toLocaleString('en-US', { weekday: 'long' });
+	}
+
+	let featuredInfo = $derived.by(() => {
+		if (!featured) return null;
+		const start = parseZoned(featured.start);
+		const end = parseZoned(featured.end);
+		const time = (zdt: Temporal.ZonedDateTime) =>
+			zdt.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit' });
+		return {
+			month: start.toLocaleString('en-US', { month: 'short' }),
+			day: start.day,
+			when: relativeDay(start.toPlainDate()),
+			time: `${time(start)} – ${time(end)}`,
+			description: browser && featured.description ? DOMPurify.sanitize(featured.description) : ''
+		};
 	});
 </script>
 
@@ -65,68 +152,138 @@
 <main class="my-40 space-x">
 	<Title title="Events" />
 
-	<div class="flex flex-col flex-wrap lg:flex-row lg:items-start">
-		<div class="w-20/20 lg:w-13/20">
-			<div class="w-full">
-				{#if calendarApp}
-					<ScheduleXCalendar id="calendar" {calendarApp} />
-				{/if}
-			</div>
-		</div>
-
-		<div
-			id="eventDetails"
-			class="mt-[1.2rem] w-20/20 pl-none lg:mt-0 lg:h-80vh lg:w-7/20 lg:overflow-scroll lg:pl-[1.7rem]"
+	<div class="grid grid-cols-1 items-start gap-10 lg:grid-cols-[19rem_1fr]">
+		<aside
+			class="[scrollbar-width:thin] order-2 flex flex-col gap-4 lg:sticky lg:top-24 lg:order-1 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto"
 		>
-			{#if eventGroups.length > 0}
-				{#each eventGroups as group, i (group.title)}
-					<p class="mb-[0.875rem] type-label {i > 0 ? 'mt-6' : 'mt-0'} uppercase">
-						[{group.title}]
-					</p>
+			<MiniCalendar
+				events={visibleEvents}
+				colors={data.colors}
+				{today}
+				selectableDays={upcomingDays}
+				onselect={selectDay}
+			/>
 
+			{#if calendarTypes.length > 1}
+				<div class="rounded-2xl secondary-card p-4">
+					<div class="flex flex-wrap gap-2">
+						{#each calendarTypes as type (type)}
+							{@const selected = selectedTypes.includes(type)}
+							<button
+								type="button"
+								class="flex cursor-pointer items-center gap-2 border rounded-full border-solid px-2.5 py-0.5 type-label transition-colors {selected
+									? 'border-blue-9 bg-bluedark-3 text-bluedark-12'
+									: 'border-gray-5 bg-transparent text-2 dark:border-graydark-5 hover:border-gray-7 dark:hover:border-graydark-7'}"
+								aria-pressed={selected}
+								onclick={() => toggleType(type)}
+							>
+								<span
+									class="h-2 w-2 rounded-full"
+									style:background-color={data.colors[type]?.lightColors?.container}
+								></span>
+								{type}
+							</button>
+						{/each}
+					</div>
+					{#if selectedTypes.length > 0}
+						<button
+							type="button"
+							class="mt-3 flex cursor-pointer items-center gap-1 rounded-md border-none bg-transparent px-1 py-0.5 type-label text-2 transition-colors hover:text"
+							onclick={() => (selectedTypes = [])}
+						>
+							<X size={14} />
+							Clear filters
+						</button>
+					{/if}
+				</div>
+			{/if}
+		</aside>
+
+		<section class="order-1 lg:order-2">
+			{#each shownGroups as group, i (group.id)}
+				<div class={i > 0 ? 'mt-10' : ''}>
+					<SectionHeading heading={group.title} />
+				</div>
+
+				<div class="mt-3">
 					{#each group.events as event (event.id)}
-						<Event
-							id={event.id}
-							title={event.title}
-							description={event.description}
-							eventType={event.calendarId}
-							experience={event.experience}
-							start={event.start}
-							end={event.end}
-							location={event.location}
-							colors={data.colors[event.calendarId]}
-						/>
+						{#if event === featured && featuredInfo}
+							<div
+								id="event-{event.id}"
+								class="mb-2 flex flex-wrap scroll-mt-28 gap-4 rounded-2xl bg-bluedark-3 p-5 shadow-sm ring-1 transition-shadow duration-500 md:flex-nowrap {spotlight.includes(
+									event.id
+								)
+									? 'ring-blue-9'
+									: 'ring-blue-9/10'}"
+							>
+								<div class="w-[3rem] flex shrink-0 flex-col items-center pt-1">
+									<span class="type-label text-bluedark-11 uppercase">{featuredInfo.month}</span>
+									<span class="text-2xl text-blue-7 leading-none font-sans">{featuredInfo.day}</span
+									>
+								</div>
+								<div class="min-w-0 flex-1">
+									<p class="m-none type-label text-bluedark-11 uppercase">
+										Up next · {featuredInfo.when}
+									</p>
+									<h2 class="m-none mt-1 type-heading-2 text-blue-7">{event.title}</h2>
+									<p class="m-none mt-1 type-label text-bluedark-12">
+										{[featuredInfo.time, event.location].filter(Boolean).join(' · ')}
+									</p>
+									{#if featuredInfo.description}
+										<div class="mt-3 type-body-1 line-height-relaxed">
+											<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+											{@html featuredInfo.description}
+										</div>
+									{/if}
+								</div>
+								<div class="flex shrink-0 items-center pl-14 md:pl-0">
+									<AddToCalendar {event} />
+								</div>
+							</div>
+						{:else}
+							<Event
+								{event}
+								colors={data.colors[event.calendarId]}
+								spotlight={spotlight.includes(event.id)}
+							/>
+						{/if}
 					{/each}
-				{/each}
+				</div>
 			{:else}
-				<div class="flex flex-col gap-6">
-					<!-- eslint-disable svelte/no-navigation-without-resolve -->
+				{#if selectedTypes.length > 0}
+					<p class="m-none type-body-1 text-2">No upcoming events match these filters.</p>
+				{:else}
 					<a
-						class="w-full no-underline"
 						href={DISCORD_URL}
 						target="_blank"
 						rel="noopener noreferrer"
+						class="group flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-bluedark-3 p-6 text-blue-7 decoration-none ring-1 ring-blue-9/10"
 					>
-						<!-- eslint-enable svelte/no-navigation-without-resolve -->
-						<span
-							class="w-full inline-flex items-center justify-center gap-2 rounded-sm bg-blue-1 px-3 py-3 dark:bg-[#75bbff]"
-							style="color: #000;"
-						>
-							<svg
-								class="size-5"
-								role="img"
-								viewBox="0 0 24 24"
-								xmlns="http://www.w3.org/2000/svg"
-								fill="#000"
-								aria-hidden="true"
-							>
+						<span class="type-heading-2">No upcoming events right now.</span>
+						<span class="flex items-center gap-2 type-label">
+							<svg class="size-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 								<path d={siDiscord.path} />
 							</svg>
-							<span class="type-label">Join our Discord to stay up to date</span>
+							Join our Discord to stay up to date
+							<ArrowRight size={14} class="transition-transform group-hover:translate-x-0.5" />
 						</span>
 					</a>
-				</div>
+				{/if}
+			{/each}
+
+			{#if laterCount > 0}
+				<button
+					type="button"
+					class="mt-6 flex cursor-pointer items-center gap-1 border border-gray-5 rounded-full border-solid bg-transparent px-3 py-1 type-label text-bluedark-11 transition-colors dark:border-graydark-5 hover:bg-bluedark-3"
+					onclick={() => (showLater = !showLater)}
+				>
+					{#if showLater}
+						<ChevronUp size={14} /> Hide later events
+					{:else}
+						<ChevronDown size={14} /> Show later events ({laterCount})
+					{/if}
+				</button>
 			{/if}
-		</div>
+		</section>
 	</div>
 </main>

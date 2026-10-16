@@ -2,7 +2,7 @@ import { type GoogleCalendarEvent, type CalendarEvent } from './types';
 import { Temporal } from 'temporal-polyfill';
 import 'temporal-polyfill/global';
 
-const TIME_ZONE = 'America/Los_Angeles';
+export const TIME_ZONE = 'America/Los_Angeles';
 
 function getExperienceLevel(title: string): string[] {
 	let experience = 'Beginner';
