@@ -2,7 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { Mail } from 'lucide-svelte';
 	import Logo from './Logo.svelte';
-	import { siDiscord, siInstagram, siGithub } from 'simple-icons';
+	import { siDiscord, siInstagram, siGithub, siTiktok } from 'simple-icons';
 
 	interface Props {
 		email: string;
@@ -27,15 +27,21 @@
 				{ text: 'Discord', href: 'https://discord.cyberuci.com/' },
 				{ text: 'Instagram', href: 'https://www.instagram.com/cyberuci/' },
 				{ text: 'GitHub', href: 'https://github.com/cyberuci' },
+				{ text: 'TikTok', href: 'https://www.tiktok.com/@cyberuci' },
 				{ text: 'Email', href: `mailto:${email}` }
 			]
 		},
 		{
 			title: 'Engage',
 			items: [
-				{ text: 'Subteams', href: '/subteams' },
-				{ text: 'Competitions', href: '/competition' },
-				{ text: 'Resources', href: '/resources' }
+				{ text: 'Resources', href: '/resouces' },
+				{ text: 'Package', href: '/package' },
+				{ text: 'Graphics', href: '/subteams/graphics' },
+				{ text: 'Outreach', href: '/subteams/outreach' },
+				{ text: 'Web Dev', href: '/subteams/web' },
+				{ text: 'Social Media ', href: '/subteams/social-media' },
+				{ text: 'Infrastructure', href: '/subteams/infrastructure' },
+				{ text: 'Competition', href: '/subteams/competition' }
 			]
 		},
 		{
@@ -44,7 +50,8 @@
 				{ text: 'News', href: '/news' },
 				{ text: 'Sponsors', href: '/sponsors' },
 				{ text: 'Board', href: '/board' },
-				{ text: 'Brand', href: '/brand' }
+				{ text: 'Events', href: '/events' },
+				{ text: 'Timeline', href: '/timeline' }
 			]
 		}
 	]);
@@ -69,6 +76,10 @@
 			{:else if item.text === 'GitHub'}
 				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 					<path d={siGithub.path} />
+				</svg>
+			{:else if item.text === 'TikTok'}
+				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d={siTiktok.path} />
 				</svg>
 			{:else if item.href.startsWith('mailto:')}
 				<Mail class="mr-2 size-4" aria-hidden="true" />
