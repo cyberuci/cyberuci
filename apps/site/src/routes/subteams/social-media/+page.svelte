@@ -4,6 +4,7 @@
 	import Title from '$lib/common/components/Title.svelte';
 	import { BadgeQuestionMark, Bookmark, Heart, MessageCircle, Repeat2, Send } from 'lucide-svelte';
 	import logoImg from '../social-media/logo.png';
+	import { siInstagram, siTiktok } from 'simple-icons';
 
 	interface Props {
 		data: PageData;
@@ -12,6 +13,7 @@
 	let { data }: Props = $props();
 
 	const INSTAGRAM_URL = 'https://www.instagram.com/cyberuci/';
+	const TIKTOK_URL = 'https://www.tiktok.com/@cyberuci';
 	const iconClass = 'cursor-pointer text-[#fff] transition-colors hover:text-bluedark-11';
 	const BEHOLD_FEED_ID = '49y74sfuqWSsixCwCkMH';
 
@@ -48,12 +50,28 @@
 			</a>
 			<span class="type-label text-graydark-11" aria-hidden="true">•</span>
 			<a
-				class="type-label text-bluedark-11 font-600 decoration-none visited:text-bluedark-11 hover:underline"
+				class="flex items-center gap-3 px-4 py-3 type-label text-bluedark-11 font-600 decoration-none visited:text-bluedark-11 hover:underline"
 				href={INSTAGRAM_URL}
 				target="_blank"
 				rel="noopener noreferrer"
 			>
-				Follow
+				<div>Follow</div>
+				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d={siInstagram.path} />
+				</svg>
+			</a>
+
+			<span class="type-label text-graydark-11" aria-hidden="true">•</span>
+			<a
+				class="flex items-center gap-3 px-4 py-3 type-label text-bluedark-11 font-600 decoration-none visited:text-bluedark-11 hover:underline"
+				href={TIKTOK_URL}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<div>Follow</div>
+				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d={siTiktok.path} />
+				</svg>
 			</a>
 		</div>
 
