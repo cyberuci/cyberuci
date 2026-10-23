@@ -1,7 +1,7 @@
 <script lang="ts">
 	// Libraries
 	import { goto } from '$app/navigation';
-	import { CalendarDays, Medal, FlaskConical, MessagesSquare } from 'lucide-svelte';
+	import { ArrowRight, CalendarDays, Medal, FlaskConical, MessagesSquare } from 'lucide-svelte';
 	import { client } from '$lib/sanity/sanityClient';
 	import {
 		createImageUrlBuilder as imageUrlBuilder,
@@ -13,11 +13,34 @@
 
 	const builder = imageUrlBuilder(client);
 
-	interface Props {
-		data: SanityImageSource;
+	interface Announcement {
+		enabled: boolean;
+		opensAt: string;
+		closesAt: string;
+		link: string;
 	}
 
-	let { data }: Props = $props();
+	interface Props {
+		data: SanityImageSource;
+		announcement?: Announcement | null;
+	}
+
+	let { data, announcement }: Props = $props();
+
+	let now = new Date();
+	let opensAt = $derived(announcement ? new Date(announcement.opensAt) : null);
+	let closesAt = $derived(announcement ? new Date(announcement.closesAt) : null);
+	let webTeamApplyLink = $derived(
+		announcement?.enabled &&
+			announcement.link &&
+			opensAt !== null &&
+			closesAt !== null &&
+			!Number.isNaN(opensAt.getTime()) &&
+			!Number.isNaN(closesAt.getTime()) &&
+			now < closesAt
+			? announcement.link
+			: null
+	);
 </script>
 
 <div class="relative z-0 mb-6" style="margin-top: -68px">
@@ -42,6 +65,21 @@
 					Cybersecurity matters.<br />
 					Be part of the solution.
 				</h1>
+				{#if webTeamApplyLink}
+					<a
+						href={webTeamApplyLink}
+						target="_blank"
+						rel="noreferrer"
+						class="web-team-link group mt-4 inline-flex items-center gap-2 type-body-1 decoration-none"
+					>
+						Like the website? Join the Web team
+						<ArrowRight
+							size={16}
+							strokeWidth={2}
+							class="shrink-0 transition-transform group-hover:translate-x-1"
+						/>
+					</a>
+				{/if}
 			</div>
 			<div class="space-x w-full">
 				<ul class="grid grid-cols-2 mx-auto w-full list-none gap-0.5 p-0 lg:w-3/5">
@@ -80,3 +118,18 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.web-team-link {
+		color: #31b7fb;
+	}
+
+	.web-team-link:hover {
+		color: #f3f3f3;
+	}
+
+	.web-team-link:focus-visible {
+		outline: 2px solid #f3f3f3;
+		outline-offset: 4px;
+	}
+</style>
