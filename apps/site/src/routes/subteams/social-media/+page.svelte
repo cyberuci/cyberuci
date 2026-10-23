@@ -17,6 +17,37 @@
 	const iconClass = 'cursor-pointer text-[#fff] transition-colors hover:text-bluedark-11';
 	const BEHOLD_FEED_ID = '49y74sfuqWSsixCwCkMH';
 
+	const BLUE = '#3b82f6';
+	let liked = $state(false);
+	let heartBurst = $state(0);
+	let reposting = $state(false);
+	let saved = $state(false);
+	let commenting = $state(false);
+	let commentText = $state('');
+	let comments = $state<string[]>([]);
+
+	function toggleLike() {
+		liked = !liked;
+		if (liked) heartBurst++;
+	}
+
+	function repost() {
+		reposting = false;
+		requestAnimationFrame(() => (reposting = true));
+	}
+
+	function submitComment(e: SubmitEvent) {
+		e.preventDefault();
+		const text = commentText.trim();
+		if (!text) return;
+		comments.push(text);
+		commentText = '';
+	}
+
+	function scrollToFooter() {
+		window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+	}
+
 	onMount(() => {
 		if (!BEHOLD_FEED_ID || document.querySelector('script[data-behold-widget]')) return;
 
@@ -75,7 +106,24 @@
 			</a>
 		</div>
 
-		<div class="px-4">
+		<div class="relative px-4">
+			{#if liked}
+				{#key heartBurst}
+					<div class="heart-overlay" aria-hidden="true">
+						{#each Array(3), i (i)}
+							<div class="heart-cell">
+								<Heart
+									size={56}
+									color={BLUE}
+									fill={BLUE}
+									class="heart-pop"
+									style="animation-delay: {i * 60}ms"
+								/>
+							</div>
+						{/each}
+					</div>
+				{/key}
+			{/if}
 			{#if BEHOLD_FEED_ID}
 				<behold-widget feed-id={BEHOLD_FEED_ID}></behold-widget>
 			{:else}
@@ -93,18 +141,79 @@
 
 		<div class="flex items-center justify-between px-4 pt-4">
 			<div class="flex items-center gap-4">
-				<Heart size={24} class={iconClass} aria-label="Like" />
-				<MessageCircle size={24} class={iconClass} aria-label="Comment" />
-				<Repeat2 size={24} class={iconClass} aria-label="Repost" />
-				<Send size={24} class={iconClass} aria-label="Share" />
+				<button class="icon-btn" aria-label="Like" aria-pressed={liked} onclick={toggleLike}>
+					<Heart
+						size={24}
+						class={iconClass}
+						color={liked ? BLUE : '#fff'}
+						fill={liked ? BLUE : 'none'}
+					/>
+				</button>
+				<button
+					class="icon-btn"
+					aria-label="Comment"
+					aria-expanded={commenting}
+					onclick={() => (commenting = !commenting)}
+				>
+					<MessageCircle size={24} class={iconClass} />
+				</button>
+				<button class="icon-btn" aria-label="Repost" onclick={repost}>
+					<span
+						class="inline-flex"
+						class:swirl={reposting}
+						onanimationend={() => (reposting = false)}
+						role="presentation"
+					>
+						<Repeat2 size={24} class={iconClass} />
+					</span>
+				</button>
+				<button class="icon-btn" aria-label="Share" onclick={scrollToFooter}>
+					<Send size={24} class={iconClass} />
+				</button>
 			</div>
-			<Bookmark size={24} class={iconClass} aria-label="Save" />
+			<button
+				class="icon-btn"
+				aria-label="Save"
+				aria-pressed={saved}
+				onclick={() => (saved = !saved)}
+			>
+				<Bookmark
+					size={24}
+					class={iconClass}
+					color={saved ? BLUE : '#fff'}
+					fill={saved ? BLUE : 'none'}
+				/>
+			</button>
 		</div>
 
-		<p class="m-0 px-4 pb-4 pt-3 type-body-1 text-graydark-12">
+		<p class="m-0 px-4 pt-3 type-body-1 text-graydark-12">
 			<span class="font-700">cyberuci</span>
 			Please follow our social media for frequent, cyber-related updates!
 		</p>
+
+		{#each comments as comment, i (i)}
+			<p class="m-0 px-4 pt-2 type-body-1 text-graydark-12">
+				<span class="font-700">panteater</span>
+				{comment}
+			</p>
+		{/each}
+
+		{#if commenting}
+			<form class="flex gap-2 px-4 pt-3" onsubmit={submitComment}>
+				<!-- svelte-ignore a11y_autofocus -->
+				<input
+					class="comment-input"
+					type="text"
+					placeholder="Add a comment as panteater…"
+					maxlength="200"
+					autofocus
+					bind:value={commentText}
+				/>
+				<button class="post-btn" type="submit" disabled={!commentText.trim()}>Post</button>
+			</form>
+		{/if}
+
+		<div class="pb-4"></div>
 	</div>
 
 	<div class="grid items-start gap-y-6 lg:grid-cols-16">
@@ -122,3 +231,89 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.icon-btn {
+		display: inline-flex;
+		padding: 0;
+		border: none;
+		background: none;
+		cursor: pointer;
+	}
+
+	.comment-input {
+		flex: 1;
+		padding: 0.5rem 0.75rem;
+		border: 1px solid #444;
+		border-radius: 0.5rem;
+		background: #111;
+		color: #fff;
+	}
+
+	.post-btn {
+		border: none;
+		background: none;
+		color: #3b82f6;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.post-btn:disabled {
+		opacity: 0.4;
+		cursor: default;
+	}
+
+	.swirl {
+		animation: swirl 0.7s ease-in-out;
+	}
+
+	@keyframes swirl {
+		to {
+			transform: rotate(720deg) scale(1.2);
+		}
+	}
+
+	.heart-overlay {
+		position: absolute;
+		inset: 0 1rem;
+		z-index: 10;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: 1fr;
+		pointer-events: none;
+	}
+
+	.heart-cell {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	:global(.heart-pop) {
+		opacity: 0;
+		animation: heart-pop 1.2s ease-out forwards;
+		filter: drop-shadow(0 0 8px #3b82f6);
+	}
+
+	@keyframes heart-pop {
+		0% {
+			opacity: 0;
+			transform: scale(0);
+		}
+		25% {
+			opacity: 1;
+			transform: scale(1.3);
+		}
+		40% {
+			transform: scale(1);
+		}
+		80% {
+			opacity: 1;
+			transform: scale(1);
+		}
+		100% {
+			opacity: 0;
+			transform: scale(1.1) translateY(-20px);
+		}
+	}
+</style>
