@@ -104,7 +104,7 @@ const PAGE = `<!doctype html>
 			<p class="kicker">[MAINTENANCE]</p>
 			<h1>Under maintenance</h1>
 			<p>
-				Cyber @ UCI is temporarily unavailable. We’ll be back soon. Questions? Join our
+				Cyber@UCI is temporarily unavailable. We’ll be back soon. Questions? Join our
 				<a href="https://discord.cyberuci.com/" target="_blank" rel="noopener noreferrer">Discord</a>
 				or email
 				<a href="mailto:cyberclub@uci.edu">cyberclub@uci.edu</a>!
