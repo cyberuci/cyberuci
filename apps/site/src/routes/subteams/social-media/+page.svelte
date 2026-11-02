@@ -15,16 +15,17 @@
 	const INSTAGRAM_URL = 'https://www.instagram.com/cyberuci/';
 	const TIKTOK_URL = 'https://www.tiktok.com/@cyberuci';
 	const iconClass = 'cursor-pointer text-[#fff] transition-colors hover:text-bluedark-11';
-	const BEHOLD_FEED_ID = '49y74sfuqWSsixCwCkMH';
-
 	const BLUE = '#3b82f6';
 	let liked = $state(false);
 	let heartBurst = $state(0);
 	let reposting = $state(false);
 	let saved = $state(false);
+	let flying = $state(false);
 	let commenting = $state(false);
 	let commentText = $state('');
 	let comments = $state<string[]>([]);
+	let shareButton: HTMLButtonElement;
+	let whatWeDoSection: HTMLDivElement;
 
 	function toggleLike() {
 		liked = !liked;
@@ -44,17 +45,97 @@
 		commentText = '';
 	}
 
-	function scrollToFooter() {
-		window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+	async function flyToWhatWeDo() {
+		if (flying) return;
+
+		const target = whatWeDoSection;
+		const icon = shareButton.querySelector('svg');
+		if (!target || !icon) return;
+
+		const startScrollY = window.scrollY;
+		const maxScrollY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+		// Document-space landing spot, just below the bottom of the section
+		const landingDocY = target.getBoundingClientRect().bottom + startScrollY + 16;
+		const targetScrollY = Math.min(maxScrollY, Math.max(0, landingDocY - window.innerHeight * 0.6));
+
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			window.scrollTo({ top: targetScrollY, behavior: 'instant' });
+			return;
+		}
+
+		flying = true;
+		const start = icon.getBoundingClientRect();
+		const startDocY = start.top + startScrollY;
+		const scrollDistance = targetScrollY - startScrollY;
+		const plane = icon.cloneNode(true) as SVGSVGElement;
+
+		plane.setAttribute('aria-hidden', 'true');
+		Object.assign(plane.style, {
+			position: 'fixed',
+			left: `${start.left}px`,
+			top: `${start.top}px`,
+			width: `${start.width}px`,
+			height: `${start.height}px`,
+			zIndex: '1000',
+			color: BLUE,
+			stroke: BLUE,
+			pointerEvents: 'none'
+		});
+		document.body.append(plane);
+
+		const animatePlane = (
+			keyframes: Parameters<Element['animate']>[0],
+			duration: number,
+			easing: string
+		): Promise<void> =>
+			new Promise((resolve) => {
+				plane.animate(keyframes, { duration, easing }).onfinish = () => resolve();
+			});
+
+		try {
+			await animatePlane(
+				[{ transform: 'rotate(0deg)' }, { transform: 'rotate(720deg)' }],
+				900,
+				'ease-in-out'
+			);
+			const flightDuration = Math.min(2500, Math.max(700, Math.abs(landingDocY - startDocY) * 1.2));
+			await new Promise<void>((resolve) => {
+				const startedAt = performance.now();
+				const fly = (now: number) => {
+					const progress = Math.min((now - startedAt) / flightDuration, 1);
+					const easedProgress = 1 - (1 - progress) ** 3;
+					window.scrollTo({
+						top: startScrollY + scrollDistance * easedProgress,
+						behavior: 'instant'
+					});
+					const docY = startDocY + (landingDocY - startDocY) * easedProgress;
+					plane.style.top = `${docY - window.scrollY}px`;
+
+					if (progress < 1) requestAnimationFrame(fly);
+					else resolve();
+				};
+				requestAnimationFrame(fly);
+			});
+			await animatePlane(
+				[
+					{ transform: 'rotate(0deg)', opacity: 1 },
+					{ transform: 'rotate(360deg)', opacity: 0 }
+				],
+				900,
+				'ease-in-out'
+			);
+		} finally {
+			plane.remove();
+			flying = false;
+		}
 	}
 
 	onMount(() => {
-		if (!BEHOLD_FEED_ID || document.querySelector('script[data-behold-widget]')) return;
+		if (document.querySelector('script[data-snapwidget]')) return;
 
 		const script = document.createElement('script');
-		script.type = 'module';
-		script.src = 'https://w.behold.so/widget.js';
-		script.dataset.beholdWidget = '';
+		script.src = 'https://snapwidget.com/js/snapwidget.js';
+		script.dataset.snapwidget = '';
 		document.head.append(script);
 	});
 </script>
@@ -124,19 +205,15 @@
 					</div>
 				{/key}
 			{/if}
-			{#if BEHOLD_FEED_ID}
-				<behold-widget feed-id={BEHOLD_FEED_ID}></behold-widget>
-			{:else}
-				<div class="grid gap-4 sm:grid-cols-3" aria-label="Instagram feed widget placeholder">
-					{#each [1, 2, 3] as post (post)}
-						<div
-							class="aspect-square flex items-center justify-center border border-graydark-6 rounded-lg border-dashed"
-						>
-							<span class="type-label text-graydark-11">POST 0{post}</span>
-						</div>
-					{/each}
-				</div>
-			{/if}
+			<iframe
+				src="https://snapwidget.com/embed/1132106"
+				class="snapwidget-widget"
+				allowtransparency="true"
+				frameborder="0"
+				scrolling="no"
+				style="border:none; overflow:hidden;  width:100%; "
+				title="Posts from Instagram"
+			></iframe>
 		</div>
 
 		<div class="flex items-center justify-between px-4 pt-4">
@@ -167,8 +244,14 @@
 						<Repeat2 size={24} class={iconClass} />
 					</span>
 				</button>
-				<button class="icon-btn" aria-label="Share" onclick={scrollToFooter}>
-					<Send size={24} class={iconClass} />
+				<button
+					bind:this={shareButton}
+					class="icon-btn"
+					aria-label="Send to What We Do section"
+					disabled={flying}
+					onclick={flyToWhatWeDo}
+				>
+					<Send size={24} class={flying ? 'opacity-0' : iconClass} />
 				</button>
 			</div>
 			<button
@@ -216,7 +299,7 @@
 		<div class="pb-4"></div>
 	</div>
 
-	<div class="grid items-start gap-y-6 lg:grid-cols-16">
+	<div bind:this={whatWeDoSection} class="grid items-start gap-y-6 lg:grid-cols-16">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<BadgeQuestionMark size={18} />
 			<h2 class="m-0 type-label font-550">WHAT WE DO</h2>
