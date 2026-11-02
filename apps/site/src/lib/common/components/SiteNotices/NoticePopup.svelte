@@ -1,41 +1,47 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import { HandCoins, X, Shirt } from 'lucide-svelte';
+	import { HandCoins, Megaphone, Shirt, X } from 'lucide-svelte';
+	import { isExternalLink, type SiteNotice } from '$lib/common/notices';
 
 	interface Props {
-		title: string;
-		isMerch: boolean | null;
+		notice: SiteNotice;
 	}
 
-	let { title, isMerch }: Props = $props();
+	let { notice }: Props = $props();
 
-	const onFundraiserPage = $derived(page.url.pathname === '/fundraiser');
+	const icons = { megaphone: Megaphone, coins: HandCoins, shirt: Shirt };
+	const Icon = $derived(icons[notice.icon ?? 'megaphone'] ?? Megaphone);
+
+	const external = $derived(notice.link ? isExternalLink(notice.link) : false);
+	const onLinkedPage = $derived(
+		!!notice.link && !external && page.url.pathname === notice.link.split(/[?#]/)[0]
+	);
+
 	let dismissed = $state(false);
-
-	function dismiss() {
-		dismissed = true;
-	}
 </script>
 
-{#if !onFundraiserPage && !dismissed}
-	<div class="fundraiser-blob fixed z-40 flex items-stretch rounded-xl">
-		<a
-			href={resolve('/fundraiser')}
-			class="flex items-center gap-2 py-3 pl-4 pr-3 type-label decoration-none"
-		>
-			{#if isMerch}
-				<span class="icon-dot"><Shirt size={18} /></span>
-			{:else}
-				<span class="icon-dot"><HandCoins size={18} /></span>
-			{/if}
-			{title}
-		</a>
+{#if !onLinkedPage && !dismissed}
+	<div class="notice-popup fixed z-40 flex items-stretch rounded-xl">
+		{#if notice.link}
+			<a
+				href={notice.link}
+				{...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+				class="flex items-center gap-2 py-3 pl-4 pr-3 type-label decoration-none"
+			>
+				<span class="icon-dot"><Icon size={18} /></span>
+				{notice.message}
+			</a>
+		{:else}
+			<span class="flex items-center gap-2 py-3 pl-4 pr-3 type-label">
+				<span class="icon-dot"><Icon size={18} /></span>
+				{notice.message}
+			</span>
+		{/if}
 		<button
 			type="button"
 			class="close flex items-center px-3"
-			onclick={dismiss}
-			aria-label="Dismiss fundraiser banner"
+			onclick={() => (dismissed = true)}
+			aria-label="Dismiss notice"
 		>
 			<X size={14} />
 		</button>
@@ -43,7 +49,7 @@
 {/if}
 
 <style>
-	.fundraiser-blob {
+	.notice-popup {
 		right: max(1rem, env(safe-area-inset-right));
 		bottom: max(1.25rem, env(safe-area-inset-bottom));
 		max-width: min(25rem, calc(100vw - 2rem));
@@ -64,7 +70,7 @@
 		animation: blob-in 0.5s ease-out 1.2s backwards;
 	}
 
-	.fundraiser-blob:hover {
+	.notice-popup:hover {
 		transform: translateY(-2px);
 		border-color: rgba(49, 183, 251, 0.9);
 		box-shadow:
@@ -72,12 +78,13 @@
 			0 0 20px rgba(49, 183, 251, 0.45);
 	}
 
-	.fundraiser-blob:focus-within {
+	.notice-popup:focus-within {
 		outline: 2px solid #f3f3f3;
 		outline-offset: 3px;
 	}
 
-	.fundraiser-blob a {
+	.notice-popup > a,
+	.notice-popup > span {
 		color: #e6edf7;
 	}
 
@@ -111,7 +118,7 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.fundraiser-blob {
+		.notice-popup {
 			animation: none;
 			transition: none;
 		}

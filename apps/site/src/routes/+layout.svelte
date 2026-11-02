@@ -5,8 +5,7 @@
 	import type { LayoutData } from './$types';
 	import Nav from '$lib/common/components/Nav/Nav.svelte';
 	import Footer from '$lib/common/components/Footer.svelte';
-	import ApplicationBanner from '$lib/common/components/ApplicationBanner.svelte';
-	import FundraiserButton from '$lib/common/components/FundraiserButton.svelte';
+	import SiteNotices from '$lib/common/components/SiteNotices/SiteNotices.svelte';
 
 	interface Props {
 		data: LayoutData;
@@ -30,7 +29,7 @@
 	<meta name="theme-color" content="#111111" />
 </svelte:head>
 
-<ApplicationBanner announcement={data.applicationAnnouncement} />
+<SiteNotices notices={data.notices} kind="banner" />
 <header class="relative z-50 w-full">
 	<Nav />
 </header>
@@ -41,9 +40,7 @@
 <Footer email={data.email} />
 <div class="gradient pointer-events-none h-md w-full -mt-70"></div>
 
-{#if data.fundraiserTitle}
-	<FundraiserButton title={data.fundraiserTitle} isMerch={data.isMerch} />
-{/if}
+<SiteNotices notices={data.notices} kind="popup" />
 
 <style>
 	:global(*) {
