@@ -25,14 +25,14 @@ export interface SiteSettings {
 interface SiteSettingsQueryResult {
 	email: string | null;
 	socials: Social[] | null;
-	siteNotices: { notices: SiteNotice[] | null } | null;
+	notices: SiteNotice[] | null;
 }
 
 const siteSettingsQuery = defineQuery(`{
 	"email": *[_type == "info" && _id == "info"][0].email,
 	"socials": *[_type == "info" && _id == "info"][0].socials[] { _key, platform, link },
-	"siteNotices": *[_type == "siteNotices" && _id == "siteNotices"][0] {
-		"notices": notices[enabled == true] { _key, kind, message, link, icon, startsAt, endsAt }
+	"notices": *[_type == "siteNotices" && _id == "siteNotices"][0].notices[enabled == true] {
+		_key, kind, message, link, icon, startsAt, endsAt
 	}
 }`);
 
@@ -40,9 +40,9 @@ const fetchSiteSettings = async (): Promise<SiteSettings> => {
 	const result = await client.fetch<SiteSettingsQueryResult>(siteSettingsQuery);
 
 	return {
-		email: result.email,
-		socials: result.socials,
-		notices: result.siteNotices?.notices ?? []
+		email: result.email ?? null,
+		socials: result.socials ?? null,
+		notices: result.notices ?? []
 	};
 };
 

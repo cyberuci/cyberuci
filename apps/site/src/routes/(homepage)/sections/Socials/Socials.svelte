@@ -7,7 +7,7 @@
 	import SectionHeading from '$lib/common/components/SectionHeading.svelte';
 
 	interface Props {
-		socials: NonNullable<PageData['socials']['socials']>;
+		socials: NonNullable<PageData['socials']>;
 	}
 
 	let { socials }: Props = $props();

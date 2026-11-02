@@ -57,9 +57,11 @@ const fetchHome = async () => {
 };
 
 export const load: PageServerLoad = async () => {
-	return {
-		homepage: await fetchHome(),
-		socials: { socials: (await getSiteSettings()).socials },
-		nextEvent: await fetchNextCalEvent()
-	};
+	const [homepage, settings, nextEvent] = await Promise.all([
+		fetchHome(),
+		getSiteSettings(),
+		fetchNextCalEvent()
+	]);
+
+	return { homepage, socials: settings.socials, nextEvent };
 };
