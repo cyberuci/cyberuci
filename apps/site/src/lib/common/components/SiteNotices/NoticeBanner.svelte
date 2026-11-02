@@ -14,7 +14,7 @@
 {#if notice.link}
 	<a
 		href={notice.link}
-		{...external ? { target: '_blank', rel: 'noreferrer' } : {}}
+		{...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
 		class="notice-banner group focus-visible:outline-white min-h-11 w-full flex items-center justify-center gap-2 px-4 py-2.5 text-center decoration-none transition-colors focus-visible:outline-2 focus-visible:outline-offset--2"
 	>
 		<span class="type-body-1 font-500">{notice.message}</span>

@@ -30,7 +30,7 @@
 	description={data.homepage.competitions.description}
 />
 <Hackerlab hackerlab={data.homepage.hackerlab} />
-{#if data.socials.socials}
-	<Socials socials={data.socials.socials} />
+{#if data.socials}
+	<Socials socials={data.socials} />
 	<br /><br />
 {/if}
