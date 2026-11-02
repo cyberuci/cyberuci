@@ -1,5 +1,6 @@
 import type { PageServerLoad } from './$types';
 import { client } from '$lib/sanity/sanityClient';
+import { getSiteSettings } from '$lib/sanity/siteSettings.server';
 import { defineQuery } from 'groq';
 import { _formatCalendarData } from '$lib/common/components/Calendar/calendarData';
 import { Temporal } from 'temporal-polyfill';
@@ -55,26 +56,10 @@ const fetchHome = async () => {
 	return homeData;
 };
 
-const fetchSocials = async () => {
-	const socialsQuery = defineQuery(`
-		*[_type == 'info' && _id == "info"][0] {
-			socials
-		}
-	`);
-
-	const socialsData = await client.fetch(socialsQuery);
-
-	if (socialsData === null) {
-		throw Error('Socials document is null.');
-	}
-
-	return socialsData;
-};
-
 export const load: PageServerLoad = async () => {
 	return {
 		homepage: await fetchHome(),
-		socials: await fetchSocials(),
+		socials: { socials: (await getSiteSettings()).socials },
 		nextEvent: await fetchNextCalEvent()
 	};
 };

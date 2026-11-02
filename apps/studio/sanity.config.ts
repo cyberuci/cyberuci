@@ -5,6 +5,7 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
 import { colorInput } from '@sanity/color-input';
 import {
+	BellIcon,
 	CogIcon,
 	ConfettiIcon,
 	EarthAmericasIcon,
@@ -127,7 +128,11 @@ export default defineConfig({
 										S.listItem()
 											.title('Info')
 											.icon(EarthAmericasIcon)
-											.child(S.document().schemaType('info').documentId('info'))
+											.child(S.document().schemaType('info').documentId('info')),
+										S.listItem()
+											.title('Site Notices')
+											.icon(BellIcon)
+											.child(S.document().schemaType('siteNotices').documentId('siteNotices'))
 									])
 							),
 						S.divider(),
