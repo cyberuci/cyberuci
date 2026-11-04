@@ -2,7 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { Mail } from 'lucide-svelte';
 	import Logo from './Logo.svelte';
-	import { siDiscord, siInstagram, siGithub, siTiktok } from 'simple-icons';
+	import { siDiscord, siInstagram, siGithub, siTiktok, siLinkedin } from 'simple-icons';
 
 	interface Props {
 		email: string;
@@ -28,6 +28,7 @@
 				{ text: 'Instagram', href: 'https://www.instagram.com/cyberuci/' },
 				{ text: 'GitHub', href: 'https://github.com/cyberuci' },
 				{ text: 'TikTok', href: 'https://www.tiktok.com/@cyberuci' },
+				{ text: 'LinkedIn', href: `https://www.linkedin.com/company/cyber-uci/posts/` },
 				{ text: 'Email', href: `mailto:${email}` }
 			]
 		},
@@ -80,6 +81,10 @@
 			{:else if item.text === 'TikTok'}
 				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 					<path d={siTiktok.path} />
+				</svg>
+			{:else if item.text === 'LinkedIn'}
+				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d={siLinkedin.path} />
 				</svg>
 			{:else if item.href.startsWith('mailto:')}
 				<Mail class="mr-2 size-4" aria-hidden="true" />
