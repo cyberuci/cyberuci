@@ -18,23 +18,62 @@
 	const BLUE = '#3b82f6';
 	let liked = $state(false);
 	let heartBurst = $state(0);
-	let reposting = $state(false);
+	let repostIcon = $state<HTMLSpanElement>();
+	let logoEl = $state<HTMLImageElement>();
+	let instagramIcon = $state<SVGSVGElement>();
+	let tiktokIcon = $state<SVGSVGElement>();
 	let saved = $state(false);
 	let flying = $state(false);
 	let commenting = $state(false);
 	let commentText = $state('');
 	let comments = $state<string[]>([]);
 	let shareButton: HTMLButtonElement;
-	let whatWeDoSection: HTMLDivElement;
+	let nameLink: HTMLAnchorElement;
+	let instagramLink: HTMLAnchorElement;
+	let tiktokLink: HTMLAnchorElement;
+	let whatWeDoHeader: HTMLHeadingElement;
+	let likeStreak = $state(0);
+	let bookmarkHint = $state('');
+	let bookmarkHintCount = $state(0);
+	let likeStreakTimer: ReturnType<typeof setTimeout> | undefined;
+	let bookmarkHintTimer: ReturnType<typeof setTimeout> | undefined;
+	const burstHeartSize = $derived(Math.min(56 * (1 + (likeStreak - 1) * 0.35), 160));
 
 	function toggleLike() {
-		liked = !liked;
+		likeStreak++;
+		clearTimeout(likeStreakTimer);
+		likeStreakTimer = setTimeout(() => (likeStreak = 0), 500);
+
+		// Rapid clicks keep the heart liked instead of flickering on and off
+		liked = likeStreak > 1 ? true : !liked;
 		if (liked) heartBurst++;
 	}
 
+	function toggleSaved() {
+		clearTimeout(bookmarkHintTimer);
+		saved = !saved;
+		if (!saved) {
+			bookmarkHint = '';
+			return;
+		}
+
+		const shortcut = /Mac|iPhone|iPad/.test(navigator.userAgent) ? '⌘+D' : 'Ctrl+D';
+		bookmarkHint = `Press ${shortcut}`;
+		bookmarkHintCount++;
+		bookmarkHintTimer = setTimeout(() => (bookmarkHint = ''), 2200);
+	}
+
 	function repost() {
-		reposting = false;
-		requestAnimationFrame(() => (reposting = true));
+		repostIcon?.animate(
+			[{ transform: 'rotate(0deg) scale(1)' }, { transform: 'rotate(1080deg) scale(1.2)' }],
+			{ duration: 1500, easing: 'ease-in-out' }
+		);
+		for (const el of [logoEl, instagramIcon, tiktokIcon]) {
+			el?.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(1080deg)' }], {
+				duration: 1500,
+				easing: 'ease-in-out'
+			});
+		}
 	}
 
 	function submitComment(e: SubmitEvent) {
@@ -48,34 +87,61 @@
 	async function flyToWhatWeDo() {
 		if (flying) return;
 
-		const target = whatWeDoSection;
 		const icon = shareButton.querySelector('svg');
-		if (!target || !icon) return;
+		if (!whatWeDoHeader || !icon) return;
 
-		const startScrollY = window.scrollY;
-		const maxScrollY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-		// Document-space landing spot, just below the bottom of the section
-		const landingDocY = target.getBoundingClientRect().bottom + startScrollY + 16;
-		const targetScrollY = Math.min(maxScrollY, Math.max(0, landingDocY - window.innerHeight * 0.6));
+		type Point = { x: number; y: number };
+		type Stop = { point: () => Point; end: 'spin' | 'hover' | 'exit' };
+
+		const maxScroll = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+		const centerOf = (el: Element): Point => {
+			const r = el.getBoundingClientRect();
+			return { x: r.left + r.width / 2 + window.scrollX, y: r.top + r.height / 2 + window.scrollY };
+		};
+		const footer = document.querySelector('footer');
+		const hoverAbove = (el: Element): Point => {
+			const p = centerOf(el);
+			return { x: p.x, y: p.y - el.getBoundingClientRect().height / 2 - 16 };
+		};
+		const stops: Stop[] = [
+			{ point: () => hoverAbove(nameLink), end: 'spin' },
+			{ point: () => hoverAbove(instagramLink), end: 'spin' },
+			{ point: () => hoverAbove(tiktokLink), end: 'spin' },
+			...(footer
+				? [
+						{
+							point: () => {
+								const r = footer.getBoundingClientRect();
+								return { x: r.left + r.width / 2 + window.scrollX, y: r.top + window.scrollY - 32 };
+							},
+							end: 'hover' as const
+						}
+					]
+				: []),
+			{ point: () => centerOf(whatWeDoHeader), end: 'exit' }
+		];
 
 		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			window.scrollTo({ top: targetScrollY, behavior: 'instant' });
+			const top = centerOf(whatWeDoHeader).y - window.innerHeight * 0.45;
+			window.scrollTo({ top: Math.min(maxScroll(), Math.max(0, top)), behavior: 'instant' });
 			return;
 		}
 
 		flying = true;
 		const start = icon.getBoundingClientRect();
-		const startDocY = start.top + startScrollY;
-		const scrollDistance = targetScrollY - startScrollY;
+		const size = start.width;
 		const plane = icon.cloneNode(true) as SVGSVGElement;
+		let pos: Point = {
+			x: start.left + size / 2 + window.scrollX,
+			y: start.top + size / 2 + window.scrollY
+		};
+		let angle = 0;
 
 		plane.setAttribute('aria-hidden', 'true');
 		Object.assign(plane.style, {
 			position: 'fixed',
-			left: `${start.left}px`,
-			top: `${start.top}px`,
-			width: `${start.width}px`,
-			height: `${start.height}px`,
+			width: `${size}px`,
+			height: `${size}px`,
 			zIndex: '1000',
 			color: BLUE,
 			stroke: BLUE,
@@ -83,47 +149,64 @@
 		});
 		document.body.append(plane);
 
-		const animatePlane = (
-			keyframes: Parameters<Element['animate']>[0],
-			duration: number,
-			easing: string
-		): Promise<void> =>
-			new Promise((resolve) => {
-				plane.animate(keyframes, { duration, easing }).onfinish = () => resolve();
-			});
-
-		try {
-			await animatePlane(
-				[{ transform: 'rotate(0deg)' }, { transform: 'rotate(720deg)' }],
-				900,
-				'ease-in-out'
-			);
-			const flightDuration = Math.min(2500, Math.max(700, Math.abs(landingDocY - startDocY) * 1.2));
-			await new Promise<void>((resolve) => {
+		const place = (offsetY = 0) => {
+			plane.style.left = `${pos.x - window.scrollX - size / 2}px`;
+			plane.style.top = `${pos.y - window.scrollY - size / 2 + offsetY}px`;
+		};
+		const easeInOut = (p: number) => (p < 0.5 ? 4 * p ** 3 : 1 - (-2 * p + 2) ** 3 / 2);
+		const tween = (duration: number, ease: (p: number) => number, frame: (t: number) => void) =>
+			new Promise<void>((resolve) => {
 				const startedAt = performance.now();
-				const fly = (now: number) => {
-					const progress = Math.min((now - startedAt) / flightDuration, 1);
-					const easedProgress = 1 - (1 - progress) ** 3;
-					window.scrollTo({
-						top: startScrollY + scrollDistance * easedProgress,
-						behavior: 'instant'
-					});
-					const docY = startDocY + (landingDocY - startDocY) * easedProgress;
-					plane.style.top = `${docY - window.scrollY}px`;
-
-					if (progress < 1) requestAnimationFrame(fly);
+				const step = (now: number) => {
+					const p = Math.min((now - startedAt) / duration, 1);
+					frame(ease(p));
+					if (p < 1) requestAnimationFrame(step);
 					else resolve();
 				};
-				requestAnimationFrame(fly);
+				requestAnimationFrame(step);
 			});
-			await animatePlane(
-				[
-					{ transform: 'rotate(0deg)', opacity: 1 },
-					{ transform: 'rotate(360deg)', opacity: 0 }
-				],
-				900,
-				'ease-in-out'
-			);
+		const rotateTo = (target: number, duration: number, fade = false) => {
+			const from = angle;
+			return tween(duration, easeInOut, (t) => {
+				angle = from + (target - from) * t;
+				plane.style.transform = `rotate(${angle}deg)`;
+				if (fade) plane.style.opacity = `${1 - t}`;
+			});
+		};
+
+		try {
+			place();
+			await rotateTo(angle + 720, 900);
+
+			for (const stop of stops) {
+				const to = stop.point();
+				const from = pos;
+				// The icon points up-right at 0deg, so offset by 45deg to face the direction of travel
+				const heading = (Math.atan2(to.y - from.y, to.x - from.x) * 180) / Math.PI + 45;
+				const delta = ((((heading - angle) % 360) + 540) % 360) - 180;
+				await rotateTo(angle + delta, 300);
+
+				const fromScroll = window.scrollY;
+				const toScroll = Math.min(maxScroll(), Math.max(0, to.y - window.innerHeight * 0.45));
+				const duration = Math.min(
+					1800,
+					Math.max(700, Math.hypot(to.x - from.x, to.y - from.y) * 0.8)
+				);
+				await tween(duration, easeInOut, (t) => {
+					window.scrollTo({ top: fromScroll + (toScroll - fromScroll) * t, behavior: 'instant' });
+					pos = { x: from.x + (to.x - from.x) * t, y: from.y + (to.y - from.y) * t };
+					place();
+				});
+
+				if (stop.end === 'spin') await rotateTo(angle + 360, 600);
+				else if (stop.end === 'hover')
+					await tween(
+						1100,
+						(p) => p,
+						(t) => place(-Math.sin(t * Math.PI * 2) * 8)
+					);
+				else await rotateTo(angle + 360, 900, true);
+			}
 		} finally {
 			plane.remove();
 			flying = false;
@@ -131,12 +214,17 @@
 	}
 
 	onMount(() => {
-		if (document.querySelector('script[data-snapwidget]')) return;
+		const cleanup = () => {
+			clearTimeout(likeStreakTimer);
+			clearTimeout(bookmarkHintTimer);
+		};
+		if (document.querySelector('script[data-snapwidget]')) return cleanup;
 
 		const script = document.createElement('script');
 		script.src = 'https://snapwidget.com/js/snapwidget.js';
 		script.dataset.snapwidget = '';
 		document.head.append(script);
+		return cleanup;
 	});
 </script>
 
@@ -151,8 +239,14 @@
 
 	<div class="mb-24 overflow-hidden border border-[#fff] rounded-xl border-solid bg-[#000]">
 		<div class="flex items-center gap-3 px-4 py-3">
-			<img src={logoImg} alt="Cyber@UCI logo" class="size-10 rounded-full object-cover" />
+			<img
+				src={logoImg}
+				alt="Cyber@UCI logo"
+				class="size-10 rounded-full object-cover"
+				bind:this={logoEl}
+			/>
 			<a
+				bind:this={nameLink}
 				class="type-label text-bluedark-11 font-600 decoration-none visited:text-bluedark-11 hover:underline"
 				href={INSTAGRAM_URL}
 				target="_blank"
@@ -162,26 +256,40 @@
 			</a>
 			<span class="type-label text-graydark-11" aria-hidden="true">•</span>
 			<a
+				bind:this={instagramLink}
 				class="flex items-center gap-3 px-4 py-3 type-label text-bluedark-11 font-600 decoration-none visited:text-bluedark-11 hover:underline"
 				href={INSTAGRAM_URL}
 				target="_blank"
 				rel="noopener noreferrer"
 			>
 				<div>Follow</div>
-				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+				<svg
+					class="mr-2 size-4"
+					bind:this={instagramIcon}
+					viewBox="0 0 24 24"
+					fill="currentColor"
+					aria-hidden="true"
+				>
 					<path d={siInstagram.path} />
 				</svg>
 			</a>
 
 			<span class="type-label text-graydark-11" aria-hidden="true">•</span>
 			<a
+				bind:this={tiktokLink}
 				class="flex items-center gap-3 px-4 py-3 type-label text-bluedark-11 font-600 decoration-none visited:text-bluedark-11 hover:underline"
 				href={TIKTOK_URL}
 				target="_blank"
 				rel="noopener noreferrer"
 			>
 				<div>Follow</div>
-				<svg class="mr-2 size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+				<svg
+					class="mr-2 size-4"
+					bind:this={tiktokIcon}
+					viewBox="0 0 24 24"
+					fill="currentColor"
+					aria-hidden="true"
+				>
 					<path d={siTiktok.path} />
 				</svg>
 			</a>
@@ -194,7 +302,7 @@
 						{#each Array(3), i (i)}
 							<div class="heart-cell">
 								<Heart
-									size={56}
+									size={burstHeartSize}
 									color={BLUE}
 									fill={BLUE}
 									class="heart-pop"
@@ -234,12 +342,7 @@
 					<MessageCircle size={24} class={iconClass} />
 				</button>
 				<button class="icon-btn" aria-label="Repost" onclick={repost}>
-					<span
-						class="inline-flex"
-						class:swirl={reposting}
-						onanimationend={() => (reposting = false)}
-						role="presentation"
-					>
+					<span class="inline-flex" bind:this={repostIcon}>
 						<Repeat2 size={24} class={iconClass} />
 					</span>
 				</button>
@@ -253,19 +356,21 @@
 					<Send size={24} class={flying ? 'opacity-0' : iconClass} />
 				</button>
 			</div>
-			<button
-				class="icon-btn"
-				aria-label="Save"
-				aria-pressed={saved}
-				onclick={() => (saved = !saved)}
-			>
-				<Bookmark
-					size={24}
-					class={iconClass}
-					color={saved ? BLUE : '#fff'}
-					fill={saved ? BLUE : 'none'}
-				/>
-			</button>
+			<div class="relative">
+				{#if bookmarkHint}
+					{#key bookmarkHintCount}
+						<div class="bookmark-hint font-pixelify" role="status">{bookmarkHint}</div>
+					{/key}
+				{/if}
+				<button class="icon-btn" aria-label="Save" aria-pressed={saved} onclick={toggleSaved}>
+					<Bookmark
+						size={24}
+						class={iconClass}
+						color={saved ? BLUE : '#fff'}
+						fill={saved ? BLUE : 'none'}
+					/>
+				</button>
+			</div>
 		</div>
 
 		<p class="m-0 px-4 pt-3 type-body-1 text-graydark-12">
@@ -298,10 +403,10 @@
 		<div class="pb-4"></div>
 	</div>
 
-	<div bind:this={whatWeDoSection} class="grid items-start gap-y-6 lg:grid-cols-16">
+	<div class="grid items-start gap-y-6 lg:grid-cols-16">
 		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
 			<BadgeQuestionMark size={18} />
-			<h2 class="m-0 type-label font-550">WHAT WE DO</h2>
+			<h2 bind:this={whatWeDoHeader} class="m-0 type-label font-550">WHAT WE DO</h2>
 		</div>
 		<div class="max-w-prose type-body-2 text-2 lg:col-start-5 lg:col-end-17 space-y-4">
 			<p class="m-0">{data.intro}</p>
@@ -345,13 +450,33 @@
 		cursor: default;
 	}
 
-	.swirl {
-		animation: swirl 0.7s ease-in-out;
+	.bookmark-hint {
+		position: absolute;
+		right: 0;
+		bottom: calc(100% + 0.25rem);
+		color: #3b82f6;
+		font-size: 1.25rem;
+		white-space: nowrap;
+		pointer-events: none;
+		opacity: 0;
+		animation: hint-float 2.2s ease-out forwards;
 	}
 
-	@keyframes swirl {
-		to {
-			transform: rotate(720deg) scale(1.2);
+	@keyframes hint-float {
+		0% {
+			opacity: 0;
+			transform: translateY(12px);
+		}
+		20% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		70% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+			transform: translateY(-24px);
 		}
 	}
 
