@@ -1,13 +1,15 @@
 <script lang="ts">
-	import type { SanityImageReference } from '$lib/sanity/types';
+	import {
+		createImageUrlBuilder as imageUrlBuilder,
+		type SanityImageSource
+	} from '@sanity/image-url';
 	import { client } from '$lib/sanity/sanityClient';
-	import imageUrlBuilder from '@sanity/image-url';
 	import { User } from 'lucide-svelte';
 
 	const builder = imageUrlBuilder(client);
 
 	interface Props {
-		image: SanityImageReference | undefined;
+		image: SanityImageSource | undefined;
 		name: string;
 	}
 

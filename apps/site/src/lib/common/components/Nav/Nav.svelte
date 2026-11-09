@@ -7,7 +7,10 @@
 </script>
 
 <nav class="relative space-x w-full flex items-center justify-between py-3">
-	<a href={resolve('/')} class="flex shrink-0 items-center gap-2 py-2 text decoration-none">
+	<a
+		href={resolve('/(homepage)')}
+		class="flex shrink-0 items-center gap-2 py-2 text decoration-none"
+	>
 		<div class="h-7 text-0"><Logo /></div>
 		<GlitchTypewriter />
 	</a>

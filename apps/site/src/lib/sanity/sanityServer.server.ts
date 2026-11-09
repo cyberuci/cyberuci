@@ -1,6 +1,6 @@
-import { dev } from '$app/environment';
-import { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } from '$env/static/public';
-import { SANITY_TOKEN } from '$env/static/private';
+import { dev } from '$app/env';
+import { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } from '$app/env/public';
+import { SANITY_TOKEN } from '$app/env/private';
 import { createClient } from '@sanity/client';
 
 const client = createClient({

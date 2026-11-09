@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { client } from '$lib/sanity/sanityClient';
-	import imageUrlBuilder from '@sanity/image-url';
+	import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
 
 	const builder = imageUrlBuilder(client);
 

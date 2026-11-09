@@ -96,7 +96,7 @@
 <footer class="space-x w-full space-y-8">
 	<div class="justify-between md:flex">
 		<div class="mb-16 mt-4 h-24 max-w-full w-48 flex">
-			<a href={resolve('/')}><Logo /></a>
+			<a href={resolve('/(homepage)')}><Logo /></a>
 		</div>
 		<div
 			class="grid grid-cols-1 max-w-60% w-full gap-8 md:[grid-template-columns:var(--cols)]"

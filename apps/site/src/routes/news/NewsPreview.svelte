@@ -1,7 +1,9 @@
 <script lang="ts">
-	import imageUrlBuilder from '@sanity/image-url';
+	import {
+		createImageUrlBuilder as imageUrlBuilder,
+		type SanityImageSource
+	} from '@sanity/image-url';
 	import { client } from '$lib/sanity/sanityClient';
-	import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 	interface Props {
 		title: string;

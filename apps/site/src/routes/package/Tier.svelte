@@ -1,8 +1,8 @@
 <script lang="ts">
 	interface Props {
 		name: string;
-		price: string;
-		inheritedPerks: string;
+		price: string | null;
+		inheritedPerks: string | null;
 		perks: string[];
 		color: string;
 	}

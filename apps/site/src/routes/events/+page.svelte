@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { tick } from 'svelte';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import { Temporal } from 'temporal-polyfill';
 	import { siDiscord } from 'simple-icons';
 	import DOMPurify from 'dompurify';

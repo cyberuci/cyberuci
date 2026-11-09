@@ -19,7 +19,7 @@
 	} from 'lucide-svelte';
 
 	import { client } from '$lib/sanity/sanityClient';
-	import imageUrlBuilder from '@sanity/image-url';
+	import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
 	import Title from '$lib/common/components/Title.svelte';
 
 	const builder = imageUrlBuilder(client);
@@ -60,14 +60,16 @@
 					<span class="pb-.5">Get in touch</span>
 				</a>
 			</div>
-			<a
-				href={data.corporatePage.sponsorshipPackage.file.asset.url}
-				download
-				class="mr-8 flex items-center gap-2 type-body-2 text-gray-11 decoration-none dark:text-graydark-11 hover:decoration-underline"
-			>
-				<Download size={16} />
-				<span class="pb-.5">Download PDF</span>
-			</a>
+			{#if data.corporatePage.sponsorshipPackage.file.asset?.url}
+				<a
+					href={data.corporatePage.sponsorshipPackage.file.asset.url}
+					download
+					class="mr-8 flex items-center gap-2 type-body-2 text-gray-11 decoration-none dark:text-graydark-11 hover:decoration-underline"
+				>
+					<Download size={16} />
+					<span class="pb-.5">Download PDF</span>
+				</a>
+			{/if}
 		</div>
 	</section>
 

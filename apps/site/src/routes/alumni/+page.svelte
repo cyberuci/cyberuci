@@ -1,6 +1,9 @@
 <script lang="ts">
 	import Title from '$lib/common/components/Title.svelte';
-	import imageUrlBuilder from '@sanity/image-url';
+	import {
+		createImageUrlBuilder as imageUrlBuilder,
+		type SanityImageSource
+	} from '@sanity/image-url';
 	import { client } from '$lib/sanity/sanityClient';
 	import type { PageData } from './$types';
 
@@ -11,7 +14,12 @@
 	const builder = imageUrlBuilder(client);
 
 	let { data }: Props = $props();
-	let alumniProfiles = data.alumni;
+
+	type AlumniProfile = PageData['alumni'][number] & {
+		personal: {
+			image?: SanityImageSource;
+		} | null;
+	};
 
 	const avatarClasses = ['avatar-blue', 'avatar-purple', 'avatar-teal', 'avatar-red'];
 
@@ -36,9 +44,21 @@
 		return parseInt(year) * 10 + (seasonOrder[season] ?? 0);
 	}
 
+	const visibleAlumni = $derived(
+		(data.alumni as AlumniProfile[]).filter(
+			(
+				alumni
+			): alumni is AlumniProfile & {
+				personal: NonNullable<AlumniProfile['personal']>;
+				currentRole: NonNullable<AlumniProfile['currentRole']>;
+				cyberUCI: NonNullable<AlumniProfile['cyberUCI']>;
+			} => Boolean(alumni.personal && alumni.currentRole && alumni.cyberUCI)
+		)
+	);
+
 	const sortedAlumni = $derived(
-		[...alumniProfiles].sort((a, b) => {
-			let cmp = 0;
+		[...visibleAlumni].sort((a, b) => {
+			let cmp;
 			if (sortKey === 'year') {
 				cmp = termToNumber(a.personal.graduationTerm) - termToNumber(b.personal.graduationTerm);
 			} else {
@@ -90,7 +110,7 @@
 						class="border-1 border-gray11 rounded-full border-solid background-4 px-3 py-1 text-sm type-body-1 text-gray7"
 						>{alumni.personal.graduationTerm}</span
 					>
-					{#each alumni.personal.majors as major (major)}
+					{#each alumni.personal.majors ?? [] as major (major)}
 						<span
 							class="border-1 border-gray11 rounded-full border-solid background-4 px-3 py-1 text-sm type-body-1 text-gray7"
 							>{major}</span

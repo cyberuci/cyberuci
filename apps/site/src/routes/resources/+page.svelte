@@ -3,44 +3,14 @@
 	import type { PageData } from './$types';
 	import ResourceType from './ResourceType.svelte';
 
-	import type {
-		PortableTextBlock,
-		PortableTextMarkDefinition,
-		ArbitraryTypedObject,
-		PortableTextSpan
-	} from '@portabletext/types';
-
 	let { data }: { data: PageData } = $props();
 
 	let resourceSelected: Record<string, boolean> = $state({});
 
-	export interface Resources {
-		_id: string;
-		title: string;
-		content: PortableTextBlock<
-			PortableTextMarkDefinition,
-			ArbitraryTypedObject | PortableTextSpan,
-			string,
-			string
-		>[];
-		externalResource: boolean;
-		category: string;
-		link: string;
-		thumbnail: {
-			asset: {
-				url: string;
-			};
-			alt: string;
-			isLogo: boolean;
-		};
-		tags: {
-			title: string;
-			type: string;
-		}[];
-	}
+	export type Resources = PageData['resources'][number];
 
 	for (const resource of data.resources) {
-		for (const tag of resource.tags) {
+		for (const tag of resource.tags ?? []) {
 			resourceSelected[tag.title.toLowerCase()] = true;
 		}
 	}
@@ -58,12 +28,12 @@
 	}
 
 	const ourResources = $derived(
-		data.resources.filter((r: Resources) => !r.externalResource && matchesFilter(r))
+		data.resources.filter((resource) => !resource.externalResource && matchesFilter(resource))
 	);
 	const externalResources = $derived(
-		data.resources.filter((r: Resources) => r.externalResource && matchesFilter(r))
+		data.resources.filter((resource) => resource.externalResource && matchesFilter(resource))
 	);
-	const canvas = $derived(data.resources.filter((r: Resources) => findCanvas(r)));
+	const canvas = $derived(data.resources.filter((resource) => findCanvas(resource)));
 </script>
 
 <svelte:head>

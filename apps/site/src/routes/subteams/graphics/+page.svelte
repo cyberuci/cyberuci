@@ -35,7 +35,7 @@
 			<h2 class="m-0 type-label font-550">WHAT WE DO</h2>
 		</div>
 		<div class="flex flex-col gap-6 lg:col-start-5 lg:col-end-17 md:flex-row">
-			<div class="flex-1 type-body-2 text-2 space-y-4">
+			<div class="flex-1 type-body-1 text-2 space-y-4">
 				<p class="m-0">
 					Graphics is the face of Cyber@UCI! We bring the club's ideas and events to life through
 					creative design. Our team is responsible for:
@@ -67,8 +67,8 @@
 							class="asset-thumb max-h-full max-w-full object-contain"
 						/>
 					</div>
-					<div class="flex items-center justify-between gap-2 px-3 py-2 type-label text">
-						<span>2026 Board Member Hoodie Design</span>
+					<div class="flex items-center justify-center gap-2 px-3 py-2 type-label text">
+						<span>2026 Hoodie Design</span>
 					</div>
 				</a>
 			</div>

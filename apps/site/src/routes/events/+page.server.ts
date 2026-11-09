@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/public';
+import { PUBLIC_EVENT_IDEAS_FORM_URL } from '$app/env/public';
 
 import { _formatCalendarData } from '$lib/common/components/Calendar/calendarData';
 import { loadAllCalendars } from '$lib/common/components/Calendar/transform';
@@ -12,6 +12,6 @@ export const load = async ({ setHeaders }) => {
 	return {
 		events: loadAllCalendars(events),
 		colors,
-		eventIdeasFormUrl: env.PUBLIC_EVENT_IDEAS_FORM_URL ?? null
+		eventIdeasFormUrl: PUBLIC_EVENT_IDEAS_FORM_URL ?? null
 	};
 };
