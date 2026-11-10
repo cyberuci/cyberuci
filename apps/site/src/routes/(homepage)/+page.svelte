@@ -18,7 +18,7 @@
 	<title>Cyber @ UCI</title>
 </svelte:head>
 
-<Header data={data.homepage.hero} announcement={data.applicationAnnouncement} />
+<Header data={data.homepage.hero} />
 
 {#if data.nextEvent}
 	<Events event={data.nextEvent} />
