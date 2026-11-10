@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type { PortableTextBlock } from '@portabletext/types';
-	import { PortableText } from '@portabletext/svelte';
+	import { PortableText, type InputValue } from '@portabletext/svelte';
 
 	import Link from './marks/Link.svelte';
 
@@ -9,7 +8,7 @@
 	import Heading from './blocks/Heading.svelte';
 
 	interface Props {
-		value: PortableTextBlock[];
+		value: InputValue | null;
 	}
 
 	let { value }: Props = $props();
@@ -17,7 +16,7 @@
 
 <PortableText
 	onMissingComponent={false}
-	{value}
+	value={value ?? []}
 	components={{
 		types: {
 			link: Link,
@@ -28,8 +27,13 @@
 		},
 		block: {
 			normal: Paragraph,
+			blockquote: undefined,
+			h1: undefined,
 			h2: Heading,
-			h3: Heading
+			h3: Heading,
+			h4: undefined,
+			h5: undefined,
+			h6: undefined
 		}
 	}}
 />

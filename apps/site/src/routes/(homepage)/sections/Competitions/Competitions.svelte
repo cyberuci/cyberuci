@@ -3,8 +3,10 @@
 	import { resolve } from '$app/paths';
 	import { client } from '$lib/sanity/sanityClient';
 	import { Medal, Info } from 'lucide-svelte';
-	import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
-	import imageUrlBuilder from '@sanity/image-url';
+	import {
+		createImageUrlBuilder as imageUrlBuilder,
+		type SanityImageSource
+	} from '@sanity/image-url';
 
 	// Internal Components and Scripts
 	import SubHeading from '$lib/common/components/SectionHeading.svelte';
@@ -40,12 +42,12 @@
 				</div>
 				<p class="mb-2 type-heading-2">Competitions</p>
 				<h2 class="mb-4 type-heading-2 text-blue-11 dark:text-bluedark-11">{subtitle}</h2>
-				<p class="line-height-relaxed type-body-1">{description}</p>
+				<p class="type-body-1 line-height-relaxed">{description}</p>
 			</div>
 
 			<a
 				href={resolve('/timeline')}
-				class="mt-6 flex items-center gap-2 text-blue-11 type-body-1 decoration-none transition-colors dark:text-bluedark-11 hover:text-blue-12 dark:hover:text-bluedark-12"
+				class="mt-6 flex items-center gap-2 type-body-1 text-blue-11 decoration-none transition-colors dark:text-bluedark-11 hover:text-blue-12 dark:hover:text-bluedark-12"
 			>
 				<Info size={16} />
 				<span>Learn more</span>

@@ -3,8 +3,10 @@
 	import { goto } from '$app/navigation';
 	import { CalendarDays, Medal, FlaskConical, MessagesSquare } from 'lucide-svelte';
 	import { client } from '$lib/sanity/sanityClient';
-	import imageUrlBuilder from '@sanity/image-url';
-	import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+	import {
+		createImageUrlBuilder as imageUrlBuilder,
+		type SanityImageSource
+	} from '@sanity/image-url';
 
 	// Internal Components and Scripts
 	import ListItem from './ListItem.svelte';

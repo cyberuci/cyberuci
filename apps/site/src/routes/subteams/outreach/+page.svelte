@@ -3,7 +3,10 @@
 	import Title from '$lib/common/components/Title.svelte';
 	import ScanLog from './ScanLog.svelte';
 	import { client } from '$lib/sanity/sanityClient';
-	import imageUrlBuilder from '@sanity/image-url';
+	import {
+		createImageUrlBuilder as imageUrlBuilder,
+		type SanityImageSource
+	} from '@sanity/image-url';
 	import { ScanSearch, BadgeQuestionMark } from 'lucide-svelte';
 
 	interface Props {
@@ -14,6 +17,10 @@
 
 	const builder = imageUrlBuilder(client);
 	const { title, intro, whatWeDo, scanLog, focusAreas } = data.outreach;
+
+	function isSlide(image: unknown): image is SanityImageSource & { alt?: string | null } {
+		return !!image && typeof image === 'object' && 'asset' in image;
+	}
 </script>
 
 <svelte:head>
@@ -44,16 +51,18 @@
 				<div class="slider-box">
 					<div class="slider-inner">
 						{#each Object.entries(whatWeDo.images) as [key, image] (key)}
-							<figure class="slide">
-								<div class="slide-frame">
-									<img
-										class="rounded-lg"
-										src={builder.image(image).width(1500).height(900).dpr(2).url()}
-										alt={image.alt}
-									/>
-								</div>
-								<figcaption class="bg-black my-2 text-center type-body-1">{image.alt}</figcaption>
-							</figure>
+							{#if isSlide(image)}
+								<figure class="slide">
+									<div class="slide-frame">
+										<img
+											class="rounded-lg"
+											src={builder.image(image).width(1500).height(900).dpr(2).url()}
+											alt={image.alt ?? ''}
+										/>
+									</div>
+									<figcaption class="bg-black my-2 text-center type-body-1">{image.alt}</figcaption>
+								</figure>
+							{/if}
 						{/each}
 					</div>
 				</div>

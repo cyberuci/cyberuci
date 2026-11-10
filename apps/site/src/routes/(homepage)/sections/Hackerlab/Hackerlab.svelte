@@ -1,9 +1,11 @@
 <script lang="ts">
 	// Libraries
 	import { Clock, ExternalLink, FlaskConical, MapPin } from 'lucide-svelte';
-	import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+	import {
+		createImageUrlBuilder as imageUrlBuilder,
+		type SanityImageSource
+	} from '@sanity/image-url';
 	import { client } from '$lib/sanity/sanityClient';
-	import imageUrlBuilder from '@sanity/image-url';
 
 	// Internal Components and Scripts
 	import SectionHeading from '$lib/common/components/SectionHeading.svelte';
@@ -15,13 +17,8 @@
 
 	interface Props {
 		hackerlab: {
-			description: string;
-			images: SanityImageSource;
-			location: {
-				_type: 'image';
-				alt: 'Hackerlab Location';
-				asset: [object];
-			};
+			description: string | null;
+			location: SanityImageSource & { alt?: string };
 		};
 	}
 
@@ -65,7 +62,7 @@
 					<FlaskConical size={20} class="meta-icon" />
 				</div>
 				<p class="mb-2 type-heading-2">Visit HackerLab</p>
-				<p class="line-height-relaxed type-body-1">{hackerlab.description}</p>
+				<p class="type-body-1 line-height-relaxed">{hackerlab.description}</p>
 
 				<ul class="m-0 mt-4 flex flex-col list-none gap-3 p-0 type-body-1">
 					<li class="flex items-start gap-2">

@@ -4,7 +4,6 @@
 		ChevronDown,
 		Menu,
 		X,
-		ArrowRight,
 		BookMarked,
 		Building2,
 		FileText,
@@ -62,15 +61,7 @@
 	</li>
 {/snippet}
 
-{#snippet Group({
-	name,
-	items,
-	footer
-}: {
-	name: string;
-	items: ListItemProps[];
-	footer?: { href: string; title: string; subtitle: string };
-})}
+{#snippet Group({ name, items }: { name: string; items: ListItemProps[] })}
 	<li class="list-none">
 		<button
 			type="button"
@@ -128,7 +119,7 @@
 		transition:fly={{ y: '-100%', easing: cubicOut }}
 	>
 		<div class="flex items-center justify-between px-5 py-3">
-			<a href={resolve('/')} class="h-7 text-0" onclick={closeMenu}><Logo /></a>
+			<a href={resolve('/(homepage)')} class="h-7 text-0" onclick={closeMenu}><Logo /></a>
 			<button
 				type="button"
 				class="nav-touch cursor-pointer border-none bg-transparent p-3 text line-height-0"

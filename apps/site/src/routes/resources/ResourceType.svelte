@@ -21,7 +21,7 @@
 		Pinned: '#f78400'
 	};
 
-	let category = pinned ? 'Pinned' : resource.category;
+	let category = pinned ? 'Pinned' : (resource.category ?? 'General');
 </script>
 
 {#if resource}
@@ -59,7 +59,7 @@
 			</div>
 
 			<div class="flex flex-wrap">
-				{#each resource.tags as tag (tag)}
+				{#each resource.tags ?? [] as tag (tag)}
 					<p class="my-2 mb-0.5 mr-1 type-label font-normal uppercase">[{tag.title}]</p>
 				{/each}
 			</div>

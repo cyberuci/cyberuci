@@ -1,29 +1,13 @@
 import { client } from '$lib/sanity/sanityClient';
 import { defineQuery } from 'groq';
 
-import { GOOGLE_CALENDAR_API_KEY } from '$env/static/private';
+import { GOOGLE_CALENDAR_API_KEY } from '$app/env/private';
 import { type GoogleCalendarEvent } from '$lib/common/components/Calendar/types';
 import { Temporal } from 'temporal-polyfill';
 import 'temporal-polyfill/global';
 import { type CalendarType } from '@schedule-x/calendar';
 
 const BASE_URL = 'https://www.googleapis.com/calendar/v3/calendars/';
-
-interface Color {
-	_type: string;
-	alpha: number;
-	hex: string;
-	hsl: object;
-	hsv: object;
-}
-
-interface CalendarInfo {
-	title: string;
-	calendarLink: string;
-	backgroundColor: Color;
-	supportingColor: Color;
-	textColor: Color;
-}
 
 const getCalendarInfo = async () => {
 	const calendarDataQuery = defineQuery(`
@@ -35,13 +19,12 @@ const getCalendarInfo = async () => {
 			textColor
 		}
   `);
-	const calendarData = await client.fetch(calendarDataQuery);
 
-	return { calendarData };
+	return await client.fetch(calendarDataQuery);
 };
 
 export const _formatCalendarData = async () => {
-	const CALENDAR_INFO: Record<string, CalendarInfo[]> = await getCalendarInfo();
+	const calendars = (await getCalendarInfo()) ?? [];
 
 	const now = Temporal.Now.plainDateISO();
 	const oneYearAgo = now.subtract({ years: 1 });
@@ -52,8 +35,6 @@ export const _formatCalendarData = async () => {
 		singleEvents: 'true',
 		orderBy: 'startTime'
 	};
-
-	const calendars = CALENDAR_INFO['calendarData'];
 
 	const items = await Promise.all(
 		calendars.map(async (calendar) => {
@@ -78,9 +59,9 @@ export const _formatCalendarData = async () => {
 		calendarColors[calendar.title] = {
 			colorName: calendar.title,
 			lightColors: {
-				main: calendar.backgroundColor.hex,
-				container: calendar.supportingColor.hex,
-				onContainer: calendar.textColor.hex
+				main: calendar.backgroundColor.hex ?? '#000000',
+				container: calendar.supportingColor.hex ?? '#000000',
+				onContainer: calendar.textColor.hex ?? '#000000'
 			}
 		};
 	});

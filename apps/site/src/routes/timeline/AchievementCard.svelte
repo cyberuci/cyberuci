@@ -2,12 +2,12 @@
 	import { slide } from 'svelte/transition';
 	import { ChevronDown } from 'lucide-svelte';
 	import { client } from '$lib/sanity/sanityClient';
-	import imageUrlBuilder from '@sanity/image-url';
+	import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
 	interface Props {
 		title: string;
 		description: string;
 		placing?: string | null;
-		category?: { name: string; color?: { hex: string } | null } | null;
+		category?: { name: string; color?: { hex?: string } | null } | null;
 		image?: { asset?: { _ref?: string } } | null;
 	}
 

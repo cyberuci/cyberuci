@@ -29,5 +29,14 @@
   "overrides": {
     "temporal-polyfill": "0.3.0"
   },
+  "pnpm": {
+    "packageExtensions": {
+      "@portabletext/editor@2.21.3": {
+        "dependencies": {
+          "@portabletext/sanity-bridge": "1.2.14"
+        }
+      }
+    }
+  },
   "packageManager": "pnpm@10.13.1"
 }

@@ -12,7 +12,7 @@ const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
 export default defineConfig(
 	includeIgnoreFile(gitignorePath),
-	{ ignores: ['pnpm-lock.yaml'] },
+	{ ignores: ['pnpm-lock.yaml', 'package.json', 'tsconfig.json'] },
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...svelte.configs['flat/recommended'],
