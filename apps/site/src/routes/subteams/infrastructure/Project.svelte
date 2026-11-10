@@ -19,7 +19,7 @@
 		{:else}
 			<div class="flex flex-col items-center gap-2 text-gray-9 dark:text-graydark-9">
 				<Image size={18} />
-				<span class="type-label">Screenshot</span>
+				<span class="type-label">Coming Soon!</span>
 			</div>
 		{/if}
 	</div>

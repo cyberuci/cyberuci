@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import Title from '$lib/common/components/Title.svelte';
 	import Project from './Project.svelte';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import { BadgeQuestionMark, HardDrive, Server, Users } from 'lucide-svelte';
 
 	interface Props {
@@ -107,7 +107,7 @@
 		<div class="type-body-1 text-2 lg:col-start-5 lg:col-end-17 space-y-4">
 			<p class="m-0">{data.aboutIntro}</p>
 			<ul>
-				{#each data.responsibilities as responsibility (responsibility.id)}
+				{#each data.responsibilities as responsibility (responsibility)}
 					<li>{responsibility}</li>
 				{/each}
 			</ul>
