@@ -5,6 +5,7 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
 import { colorInput } from '@sanity/color-input';
 import {
+	BellIcon,
 	CogIcon,
 	ConfettiIcon,
 	EarthAmericasIcon,
@@ -248,7 +249,12 @@ export default defineConfig({
 									.menuItems([...S.documentTypeList('board').getMenuItems()!])
 									.defaultOrdering([{ field: 'year', direction: 'desc' }])
 							),
-						S.documentTypeListItem('alumni').title('Alumni').icon(DashboardIcon)
+						S.documentTypeListItem('alumni').title('Alumni').icon(DashboardIcon),
+						S.divider(),
+						S.listItem()
+							.title('Site Notices')
+							.icon(BellIcon)
+							.child(S.document().schemaType('siteNotices').documentId('siteNotices'))
 					]);
 			}
 			// structure: (S) =>

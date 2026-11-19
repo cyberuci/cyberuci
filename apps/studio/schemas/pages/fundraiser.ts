@@ -7,12 +7,6 @@ export default defineType({
 	type: 'document',
 	fields: [
 		defineField({
-			name: 'title',
-			title: 'Fundraiser title',
-			description: '"[title] fundraiser!"',
-			type: 'string'
-		}),
-		defineField({
 			name: 'description',
 			title: 'Description',
 			type: 'array',
@@ -25,36 +19,6 @@ export default defineType({
 				})
 			],
 			validation: (Rule) => Rule.required()
-		}),
-		defineField({
-			name: 'isMerch',
-			title: 'Is this for merch purchase (for the pop-up symbol)?',
-			type: 'boolean',
-			options: {
-				layout: 'checkbox' // This makes it appear as a checkbox instead of a switch
-			},
-			validation: (Rule) => Rule.required()
-		}),
-		defineField({
-			name: 'startDate',
-			title: 'Start date',
-			description: 'The button appears on this date, Pacific time.',
-			type: 'date'
-		}),
-		defineField({
-			name: 'endDate',
-			title: 'End date',
-			description: 'The button stays up through this date, then disappears.',
-			type: 'date',
-			validation: (Rule) =>
-				Rule.custom((endDate, context) => {
-					const parent = context.parent as { startDate?: string } | undefined;
-					if (!endDate || !parent?.startDate) return true;
-
-					return endDate >= parent.startDate
-						? true
-						: 'The end date must be on or after the start date.';
-				})
 		}),
 		defineField({
 			name: 'poster',

@@ -14,6 +14,7 @@ import board from './board';
 import news from './news';
 import sponsor from './sponsor';
 import info from './info';
+import siteNotices from './siteNotices';
 import calendar from './calendar';
 import resourcecopy from './resourcecopy';
 import alumni from './alumni';
@@ -39,6 +40,7 @@ export const schemaTypes = [
 	person,
 	board,
 	info,
+	siteNotices,
 	news,
 	calendar,
 	sponsor
