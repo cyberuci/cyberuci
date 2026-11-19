@@ -2,9 +2,18 @@
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 	import Title from '$lib/common/components/Title.svelte';
-	import { BadgeQuestionMark, Bookmark, Heart, MessageCircle, Repeat2, Send } from 'lucide-svelte';
+	import {
+		BadgeQuestionMark,
+		Bookmark,
+		ChartNoAxesColumn,
+		Heart,
+		MessageCircle,
+		Repeat2,
+		Send,
+		Workflow
+	} from 'lucide-svelte';
 	import logoImg from '../social-media/logo.png';
-	import { siInstagram, siTiktok } from 'simple-icons';
+	import { siDiscord, siInstagram, siLinkedin, siTiktok } from 'simple-icons';
 
 	interface Props {
 		data: PageData;
@@ -16,6 +25,14 @@
 	const TIKTOK_URL = 'https://www.tiktok.com/@cyberuci';
 	const iconClass = 'cursor-pointer text-[#fff] transition-colors hover:text-bluedark-11';
 	const BLUE = '#3b82f6';
+	const processSteps: { title: string; graphic?: { src: string; alt: string } }[] = [
+		{ title: 'Step 1' },
+		{ title: 'Step 2' },
+		{ title: 'Step 3' },
+		{ title: 'Step 4' }
+	];
+	let selectedProcessStep = $state(0);
+	const selectedProcessGraphic = $derived(processSteps[selectedProcessStep]?.graphic);
 	let liked = $state(false);
 	let heartBurst = $state(0);
 	let repostIcon = $state<HTMLSpanElement>();
@@ -417,9 +434,185 @@
 			</p>
 		</div>
 	</div>
+
+	<div class="grid mt-24 items-start gap-y-6 lg:grid-cols-16">
+		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+			<ChartNoAxesColumn size={18} />
+			<h2 class="m-0 type-label font-550">OUR METRICS</h2>
+		</div>
+		<div class="max-w-prose w-full lg:col-start-5 lg:col-end-17 space-y-4">
+			<div class="h-24 flex items-center gap-4 bg-blue-4 px-6 type-heading-1 text-blue-11">
+				<a
+					class="metric-link"
+					href="https://discord.cyberuci.com/"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Cyber@UCI on Discord"
+				>
+					<svg class="size-8" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d={siDiscord.path} />
+					</svg>
+				</a>
+				<span><span class="sr-only">Discord: </span>1,000 members</span>
+			</div>
+			<div class="h-24 flex items-center gap-4 bg-blue-6 px-6 type-heading-1 text-blue-9">
+				<a
+					class="metric-link"
+					href="https://www.linkedin.com/company/cyber-uci/posts/"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Cyber@UCI on LinkedIn"
+				>
+					<svg class="size-8" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d={siLinkedin.path} />
+					</svg>
+				</a>
+				<span><span class="sr-only">LinkedIn: </span>1,000 followers</span>
+			</div>
+			<div class="h-24 flex items-center gap-4 bg-blue-9 px-6 type-heading-1 text-blue-6">
+				<a
+					class="metric-link"
+					href={TIKTOK_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Cyber@UCI on TikTok"
+				>
+					<svg class="size-8" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d={siTiktok.path} />
+					</svg>
+				</a>
+				<span><span class="sr-only">TikTok: </span>1,000 followers</span>
+			</div>
+			<div class="h-24 flex items-center gap-4 bg-blue-12 px-6 type-heading-1 text-blue-3">
+				<a
+					class="metric-link"
+					href={INSTAGRAM_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Cyber@UCI on Instagram"
+				>
+					<svg class="size-8" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d={siInstagram.path} />
+					</svg>
+				</a>
+				<span><span class="sr-only">Instagram: </span>1,000 followers</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="grid mt-24 items-start gap-y-6 lg:grid-cols-16">
+		<div class="flex items-center gap-2 lg:col-start-1 lg:col-end-5">
+			<Workflow size={18} />
+			<h2 class="m-0 type-label font-550">OUR PROCESS</h2>
+		</div>
+		{#if processSteps.length > 0}
+			<div class="process-content w-full lg:col-start-5 lg:col-end-17">
+				<div
+					class="aspect-video flex items-center justify-center overflow-hidden border border-gray-6 rounded-lg border-dashed dark:border-graydark-6"
+					aria-live="polite"
+					aria-atomic="true"
+				>
+					{#if selectedProcessGraphic}
+						<img
+							src={selectedProcessGraphic.src}
+							alt={selectedProcessGraphic.alt}
+							class="h-full w-full object-contain"
+						/>
+					{:else}
+						<p class="m-0 type-label text-2">
+							{processSteps[selectedProcessStep].title} graphic coming soon
+						</p>
+					{/if}
+				</div>
+				<div class="process-timeline px-2 py-4">
+					<div
+						class="w-full flex items-center"
+						style:--step-count={processSteps.length}
+						role="group"
+						aria-label="Process steps"
+					>
+						{#each processSteps as step, index (step.title)}
+							<button
+								type="button"
+								class="process-step text-white flex flex-shrink-0 items-center justify-center border-2 border-blue-1 rounded-full border-solid type-label"
+								class:process-next={index === selectedProcessStep + 1}
+								class:bg-blue-12={index === selectedProcessStep}
+								class:bg-blue-9={index !== selectedProcessStep}
+								aria-label={step.title}
+								aria-pressed={index === selectedProcessStep}
+								onclick={() => (selectedProcessStep = index)}
+							>
+								<span class="process-step-number">{index + 1}</span>
+							</button>
+							{#if index < processSteps.length - 1}
+								<div class="h-1 min-w-0 flex-1 bg-blue-7" aria-hidden="true"></div>
+							{/if}
+						{/each}
+					</div>
+				</div>
+			</div>
+		{/if}
+	</div>
 </div>
 
 <style>
+	.process-content {
+		max-width: 97.5ch;
+	}
+
+	.process-step {
+		width: min(3rem, 100% / var(--step-count));
+		aspect-ratio: 1;
+		padding: 0;
+		cursor: pointer;
+	}
+
+	.process-step:focus-visible {
+		outline: 3px solid #68a9ea;
+		outline-offset: 3px;
+	}
+
+	.process-next {
+		animation: process-pulse 2s ease-in-out infinite;
+	}
+
+	.process-next .process-step-number {
+		animation: process-pulse 2s ease-in-out infinite;
+	}
+
+	@keyframes process-pulse {
+		0%,
+		100% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.1);
+		}
+	}
+
+	.metric-link {
+		display: inline-flex;
+		flex-shrink: 0;
+		color: inherit;
+		transition: transform 0.2s ease;
+	}
+
+	.metric-link:hover,
+	.metric-link:focus-visible {
+		transform: scale(1.2);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.process-next,
+		.process-next .process-step-number {
+			animation: none;
+		}
+
+		.metric-link {
+			transition: none;
+		}
+	}
+
 	.icon-btn {
 		display: inline-flex;
 		padding: 0;
