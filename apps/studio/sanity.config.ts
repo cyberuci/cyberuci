@@ -128,11 +128,7 @@ export default defineConfig({
 										S.listItem()
 											.title('Info')
 											.icon(EarthAmericasIcon)
-											.child(S.document().schemaType('info').documentId('info')),
-										S.listItem()
-											.title('Site Notices')
-											.icon(BellIcon)
-											.child(S.document().schemaType('siteNotices').documentId('siteNotices'))
+											.child(S.document().schemaType('info').documentId('info'))
 									])
 							),
 						S.divider(),
@@ -253,7 +249,12 @@ export default defineConfig({
 									.menuItems([...S.documentTypeList('board').getMenuItems()!])
 									.defaultOrdering([{ field: 'year', direction: 'desc' }])
 							),
-						S.documentTypeListItem('alumni').title('Alumni').icon(DashboardIcon)
+						S.documentTypeListItem('alumni').title('Alumni').icon(DashboardIcon),
+						S.divider(),
+						S.listItem()
+							.title('Site Notices')
+							.icon(BellIcon)
+							.child(S.document().schemaType('siteNotices').documentId('siteNotices'))
 					]);
 			}
 			// structure: (S) =>

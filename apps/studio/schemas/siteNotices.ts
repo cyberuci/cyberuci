@@ -70,22 +70,24 @@ export default defineType({
 						defineField({
 							name: 'startsAt',
 							title: 'Show from',
-							description: 'Optional. Leave empty to show immediately.',
-							type: 'datetime'
+							description:
+								'Optional. Leave empty to show immediately. The notice appears on this date.',
+							type: 'date'
 						}),
 						defineField({
 							name: 'endsAt',
 							title: 'Hide after',
-							description: 'Optional. Leave empty to keep showing until disabled.',
-							type: 'datetime',
+							description:
+								'Optional. Leave empty to keep showing until disabled. The notice stays up through this date.',
+							type: 'date',
 							validation: (Rule) =>
 								Rule.custom((endsAt, context) => {
 									const parent = context.parent as { startsAt?: string } | undefined;
 									if (!endsAt || !parent?.startsAt) return true;
 
-									return new Date(endsAt) > new Date(parent.startsAt)
-										? true
-										: '"Hide after" must be later than "Show from".';
+									const end = String(endsAt).slice(0, 10);
+									const start = String(parent.startsAt).slice(0, 10);
+									return end >= start ? true : '"Hide after" must be on or after "Show from".';
 								})
 						})
 					],
@@ -94,7 +96,14 @@ export default defineType({
 						prepare({ title, kind, enabled, endsAt }) {
 							const parts = [kind === 'popup' ? 'Pop-up' : 'Banner'];
 							if (!enabled) parts.push('disabled');
-							if (endsAt) parts.push(`until ${new Date(endsAt).toLocaleString()}`);
+							if (endsAt) {
+								const [year, month, day] = String(endsAt).slice(0, 10).split('-').map(Number);
+								const label =
+									year && month && day
+										? new Date(year, month - 1, day).toLocaleDateString()
+										: String(endsAt);
+								parts.push(`until ${label}`);
+							}
 							return { title, subtitle: parts.join(' · ') };
 						}
 					}
