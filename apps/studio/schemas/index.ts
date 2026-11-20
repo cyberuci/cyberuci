@@ -6,6 +6,7 @@ import subteams from './pages/subteams';
 import outreach from './pages/outreach';
 import { webPage, socialMediaPage } from './pages/subteamComingSoon';
 import infrastructurePage from './pages/infrastructure';
+import graphicsPage from './pages/graphics';
 import competitionTeamsPage from './pages/competitionTeams';
 import corporate from './pages/corporate';
 import fundraiser from './pages/fundraiser';
@@ -31,6 +32,7 @@ export const schemaTypes = [
 	webPage,
 	socialMediaPage,
 	infrastructurePage,
+	graphicsPage,
 	competitionTeamsPage,
 	corporate,
 	fundraiser,

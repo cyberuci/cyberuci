@@ -20,7 +20,8 @@ import {
 	HeartIcon,
 	BillIcon,
 	DatabaseIcon,
-	TerminalIcon
+	TerminalIcon,
+	ComposeSparklesIcon
 } from '@sanity/icons';
 import groq from 'groq';
 
@@ -159,6 +160,10 @@ export default defineConfig({
 											.title('Web Page')
 											.icon(EarthGlobeIcon)
 											.child(S.document().schemaType('webPage').documentId('webPage')),
+										S.listItem()
+											.title('Graphics Page')
+											.icon(ComposeSparklesIcon)
+											.child(S.document().schemaType('graphicsPage').documentId('graphicsPage')),
 										S.listItem()
 											.title('Social Media Page')
 											.icon(HeartIcon)
