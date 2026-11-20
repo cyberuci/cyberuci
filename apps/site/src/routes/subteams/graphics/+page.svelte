@@ -1,14 +1,22 @@
 <script lang="ts">
+	import type { PageData } from './$types';
 	import Title from '$lib/common/components/Title.svelte';
 	import GraphicsEditor from './GraphicsEditor.svelte';
 	import logoImg from './logo.png';
 	import stickerPatch from './sticker2.png';
 	import stickerSecure from './general_design3.png';
 	import stickerLaptop from './anteater_computer_fixed.png';
-	import hoodieDesign from './CyberHoodie.jpg';
+	import { client } from '$lib/sanity/sanityClient';
+	import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
 
 	import { Palette, Frame, FileBox, BadgeQuestionMark } from 'lucide-svelte';
 	import Steps from './Steps.svelte';
+
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	const assets = [
 		{ name: 'Cyber@UCI Logo', src: logoImg, file: 'logo.png' },
@@ -16,6 +24,8 @@
 		{ name: 'Patch Delivery', src: stickerPatch, file: 'sticker2.png' },
 		{ name: 'Laptop Anteater', src: stickerLaptop, file: 'anteater_computer_fixed.png' }
 	];
+
+	const builder = imageUrlBuilder(client);
 </script>
 
 <svelte:head>
@@ -37,19 +47,14 @@
 		<div class="flex flex-col gap-6 lg:col-start-5 lg:col-end-17 md:flex-row">
 			<div class="flex-1 type-body-1 text-2 space-y-4">
 				<p class="m-0">
-					Graphics is the face of Cyber@UCI! We bring the club's ideas and events to life through
-					creative design. Our team is responsible for:
+					{data.graphics.intro}
 				</p>
 				<ul>
-					<li>Designing engaging content for the club's Instagram and social media</li>
-					<li>
-						Creating custom merchandise for members, including T-shirts, hoodies, keychains, and
-						stickers
-					</li>
-					<li>
-						Collaborating with other teams on creative projects, from developing 3D assets and
-						splines to designing event flyers and supporting club-wide initiatives
-					</li>
+					{#each data.graphics.tasks as task (task)}
+						<li>
+							{task}
+						</li>
+					{/each}
 				</ul>
 			</div>
 			<div
@@ -57,18 +62,18 @@
 			>
 				<a
 					class="group overflow-hidden rounded-lg background-2 decoration-none transition-colors hover:background-3"
-					href={hoodieDesign}
-					download={hoodieDesign}
+					href={builder.image(data.graphics.spotlight).url()}
+					download={data.graphics.spotlight.alt}
 				>
 					<div class="flex items-center justify-center bg-[#0a0a0a] p-4">
 						<img
-							src={hoodieDesign}
-							alt={hoodieDesign}
+							src={builder.image(data.graphics.spotlight).url()}
+							alt={data.graphics.spotlight.alt}
 							class="asset-thumb max-h-full max-w-full object-contain"
 						/>
 					</div>
 					<div class="flex items-center justify-center gap-2 px-3 py-2 type-label text">
-						<span>2026 Hoodie Design</span>
+						<span>{data.graphics.spotlight.alt}</span>
 					</div>
 				</a>
 			</div>
