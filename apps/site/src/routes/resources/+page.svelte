@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Title from '$lib/common/components/Title.svelte';
+	import Title from '#lib/common/components/Title.svelte';
 	import type { PageData } from './$types';
 	import ResourceType from './ResourceType.svelte';
 

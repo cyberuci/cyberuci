@@ -5,10 +5,10 @@
 		createImageUrlBuilder as imageUrlBuilder,
 		type SanityImageSource
 	} from '@sanity/image-url';
-	import { client } from '$lib/sanity/sanityClient';
+	import { client } from '#lib/sanity/sanityClient';
 
 	// Internal Components and Scripts
-	import SectionHeading from '$lib/common/components/SectionHeading.svelte';
+	import SectionHeading from '#lib/common/components/SectionHeading.svelte';
 
 	const googleMapsUrl =
 		'https://www.google.com/maps/search/?api=1&query=Interdisciplinary+Science+and+Engineering+Building+UC+Irvine';

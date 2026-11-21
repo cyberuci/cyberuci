@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Logo from '$lib/common/components/Logo.svelte';
+	import Logo from '#lib/common/components/Logo.svelte';
 	import {
 		ChevronDown,
 		Menu,

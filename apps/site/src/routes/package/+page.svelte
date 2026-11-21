@@ -4,7 +4,7 @@
 	import AchievementTimeline from './timeline/AchievementTimeline.svelte';
 
 	import type { PageData } from './$types';
-	import PortableText from '$lib/portableText/PortableText.svelte';
+	import PortableText from '#lib/portableText/PortableText.svelte';
 	import {
 		ArrowDown,
 		ArrowRight,
@@ -18,9 +18,9 @@
 		Trophy
 	} from 'lucide-svelte';
 
-	import { client } from '$lib/sanity/sanityClient';
+	import { client } from '#lib/sanity/sanityClient';
 	import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
-	import Title from '$lib/common/components/Title.svelte';
+	import Title from '#lib/common/components/Title.svelte';
 
 	const builder = imageUrlBuilder(client);
 

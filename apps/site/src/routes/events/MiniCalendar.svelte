@@ -3,8 +3,8 @@
 	import { type CalendarType } from '@schedule-x/calendar';
 	import { ChevronLeft, ChevronRight } from 'lucide-svelte';
 
-	import { type CalendarEvent } from '$lib/common/components/Calendar/types';
-	import { parseZoned } from '$lib/common/components/Calendar/transform';
+	import { type CalendarEvent } from '#lib/common/components/Calendar/types';
+	import { parseZoned } from '#lib/common/components/Calendar/transform';
 
 	import 'temporal-polyfill/global';
 

@@ -1,7 +1,7 @@
 import { dev } from '$app/environment';
 import { defineQuery } from 'groq';
-import { client } from '$lib/sanity/sanityClient';
-import type { SiteNotice } from '$lib/common/notices';
+import { client } from '#lib/sanity/sanityClient';
+import type { SiteNotice } from '#lib/common/notices';
 
 export type { SiteNotice };
 

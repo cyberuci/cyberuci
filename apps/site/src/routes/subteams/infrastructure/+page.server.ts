@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { client } from '$lib/sanity/sanityClient';
+import { client } from '#lib/sanity/sanityClient';
 import imageUrlBuilder from '@sanity/image-url';
 import type {
 	SanityImageCrop,

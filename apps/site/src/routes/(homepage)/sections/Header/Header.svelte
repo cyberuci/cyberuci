@@ -2,7 +2,7 @@
 	// Libraries
 	import { goto } from '$app/navigation';
 	import { CalendarDays, Medal, FlaskConical, MessagesSquare } from 'lucide-svelte';
-	import { client } from '$lib/sanity/sanityClient';
+	import { client } from '#lib/sanity/sanityClient';
 	import {
 		createImageUrlBuilder as imageUrlBuilder,
 		type SanityImageSource

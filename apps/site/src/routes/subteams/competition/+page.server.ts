@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { client } from '$lib/sanity/sanityClient';
+import { client } from '#lib/sanity/sanityClient';
 import { defineQuery } from 'groq';
 
 export const load: PageServerLoad = async () => {

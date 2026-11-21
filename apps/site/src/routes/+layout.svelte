@@ -3,9 +3,9 @@
 	import 'temporal-polyfill/global';
 	import type { Snippet } from 'svelte';
 	import type { LayoutData } from './$types';
-	import Nav from '$lib/common/components/Nav/Nav.svelte';
-	import Footer from '$lib/common/components/Footer.svelte';
-	import SiteNotices from '$lib/common/components/SiteNotices/SiteNotices.svelte';
+	import Nav from '#lib/common/components/Nav/Nav.svelte';
+	import Footer from '#lib/common/components/Footer.svelte';
+	import SiteNotices from '#lib/common/components/SiteNotices/SiteNotices.svelte';
 
 	interface Props {
 		data: LayoutData;

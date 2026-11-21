@@ -32,7 +32,7 @@ You almost never need the `font-*` classes directly — use the type shortcuts i
 For full page titles, use the shared `Title` component:
 
 ```svelte
-import Title from '$lib/common/components/Title.svelte';
+import Title from '#lib/common/components/Title.svelte';
 
 <Title title="Events" />
 <!-- large (default): [EVENTS] label + type-display h1 -->

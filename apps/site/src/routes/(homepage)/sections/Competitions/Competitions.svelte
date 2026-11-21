@@ -1,7 +1,7 @@
 <script lang="ts">
 	// Libraries
 	import { resolve } from '$app/paths';
-	import { client } from '$lib/sanity/sanityClient';
+	import { client } from '#lib/sanity/sanityClient';
 	import { Medal, Info } from 'lucide-svelte';
 	import {
 		createImageUrlBuilder as imageUrlBuilder,
@@ -9,7 +9,7 @@
 	} from '@sanity/image-url';
 
 	// Internal Components and Scripts
-	import SubHeading from '$lib/common/components/SectionHeading.svelte';
+	import SubHeading from '#lib/common/components/SectionHeading.svelte';
 
 	const builder = imageUrlBuilder(client);
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import Title from '$lib/common/components/Title.svelte';
+	import Title from '#lib/common/components/Title.svelte';
 	import Project from './Project.svelte';
 	import { browser } from '$app/env';
 	import { BadgeQuestionMark, HardDrive, Server, Users } from 'lucide-svelte';

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { browser } from '$app/env';
 	import { type CalendarType } from '@schedule-x/calendar';
-	import { type CalendarEvent } from '$lib/common/components/Calendar/types';
-	import { parseZoned } from '$lib/common/components/Calendar/transform';
+	import { type CalendarEvent } from '#lib/common/components/Calendar/types';
+	import { parseZoned } from '#lib/common/components/Calendar/transform';
 	import DOMPurify from 'dompurify';
 
-	import AddToCalendar from '$lib/common/components/Calendar/AddToCalendar.svelte';
+	import AddToCalendar from '#lib/common/components/Calendar/AddToCalendar.svelte';
 
 	import 'temporal-polyfill/global';
 

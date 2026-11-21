@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ArrowRight } from 'lucide-svelte';
-	import { isExternalLink, type SiteNotice } from '$lib/common/notices';
+	import { isExternalLink, type SiteNotice } from '#lib/common/notices';
 
 	interface Props {
 		notice: SiteNotice;

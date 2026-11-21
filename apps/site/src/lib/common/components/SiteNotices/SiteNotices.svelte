@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { isNoticeActive, type NoticeKind, type SiteNotice } from '$lib/common/notices';
+	import { isNoticeActive, type NoticeKind, type SiteNotice } from '#lib/common/notices';
 	import NoticeBanner from './NoticeBanner.svelte';
 	import NoticePopup from './NoticePopup.svelte';
 

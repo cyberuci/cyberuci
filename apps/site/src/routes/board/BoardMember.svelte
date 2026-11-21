@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { client } from '$lib/sanity/sanityClient';
+	import { client } from '#lib/sanity/sanityClient';
 	import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
 	import { Globe } from 'lucide-svelte';
 	import { siInstagram } from 'simple-icons';

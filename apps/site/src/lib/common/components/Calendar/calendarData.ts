@@ -1,8 +1,8 @@
-import { client } from '$lib/sanity/sanityClient';
+import { client } from '#lib/sanity/sanityClient';
 import { defineQuery } from 'groq';
 
 import { GOOGLE_CALENDAR_API_KEY } from '$app/env/private';
-import { type GoogleCalendarEvent } from '$lib/common/components/Calendar/types';
+import { type GoogleCalendarEvent } from '#lib/common/components/Calendar/types';
 import { Temporal } from 'temporal-polyfill';
 import 'temporal-polyfill/global';
 import { type CalendarType } from '@schedule-x/calendar';

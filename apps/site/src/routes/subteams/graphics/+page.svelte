@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Title from '$lib/common/components/Title.svelte';
+	import Title from '#lib/common/components/Title.svelte';
 	import GraphicsEditor from './GraphicsEditor.svelte';
 	import logoImg from './logo.png';
 	import stickerPatch from './sticker2.png';
