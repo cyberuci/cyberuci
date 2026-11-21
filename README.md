@@ -69,4 +69,4 @@ To develop an individual app or package, first navigate to the corresponding dir
 
 This repo is source available, but not licensed under an open source license.
 
-Copyright © 2024 Cyber @ UCI
+Copyright © 2026 Cyber @ UCI
