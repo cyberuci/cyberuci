@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Title from '$lib/common/components/Title.svelte';
+	import Title from '#lib/common/components/Title.svelte';
 	import {
 		createImageUrlBuilder as imageUrlBuilder,
 		type SanityImageSource
 	} from '@sanity/image-url';
-	import { client } from '$lib/sanity/sanityClient';
+	import { client } from '#lib/sanity/sanityClient';
 	import type { PageData } from './$types';
 
 	interface Props {

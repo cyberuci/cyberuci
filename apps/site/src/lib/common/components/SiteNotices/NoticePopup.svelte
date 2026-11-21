@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { HandCoins, Megaphone, Shirt, X } from 'lucide-svelte';
-	import { isExternalLink, type SiteNotice } from '$lib/common/notices';
+	import { isExternalLink, type SiteNotice } from '#lib/common/notices';
 
 	interface Props {
 		notice: SiteNotice;

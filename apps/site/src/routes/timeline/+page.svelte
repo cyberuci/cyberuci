@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import Title from '$lib/common/components/Title.svelte';
-	import PortableText from '$lib/portableText/PortableText.svelte';
+	import Title from '#lib/common/components/Title.svelte';
+	import PortableText from '#lib/portableText/PortableText.svelte';
 	import AchievementCard from './AchievementCard.svelte';
 	interface Props {
 		data: PageData;
@@ -41,7 +41,7 @@
 <div class="my-40 space-x">
 	<Title title="Timeline" />
 
-	<div class="mb-8 w-full text-gray-11 type-body-1 md:w-3/4 dark:text-graydark-11">
+	<div class="mb-8 w-full type-body-1 text-gray-11 md:w-3/4 dark:text-graydark-11">
 		<PortableText value={data.achievementsPage.description} />
 	</div>
 

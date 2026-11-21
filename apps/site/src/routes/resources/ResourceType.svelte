@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PortableText from '$lib/portableText/PortableText.svelte';
+	import PortableText from '#lib/portableText/PortableText.svelte';
 
 	import type { Resources } from './+page.svelte';
 	import { ArrowUpRight } from 'lucide-svelte';

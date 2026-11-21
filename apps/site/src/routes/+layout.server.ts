@@ -1,5 +1,5 @@
 import type { LayoutServerLoad } from './$types';
-import { getSiteSettings, type SiteNotice } from '$lib/sanity/siteSettings.server';
+import { getSiteSettings, type SiteNotice } from '#lib/sanity/siteSettings.server';
 
 const FALLBACK_EMAIL = 'cyberclub@uci.edu';
 

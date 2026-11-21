@@ -1,9 +1,9 @@
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-import { _formatCalendarData } from '$lib/common/components/Calendar/calendarData';
-import { loadAllCalendars } from '$lib/common/components/Calendar/transform';
-import { buildIcsContent, safeFilename } from '$lib/common/components/Calendar/eventLinks';
+import { _formatCalendarData } from '#lib/common/components/Calendar/calendarData';
+import { loadAllCalendars } from '#lib/common/components/Calendar/transform';
+import { buildIcsContent, safeFilename } from '#lib/common/components/Calendar/eventLinks';
 
 // Served as a real text/calendar response (not a client-side blob) so iPhones and Macs
 // open Calendar's "Add event" sheet instead of saving a file.

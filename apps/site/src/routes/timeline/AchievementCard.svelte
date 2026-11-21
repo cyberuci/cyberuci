@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 	import { ChevronDown } from 'lucide-svelte';
-	import { client } from '$lib/sanity/sanityClient';
+	import { client } from '#lib/sanity/sanityClient';
 	import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
 	interface Props {
 		title: string;

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Title from '$lib/common/components/Title.svelte';
+	import Title from '#lib/common/components/Title.svelte';
 	import { Construction } from 'lucide-svelte';
 
 	interface Props {

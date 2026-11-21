@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { Flag, Shield, SquareTerminal, Trophy, type Icon } from 'lucide-svelte';
-	import PortableText from '$lib/portableText/PortableText.svelte';
+	import PortableText from '#lib/portableText/PortableText.svelte';
 	import SubteamPage from '../SubteamPage.svelte';
 
 	interface Props {

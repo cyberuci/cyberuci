@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Title from '$lib/common/components/Title.svelte';
+	import Title from '#lib/common/components/Title.svelte';
 	import { FileDown, Frame, Palette } from 'lucide-svelte';
 	import Steps from './Steps.svelte';
 	import logoColor from './logo-color.svg';

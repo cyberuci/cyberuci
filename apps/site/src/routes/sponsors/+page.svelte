@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
-	import Title from '$lib/common/components/Title.svelte';
+	import Title from '#lib/common/components/Title.svelte';
 	import SponsorTier from './SponsorTier.svelte';
 
 	const { data }: PageProps = $props();

@@ -115,7 +115,7 @@ Singleton pages (one document in Studio) usually use a fixed `_id`, e.g. `homePa
 ```ts
 // routes/example/+page.server.ts
 import type { PageServerLoad } from './$types';
-import { client } from '$lib/sanity/sanityClient';
+import { client } from '#lib/sanity/sanityClient';
 import { defineQuery } from 'groq';
 
 export const load: PageServerLoad = async () => {
@@ -135,8 +135,8 @@ Then in `+page.svelte`, use `data` from props (`PageData`).
 
 Two clients exist:
 
-- `$lib/sanity/sanityClient` — public CDN client (most pages)
-- `$lib/sanity/sanityServer.server.ts` — tokenized client when you need drafts / private fields
+- `#lib/sanity/sanityClient` — public CDN client (most pages)
+- `#lib/sanity/sanityServer.server.ts` — tokenized client when you need drafts / private fields
 
 ---
 
@@ -183,13 +183,13 @@ GROQ is Sanity’s query language. You filter documents, then project the fields
 }
 ```
 
-| Piece              | Meaning                        |
+| Piece | Meaning |
 | ------------------ | ------------------------------ | ---- |
-| `*`                | All documents                  |
-| `[filter]`         | Keep matching docs             |
-| `                  | order(...)`                    | Sort |
-| `[0]` / `[0...10]` | Take one / a slice             |
-| `{ ... }`          | Projection — only these fields |
+| `*` | All documents |
+| `[filter]` | Keep matching docs |
+| `                  | order(...)` | Sort |
+| `[0]` / `[0...10]` | Take one / a slice |
+| `{ ... }` | Projection — only these fields |
 
 ### Filters you’ll use a lot
 

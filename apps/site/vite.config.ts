@@ -11,10 +11,7 @@ export default defineConfig({
 		enhancedImages(),
 		sveltekit({
 			adapter: adapter(),
-			preprocess: vitePreprocess(),
-			alias: {
-				$lib: 'src/lib'
-			}
+			preprocess: vitePreprocess()
 		})
 	]
 });

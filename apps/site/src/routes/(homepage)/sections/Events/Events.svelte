@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Import Types
-	import { type CalendarEvent } from '$lib/common/components/Calendar/types';
+	import { type CalendarEvent } from '#lib/common/components/Calendar/types';
 
 	// Libraries
 	import { resolve } from '$app/paths';
@@ -8,9 +8,9 @@
 	import { siDiscord } from 'simple-icons';
 
 	// Internal Components and Scripts
-	import Time from '$lib/common/components/Calendar/Time.svelte';
-	import SectionHeading from '$lib/common/components/SectionHeading.svelte';
-	import AddToCalendar from '$lib/common/components/Calendar/AddToCalendar.svelte';
+	import Time from '#lib/common/components/Calendar/Time.svelte';
+	import SectionHeading from '#lib/common/components/SectionHeading.svelte';
+	import AddToCalendar from '#lib/common/components/Calendar/AddToCalendar.svelte';
 
 	interface Props {
 		event: CalendarEvent | null;

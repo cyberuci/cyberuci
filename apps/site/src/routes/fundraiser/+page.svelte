@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { client } from '$lib/sanity/sanityClient';
+	import { client } from '#lib/sanity/sanityClient';
 	import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
-	import Logo from '$lib/common/components/Logo.svelte';
-	import Title from '$lib/common/components/Title.svelte';
-	import PortableText from '$lib/portableText/PortableText.svelte';
+	import Logo from '#lib/common/components/Logo.svelte';
+	import Title from '#lib/common/components/Title.svelte';
+	import PortableText from '#lib/portableText/PortableText.svelte';
 
 	const builder = imageUrlBuilder(client);
 

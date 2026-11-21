@@ -1,7 +1,7 @@
 import { PUBLIC_EVENT_IDEAS_FORM_URL } from '$app/env/public';
 
-import { _formatCalendarData } from '$lib/common/components/Calendar/calendarData';
-import { loadAllCalendars } from '$lib/common/components/Calendar/transform';
+import { _formatCalendarData } from '#lib/common/components/Calendar/calendarData';
+import { loadAllCalendars } from '#lib/common/components/Calendar/transform';
 
 export const load = async ({ setHeaders }) => {
 	// browser caches for 1 minute, server caches for 5 minutes

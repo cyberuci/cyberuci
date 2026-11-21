@@ -58,7 +58,7 @@ export default defineConfig(
 							position: 'before'
 						},
 						{
-							pattern: '$lib/**',
+							pattern: '#lib/**',
 							group: 'internal'
 						}
 					],

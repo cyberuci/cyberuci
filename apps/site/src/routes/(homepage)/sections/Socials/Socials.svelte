@@ -4,7 +4,7 @@
 	import { siDiscord, siInstagram, siGithub } from 'simple-icons';
 
 	// Internal Components and Scripts
-	import SectionHeading from '$lib/common/components/SectionHeading.svelte';
+	import SectionHeading from '#lib/common/components/SectionHeading.svelte';
 
 	interface Props {
 		socials: NonNullable<PageData['socials']>;
