@@ -11,7 +11,6 @@
 
 <div class={clsx(size == 'large' && 'mb-20 mt-40', size == 'small' && 'mb-10 mt-38')}>
 	{#if size === 'large'}
-		<p class="type-label">[{title.toUpperCase()}]</p>
 		<h1 class="type-display">{title}</h1>
 	{:else if size === 'small'}
 		<p class="type-label">{title.toUpperCase()}</p>
