@@ -21,15 +21,46 @@
 	let solved = $state(false);
 	const ready = $derived(pixels !== undefined);
 
+	const transitionDuration = 450;
+
 	$effect(() => {
 		if (!pixels) return;
-		context.putImageData(
+		const target =
 			channel < 0
 				? pixels
-				: new ImageData(bitPlane(pixels.data, channel, bit), pixels.width, pixels.height),
-			0,
-			0
-		);
+				: new ImageData(bitPlane(pixels.data, channel, bit), pixels.width, pixels.height);
+
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			context.putImageData(target, 0, 0);
+			return;
+		}
+
+		const plane = document.createElement('canvas');
+		plane.width = pixels.width;
+		plane.height = pixels.height;
+		plane.getContext('2d')!.putImageData(target, 0, 0);
+
+		const size = Math.max(4, Math.round(pixels.width / 120));
+		const blocks = [];
+		for (let y = 0; y < pixels.height; y += size) {
+			for (let x = 0; x < pixels.width; x += size) {
+				blocks.push({ x, y, time: 0.6 * Math.random() + 0.4 * (y / pixels.height) });
+			}
+		}
+		blocks.sort((a, b) => a.time - b.time);
+
+		let start: number;
+		let next = 0;
+		let frame = requestAnimationFrame(function step(now) {
+			start ??= now;
+			const progress = Math.min(1, (now - start) / transitionDuration);
+			while (next < blocks.length && (blocks[next].time <= progress || progress === 1)) {
+				const { x, y } = blocks[next++];
+				context.drawImage(plane, x, y, size, size, x, y, size, size);
+			}
+			if (progress < 1) frame = requestAnimationFrame(step);
+		});
+		return () => cancelAnimationFrame(frame);
 	});
 
 	onMount(() => {
